@@ -371,56 +371,31 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Google Maps card */}
-            <div
-              style={{
-                backgroundColor: "#F7F8FA",
-                border: "1px solid rgba(0,0,0,0.08)",
-                padding: "24px",
-                marginTop: "8px",
-              }}
-            >
-              <address
-                style={{
-                  fontStyle: "normal",
-                  color: "#4A5568",
-                  fontSize: "14px",
-                  lineHeight: 1.75,
-                  marginBottom: "16px",
-                  display: "block",
-                }}
-              >
-                <strong
-                  style={{
-                    color: "#1A202C",
-                    fontWeight: 500,
-                    display: "block",
-                  }}
+            {/* Google Maps embed */}
+            <div style={{ overflow: "hidden", border: "1px solid rgba(0,0,0,0.08)", marginTop: "8px" }}>
+              <iframe
+                src="https://maps.google.com/maps?q=120+Commerce+Blvd+Suite+4,+Oldsmar,+FL+34677&output=embed&z=16"
+                width="100%"
+                height="240"
+                style={{ border: 0, display: "block" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Crafted Kitchen and Bath — 120 Commerce Blvd Suite 4, Oldsmar FL"
+              />
+              <div style={{ backgroundColor: "#F7F8FA", padding: "14px 18px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px" }}>
+                <address style={{ fontStyle: "normal", color: "#4A5568", fontSize: "13px", lineHeight: 1.6 }}>
+                  120 Commerce Blvd Suite 4, Oldsmar FL 34677
+                </address>
+                <a
+                  href="https://maps.google.com/?q=Crafted+Home+Improvements+120+Commerce+Blvd+Suite+4+Oldsmar+FL+34677"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "#2B7CC1", textDecoration: "none", fontSize: "10px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", whiteSpace: "nowrap" }}
                 >
-                  Crafted Kitchen and Bath
-                </strong>
-                120 Commerce Blvd Suite 4
-                <br />
-                Oldsmar, FL 34677
-              </address>
-              <a
-                href="https://maps.google.com/?q=120+Commerce+Blvd+Suite+4+Oldsmar+FL+34677"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  color: "#2B7CC1",
-                  textDecoration: "none",
-                  fontSize: "11px",
-                  fontWeight: 600,
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                }}
-              >
-                Open in Google Maps →
-              </a>
+                  Open in Maps →
+                </a>
+              </div>
             </div>
           </div>
 
@@ -449,6 +424,35 @@ export default function ContactPage() {
             />
             <ContactForm />
           </div>
+        </div>
+      </section>
+
+      {/* ── FULL-WIDTH MAP ───────────────────────────────────────────────── */}
+      <section style={{ position: "relative" }}>
+        <iframe
+          src="https://maps.google.com/maps?q=120+Commerce+Blvd+Suite+4,+Oldsmar,+FL+34677&output=embed&z=15"
+          width="100%"
+          height="440"
+          style={{ border: 0, display: "block" }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Crafted Kitchen and Bath map"
+        />
+        {/* Overlay CTA card */}
+        <div style={{ position: "absolute", bottom: "32px", left: "50%", transform: "translateX(-50%)", backgroundColor: "#FFFFFF", padding: "24px 32px", boxShadow: "0 8px 40px rgba(0,0,0,0.14)", border: "1px solid rgba(0,0,0,0.06)", display: "flex", alignItems: "center", gap: "32px", whiteSpace: "nowrap", zIndex: 1 }}>
+          <div>
+            <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.18em", color: "#2B7CC1", fontWeight: 600, margin: "0 0 6px" }}>Our Location</p>
+            <p style={{ fontFamily: "var(--font-cormorant),'Cormorant Garamond',Georgia,serif", fontSize: "20px", color: "#111822", margin: 0, fontWeight: 400 }}>120 Commerce Blvd Suite 4, Oldsmar FL</p>
+          </div>
+          <a
+            href="https://maps.google.com/?q=Crafted+Home+Improvements+120+Commerce+Blvd+Suite+4+Oldsmar+FL"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ backgroundColor: "#111822", color: "#FFFFFF", fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.18em", fontWeight: 600, padding: "13px 24px", textDecoration: "none", flexShrink: 0 }}
+          >
+            Get Directions →
+          </a>
         </div>
       </section>
 

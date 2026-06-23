@@ -1059,70 +1059,44 @@ export default function HomePage() {
       <section style={{ backgroundColor: "#FFFFFF", padding: "96px 0" }}>
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <div className="mb-16 text-center">
-            <p
-              style={{
-                fontSize: "9px",
-                textTransform: "uppercase",
-                letterSpacing: "0.22em",
-                color: "#2B7CC1",
-                fontWeight: 500,
-              }}
-            >
+            <p style={{ fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.22em", color: "#2B7CC1", fontWeight: 500 }}>
               Client Stories
             </p>
-            <h2
-              className="mt-6"
-              style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
-                fontWeight: 300,
-                fontSize: "clamp(2.5rem,4vw,4rem)",
-                color: "#1A202C",
-                lineHeight: 1.1,
-                letterSpacing: "-0.01em",
-              }}
-            >
+            <h2 className="mt-6" style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontWeight: 300, fontSize: "clamp(2.5rem,4vw,4rem)", color: "#1A202C", lineHeight: 1.1, letterSpacing: "-0.01em" }}>
               What Our Clients Say
             </h2>
+            {/* Google rating badge */}
+            <div style={{ display: "inline-flex", alignItems: "center", gap: "12px", marginTop: "24px", padding: "12px 20px", border: "1px solid rgba(0,0,0,0.08)", backgroundColor: "#F7F8FA" }}>
+              <svg width="18" height="18" viewBox="0 0 48 48" aria-label="Google" role="img">
+                <path fill="#4285F4" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/>
+                <path fill="#34A853" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/>
+                <path fill="#FBBC05" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/>
+                <path fill="#EA4335" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
+              </svg>
+              <div style={{ display: "flex", gap: "2px" }}>
+                {[1,2,3,4,5].map(s => <span key={s} style={{ color: "#F59E0B", fontSize: "14px" }}>★</span>)}
+              </div>
+              <span style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "13px", color: "#1A202C", fontWeight: 500 }}>5.0</span>
+              <span style={{ fontSize: "13px", color: "#9CA3AF" }}>· Google Reviews</span>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {testimonials.map((t, idx) => (
               <AnimateOnScroll key={t.author} delay={idx * 150}>
-                <div
-                  style={{
-                    backgroundColor: "#F7F8FA",
-                    padding: "32px",
-                    borderTop: "2px solid #2B7CC1",
-                  }}
-                >
-                  <div style={{ display: "flex", gap: "2px" }}>
-                    {[1, 2, 3, 4, 5].map((s) => (
-                      <span key={s} style={{ color: "#2B7CC1", fontSize: "0.875rem" }}>
-                        ★
-                      </span>
-                    ))}
+                <div style={{ backgroundColor: "#F7F8FA", padding: "32px", borderTop: "2px solid #F59E0B" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
+                    <div style={{ display: "flex", gap: "2px" }}>
+                      {[1, 2, 3, 4, 5].map(s => <span key={s} style={{ color: "#F59E0B", fontSize: "14px" }}>★</span>)}
+                    </div>
+                    <svg width="14" height="14" viewBox="0 0 48 48" style={{ flexShrink: 0, opacity: 0.6 }}>
+                      <path fill="#4285F4" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#34A853" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#FBBC05" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#EA4335" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
+                    </svg>
                   </div>
-                  <p
-                    className="mt-3"
-                    style={{
-                      fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
-                      fontStyle: "italic",
-                      fontSize: "1.25rem",
-                      color: "#1A202C",
-                      lineHeight: 1.6,
-                    }}
-                  >
+                  <p style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "1.25rem", color: "#1A202C", lineHeight: 1.6, margin: 0 }}>
                     &ldquo;{t.quote}&rdquo;
                   </p>
-                  <p
-                    className="mt-4"
-                    style={{
-                      fontSize: "12px",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.12em",
-                      color: "#9CA3AF",
-                    }}
-                  >
+                  <p className="mt-4" style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.12em", color: "#9CA3AF" }}>
                     — {t.author}
                   </p>
                 </div>
@@ -1130,17 +1104,21 @@ export default function HomePage() {
             ))}
           </div>
 
-          <p
-            className="mt-10 text-center"
-            style={{
-              fontSize: "9px",
-              textTransform: "uppercase",
-              letterSpacing: "0.16em",
-              color: "#9CA3AF",
-            }}
-          >
-            5/5 &middot; Google Rating &middot; 250+ Homes Remodeled
-          </p>
+          {/* Google Reviews CTA */}
+          <div className="mt-12 text-center">
+            <Link
+              href="https://www.google.com/maps/search/crafted+home+improvements+oldsmar+fl"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: "10px", border: "1px solid rgba(0,0,0,0.12)", padding: "14px 28px", textDecoration: "none", fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.16em", color: "#1A202C", fontWeight: 500 }}
+              className="hover:bg-[#F7F8FA] transition-colors duration-200"
+            >
+              <svg width="16" height="16" viewBox="0 0 48 48">
+                <path fill="#4285F4" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#34A853" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#FBBC05" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#EA4335" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
+              </svg>
+              Read Our Google Reviews
+            </Link>
+          </div>
         </div>
       </section>
 

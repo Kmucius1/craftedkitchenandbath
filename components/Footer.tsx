@@ -303,7 +303,7 @@ export default function Footer() {
         <div className="mx-auto max-w-7xl flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           {/* Left: copyright */}
           <p style={{ color: "#9CA3AF", fontSize: "11px" }}>
-            &copy; 2025 Crafted Kitchen and Bath. All rights reserved.
+            &copy; 2026 Crafted Kitchen and Bath. All rights reserved.
           </p>
 
           {/* Center: legal links */}
