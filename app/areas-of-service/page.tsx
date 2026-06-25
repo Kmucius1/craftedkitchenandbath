@@ -65,34 +65,42 @@ const breadcrumbSchema = {
 const pinellasCities = [
   {
     name: "Oldsmar",
+    slug: "oldsmar",
     copy: "Our home base. We're a short drive from most Oldsmar neighborhoods and know the home styles here well.",
   },
   {
     name: "Clearwater",
+    slug: "clearwater",
     copy: "Clearwater homeowners trust us for kitchen and bathroom renovations that match the Gulf Coast lifestyle.",
   },
   {
     name: "Palm Harbor",
+    slug: "palm-harbor",
     copy: "From master bath upgrades to full kitchen remodels, Palm Harbor is one of our most active service areas.",
   },
   {
     name: "Safety Harbor",
+    slug: "safety-harbor",
     copy: "Safety Harbor's character-rich homes often benefit from custom cabinetry and thoughtful layout updates.",
   },
   {
     name: "Dunedin",
+    slug: "dunedin",
     copy: "Dunedin's charming bungalows and coastal properties are a joy to work in — we respect the character while updating the function.",
   },
   {
     name: "Tarpon Springs",
+    slug: "tarpon-springs",
     copy: "We serve Tarpon Springs homeowners with full remodeling services, from sponge-dock neighborhoods to inland communities.",
   },
   {
     name: "Largo",
+    slug: "largo",
     copy: "Largo homeowners get the same quality and care as every other community we serve.",
   },
   {
     name: "St. Petersburg",
+    slug: "st-petersburg",
     copy: "From historic homes to modern condos, St. Petersburg's variety means we're always solving interesting design challenges.",
   },
 ];
@@ -100,10 +108,22 @@ const pinellasCities = [
 const hillsboroughCities = [
   {
     name: "Tampa",
-    copy: "Tampa's diverse neighborhoods — from Hyde Park to New Tampa — keep us busy with kitchen and bath renovations.",
+    slug: "tampa",
+    copy: "Tampa's diverse neighborhoods — from Hyde Park to Seminole Heights — keep us busy with kitchen and bath renovations.",
+  },
+  {
+    name: "Westchase",
+    slug: "westchase",
+    copy: "Westchase's master-planned villages are reaching the age where original kitchens and baths are ready for a refresh.",
+  },
+  {
+    name: "Carrollwood",
+    slug: "carrollwood",
+    copy: "From Original Carrollwood's oak-shaded ranches to Carrollwood Village, we update these homes with care.",
   },
   {
     name: "Brandon",
+    slug: "brandon",
     copy: "We extend our services to Brandon and surrounding Hillsborough County communities.",
   },
 ];
@@ -445,14 +465,16 @@ export default function AreasOfServicePage() {
             style={{ backgroundColor: "rgba(43,124,193,0.1)" }}
           >
             {pinellasCities.map((city) => (
-              <div
+              <Link
                 key={city.name}
+                href={`/areas-of-service/${city.slug}`}
                 style={{
                   backgroundColor: "#FFFFFF",
                   padding: "32px 28px",
                   display: "flex",
                   flexDirection: "column",
                   gap: "16px",
+                  textDecoration: "none",
                 }}
               >
                 <div
@@ -488,7 +510,20 @@ export default function AreasOfServicePage() {
                 >
                   {city.copy}
                 </p>
-              </div>
+
+                <span
+                  style={{
+                    fontSize: "10px",
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                    color: "#2B7CC1",
+                    fontWeight: 600,
+                    marginTop: "4px",
+                  }}
+                >
+                  View {city.name} &rarr;
+                </span>
+              </Link>
             ))}
           </div>
         </div>
@@ -545,14 +580,16 @@ export default function AreasOfServicePage() {
             }}
           >
             {hillsboroughCities.map((city) => (
-              <div
+              <Link
                 key={city.name}
+                href={`/areas-of-service/${city.slug}`}
                 style={{
                   backgroundColor: "#F7F8FA",
                   padding: "32px 28px",
                   display: "flex",
                   flexDirection: "column",
                   gap: "16px",
+                  textDecoration: "none",
                 }}
               >
                 <div
@@ -588,7 +625,20 @@ export default function AreasOfServicePage() {
                 >
                   {city.copy}
                 </p>
-              </div>
+
+                <span
+                  style={{
+                    fontSize: "10px",
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                    color: "#2B7CC1",
+                    fontWeight: 600,
+                    marginTop: "4px",
+                  }}
+                >
+                  View {city.name} &rarr;
+                </span>
+              </Link>
             ))}
           </div>
         </div>
