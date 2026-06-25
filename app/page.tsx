@@ -54,11 +54,9 @@ const jsonLd = {
         "Largo",
       ],
       priceRange: "$$",
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "5",
-        reviewCount: "50",
-      },
+      // NOTE: aggregateRating removed — Google requires it to reflect real,
+      // on-page, verifiable reviews. Restore once genuine reviews are displayed
+      // on the site (e.g. pulled from the Google Business Profile).
       openingHoursSpecification: {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],

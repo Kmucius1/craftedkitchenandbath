@@ -53,12 +53,9 @@ const jsonLd = {
     "Largo",
   ],
   priceRange: "$$",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5",
-    bestRating: "5",
-    reviewCount: "250",
-  },
+  // NOTE: aggregateRating removed — it conflicted with the homepage count and was
+  // not backed by real on-page reviews (Google rich-results policy risk). Restore
+  // with genuine, displayed reviews and a count consistent across all pages.
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
     dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
