@@ -30,38 +30,61 @@ const SLIDES = [
 ]
 
 export default function HeroSlideshow() {
-  const [active, setActive] = useState(0)
+  const [current, setCurrent] = useState(0)
+  const [prev, setPrev] = useState<number | null>(null)
+  const [epoch, setEpoch] = useState(0)
 
   useEffect(() => {
     const id = setInterval(() => {
-      setActive((prev) => (prev + 1) % SLIDES.length)
-    }, 5500)
+      setCurrent((c) => {
+        setPrev(c)
+        return (c + 1) % SLIDES.length
+      })
+      setEpoch((e) => e + 1)
+    }, 8000)
     return () => clearInterval(id)
   }, [])
 
   return (
     <div style={{ width: '100%', height: '600px', position: 'relative', overflow: 'hidden' }}>
-      {SLIDES.map((slide, i) => (
-        <div
-          key={slide.src}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            opacity: i === active ? 1 : 0,
-            transition: 'opacity 1.8s ease-in-out',
-            willChange: 'opacity',
-          }}
-        >
+      <style>{`
+        @keyframes heroCrossfade {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+      `}</style>
+
+      {/* Previous slide stays visible underneath */}
+      {prev !== null && (
+        <div style={{ position: 'absolute', inset: 0 }}>
           <Image
-            src={slide.src}
-            alt={slide.alt}
+            src={SLIDES[prev].src}
+            alt={SLIDES[prev].alt}
             fill
-            priority={i === 0}
             style={{ objectFit: 'cover', objectPosition: 'center center' }}
             sizes="100vw"
           />
         </div>
-      ))}
+      )}
+
+      {/* Current slide fades in on top — key forces fresh animation on each advance */}
+      <div
+        key={epoch}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          animation: epoch === 0 ? 'none' : 'heroCrossfade 1.8s ease-in-out forwards',
+        }}
+      >
+        <Image
+          src={SLIDES[current].src}
+          alt={SLIDES[current].alt}
+          fill
+          priority={current === 0}
+          style={{ objectFit: 'cover', objectPosition: 'center center' }}
+          sizes="100vw"
+        />
+      </div>
     </div>
   )
 }
