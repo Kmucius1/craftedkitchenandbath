@@ -1,22 +1,20 @@
-import { neon, type NeonQueryFunction } from "@neondatabase/serverless";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-// Lazily-initialized Neon/Postgres client. Reads whichever connection-string env
-// var the Vercel Postgres (Neon) integration provides. Lazy so the app still
-// builds when no DB is configured (e.g. before the integration is attached).
-let _sql: NeonQueryFunction<false, false> | null = null;
+// Server-side Supabase client (service role — bypasses RLS). Used only in API
+// routes / server components, never shipped to the browser. Lazily created so
+// the app still builds before env vars are set.
+let _client: SupabaseClient | null = null;
 
-export function getSql(): NeonQueryFunction<false, false> {
-  const url =
-    process.env.DATABASE_URL ||
-    process.env.POSTGRES_URL ||
-    process.env.POSTGRES_PRISMA_URL ||
-    process.env.POSTGRES_URL_NON_POOLING ||
-    process.env.DATABASE_URL_UNPOOLED;
-  if (!url) {
-    throw new Error("No Postgres connection string set (DATABASE_URL / POSTGRES_URL).");
+export function getSupabase(): SupabaseClient {
+  const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) {
+    throw new Error("Supabase is not configured (SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY).");
   }
-  if (!_sql) _sql = neon(url);
-  return _sql;
+  if (!_client) {
+    _client = createClient(url, key, { auth: { persistSession: false } });
+  }
+  return _client;
 }
 
 export type LeadStatus = "New" | "Contacted" | "Quoted" | "Won" | "Lost";

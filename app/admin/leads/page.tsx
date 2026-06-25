@@ -1,4 +1,4 @@
-import { getSql, type Lead } from "@/lib/db";
+import { getSupabase, type Lead } from "@/lib/db";
 import LeadsTable from "@/components/admin/LeadsTable";
 
 export const dynamic = "force-dynamic";
@@ -13,13 +13,13 @@ export default async function AdminLeadsPage() {
   let leads: Lead[] = [];
   let dbError = false;
   try {
-    const sql = getSql();
-    leads = (await sql`
-      select id, created_at, full_name, email, phone, service, city,
-             description, contact_method, source, status, notes
-      from leads
-      order by created_at desc
-    `) as Lead[];
+    const supabase = getSupabase();
+    const { data, error } = await supabase
+      .from("leads")
+      .select("id, created_at, full_name, email, phone, service, city, description, contact_method, source, status, notes")
+      .order("created_at", { ascending: false });
+    if (error) throw error;
+    leads = (data || []) as Lead[];
   } catch (err) {
     console.error("[admin/leads] query failed:", err);
     dbError = true;

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSql, LEAD_STATUSES, type LeadStatus } from "@/lib/db";
+import { getSupabase, LEAD_STATUSES, type LeadStatus } from "@/lib/db";
 
 // Update a lead's status or notes. Access is gated by proxy.ts (admin cookie).
 export const runtime = "nodejs";
@@ -26,14 +26,12 @@ export async function PATCH(req: NextRequest) {
   }
 
   try {
-    const sql = getSql();
-    if (hasStatus && hasNotes) {
-      await sql`update leads set status = ${body.status}, notes = ${body.notes} where id = ${id}`;
-    } else if (hasStatus) {
-      await sql`update leads set status = ${body.status} where id = ${id}`;
-    } else {
-      await sql`update leads set notes = ${body.notes} where id = ${id}`;
-    }
+    const supabase = getSupabase();
+    const patch: { status?: string; notes?: string } = {};
+    if (hasStatus) patch.status = body.status;
+    if (hasNotes) patch.notes = body.notes;
+    const { error } = await supabase.from("leads").update(patch).eq("id", id);
+    if (error) throw error;
   } catch (err) {
     console.error("[admin/leads] update failed:", err);
     return NextResponse.json({ ok: false, error: "Update failed" }, { status: 500 });

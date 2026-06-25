@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSql } from "@/lib/db";
+import { getSupabase } from "@/lib/db";
 import { notifyNewLead } from "@/lib/notify";
 
 // Lead-capture endpoint. Validates the contact form, blocks spam, stores the
@@ -60,12 +60,9 @@ export async function POST(req: NextRequest) {
   };
 
   try {
-    const sql = getSql();
-    await sql`
-      insert into leads (full_name, email, phone, service, city, description, contact_method, source)
-      values (${lead.full_name}, ${lead.email}, ${lead.phone}, ${lead.service},
-              ${lead.city}, ${lead.description}, ${lead.contact_method}, ${lead.source})
-    `;
+    const supabase = getSupabase();
+    const { error } = await supabase.from("leads").insert(lead);
+    if (error) throw error;
   } catch (err) {
     // Never silently lose a lead — log loudly and tell the visitor to call.
     console.error("[contact] Failed to save lead:", err);
