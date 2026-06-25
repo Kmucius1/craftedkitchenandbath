@@ -23,12 +23,15 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
   const { city } = await params;
   const area = getServiceArea(city);
   if (!area) return {};
+  // The root layout appends " | Crafted Kitchen & Bath" via its title template,
+  // so strip the short "| Crafted" suffix the data uses to avoid doubling.
+  const baseTitle = area.metaTitle.replace(/\s*\|\s*Crafted\s*$/i, "");
   return {
-    title: area.metaTitle,
+    title: baseTitle,
     description: area.metaDescription,
     alternates: { canonical: `${SITE}/areas-of-service/${area.slug}` },
     openGraph: {
-      title: area.metaTitle,
+      title: `${baseTitle} | Crafted Kitchen & Bath`,
       description: area.metaDescription,
       url: `${SITE}/areas-of-service/${area.slug}`,
       type: "website",
