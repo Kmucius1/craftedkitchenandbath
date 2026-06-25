@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import CTASection from "@/components/CTASection";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
+import HeroSlideshow from "@/components/HeroSlideshow";
 
 export const metadata: Metadata = {
   title: "Kitchen & Bathroom Remodeling Tampa Bay | Crafted Kitchen & Bath | Oldsmar FL",
@@ -205,16 +206,8 @@ export default function HomePage() {
       {/* Nav spacer — pushes content below the fixed 92px header */}
       <div style={{ height: "92px" }} />
 
-      {/* Full-width kitchen photo */}
-      <div style={{ width: "100%", height: "600px", overflow: "hidden", position: "relative" }}>
-        <Image
-          src="/images/7538a222-6dd1-43e7-8c45-55880dacb434.png"
-          alt="Luxury kitchen remodeling by Crafted Kitchen and Bath"
-          fill
-          priority
-          style={{ objectFit: "cover", objectPosition: "center center" }}
-        />
-      </div>
+      {/* Full-width hero slideshow */}
+      <HeroSlideshow />
 
       {/* Overlapping white content panel */}
       <div style={{ position: "relative", zIndex: 2, maxWidth: "1240px", margin: "-115px auto 0", padding: "0 24px" }}>
