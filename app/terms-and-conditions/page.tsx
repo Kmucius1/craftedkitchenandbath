@@ -356,7 +356,7 @@ export default function TermsAndConditionsPage() {
                 </a>
                 <br />
                 Phone:{' '}
-                <a href="tel:7273837550" style={{ color: '#2B7CC1', textDecoration: 'none' }}>
+                <a href="tel:+17273837550" style={{ color: '#2B7CC1', textDecoration: 'none' }}>
                   (727) 383-7550
                 </a>
               </p>

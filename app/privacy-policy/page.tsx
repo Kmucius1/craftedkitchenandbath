@@ -515,7 +515,7 @@ export default function PrivacyPolicyPage() {
               </p>
               <p style={{ fontSize: '15px', lineHeight: 1.75, color: '#4A5568', margin: 0 }}>
                 <span style={{ color: '#1A202C' }}>Phone: </span>
-                <a href="tel:7273837550" style={{ color: '#2B7CC1', textDecoration: 'none' }}>
+                <a href="tel:+17273837550" style={{ color: '#2B7CC1', textDecoration: 'none' }}>
                   (727) 383-7550
                 </a>
               </p>

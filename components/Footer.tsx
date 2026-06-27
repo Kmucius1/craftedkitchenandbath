@@ -40,7 +40,7 @@ export default function Footer() {
               {/* Phone */}
               <li>
                 <a
-                  href="tel:7273837550"
+                  href="tel:+17273837550"
                   style={{ color: "#4A5568", textDecoration: "none" }}
                   className="text-sm flex items-start gap-2 transition-colors duration-200 hover:text-[#1A202C]"
                 >

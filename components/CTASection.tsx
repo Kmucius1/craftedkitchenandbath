@@ -13,7 +13,7 @@ export default function CTASection({
   primaryCTA = "Get a Free Quote",
   primaryHref = "/contact",
   secondaryCTA = "Call (727) 383-7550",
-  secondaryHref = "tel:7273837550",
+  secondaryHref = "tel:+17273837550",
 }: CTASectionProps) {
   return (
     <section
@@ -83,7 +83,7 @@ export default function CTASection({
             href={primaryHref}
             className="
               inline-block
-              text-[9px] font-medium uppercase tracking-[0.18em]
+              text-[11px] font-medium uppercase tracking-[0.18em]
               px-9 py-4
               no-underline
               transition-colors duration-200
@@ -102,7 +102,7 @@ export default function CTASection({
             href={secondaryHref}
             className="
               inline-block
-              text-[9px] font-medium uppercase tracking-[0.18em]
+              text-[11px] font-medium uppercase tracking-[0.18em]
               px-9 py-4
               no-underline
               transition-colors duration-200

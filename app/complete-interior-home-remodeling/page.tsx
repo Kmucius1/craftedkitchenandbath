@@ -1079,7 +1079,7 @@ export default function CompleteInteriorRemodelingPage() {
         primaryCTA="Get a Free Quote"
         primaryHref="/contact"
         secondaryCTA="Call (727) 383-7550"
-        secondaryHref="tel:7273837550"
+        secondaryHref="tel:+17273837550"
       />
     </>
   );

@@ -230,14 +230,21 @@ export default function HomePage() {
           </p>
 
           {/* CTA buttons */}
-          <div style={{ display: "flex", alignItems: "center", gap: "28px", marginBottom: "52px", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "52px", flexWrap: "wrap" }}>
             <Link
-              href="/services"
-              style={{ background: "#111722", color: "#fff", padding: "15px 30px", fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", textDecoration: "none", display: "inline-block" }}
-              className="transition-colors duration-200 hover:bg-[#2B7CC1]"
+              href="/contact"
+              style={{ background: "#2B7CC1", color: "#fff", padding: "15px 32px", fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", textDecoration: "none", display: "inline-block" }}
+              className="transition-colors duration-200 hover:bg-[#1E5C96]"
             >
-              Explore Our Services
+              Get a Free Quote
             </Link>
+            <a
+              href="tel:+17273837550"
+              style={{ background: "transparent", color: "#111722", padding: "15px 30px", border: "1px solid rgba(0,0,0,0.25)", fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", textDecoration: "none", display: "inline-block" }}
+              className="transition-colors duration-200 hover:border-[#2B7CC1] hover:text-[#2B7CC1]"
+            >
+              Call (727) 383-7550
+            </a>
             <Link
               href="/our-work"
               style={{ color: "#111722", fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "8px" }}
@@ -1209,7 +1216,7 @@ export default function HomePage() {
         primaryCTA="Book a Free Consultation"
         primaryHref="/contact"
         secondaryCTA="Call (727) 383-7550"
-        secondaryHref="tel:7273837550"
+        secondaryHref="tel:+17273837550"
       />
     </>
   );

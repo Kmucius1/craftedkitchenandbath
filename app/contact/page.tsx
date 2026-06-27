@@ -160,7 +160,7 @@ export default function ContactPage() {
                   />
                 </svg>
                 <a
-                  href="tel:7273837550"
+                  href="tel:+17273837550"
                   style={{
                     color: "#2B7CC1",
                     textDecoration: "none",
@@ -501,7 +501,7 @@ export default function ContactPage() {
         headline="Ready to Transform Your Space?"
         subtext="Our team serves homeowners across Pinellas County and Hillsborough County with white-glove remodeling service from consultation to completion."
         primaryCTA="Call (727) 383-7550"
-        primaryHref="tel:7273837550"
+        primaryHref="tel:+17273837550"
         secondaryCTA="Explore Our Work"
         secondaryHref="/our-work"
       />
