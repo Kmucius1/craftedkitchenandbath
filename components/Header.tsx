@@ -21,6 +21,12 @@ const SERVICES = [
   { label: 'Complete Interior Remodeling', href: '/complete-interior-home-remodeling' },
   { label: 'Flooring Installation', href: '/flooring-installation' },
   { label: 'Painting', href: '/painting' },
+  { label: 'Countertops', href: '/services/countertops' },
+  { label: 'Cabinet Refacing', href: '/services/cabinet-refacing' },
+  { label: 'ADA & Aging-in-Place', href: '/services/ada-aging-in-place-bathrooms' },
+  { label: 'Walk-In Showers', href: '/services/walk-in-showers' },
+  { label: 'Luxury Vinyl Plank', href: '/services/luxury-vinyl-plank-flooring' },
+  { label: 'Outdoor Kitchens', href: '/services/outdoor-kitchens' },
   { label: 'Areas of Service', href: '/areas-of-service' },
 ];
 

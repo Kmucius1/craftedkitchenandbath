@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { serviceAreas } from '@/lib/service-areas'
+import { servicePages } from '@/lib/service-pages'
 
 const BASE_URL = 'https://craftedkitchenandbath.com'
 
@@ -9,6 +10,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.7,
+  }))
+
+  const newServicePages: MetadataRoute.Sitemap = servicePages.map((s) => ({
+    url: `${BASE_URL}/services/${s.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.8,
   }))
 
   return [
@@ -102,6 +110,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.3,
     },
+    ...newServicePages,
     ...cityPages,
   ]
 }

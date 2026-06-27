@@ -67,10 +67,45 @@ const services = [
   },
   {
     num: "06",
-    name: "Countertops & Cabinetry",
-    href: "/services",
+    name: "Countertops",
+    href: "/services/countertops",
     description:
-      "Premium stone countertops and custom cabinetry are available across all remodeling projects.",
+      "Quartz, granite, quartzite, and marble — expertly templated, fabricated, and installed for kitchens and baths.",
+  },
+  {
+    num: "07",
+    name: "Cabinet Refacing",
+    href: "/services/cabinet-refacing",
+    description:
+      "A fresh kitchen for a fraction of replacement — new doors, drawer fronts, veneer, and hardware on your existing boxes.",
+  },
+  {
+    num: "08",
+    name: "ADA & Aging-in-Place Bathrooms",
+    href: "/services/ada-aging-in-place-bathrooms",
+    description:
+      "Accessible, beautiful bathrooms — curbless showers, grab bars, and comfort-height fixtures that keep dignity intact.",
+  },
+  {
+    num: "09",
+    name: "Walk-In & Curbless Showers",
+    href: "/services/walk-in-showers",
+    description:
+      "Custom walk-in showers with frameless glass, tile, niches, and linear drains. Tub-to-shower conversions a specialty.",
+  },
+  {
+    num: "10",
+    name: "Luxury Vinyl Plank Flooring",
+    href: "/services/luxury-vinyl-plank-flooring",
+    description:
+      "Waterproof, wood-look LVP built for Florida humidity, kids, and pets — installed throughout the whole home.",
+  },
+  {
+    num: "11",
+    name: "Outdoor Kitchens",
+    href: "/services/outdoor-kitchens",
+    description:
+      "Weatherproof outdoor kitchens for your lanai or pool deck — built for year-round Tampa Bay entertaining.",
   },
 ];
 
