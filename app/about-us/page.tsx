@@ -172,7 +172,7 @@ export default function AboutUsPage() {
           {/* H1 */}
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(44px, 7vw, 80px)",
               lineHeight: 1.1,
@@ -262,7 +262,7 @@ export default function AboutUsPage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 44px)",
                 lineHeight: 1.2,
@@ -323,7 +323,7 @@ export default function AboutUsPage() {
             >
               <div
                 style={{
-                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(52px, 7vw, 76px)",
                   color: "#2B7CC1",
@@ -355,7 +355,7 @@ export default function AboutUsPage() {
             >
               <div
                 style={{
-                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(52px, 7vw, 76px)",
                   color: "#2B7CC1",
@@ -387,7 +387,7 @@ export default function AboutUsPage() {
             >
               <div
                 style={{
-                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(52px, 7vw, 76px)",
                   color: "#2B7CC1",
@@ -452,7 +452,7 @@ export default function AboutUsPage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 44px)",
                 lineHeight: 1.2,
@@ -490,7 +490,7 @@ export default function AboutUsPage() {
 
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "20px",
                     color: "#1A202C",
@@ -557,7 +557,7 @@ export default function AboutUsPage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 44px)",
                 lineHeight: 1.2,
@@ -593,7 +593,7 @@ export default function AboutUsPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontStyle: "italic",
                     fontSize: "clamp(22px, 3vw, 28px)",
@@ -649,7 +649,7 @@ export default function AboutUsPage() {
           >
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 44px)",
                 lineHeight: 1.2,
@@ -796,7 +796,7 @@ export default function AboutUsPage() {
               {/* License number */}
               <div
                 style={{
-                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(28px, 5vw, 44px)",
                   color: "#2B7CC1",
@@ -874,7 +874,7 @@ export default function AboutUsPage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 44px)",
                 lineHeight: 1.2,
@@ -905,7 +905,7 @@ export default function AboutUsPage() {
               >
                 <div
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "clamp(20px, 3vw, 28px)",
                     color: "#2B7CC1",

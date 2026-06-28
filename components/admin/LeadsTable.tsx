@@ -105,7 +105,7 @@ export default function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
       {/* Header */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 20 }}>
         <div>
-          <h1 style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontSize: 28, fontWeight: 300, color: "#1A202C", margin: 0 }}>
+          <h1 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontSize: 28, fontWeight: 300, color: "#1A202C", margin: 0 }}>
             Website Leads
           </h1>
           <p style={{ fontSize: 13, color: "#6B7280", margin: "4px 0 0" }}>

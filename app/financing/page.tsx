@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://craftedkitchenandbath.com/financing" },
 };
 
-const headingFont = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
+const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";
 
 const points = [
   { title: "Spread the Cost", body: "A remodel is an investment in your home and your daily life. Financing lets you move forward now and pay over time, rather than waiting or compromising on the result you really want." },

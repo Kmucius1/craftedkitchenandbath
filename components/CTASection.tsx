@@ -47,7 +47,7 @@ export default function CTASection({
         {/* Headline */}
         <h2
           style={{
-            fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+            fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
             fontSize: "clamp(32px, 4vw, 52px)",
             fontWeight: 300,
             color: "#1A202C",

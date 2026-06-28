@@ -221,7 +221,7 @@ export default function FlooringInstallationPage() {
 
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(36px, 5vw, 64px)",
               color: "#1A202C",
@@ -324,7 +324,7 @@ export default function FlooringInstallationPage() {
 
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "22px",
                     color: "#1A202C",
@@ -375,7 +375,7 @@ export default function FlooringInstallationPage() {
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <h2
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(28px, 3.5vw, 48px)",
               color: "#1A202C",
@@ -408,7 +408,7 @@ export default function FlooringInstallationPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
                     color: "#2B7CC1",
@@ -497,7 +497,7 @@ export default function FlooringInstallationPage() {
 
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
                     color: "#1A202C",
@@ -556,7 +556,7 @@ export default function FlooringInstallationPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
                     color: "#1A202C",

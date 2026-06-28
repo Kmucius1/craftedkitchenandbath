@@ -6,7 +6,7 @@ import CTASection from "@/components/CTASection";
 import { getServicePage, servicePages } from "@/lib/service-pages";
 
 const SITE = "https://craftedkitchenandbath.com";
-const headingFont = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
+const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";
 
 export function generateStaticParams() {
   return servicePages.map((s) => ({ slug: s.slug }));

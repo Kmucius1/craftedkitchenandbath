@@ -9,7 +9,7 @@ export default function NotFound() {
       <div className="max-w-lg text-center px-6">
         <p
           style={{
-            fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+            fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
             fontSize: '8rem',
             lineHeight: 1,
             color: 'rgba(43,124,193,0.15)',
@@ -23,7 +23,7 @@ export default function NotFound() {
 
         <h1
           style={{
-            fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+            fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
             fontWeight: 300,
             color: '#1A202C',
           }}

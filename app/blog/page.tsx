@@ -16,7 +16,7 @@ const posts = [...blogArticles].sort((a, b) => (articleDate(a.slug) < articleDat
 const featured = posts[0];
 const rest = posts.slice(1);
 
-const headingFont = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
+const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";
 
 const blogSchema = {
   "@context": "https://schema.org",

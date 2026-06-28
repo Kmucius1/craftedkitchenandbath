@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://craftedkitchenandbath.com/warranty" },
 };
 
-const headingFont = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
+const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";
 
 const points = [
   { title: "Licensed & Insured", body: "Crafted Kitchen & Bath is a licensed Florida contractor (CRC1333143). You're protected by working with a properly licensed, insured professional — not an unlicensed handyman." },

@@ -52,7 +52,7 @@ const jsonLd = {
   associatedMedia: photos.map((p) => ({ '@type': 'ImageObject', contentUrl: p.src, description: p.alt })),
 }
 
-const headingFont = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif"
+const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif"
 
 export default function OurWorkPage() {
   return (

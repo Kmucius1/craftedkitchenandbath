@@ -189,7 +189,7 @@ export default function ServicesPage() {
           {/* H1 */}
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(36px, 5vw, 64px)",
               color: "#1A202C",
@@ -305,7 +305,7 @@ export default function ServicesPage() {
                 {/* Service name */}
                 <h2
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "20px",
                     color: "#1A202C",
@@ -363,7 +363,7 @@ export default function ServicesPage() {
           {/* Heading */}
           <h2
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(28px, 3.5vw, 48px)",
               color: "#1A202C",
@@ -393,7 +393,7 @@ export default function ServicesPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
                     color: "#1A202C",
@@ -461,7 +461,7 @@ export default function ServicesPage() {
               >
                 <span
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "clamp(20px, 2.5vw, 28px)",
                     color: "#2B7CC1",

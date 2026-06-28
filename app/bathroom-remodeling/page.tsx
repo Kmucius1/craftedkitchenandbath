@@ -346,7 +346,7 @@ export default function BathroomRemodelingPage() {
 
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontSize: "clamp(36px, 5vw, 64px)",
               fontWeight: 300,
               color: "#1A202C",
@@ -428,7 +428,7 @@ export default function BathroomRemodelingPage() {
             <SectionLabel>What We Handle</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontSize: "clamp(28px, 3.5vw, 42px)",
                 fontWeight: 300,
                 color: "#1A202C",
@@ -463,7 +463,7 @@ export default function BathroomRemodelingPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontSize: "18px",
                     fontWeight: 300,
                     color: "#1A202C",
@@ -517,7 +517,7 @@ export default function BathroomRemodelingPage() {
             <SectionLabel>Materials & Finishes</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontSize: "clamp(28px, 3.5vw, 42px)",
                 fontWeight: 300,
                 color: "#1A202C",
@@ -563,7 +563,7 @@ export default function BathroomRemodelingPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontSize: "18px",
                     fontWeight: 300,
                     color: "#1A202C",
@@ -610,7 +610,7 @@ export default function BathroomRemodelingPage() {
             <SectionLabel>Design Directions</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontSize: "clamp(28px, 3.5vw, 42px)",
                 fontWeight: 300,
                 color: "#1A202C",
@@ -645,7 +645,7 @@ export default function BathroomRemodelingPage() {
                 {/* Blue number */}
                 <span
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontSize: "13px",
                     color: "#2B7CC1",
                     letterSpacing: "0.12em",
@@ -657,7 +657,7 @@ export default function BathroomRemodelingPage() {
 
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontSize: "20px",
                     fontWeight: 300,
                     color: "#1A202C",
@@ -717,7 +717,7 @@ export default function BathroomRemodelingPage() {
             <SectionLabel>How We Work</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontSize: "clamp(28px, 3.5vw, 42px)",
                 fontWeight: 300,
                 color: "#1A202C",
@@ -763,7 +763,7 @@ export default function BathroomRemodelingPage() {
                 {/* Step number */}
                 <span
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontSize: "clamp(28px, 4vw, 40px)",
                     fontWeight: 300,
                     color: "#2B7CC1",
@@ -785,7 +785,7 @@ export default function BathroomRemodelingPage() {
                 >
                   <h3
                     style={{
-                      fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                      fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       fontSize: "20px",
                       fontWeight: 300,
                       color: "#1A202C",
@@ -834,7 +834,7 @@ export default function BathroomRemodelingPage() {
             <SectionLabel>Where We Work</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontSize: "clamp(26px, 3.5vw, 40px)",
                 fontWeight: 300,
                 color: "#1A202C",
@@ -917,7 +917,7 @@ export default function BathroomRemodelingPage() {
             <SectionLabel>Common Questions</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontSize: "clamp(28px, 3.5vw, 42px)",
                 fontWeight: 300,
                 color: "#1A202C",
@@ -946,7 +946,7 @@ export default function BathroomRemodelingPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontSize: "19px",
                     fontWeight: 300,
                     color: "#1A202C",

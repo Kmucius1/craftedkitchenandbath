@@ -63,7 +63,7 @@ export default function ContactPage() {
         >
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(36px, 5vw, 58px)",
               color: "#1A202C",
@@ -111,7 +111,7 @@ export default function ContactPage() {
             <div>
               <h2
                 style={{
-                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(22px, 2.5vw, 30px)",
                   color: "#1A202C",
@@ -403,7 +403,7 @@ export default function ContactPage() {
           <div>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(22px, 2.5vw, 30px)",
                 color: "#1A202C",
@@ -443,7 +443,7 @@ export default function ContactPage() {
         <div style={{ position: "absolute", bottom: "32px", left: "50%", transform: "translateX(-50%)", backgroundColor: "#FFFFFF", padding: "24px 32px", boxShadow: "0 8px 40px rgba(0,0,0,0.14)", border: "1px solid rgba(0,0,0,0.06)", display: "flex", alignItems: "center", gap: "32px", whiteSpace: "nowrap", zIndex: 1 }}>
           <div>
             <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.18em", color: "#2B7CC1", fontWeight: 600, margin: "0 0 6px" }}>Our Location</p>
-            <p style={{ fontFamily: "var(--font-cormorant),'Cormorant Garamond',Georgia,serif", fontSize: "20px", color: "#111822", margin: 0, fontWeight: 400 }}>120 Commerce Blvd Suite 4, Oldsmar FL</p>
+            <p style={{ fontFamily: "var(--font-display),'Montserrat',system-ui,sans-serif", fontSize: "20px", color: "#111822", margin: 0, fontWeight: 400 }}>120 Commerce Blvd Suite 4, Oldsmar FL</p>
           </div>
           <a
             href="https://maps.google.com/?q=Crafted+Home+Improvements+120+Commerce+Blvd+Suite+4+Oldsmar+FL"

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 // ─── shared heading style ───────────────────────────────────────────────────
 const sectionHeadingStyle: React.CSSProperties = {
-  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
   fontWeight: 300,
   fontSize: 'clamp(20px, 2.5vw, 24px)',
   color: '#1A202C',
@@ -69,7 +69,7 @@ export default function PrivacyPolicyPage() {
 
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: 'clamp(36px, 5vw, 56px)',
               color: '#1A202C',

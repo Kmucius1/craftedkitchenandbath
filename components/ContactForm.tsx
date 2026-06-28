@@ -132,7 +132,7 @@ export default function ContactForm() {
         </svg>
         <p
           style={{
-            fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+            fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
             fontSize: "22px",
             fontWeight: 300,
             color: "#1A202C",

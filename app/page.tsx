@@ -217,7 +217,7 @@ export default function HomePage() {
           </p>
 
           {/* Main headline */}
-          <h1 style={{ fontFamily: "var(--font-cormorant),'Cormorant Garamond',Georgia,serif", fontSize: "clamp(48px,5vw,68px)", lineHeight: 1.08, letterSpacing: "0.01em", color: "#121820", maxWidth: "820px", margin: 0, fontWeight: 400 }}>
+          <h1 style={{ fontFamily: "var(--font-display),'Montserrat',system-ui,sans-serif", fontSize: "clamp(48px,5vw,68px)", lineHeight: 1.08, letterSpacing: "0.01em", color: "#121820", maxWidth: "820px", margin: 0, fontWeight: 400 }}>
             Beautiful Spaces. Expertly Crafted.<br />Built Around <em>You</em>.
           </h1>
 
@@ -293,7 +293,7 @@ export default function HomePage() {
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)' }} />
           <div style={{ position: 'absolute', bottom: 0, left: 0, padding: '40px 36px' }}>
             <p style={{ color: '#2B7CC1', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', margin: '0 0 12px', fontWeight: 500 }}>Our Specialty</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontWeight: 300, fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: '#FFFFFF', lineHeight: 1.1, margin: '0 0 16px' }}>Kitchen<br />Remodeling</h2>
+            <h2 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: '#FFFFFF', lineHeight: 1.1, margin: '0 0 16px' }}>Kitchen<br />Remodeling</h2>
             <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '14px', lineHeight: 1.7, margin: '0 0 24px', maxWidth: '320px' }}>Custom cabinetry, quartz countertops, kitchen islands, and complete kitchen transformations.</p>
             <Link href="/kitchen-remodeling" style={{ display: 'inline-block', border: '1px solid rgba(255,255,255,0.7)', color: '#FFFFFF', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.16em', padding: '12px 28px', textDecoration: 'none' }} className="hover:bg-white hover:text-[#1A202C] transition-colors duration-300">Explore Kitchens →</Link>
           </div>
@@ -310,7 +310,7 @@ export default function HomePage() {
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)' }} />
           <div style={{ position: 'absolute', bottom: 0, left: 0, padding: '40px 36px' }}>
             <p style={{ color: '#2B7CC1', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', margin: '0 0 12px', fontWeight: 500 }}>Our Specialty</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontWeight: 300, fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: '#FFFFFF', lineHeight: 1.1, margin: '0 0 16px' }}>Bathroom<br />Remodeling</h2>
+            <h2 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: '#FFFFFF', lineHeight: 1.1, margin: '0 0 16px' }}>Bathroom<br />Remodeling</h2>
             <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '14px', lineHeight: 1.7, margin: '0 0 24px', maxWidth: '320px' }}>Spa-inspired finishes, custom tile showers, freestanding tubs, and luxury vanities.</p>
             <Link href="/bathroom-remodeling" style={{ display: 'inline-block', border: '1px solid rgba(255,255,255,0.7)', color: '#FFFFFF', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.16em', padding: '12px 28px', textDecoration: 'none' }} className="hover:bg-white hover:text-[#1A202C] transition-colors duration-300">Explore Bathrooms →</Link>
           </div>
@@ -335,7 +335,7 @@ export default function HomePage() {
             <h2
               className="mt-6"
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(2.5rem,4vw,4rem)",
                 color: "#1A202C",
@@ -378,7 +378,7 @@ export default function HomePage() {
                   <div style={{ padding: "24px", backgroundColor: "#FFFFFF" }}>
                     <h3
                       style={{
-                        fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                        fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                         fontWeight: 400,
                         fontStyle: "italic",
                         fontSize: "1.25rem",
@@ -438,7 +438,7 @@ export default function HomePage() {
                   <div style={{ padding: "24px", backgroundColor: "#FFFFFF" }}>
                     <h3
                       style={{
-                        fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                        fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                         fontWeight: 400,
                         fontStyle: "italic",
                         fontSize: "1.25rem",
@@ -498,7 +498,7 @@ export default function HomePage() {
                   <div style={{ padding: "24px", backgroundColor: "#FFFFFF" }}>
                     <h3
                       style={{
-                        fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                        fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                         fontWeight: 400,
                         fontStyle: "italic",
                         fontSize: "1.25rem",
@@ -558,7 +558,7 @@ export default function HomePage() {
                   <div style={{ padding: "24px", backgroundColor: "#FFFFFF" }}>
                     <h3
                       style={{
-                        fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                        fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                         fontWeight: 400,
                         fontStyle: "italic",
                         fontSize: "1.25rem",
@@ -599,7 +599,7 @@ export default function HomePage() {
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <div style={{ textAlign: 'center', marginBottom: '64px' }}>
             <p style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.22em', color: '#2B7CC1', fontWeight: 500 }}>The Crafted Difference</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontWeight: 300, fontSize: 'clamp(2.5rem,4vw,4rem)', color: '#FFFFFF', lineHeight: 1.1, marginTop: '24px', letterSpacing: '-0.01em' }}>Built for Kitchen &amp;<br />Bathroom Excellence</h2>
+            <h2 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(2.5rem,4vw,4rem)', color: '#FFFFFF', lineHeight: 1.1, marginTop: '24px', letterSpacing: '-0.01em' }}>Built for Kitchen &amp;<br />Bathroom Excellence</h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }} className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {[
@@ -621,7 +621,7 @@ export default function HomePage() {
                 }}
               >
                 <p style={{ color: '#2B7CC1', fontSize: '20px', marginBottom: '16px' }}>{f.icon}</p>
-                <h3 style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontWeight: 400, fontSize: '1.25rem', color: '#FFFFFF', marginBottom: '12px' }}>{f.title}</h3>
+                <h3 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 400, fontSize: '1.25rem', color: '#FFFFFF', marginBottom: '12px' }}>{f.title}</h3>
                 <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.75 }}>{f.body}</p>
               </div>
             ))}
@@ -647,7 +647,7 @@ export default function HomePage() {
             <h2
               className="mt-6 max-w-xl"
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(2.5rem,4vw,4rem)",
                 color: "#1A202C",
@@ -678,7 +678,7 @@ export default function HomePage() {
                 <div
                   style={{
                     flexShrink: 0,
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 200,
                     fontSize: "4.5rem",
                     color: "rgba(43,124,193,0.18)",
@@ -691,7 +691,7 @@ export default function HomePage() {
                 <div>
                   <h3
                     style={{
-                      fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                      fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       fontWeight: 400,
                       fontSize: "1.25rem",
                       color: "#1A202C",
@@ -745,7 +745,7 @@ export default function HomePage() {
                 >
                   <div
                     style={{
-                      fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                      fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       fontWeight: 300,
                       fontSize: "3.75rem",
                       color: "#2B7CC1",
@@ -818,7 +818,7 @@ export default function HomePage() {
             <h2
               className="mt-6"
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(2.5rem,4vw,4rem)",
                 color: "#1A202C",
@@ -866,7 +866,7 @@ export default function HomePage() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontStyle: "italic",
                     fontSize: "0.875rem",
                     color: "#1A202C",
@@ -911,7 +911,7 @@ export default function HomePage() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontStyle: "italic",
                     fontSize: "0.875rem",
                     color: "#1A202C",
@@ -956,7 +956,7 @@ export default function HomePage() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontStyle: "italic",
                     fontSize: "0.875rem",
                     color: "#1A202C",
@@ -1004,7 +1004,7 @@ export default function HomePage() {
             <h2
               className="mt-6"
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(2.5rem,4vw,4rem)",
                 color: "#1A202C",
@@ -1060,7 +1060,7 @@ export default function HomePage() {
             <p style={{ fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.22em", color: "#2B7CC1", fontWeight: 500 }}>
               Client Stories
             </p>
-            <h2 className="mt-6" style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontWeight: 300, fontSize: "clamp(2.5rem,4vw,4rem)", color: "#1A202C", lineHeight: 1.1, letterSpacing: "-0.01em" }}>
+            <h2 className="mt-6" style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: "clamp(2.5rem,4vw,4rem)", color: "#1A202C", lineHeight: 1.1, letterSpacing: "-0.01em" }}>
               What Our Clients Say
             </h2>
             {/* Google rating badge */}
@@ -1091,7 +1091,7 @@ export default function HomePage() {
                       <path fill="#4285F4" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#34A853" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#FBBC05" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#EA4335" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
                     </svg>
                   </div>
-                  <p style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "1.25rem", color: "#1A202C", lineHeight: 1.6, margin: 0 }}>
+                  <p style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontStyle: "italic", fontSize: "1.25rem", color: "#1A202C", lineHeight: 1.6, margin: 0 }}>
                     &ldquo;{t.quote}&rdquo;
                   </p>
                   <p className="mt-4" style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.12em", color: "#6B7280" }}>
@@ -1145,7 +1145,7 @@ export default function HomePage() {
               <h2
                 className="mt-6 mb-6"
                 style={{
-                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(2.5rem,4vw,4rem)",
                   color: "#1A202C",

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 }
 
 const h2Style: React.CSSProperties = {
-  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
   fontWeight: 300,
   fontSize: '22px',
   color: '#1A202C',
@@ -60,7 +60,7 @@ export default function TermsAndConditionsPage() {
           </div>
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: 'clamp(32px, 5vw, 48px)',
               color: '#1A202C',

@@ -6,7 +6,7 @@ import CTASection from "@/components/CTASection";
 import { blogArticles, getArticle, articleDate, articleDisplayDate } from "@/lib/blog-articles";
 
 const SITE = "https://craftedkitchenandbath.com";
-const headingFont = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
+const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";
 
 export function generateStaticParams() {
   return blogArticles.map((a) => ({ slug: a.slug }));

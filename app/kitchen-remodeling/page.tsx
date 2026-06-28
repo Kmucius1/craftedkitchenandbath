@@ -291,7 +291,7 @@ export default function KitchenRemodelingPage() {
 
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(36px, 6vw, 68px)",
               lineHeight: 1.1,
@@ -402,7 +402,7 @@ export default function KitchenRemodelingPage() {
             <SectionLabel>What We Handle</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 42px)",
                 lineHeight: 1.2,
@@ -502,7 +502,7 @@ export default function KitchenRemodelingPage() {
             <SectionLabel>Design Styles We Build</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 42px)",
                 lineHeight: 1.2,
@@ -538,7 +538,7 @@ export default function KitchenRemodelingPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "20px",
                     color: "#1A202C",
@@ -591,7 +591,7 @@ export default function KitchenRemodelingPage() {
             <SectionLabel>Our Process</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 42px)",
                 lineHeight: 1.2,
@@ -633,7 +633,7 @@ export default function KitchenRemodelingPage() {
                 >
                   <span
                     style={{
-                      fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                      fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       fontWeight: 300,
                       fontSize: "13px",
                       color: "#2B7CC1",
@@ -654,7 +654,7 @@ export default function KitchenRemodelingPage() {
                 >
                   <h3
                     style={{
-                      fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                      fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       fontWeight: 300,
                       fontSize: "20px",
                       color: "#1A202C",
@@ -703,7 +703,7 @@ export default function KitchenRemodelingPage() {
             <SectionLabel>Where We Work</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(26px, 3.5vw, 40px)",
                 color: "#1A202C",
@@ -802,7 +802,7 @@ export default function KitchenRemodelingPage() {
             <SectionLabel>Common Questions</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 42px)",
                 lineHeight: 1.2,
@@ -841,7 +841,7 @@ export default function KitchenRemodelingPage() {
                   />
                   <h3
                     style={{
-                      fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                      fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       fontWeight: 300,
                       fontSize: "18px",
                       color: "#1A202C",

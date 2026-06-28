@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://craftedkitchenandbath.com/process" },
 };
 
-const headingFont = "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif";
+const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";
 
 const steps = [
   { n: "01", title: "Free In-Home Consultation", body: "We come to you — no showroom visit required. We measure your space, learn how you live and use it, and talk through your goals, timeline, and budget. You get honest guidance from the start." },

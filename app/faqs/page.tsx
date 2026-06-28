@@ -228,7 +228,7 @@ export default function FAQsPage() {
           {/* H1 */}
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: 'clamp(40px, 6vw, 68px)',
               lineHeight: 1.1,
@@ -343,7 +343,7 @@ export default function FAQsPage() {
                         fontSize: '18px',
                         lineHeight: 1,
                         fontWeight: 300,
-                        fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                        fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       }}
                     />
                   </summary>

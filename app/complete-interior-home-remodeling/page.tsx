@@ -294,7 +294,7 @@ export default function CompleteInteriorRemodelingPage() {
 
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(36px, 5.5vw, 68px)",
               color: "#1A202C",
@@ -367,7 +367,7 @@ export default function CompleteInteriorRemodelingPage() {
             <SectionLabel>Scope of Work</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 46px)",
                 color: "#1A202C",
@@ -426,7 +426,7 @@ export default function CompleteInteriorRemodelingPage() {
 
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
                     color: "#1A202C",
@@ -474,7 +474,7 @@ export default function CompleteInteriorRemodelingPage() {
             <SectionLabel>Our Process</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 46px)",
                 color: "#1A202C",
@@ -522,7 +522,7 @@ export default function CompleteInteriorRemodelingPage() {
                 >
                   <span
                     style={{
-                      fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                      fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       fontWeight: 300,
                       fontSize: "11px",
                       letterSpacing: "0.14em",
@@ -557,7 +557,7 @@ export default function CompleteInteriorRemodelingPage() {
                 >
                   <h3
                     style={{
-                      fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                      fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       fontWeight: 300,
                       fontSize: "22px",
                       color: "#1A202C",
@@ -615,7 +615,7 @@ export default function CompleteInteriorRemodelingPage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 48px)",
                 color: "#1A202C",
@@ -704,7 +704,7 @@ export default function CompleteInteriorRemodelingPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
                     color: "#1A202C",
@@ -759,7 +759,7 @@ export default function CompleteInteriorRemodelingPage() {
 
               <h2
                 style={{
-                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(26px, 3.5vw, 42px)",
                   color: "#1A202C",
@@ -887,7 +887,7 @@ export default function CompleteInteriorRemodelingPage() {
                     >
                       <span
                         style={{
-                          fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                          fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                           fontSize: "10px",
                           color: "rgba(43,124,193,0.5)",
                           letterSpacing: "0.1em",
@@ -936,7 +936,7 @@ export default function CompleteInteriorRemodelingPage() {
 
           <h2
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(22px, 3vw, 36px)",
               color: "#1A202C",
@@ -1004,7 +1004,7 @@ export default function CompleteInteriorRemodelingPage() {
             <SectionLabel>Common Questions</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 44px)",
                 color: "#1A202C",
@@ -1039,7 +1039,7 @@ export default function CompleteInteriorRemodelingPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
                     color: "#1A202C",

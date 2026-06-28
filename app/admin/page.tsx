@@ -46,7 +46,7 @@ function LoginForm() {
       <div>
         <h1
           style={{
-            fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+            fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
             fontSize: 30,
             fontWeight: 300,
             color: "#1A202C",

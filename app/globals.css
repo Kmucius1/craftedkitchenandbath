@@ -16,7 +16,7 @@
   --color-border-med: rgba(0, 0, 0, 0.14);
 
   /* Typography */
-  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-serif: var(--font-display), "Montserrat", system-ui, sans-serif;
   --font-sans: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
 }
 
@@ -31,6 +31,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Brand typography — bold geometric sans on all headings (overrides the old
+   light-serif inline weights for a confident, masculine, on-brand feel). */
+h1, h2, h3, h4 {
+  font-family: var(--font-display), "Montserrat", system-ui, sans-serif !important;
+  letter-spacing: -0.015em;
+}
+h1, h2 { font-weight: 800 !important; }
+h3, h4 { font-weight: 700 !important; }
 
 ::selection {
   background-color: #2B7CC1;

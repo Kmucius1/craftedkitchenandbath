@@ -221,7 +221,7 @@ export default function AreasOfServicePage() {
           {/* H1 */}
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(40px, 6.5vw, 76px)",
               lineHeight: 1.1,
@@ -284,7 +284,7 @@ export default function AreasOfServicePage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 3.5vw, 40px)",
                 lineHeight: 1.2,
@@ -357,7 +357,7 @@ export default function AreasOfServicePage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 3.5vw, 40px)",
                 lineHeight: 1.2,
@@ -446,7 +446,7 @@ export default function AreasOfServicePage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(26px, 3.5vw, 38px)",
                 lineHeight: 1.2,
@@ -488,7 +488,7 @@ export default function AreasOfServicePage() {
 
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "20px",
                     color: "#1A202C",
@@ -558,7 +558,7 @@ export default function AreasOfServicePage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(26px, 3.5vw, 38px)",
                 lineHeight: 1.2,
@@ -603,7 +603,7 @@ export default function AreasOfServicePage() {
 
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "20px",
                     color: "#1A202C",
@@ -674,7 +674,7 @@ export default function AreasOfServicePage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 44px)",
                 lineHeight: 1.2,
