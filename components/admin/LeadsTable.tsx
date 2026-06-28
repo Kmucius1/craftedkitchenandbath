@@ -101,7 +101,7 @@ export default function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
   };
 
   return (
-    <main style={{ padding: "28px clamp(16px, 4vw, 40px)", fontFamily: "var(--font-dm-sans), system-ui, sans-serif", background: "#F7F8FA", minHeight: "100vh" }}>
+    <div style={{ padding: "28px clamp(16px, 4vw, 40px)", fontFamily: "var(--font-dm-sans), system-ui, sans-serif", background: "#F7F8FA", minHeight: "100vh" }}>
       {/* Header */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 20 }}>
         <div>
@@ -154,7 +154,7 @@ export default function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
             </thead>
             <tbody>
               {filtered.length === 0 && (
-                <tr><td style={{ ...td, textAlign: "center", color: "#9CA3AF", padding: 40 }} colSpan={7}>No leads yet.</td></tr>
+                <tr><td style={{ ...td, textAlign: "center", color: "#6B7280", padding: 40 }} colSpan={7}>No leads yet.</td></tr>
               )}
               {filtered.map((l) => {
                 const c = STATUS_COLORS[l.status] || STATUS_COLORS.New;
@@ -220,7 +220,7 @@ export default function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
           </table>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
 
@@ -233,5 +233,5 @@ const btnGhost: React.CSSProperties = {
   padding: "9px 16px", fontSize: 12, fontWeight: 600, cursor: "pointer",
 };
 const detailLabel: React.CSSProperties = {
-  fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "#9CA3AF", marginBottom: 4, fontWeight: 600,
+  fontSize: 10, letterSpacing: "0.1em", textTransform: "uppercase", color: "#6B7280", marginBottom: 4, fontWeight: 600,
 };

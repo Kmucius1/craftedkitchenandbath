@@ -157,7 +157,7 @@ const jsonLd = {
 // ─────────────────────────────────────────────
 export default function FAQsPage() {
   return (
-    <main style={{ backgroundColor: '#F7F8FA' }}>
+    <div style={{ backgroundColor: '#F7F8FA' }}>
       {/* JSON-LD */}
       <script
         type="application/ld+json"
@@ -194,7 +194,7 @@ export default function FAQsPage() {
                     fontSize: '11px',
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
-                    color: '#9CA3AF',
+                    color: '#6B7280',
                     textDecoration: 'none',
                   }}
                 >
@@ -378,6 +378,6 @@ export default function FAQsPage() {
         secondaryCTA="Call (727) 383-7550"
         secondaryHref="tel:+17273837550"
       />
-    </main>
+    </div>
   )
 }

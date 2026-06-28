@@ -8,7 +8,7 @@
   --color-cool-gray: #D8DDE6;
   --color-dark: #1A202C;
   --color-text-secondary: #4A5568;
-  --color-text-muted: #9CA3AF;
+  --color-text-muted: #6B7280;
   --color-blue: #2B7CC1;
   --color-blue-dark: #1E5C96;
   --color-blue-light: #EBF4FF;
@@ -104,7 +104,7 @@ body {
   border-bottom-color: #2B7CC1;
 }
 .input-luxury::placeholder {
-  color: #9CA3AF;
+  color: #6B7280;
   font-size: 13px;
 }
 

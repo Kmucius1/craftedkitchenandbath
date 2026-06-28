@@ -358,7 +358,7 @@ export default function ContactPage() {
                   </span>
                   <span
                     style={{
-                      color: "#9CA3AF",
+                      color: "#6B7280",
                       fontSize: "13px",
                       fontStyle: "italic",
                       display: "block",
@@ -485,7 +485,7 @@ export default function ContactPage() {
                 fontSize: "11px",
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color: "#9CA3AF",
+                color: "#6B7280",
                 margin: 0,
                 lineHeight: 1.5,
               }}

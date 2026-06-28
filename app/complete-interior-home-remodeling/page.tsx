@@ -239,29 +239,29 @@ export default function CompleteInteriorRemodelingPage() {
               padding: 0,
               fontSize: "11px",
               letterSpacing: "0.06em",
-              color: "#9CA3AF",
+              color: "#6B7280",
             }}
           >
             <li>
               <Link
                 href="/"
-                style={{ color: "#9CA3AF", textDecoration: "none" }}
+                style={{ color: "#6B7280", textDecoration: "none" }}
               >
                 Home
               </Link>
             </li>
-            <li aria-hidden="true" style={{ color: "#9CA3AF" }}>
+            <li aria-hidden="true" style={{ color: "#6B7280" }}>
               /
             </li>
             <li>
               <Link
                 href="/services"
-                style={{ color: "#9CA3AF", textDecoration: "none" }}
+                style={{ color: "#6B7280", textDecoration: "none" }}
               >
                 Services
               </Link>
             </li>
-            <li aria-hidden="true" style={{ color: "#9CA3AF" }}>
+            <li aria-hidden="true" style={{ color: "#6B7280" }}>
               /
             </li>
             <li style={{ color: "#2B7CC1" }} aria-current="page">
@@ -718,7 +718,7 @@ export default function CompleteInteriorRemodelingPage() {
                   style={{
                     fontSize: "14px",
                     lineHeight: 1.75,
-                    color: "#9CA3AF",
+                    color: "#6B7280",
                     margin: 0,
                   }}
                 >

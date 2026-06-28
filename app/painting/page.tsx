@@ -303,7 +303,7 @@ export default function PaintingPage() {
                   style={{
                     fontSize: "14px",
                     lineHeight: 1.75,
-                    color: "#9CA3AF",
+                    color: "#6B7280",
                     margin: 0,
                   }}
                 >
@@ -386,7 +386,7 @@ export default function PaintingPage() {
                   style={{
                     fontSize: "14px",
                     lineHeight: 1.8,
-                    color: "#9CA3AF",
+                    color: "#6B7280",
                     margin: 0,
                   }}
                 >

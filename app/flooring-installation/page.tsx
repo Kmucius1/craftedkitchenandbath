@@ -352,7 +352,7 @@ export default function FlooringInstallationPage() {
                     fontSize: "11px",
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
-                    color: "#9CA3AF",
+                    color: "#6B7280",
                     margin: 0,
                     fontWeight: 500,
                   }}
@@ -512,7 +512,7 @@ export default function FlooringInstallationPage() {
                   style={{
                     fontSize: "14px",
                     lineHeight: 1.75,
-                    color: "#9CA3AF",
+                    color: "#6B7280",
                     margin: 0,
                   }}
                 >

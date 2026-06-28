@@ -84,7 +84,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <h1 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "clamp(32px, 5vw, 52px)", lineHeight: 1.15, color: "#1A202C", margin: "20px 0 16px", letterSpacing: "0.01em" }}>
             {post.title}
           </h1>
-          <p style={{ fontSize: "12px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#9CA3AF", margin: 0 }}>
+          <p style={{ fontSize: "12px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#6B7280", margin: 0 }}>
             {articleDisplayDate(post.slug)} · {post.readMinutes} min read
           </p>
         </div>
@@ -123,7 +123,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           {/* Related */}
           {post.related.length > 0 && (
             <div style={{ marginTop: "48px", paddingTop: "32px", borderTop: "1px solid rgba(0,0,0,0.1)" }}>
-              <p style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#9CA3AF", fontWeight: 600, margin: "0 0 16px" }}>Related</p>
+              <p style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#6B7280", fontWeight: 600, margin: "0 0 16px" }}>Related</p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
                 {post.related.map((r) => (
                   <Link key={r.href} href={r.href} style={{ display: "inline-block", border: "1px solid rgba(43,124,193,0.35)", color: "#2B7CC1", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 600, padding: "8px 16px", textDecoration: "none" }}>
@@ -148,6 +148,6 @@ const crumbLink: React.CSSProperties = {
   fontSize: "11px",
   letterSpacing: "0.12em",
   textTransform: "uppercase",
-  color: "#9CA3AF",
+  color: "#6B7280",
   textDecoration: "none",
 };

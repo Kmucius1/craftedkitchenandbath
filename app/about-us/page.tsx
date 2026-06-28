@@ -785,7 +785,7 @@ export default function AboutUsPage() {
                   fontSize: "10px",
                   letterSpacing: "0.24em",
                   textTransform: "uppercase",
-                  color: "#9CA3AF",
+                  color: "#6B7280",
                   margin: 0,
                   fontVariant: "small-caps",
                 }}
@@ -825,7 +825,7 @@ export default function AboutUsPage() {
                   fontSize: "10px",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  color: "#9CA3AF",
+                  color: "#6B7280",
                   margin: 0,
                 }}
               >
@@ -947,7 +947,7 @@ export default function AboutUsPage() {
           <p
             style={{
               fontSize: "12px",
-              color: "#9CA3AF",
+              color: "#6B7280",
               margin: 0,
               letterSpacing: "0.02em",
             }}

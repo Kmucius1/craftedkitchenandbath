@@ -99,8 +99,12 @@ export default function Header() {
                       style={{ position: 'relative' }}
                       onMouseEnter={() => setServicesHovered(true)}
                       onMouseLeave={() => setServicesHovered(false)}
+                      onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setServicesHovered(false) }}
+                      onKeyDown={e => { if (e.key === 'Escape') setServicesHovered(false) }}
                     >
                       <button
+                        onClick={() => setServicesHovered(v => !v)}
+                        onFocus={() => setServicesHovered(true)}
                         style={{
                           fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif",
                           color: active ? '#111822' : '#4A5568',
@@ -296,7 +300,7 @@ export default function Header() {
             <span style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontWeight: 300, fontStyle: 'italic', fontSize: '20px', letterSpacing: '-0.01em', color: '#111822', lineHeight: 1.1 }}>Crafted</span>
             <span style={{ fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif", fontSize: '8px', textTransform: 'uppercase', letterSpacing: '0.22em', color: '#2B7CC1', display: 'block', marginTop: '1px' }}>Kitchen + Bath</span>
           </Link>
-          <button onClick={() => setMobileOpen(false)} aria-label="Close menu" style={{ color: '#9CA3AF', background: 'none', border: 'none', cursor: 'pointer', padding: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'color 0.2s ease' }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#111822'} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9CA3AF'}>
+          <button onClick={() => setMobileOpen(false)} aria-label="Close menu" style={{ color: '#6B7280', background: 'none', border: 'none', cursor: 'pointer', padding: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'color 0.2s ease' }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#111822'} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#6B7280'}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 1L15 15M15 1L1 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
           </button>
         </div>
@@ -319,7 +323,7 @@ export default function Header() {
                   <li key={link.href} style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
                     <button onClick={() => setMobileServicesOpen(prev => !prev)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '20px 0', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontWeight: 300, fontStyle: 'italic', color: '#111822', fontSize: '24px', letterSpacing: '0em', textAlign: 'left', transition: 'color 0.2s ease' }}>
                       {link.label}
-                      <svg width="14" height="14" viewBox="0 0 10 10" fill="none" style={{ transform: mobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.25s ease', color: '#9CA3AF', flexShrink: 0 }}>
+                      <svg width="14" height="14" viewBox="0 0 10 10" fill="none" style={{ transform: mobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.25s ease', color: '#6B7280', flexShrink: 0 }}>
                         <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </button>

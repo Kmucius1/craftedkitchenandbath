@@ -288,7 +288,7 @@ export default function BathroomRemodelingPage() {
                 Home
               </Link>
             </li>
-            <li aria-hidden="true" style={{ color: "#9CA3AF" }}>
+            <li aria-hidden="true" style={{ color: "#6B7280" }}>
               /
             </li>
             <li>
@@ -306,13 +306,13 @@ export default function BathroomRemodelingPage() {
                 Services
               </Link>
             </li>
-            <li aria-hidden="true" style={{ color: "#9CA3AF" }}>
+            <li aria-hidden="true" style={{ color: "#6B7280" }}>
               /
             </li>
             <li
               aria-current="page"
               style={{
-                color: "#9CA3AF",
+                color: "#6B7280",
                 textTransform: "uppercase",
                 letterSpacing: "0.10em",
                 fontSize: "11px",

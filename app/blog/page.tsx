@@ -71,7 +71,7 @@ export default function BlogPage() {
               <div style={{ padding: "48px 40px", display: "flex", flexDirection: "column", justifyContent: "center", gap: "16px" }}>
                 <span style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#2B7CC1", fontWeight: 500 }}>{featured.category}</span>
                 <h2 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "clamp(22px, 3vw, 32px)", color: "#1A202C", lineHeight: 1.25, margin: 0 }}>{featured.title}</h2>
-                <p style={{ fontSize: "12px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#9CA3AF", margin: 0 }}>{articleDisplayDate(featured.slug)} · {featured.readMinutes} min read</p>
+                <p style={{ fontSize: "12px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#6B7280", margin: 0 }}>{articleDisplayDate(featured.slug)} · {featured.readMinutes} min read</p>
                 <p style={{ fontSize: "15px", lineHeight: 1.8, color: "#4A5568", margin: 0 }}>{featured.excerpt}</p>
                 <span style={{ color: "#2B7CC1", fontSize: "12px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", marginTop: "8px" }}>Read More →</span>
               </div>
@@ -93,7 +93,7 @@ export default function BlogPage() {
                   <div style={{ padding: "26px 28px 30px", display: "flex", flexDirection: "column", flexGrow: 1, gap: "10px" }}>
                     <span style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#2B7CC1", fontWeight: 500 }}>{post.category}</span>
                     <h3 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "19px", color: "#1A202C", lineHeight: 1.35, margin: 0 }}>{post.title}</h3>
-                    <p style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#9CA3AF", margin: 0 }}>{articleDisplayDate(post.slug)} · {post.readMinutes} min</p>
+                    <p style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#6B7280", margin: 0 }}>{articleDisplayDate(post.slug)} · {post.readMinutes} min</p>
                     <p style={{ fontSize: "13px", lineHeight: 1.75, color: "#4A5568", margin: 0, flexGrow: 1 }}>{post.excerpt}</p>
                     <span style={{ color: "#2B7CC1", fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", marginTop: "4px" }}>Read More →</span>
                   </div>

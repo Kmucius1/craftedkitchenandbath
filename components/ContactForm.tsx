@@ -88,7 +88,7 @@ export default function ContactForm() {
     fontSize: "10px",
     letterSpacing: "0.16em",
     textTransform: "uppercase",
-    color: "#9CA3AF",
+    color: "#6B7280",
     marginBottom: "4px",
     fontWeight: 500,
   };
@@ -285,7 +285,7 @@ export default function ContactForm() {
               (e.currentTarget.style.borderBottomColor = "rgba(0,0,0,0.18)")
             }
           >
-            <option value="" style={{ background: "#FFFFFF", color: "#9CA3AF" }}>
+            <option value="" style={{ background: "#FFFFFF", color: "#6B7280" }}>
               Select a service…
             </option>
             <option
@@ -390,7 +390,7 @@ export default function ContactForm() {
                 gap: "10px",
                 cursor: "pointer",
                 fontSize: "13px",
-                color: form.contactMethod === method ? "#1A202C" : "#9CA3AF",
+                color: form.contactMethod === method ? "#1A202C" : "#6B7280",
                 letterSpacing: "0.04em",
                 transition: "color 0.2s ease",
               }}

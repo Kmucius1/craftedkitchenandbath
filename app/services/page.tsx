@@ -491,7 +491,7 @@ export default function ServicesPage() {
           <p
             style={{
               fontSize: "13px",
-              color: "#9CA3AF",
+              color: "#6B7280",
               lineHeight: 1.7,
               margin: 0,
               letterSpacing: "0.02em",

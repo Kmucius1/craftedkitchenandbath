@@ -106,7 +106,7 @@ function LoginForm() {
 
 export default function AdminLoginPage() {
   return (
-    <main
+    <div
       style={{
         minHeight: "100vh",
         display: "flex",
@@ -119,6 +119,6 @@ export default function AdminLoginPage() {
       <Suspense fallback={null}>
         <LoginForm />
       </Suspense>
-    </main>
+    </div>
   );
 }

@@ -399,7 +399,7 @@ export default function HomePage() {
                     <p
                       style={{
                         fontSize: "12px",
-                        color: "#9CA3AF",
+                        color: "#6B7280",
                         marginTop: "8px",
                         lineHeight: 1.6,
                       }}
@@ -459,7 +459,7 @@ export default function HomePage() {
                     <p
                       style={{
                         fontSize: "12px",
-                        color: "#9CA3AF",
+                        color: "#6B7280",
                         marginTop: "8px",
                         lineHeight: 1.6,
                       }}
@@ -519,7 +519,7 @@ export default function HomePage() {
                     <p
                       style={{
                         fontSize: "12px",
-                        color: "#9CA3AF",
+                        color: "#6B7280",
                         marginTop: "8px",
                         lineHeight: 1.6,
                       }}
@@ -579,7 +579,7 @@ export default function HomePage() {
                     <p
                       style={{
                         fontSize: "12px",
-                        color: "#9CA3AF",
+                        color: "#6B7280",
                         marginTop: "8px",
                         lineHeight: 1.6,
                       }}
@@ -1041,7 +1041,7 @@ export default function HomePage() {
                   className="mt-1"
                   style={{
                     fontSize: "11px",
-                    color: "#9CA3AF",
+                    color: "#6B7280",
                     lineHeight: 1.6,
                   }}
                 >
@@ -1075,7 +1075,7 @@ export default function HomePage() {
                 {[1,2,3,4,5].map(s => <span key={s} style={{ color: "#F59E0B", fontSize: "14px" }}>★</span>)}
               </div>
               <span style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "13px", color: "#1A202C", fontWeight: 500 }}>5.0</span>
-              <span style={{ fontSize: "13px", color: "#9CA3AF" }}>· Google Reviews</span>
+              <span style={{ fontSize: "13px", color: "#6B7280" }}>· Google Reviews</span>
             </div>
           </div>
 
@@ -1094,7 +1094,7 @@ export default function HomePage() {
                   <p style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "1.25rem", color: "#1A202C", lineHeight: 1.6, margin: 0 }}>
                     &ldquo;{t.quote}&rdquo;
                   </p>
-                  <p className="mt-4" style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.12em", color: "#9CA3AF" }}>
+                  <p className="mt-4" style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.12em", color: "#6B7280" }}>
                     — {t.author}
                   </p>
                 </div>

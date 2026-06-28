@@ -34,7 +34,7 @@ const dividerStyle: React.CSSProperties = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <main style={{ backgroundColor: '#F7F8FA' }}>
+    <div style={{ backgroundColor: '#F7F8FA' }}>
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section
@@ -84,7 +84,7 @@ export default function PrivacyPolicyPage() {
           <p
             style={{
               fontSize: '14px',
-              color: '#9CA3AF',
+              color: '#6B7280',
               letterSpacing: '0.06em',
               textTransform: 'uppercase',
               margin: 0,
@@ -578,7 +578,7 @@ export default function PrivacyPolicyPage() {
                 fontSize: '12px',
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
-                color: '#9CA3AF',
+                color: '#6B7280',
                 textDecoration: 'none',
               }}
             >
@@ -588,6 +588,6 @@ export default function PrivacyPolicyPage() {
 
         </div>
       </section>
-    </main>
+    </div>
   )
 }

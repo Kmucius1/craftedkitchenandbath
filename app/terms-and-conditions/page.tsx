@@ -45,7 +45,7 @@ const dividerStyle: React.CSSProperties = {
 
 export default function TermsAndConditionsPage() {
   return (
-    <main style={{ backgroundColor: '#F7F8FA' }}>
+    <div style={{ backgroundColor: '#F7F8FA' }}>
       {/* HERO */}
       <section
         style={{
@@ -71,7 +71,7 @@ export default function TermsAndConditionsPage() {
           >
             Terms and Conditions
           </h1>
-          <p style={{ fontSize: '14px', color: '#9CA3AF', margin: 0 }}>
+          <p style={{ fontSize: '14px', color: '#6B7280', margin: 0 }}>
             Effective Date: January 1, 2024 &nbsp;&bull;&nbsp; Last Updated: January 1, 2024
           </p>
         </div>
@@ -380,6 +380,6 @@ export default function TermsAndConditionsPage() {
 
         </div>
       </section>
-    </main>
+    </div>
   )
 }

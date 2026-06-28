@@ -191,7 +191,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
                 <Link key={n.slug} href={`/areas-of-service/${n.slug}`} style={{ backgroundColor: "#FFFFFF", padding: "24px 22px", display: "flex", flexDirection: "column", gap: "8px", textDecoration: "none" }}>
                   <div style={{ width: "24px", height: "1px", backgroundColor: "#2B7CC1" }} aria-hidden="true" />
                   <span style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "18px", color: "#1A202C" }}>{n.name}</span>
-                  <span style={{ fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#9CA3AF" }}>{n.county}</span>
+                  <span style={{ fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#6B7280" }}>{n.county}</span>
                 </Link>
               ))}
             </div>
@@ -214,6 +214,6 @@ const crumbLink: React.CSSProperties = {
   fontSize: "11px",
   letterSpacing: "0.12em",
   textTransform: "uppercase",
-  color: "#9CA3AF",
+  color: "#6B7280",
   textDecoration: "none",
 };

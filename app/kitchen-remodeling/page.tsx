@@ -219,7 +219,7 @@ export default function KitchenRemodelingPage() {
                   fontSize: "11px",
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
-                  color: "#9CA3AF",
+                  color: "#6B7280",
                   textDecoration: "none",
                 }}
               >
@@ -227,7 +227,7 @@ export default function KitchenRemodelingPage() {
               </Link>
             </li>
             <li
-              style={{ fontSize: "11px", color: "#9CA3AF" }}
+              style={{ fontSize: "11px", color: "#6B7280" }}
               aria-hidden="true"
             >
               /
@@ -239,7 +239,7 @@ export default function KitchenRemodelingPage() {
                   fontSize: "11px",
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
-                  color: "#9CA3AF",
+                  color: "#6B7280",
                   textDecoration: "none",
                 }}
               >
@@ -247,7 +247,7 @@ export default function KitchenRemodelingPage() {
               </Link>
             </li>
             <li
-              style={{ fontSize: "11px", color: "#9CA3AF" }}
+              style={{ fontSize: "11px", color: "#6B7280" }}
               aria-hidden="true"
             >
               /
@@ -552,7 +552,7 @@ export default function KitchenRemodelingPage() {
                   style={{
                     fontSize: "14px",
                     lineHeight: 1.8,
-                    color: "#9CA3AF",
+                    color: "#6B7280",
                     margin: 0,
                   }}
                 >
