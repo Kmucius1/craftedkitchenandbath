@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import MascotChat from "@/components/MascotChat";
+import SiteAnimations from "@/components/SiteAnimations";
 
 const montserrat = Montserrat({
   variable: "--font-display",
@@ -102,6 +103,7 @@ export default function RootLayout({
         <Footer />
         <StickyMobileCTA />
         <MascotChat />
+        <SiteAnimations />
       </body>
     </html>
   );

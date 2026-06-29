@@ -14,6 +14,12 @@ export default function AnimateOnScroll({ children, delay = 0, direction = 'up',
   useEffect(() => {
     const el = ref.current
     if (!el) return
+    // Honor reduced-motion: show immediately, skip the animation.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.style.opacity = '1'
+      el.style.transform = 'none'
+      return
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

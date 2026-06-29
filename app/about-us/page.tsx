@@ -547,7 +547,7 @@ export default function AboutUsPage() {
           </div>
 
           {/* 4-col grid (2 on mobile) */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px" style={{ backgroundColor: "rgba(43,124,193,0.1)" }}>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px" data-stagger style={{ backgroundColor: "rgba(43,124,193,0.1)" }}>
             {differentiators.map((item, i) => (
               <div
                 key={i}

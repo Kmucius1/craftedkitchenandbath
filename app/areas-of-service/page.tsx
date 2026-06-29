@@ -475,6 +475,7 @@ export default function AreasOfServicePage() {
           {/* Cards grid */}
           <div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px"
+            data-stagger
             style={{ backgroundColor: "rgba(43,124,193,0.1)" }}
           >
             {pinellasCities.map((city) => (
@@ -587,6 +588,7 @@ export default function AreasOfServicePage() {
           {/* Cards — narrower grid for 2 cities */}
           <div
             className="grid grid-cols-1 sm:grid-cols-2 gap-px"
+            data-stagger
             style={{
               backgroundColor: "rgba(43,124,193,0.1)",
               maxWidth: "640px",

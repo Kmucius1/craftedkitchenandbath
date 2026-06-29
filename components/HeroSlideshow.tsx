@@ -83,6 +83,7 @@ export default function HeroSlideshow() {
           alt={SLIDES[current].alt}
           fill
           priority={current === 0}
+          className="kenburns"
           style={{ objectFit: 'cover', objectPosition: 'center center' }}
           sizes="100vw"
         />

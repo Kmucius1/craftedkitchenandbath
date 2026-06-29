@@ -85,9 +85,44 @@ h3, h4 { font-weight: 700 !important; }
 .delay-700 { animation-delay: 0.7s; }
 
 /* ── Glow card effect ──────────────────────────────────────────── */
+.glow-card {
+  transition: border-color 0.3s ease, box-shadow 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
 .glow-card:hover {
   border-color: rgba(43, 124, 193, 0.55) !important;
   box-shadow: 0 0 0 1px rgba(43, 124, 193, 0.2), 0 8px 40px rgba(43, 124, 193, 0.18);
+}
+
+/* ───────────────────────────────────────────────────────────────
+   MOTION SYSTEM — classy scroll reveals, hero ken-burns, hover lift.
+   Every hidden state is applied by JS (components/SiteAnimations), so
+   content is always visible without JS, and everything is disabled for
+   visitors who prefer reduced motion.
+   ─────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .sa-reveal {
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .sa-hidden { opacity: 0; transform: translateY(26px); }
+  .sa-hidden-soft { opacity: 0; transform: translateY(16px); }
+
+  /* Ken Burns — slow, near-imperceptible drift that makes hero imagery breathe */
+  @keyframes kenburns {
+    0%   { transform: scale(1.03); }
+    100% { transform: scale(1.11); }
+  }
+  .kenburns { animation: kenburns 20s ease-in-out infinite alternate; }
+
+  /* Opt-in hover lift for cards/tiles */
+  .lift { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; }
+  .lift:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(26, 32, 44, 0.13); }
+
+  /* Subtle float for the chat launcher so it gently invites a click */
+  @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+  .mascot-launcher { animation: floatY 4.5s ease-in-out infinite; }
+  .mascot-launcher:hover { animation-play-state: paused; }
 }
 
 /* ── CTA button shimmer ────────────────────────────────────────── */

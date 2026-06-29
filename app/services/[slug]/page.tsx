@@ -151,6 +151,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
             <div
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+              data-stagger
               style={{ display: "grid", gap: "16px" }}
             >
               {svc.gallery.map((g) => (
