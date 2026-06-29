@@ -22,6 +22,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;           /* never allow sideways scroll on mobile */
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -30,6 +32,36 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+/* Media never forces horizontal overflow */
+img, video, svg, iframe { max-width: 100%; }
+
+/* ── Mobile layout polish ──────────────────────────────────────────
+   Tighten oversized desktop gutters on small phones so content gets
+   more width, and keep tap targets comfortable. (Most vertical rhythm
+   and hero/image heights are handled inline via clamp().) */
+@media (max-width: 600px) {
+  /* Big desktop container gutters → comfortable phone gutters */
+  .px-8 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+  .px-6 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+  /* Comfortable, finger-friendly hit areas for inline links/buttons */
+  a, button { -webkit-tap-highlight-color: rgba(43,124,193,0.15); }
+
+  /* Contact map overlay card: stack + fit the screen instead of overflowing */
+  .map-card {
+    left: 16px !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    transform: none !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+    white-space: normal !important;
+    padding: 18px 20px !important;
+  }
+  .map-card p:last-of-type { font-size: 16px !important; line-height: 1.4 !important; }
 }
 
 /* Brand typography — bold geometric sans on all headings (overrides the old
@@ -37,9 +69,17 @@ body {
 h1, h2, h3, h4 {
   font-family: var(--font-display), "Montserrat", system-ui, sans-serif !important;
   letter-spacing: -0.015em;
+  /* Never let a heading exceed its container (e.g. inside centered flex
+     columns, where flex items otherwise size to max-content and clip on
+     mobile). Forces clean wrapping. */
+  max-width: 100%;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 h1, h2 { font-weight: 800 !important; }
 h3, h4 { font-weight: 700 !important; }
+/* Same guard for body copy in flex/centered contexts */
+main p { overflow-wrap: break-word; }
 
 ::selection {
   background-color: #2B7CC1;

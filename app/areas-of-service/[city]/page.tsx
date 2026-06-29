@@ -86,7 +86,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* ── HERO ── */}
-      <section style={{ backgroundColor: "#F7F8FA", padding: "128px 24px 88px" }}>
+      <section style={{ backgroundColor: "#F7F8FA", padding: "clamp(112px, 16vw, 128px) 24px clamp(48px, 10vw, 88px)" }}>
         <div style={{ maxWidth: "860px", margin: "0 auto" }}>
           <nav aria-label="Breadcrumb" style={{ marginBottom: "40px" }}>
             <ol style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px", listStyle: "none", margin: 0, padding: 0 }}>
@@ -119,7 +119,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
       </section>
 
       {/* ── OVERVIEW ── */}
-      <section style={{ backgroundColor: "#FFFFFF", padding: "88px 24px" }}>
+      <section style={{ backgroundColor: "#FFFFFF", padding: "clamp(48px, 10vw, 88px) 24px" }}>
         <div style={{ maxWidth: "760px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "24px" }}>
           <SectionLabel>Remodeling in {area.name}</SectionLabel>
           {area.overview.map((p, i) => (
@@ -129,7 +129,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
       </section>
 
       {/* ── NEIGHBORHOODS ── */}
-      <section style={{ backgroundColor: "#F7F8FA", padding: "80px 24px" }}>
+      <section style={{ backgroundColor: "#F7F8FA", padding: "clamp(44px, 9vw, 80px) 24px" }}>
         <div style={{ maxWidth: "860px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "28px" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "16px", maxWidth: "560px" }}>
             <SectionLabel>Neighborhoods We Serve</SectionLabel>
@@ -151,7 +151,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
       </section>
 
       {/* ── SERVICES ── */}
-      <section style={{ backgroundColor: "#FFFFFF", padding: "88px 24px" }}>
+      <section style={{ backgroundColor: "#FFFFFF", padding: "clamp(48px, 10vw, 88px) 24px" }}>
         <div style={{ maxWidth: "1120px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "40px" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: "16px", maxWidth: "560px" }}>
             <SectionLabel>Our Services</SectionLabel>
@@ -171,7 +171,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
       </section>
 
       {/* ── LOCAL NOTE ── */}
-      <section style={{ backgroundColor: "#EEF0F4", padding: "72px 24px" }}>
+      <section style={{ backgroundColor: "#EEF0F4", padding: "clamp(40px, 8vw, 72px) 24px" }}>
         <div style={{ maxWidth: "760px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "20px" }}>
           <SectionLabel>Local Know-How</SectionLabel>
           <p style={{ fontSize: "16px", lineHeight: 1.85, color: "#4A5568", margin: 0 }}>{area.localNote}</p>
@@ -183,7 +183,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
 
       {/* ── NEARBY AREAS ── */}
       {nearby.length > 0 && (
-        <section style={{ backgroundColor: "#FFFFFF", padding: "72px 24px", borderTop: "1px solid rgba(0,0,0,0.08)" }}>
+        <section style={{ backgroundColor: "#FFFFFF", padding: "clamp(40px, 8vw, 72px) 24px", borderTop: "1px solid rgba(0,0,0,0.08)" }}>
           <div style={{ maxWidth: "1120px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "28px" }}>
             <SectionLabel>Nearby Service Areas</SectionLabel>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-px" style={{ backgroundColor: "rgba(43,124,193,0.1)" }}>

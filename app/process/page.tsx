@@ -48,7 +48,7 @@ export default function ProcessPage() {
           </div>
         </section>
 
-        <section style={{ backgroundColor: "#FFFFFF", padding: "72px 24px" }}>
+        <section style={{ backgroundColor: "#FFFFFF", padding: "clamp(40px, 8vw, 72px) 24px" }}>
           <div style={{ maxWidth: "820px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "8px" }}>
             {steps.map((s) => (
               <div key={s.n} style={{ display: "grid", gridTemplateColumns: "72px 1fr", gap: "20px", padding: "28px 0", borderTop: "1px solid rgba(0,0,0,0.08)" }}>

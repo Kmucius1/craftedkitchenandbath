@@ -343,7 +343,7 @@ export default function CompleteInteriorRemodelingPage() {
       </section>
 
       {/* ── HERO IMAGE ───────────────────────────────────────────────────── */}
-      <div style={{ width: '100%', height: '520px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ width: '100%', height: 'clamp(300px, 56vw, 520px)', position: 'relative', overflow: 'hidden' }}>
         <Image src="/images/wp/IMG_6140-scaled.jpeg" alt="Complete interior home remodeling — open kitchen and dining room transformation" fill priority style={{ objectFit: 'cover', objectPosition: 'center' }} />
       </div>
 
@@ -351,7 +351,7 @@ export default function CompleteInteriorRemodelingPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "80px 24px",
+          padding: "clamp(44px, 9vw, 80px) 24px",
         }}
       >
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
@@ -458,7 +458,7 @@ export default function CompleteInteriorRemodelingPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "80px 24px",
+          padding: "clamp(44px, 9vw, 80px) 24px",
         }}
       >
         <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
@@ -589,7 +589,7 @@ export default function CompleteInteriorRemodelingPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "80px 24px",
+          padding: "clamp(44px, 9vw, 80px) 24px",
         }}
       >
         <div
@@ -734,7 +734,7 @@ export default function CompleteInteriorRemodelingPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "80px 24px",
+          padding: "clamp(44px, 9vw, 80px) 24px",
         }}
       >
         <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
@@ -910,7 +910,7 @@ export default function CompleteInteriorRemodelingPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "64px 24px",
+          padding: "clamp(36px, 7vw, 64px) 24px",
         }}
       >
         <div
@@ -988,7 +988,7 @@ export default function CompleteInteriorRemodelingPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "80px 24px",
+          padding: "clamp(44px, 9vw, 80px) 24px",
         }}
       >
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>

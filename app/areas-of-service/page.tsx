@@ -146,7 +146,7 @@ export default function AreasOfServicePage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "128px 24px 96px",
+          padding: "clamp(112px, 16vw, 128px) 24px clamp(54px, 11vw, 96px)",
         }}
       >
         <div
@@ -269,7 +269,7 @@ export default function AreasOfServicePage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
         }}
       >
         <div
@@ -434,7 +434,7 @@ export default function AreasOfServicePage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
         }}
       >
         <div
@@ -547,7 +547,7 @@ export default function AreasOfServicePage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
         }}
       >
         <div
@@ -663,7 +663,7 @@ export default function AreasOfServicePage() {
       <section
         style={{
           backgroundColor: "#EEF0F4",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
         }}
       >
         <div
@@ -867,7 +867,7 @@ export default function AreasOfServicePage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "64px 24px",
+          padding: "clamp(36px, 7vw, 64px) 24px",
           borderTop: "1px solid rgba(0,0,0,0.08)",
         }}
       >

@@ -397,7 +397,7 @@ export default function BathroomRemodelingPage() {
       </section>
 
       {/* ── HERO IMAGE ── */}
-      <div style={{ width: '100%', height: '520px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ width: '100%', height: 'clamp(300px, 56vw, 520px)', position: 'relative', overflow: 'hidden' }}>
         <Image
           src="/images/wp/IMG_6153-scaled.jpeg"
           alt="Luxury master bathroom remodel with glass walk-in shower and dual vanity in Pinellas County by Crafted Kitchen and Bath"
@@ -411,7 +411,7 @@ export default function BathroomRemodelingPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
           borderBottom: "1px solid rgba(0,0,0,0.08)",
         }}
       >
@@ -491,7 +491,7 @@ export default function BathroomRemodelingPage() {
       </section>
 
       {/* ── BATHROOM SECONDARY IMAGE ── */}
-      <div style={{ width: '100%', height: '460px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ width: '100%', height: 'clamp(280px, 52vw, 460px)', position: 'relative', overflow: 'hidden' }}>
         <Image src="/images/wp/IMG_6061-1-scaled.jpg" alt="Modern bathroom with vessel sink and marble shower by Crafted Kitchen and Bath" fill style={{ objectFit: 'cover', objectPosition: 'center 58%' }} />
       </div>
 
@@ -499,7 +499,7 @@ export default function BathroomRemodelingPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
           borderBottom: "1px solid rgba(0,0,0,0.08)",
         }}
       >
@@ -593,7 +593,7 @@ export default function BathroomRemodelingPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
           borderBottom: "1px solid rgba(0,0,0,0.08)",
         }}
       >
@@ -699,7 +699,7 @@ export default function BathroomRemodelingPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
           borderBottom: "1px solid rgba(0,0,0,0.08)",
         }}
       >
@@ -817,7 +817,7 @@ export default function BathroomRemodelingPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
           borderBottom: "1px solid rgba(0,0,0,0.08)",
         }}
       >
@@ -900,7 +900,7 @@ export default function BathroomRemodelingPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
           borderBottom: "1px solid rgba(0,0,0,0.08)",
         }}
       >

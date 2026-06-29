@@ -19,7 +19,7 @@ export default function CTASection({
     <section
       style={{
         backgroundColor: "#FFFFFF",
-        padding: "112px 24px",
+        padding: "clamp(64px, 13vw, 112px) 24px",
         borderTop: "1px solid rgba(0,0,0,0.08)",
         textAlign: "center",
       }}

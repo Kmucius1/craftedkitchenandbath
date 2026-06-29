@@ -19,7 +19,7 @@ function openChat() {
 
 export default function MeetTheCrew() {
   return (
-    <section style={{ backgroundColor: '#F7F8FA', padding: '96px 0', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
+    <section style={{ backgroundColor: '#F7F8FA', padding: 'clamp(54px, 11vw, 96px) 0', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
       <div className="max-w-[1280px] mx-auto px-8 md:px-16">
         {/* Header */}
         <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 56px' }}>

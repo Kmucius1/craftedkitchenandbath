@@ -284,7 +284,7 @@ export default function HomePage() {
       {/* ─── KITCHEN & BATH SPOTLIGHT ────────────────────────────────── */}
       <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }} className="grid-cols-1 md:grid-cols-2">
         {/* Kitchen side */}
-        <div style={{ position: 'relative', height: '560px', overflow: 'hidden' }} className="group">
+        <div style={{ position: 'relative', height: 'clamp(380px, 74vw, 560px)', overflow: 'hidden' }} className="group">
           <Image
             src="/images/wp/IMG_3266-1-scaled.jpg"
             alt="Custom kitchen remodeling Tampa Bay"
@@ -301,7 +301,7 @@ export default function HomePage() {
           </div>
         </div>
         {/* Bathroom side */}
-        <div style={{ position: 'relative', height: '560px', overflow: 'hidden' }} className="group">
+        <div style={{ position: 'relative', height: 'clamp(380px, 74vw, 560px)', overflow: 'hidden' }} className="group">
           <Image
             src="/images/wp/IMG_1147-1-scaled.jpg"
             alt="Luxury bathroom remodeling Tampa Bay"
@@ -320,7 +320,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── SECTION 2: SIGNATURE SERVICES ──────────────────────────── */}
-      <section style={{ backgroundColor: "#F7F8FA", padding: "96px 0" }}>
+      <section style={{ backgroundColor: "#F7F8FA", padding: "clamp(54px, 11vw, 96px) 0" }}>
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <div className="mb-16">
             <p
@@ -370,7 +370,7 @@ export default function HomePage() {
                     flexDirection: "column",
                   }}
                 >
-                  <div style={{ position: 'relative', width: '100%', height: '240px', overflow: 'hidden' }}>
+                  <div style={{ position: 'relative', width: '100%', height: 'clamp(150px, 38vw, 240px)', overflow: 'hidden' }}>
                     <Image
                       src="/images/wp/Hunter-Kitchen-hires.png"
                       alt="Kitchen Remodeling"
@@ -431,7 +431,7 @@ export default function HomePage() {
                     flexDirection: "column",
                   }}
                 >
-                  <div style={{ position: 'relative', width: '100%', height: '240px', overflow: 'hidden' }}>
+                  <div style={{ position: 'relative', width: '100%', height: 'clamp(150px, 38vw, 240px)', overflow: 'hidden' }}>
                     <Image
                       src="/images/wp/IMG_1243-scaled.jpg"
                       alt="Bathroom Remodeling"
@@ -492,7 +492,7 @@ export default function HomePage() {
                     flexDirection: "column",
                   }}
                 >
-                  <div style={{ position: 'relative', width: '100%', height: '240px', overflow: 'hidden' }}>
+                  <div style={{ position: 'relative', width: '100%', height: 'clamp(150px, 38vw, 240px)', overflow: 'hidden' }}>
                     <Image
                       src="/images/wp/IMG_6140-scaled.jpeg"
                       alt="Complete Interior Remodeling"
@@ -553,7 +553,7 @@ export default function HomePage() {
                     flexDirection: "column",
                   }}
                 >
-                  <div style={{ position: 'relative', width: '100%', height: '240px', overflow: 'hidden' }}>
+                  <div style={{ position: 'relative', width: '100%', height: 'clamp(150px, 38vw, 240px)', overflow: 'hidden' }}>
                     <Image
                       src="/images/wp/IMG_1419-scaled.jpg"
                       alt="Flooring & Painting"
@@ -601,7 +601,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── WHY CRAFTED FOR KITCHEN & BATH ─────────────────────────── */}
-      <section style={{ backgroundColor: '#1A202C', padding: '96px 0' }}>
+      <section style={{ backgroundColor: '#1A202C', padding: 'clamp(54px, 11vw, 96px) 0' }}>
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <div style={{ textAlign: 'center', marginBottom: '64px' }}>
             <p style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.22em', color: '#2B7CC1', fontWeight: 500 }}>The Crafted Difference</p>
@@ -636,7 +636,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── SECTION 3: PROCESS ──────────────────────────────────────── */}
-      <section style={{ backgroundColor: "#FFFFFF", padding: "96px 0" }}>
+      <section style={{ backgroundColor: "#FFFFFF", padding: "clamp(54px, 11vw, 96px) 0" }}>
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <div className="mb-16">
             <p
@@ -726,7 +726,7 @@ export default function HomePage() {
       <section
         style={{
           backgroundColor: "#EEF0F4",
-          padding: "64px 0",
+          padding: "clamp(36px, 7vw, 64px) 0",
           borderTop: "1px solid rgba(0,0,0,0.08)",
           borderBottom: "1px solid rgba(0,0,0,0.08)",
         }}
@@ -807,7 +807,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── SECTION 5: FEATURED WORK ────────────────────────────────── */}
-      <section style={{ backgroundColor: "#FFFFFF", padding: "96px 0" }}>
+      <section style={{ backgroundColor: "#FFFFFF", padding: "clamp(54px, 11vw, 96px) 0" }}>
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <div className="mb-16">
             <p
@@ -993,7 +993,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── SECTION 6: MATERIALS BOARD ──────────────────────────────── */}
-      <section style={{ backgroundColor: "#F7F8FA", padding: "96px 0" }}>
+      <section style={{ backgroundColor: "#F7F8FA", padding: "clamp(54px, 11vw, 96px) 0" }}>
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <div className="mb-16">
             <p
@@ -1063,7 +1063,7 @@ export default function HomePage() {
       <MeetTheCrew />
 
       {/* ─── SECTION 7: TESTIMONIALS ─────────────────────────────────── */}
-      <section style={{ backgroundColor: "#FFFFFF", padding: "96px 0" }}>
+      <section style={{ backgroundColor: "#FFFFFF", padding: "clamp(54px, 11vw, 96px) 0" }}>
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <div className="mb-16 text-center">
             <p style={{ fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.22em", color: "#2B7CC1", fontWeight: 500 }}>
@@ -1133,7 +1133,7 @@ export default function HomePage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "64px 0",
+          padding: "clamp(36px, 7vw, 64px) 0",
           borderTop: "1px solid rgba(0,0,0,0.08)",
         }}
       >

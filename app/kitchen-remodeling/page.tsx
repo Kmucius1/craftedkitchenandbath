@@ -365,7 +365,7 @@ export default function KitchenRemodelingPage() {
       </section>
 
       {/* ── HERO IMAGE ───────────────────────────────────────────────── */}
-      <div style={{ width: '100%', height: '520px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ width: '100%', height: 'clamp(300px, 56vw, 520px)', position: 'relative', overflow: 'hidden' }}>
         <Image
           src="/images/wp/IMG_2580-scaled.jpeg"
           alt="Two-tone custom kitchen remodel in Pinellas County by Crafted Kitchen and Bath"
@@ -379,7 +379,7 @@ export default function KitchenRemodelingPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
         }}
       >
         <div
@@ -471,7 +471,7 @@ export default function KitchenRemodelingPage() {
       </section>
 
       {/* ── KITCHEN SECONDARY IMAGE ──────────────────────────────────── */}
-      <div style={{ width: '100%', height: '460px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ width: '100%', height: 'clamp(280px, 52vw, 460px)', position: 'relative', overflow: 'hidden' }}>
         <Image src="/images/wp/IMG_6133-scaled.jpeg" alt="Walnut kitchen with quartz waterfall island by Crafted Kitchen and Bath" fill style={{ objectFit: 'cover', objectPosition: 'center 60%' }} />
       </div>
 
@@ -479,7 +479,7 @@ export default function KitchenRemodelingPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
         }}
       >
         <div
@@ -568,7 +568,7 @@ export default function KitchenRemodelingPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
         }}
       >
         <div
@@ -685,7 +685,7 @@ export default function KitchenRemodelingPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "80px 24px",
+          padding: "clamp(44px, 9vw, 80px) 24px",
         }}
       >
         <div
@@ -780,7 +780,7 @@ export default function KitchenRemodelingPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
         }}
       >
         <div

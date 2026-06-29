@@ -45,7 +45,7 @@ export default function FinancingPage() {
           </div>
         </section>
 
-        <section style={{ backgroundColor: "#FFFFFF", padding: "72px 24px" }}>
+        <section style={{ backgroundColor: "#FFFFFF", padding: "clamp(40px, 8vw, 72px) 24px" }}>
           <div style={{ maxWidth: "1080px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "40px" }}>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-px" style={{ backgroundColor: "rgba(43,124,193,0.1)" }}>
               {points.map((p) => (

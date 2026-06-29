@@ -48,7 +48,7 @@ export default function ContactPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "140px 24px 80px",
+          padding: "clamp(116px, 17vw, 140px) 24px clamp(44px, 9vw, 80px)",
           textAlign: "center",
         }}
       >
@@ -56,17 +56,13 @@ export default function ContactPage() {
           style={{
             maxWidth: "640px",
             margin: "0 auto",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "24px",
           }}
         >
           <h1
             style={{
               fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
-              fontSize: "clamp(36px, 5vw, 58px)",
+              fontSize: "clamp(32px, 7vw, 58px)",
               color: "#1A202C",
               lineHeight: 1.18,
               margin: 0,
@@ -80,7 +76,7 @@ export default function ContactPage() {
               fontSize: "16px",
               lineHeight: 1.8,
               color: "#4A5568",
-              margin: 0,
+              margin: "24px auto 0",
               maxWidth: "520px",
             }}
           >
@@ -93,7 +89,7 @@ export default function ContactPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "64px 24px",
+          padding: "clamp(36px, 7vw, 64px) 24px",
         }}
       >
         <div
@@ -449,7 +445,7 @@ export default function ContactPage() {
           title="Crafted Kitchen and Bath map"
         />
         {/* Overlay CTA card */}
-        <div style={{ position: "absolute", bottom: "32px", left: "50%", transform: "translateX(-50%)", backgroundColor: "#FFFFFF", padding: "24px 32px", boxShadow: "0 8px 40px rgba(0,0,0,0.14)", border: "1px solid rgba(0,0,0,0.06)", display: "flex", alignItems: "center", gap: "32px", whiteSpace: "nowrap", zIndex: 1 }}>
+        <div className="map-card" style={{ position: "absolute", bottom: "32px", left: "50%", transform: "translateX(-50%)", backgroundColor: "#FFFFFF", padding: "24px 32px", boxShadow: "0 8px 40px rgba(0,0,0,0.14)", border: "1px solid rgba(0,0,0,0.06)", display: "flex", alignItems: "center", gap: "32px", whiteSpace: "nowrap", zIndex: 1 }}>
           <div>
             <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.18em", color: "#2B7CC1", fontWeight: 600, margin: "0 0 6px" }}>Our Location</p>
             <p style={{ fontFamily: "var(--font-display),'Montserrat',system-ui,sans-serif", fontSize: "20px", color: "#111822", margin: 0, fontWeight: 400 }}>120 Commerce Blvd Suite 4, Oldsmar FL</p>

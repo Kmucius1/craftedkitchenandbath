@@ -48,7 +48,7 @@ export default function HeroSlideshow() {
   }, [])
 
   return (
-    <div style={{ width: '100%', height: '600px', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ width: '100%', height: 'clamp(420px, 72vh, 600px)', position: 'relative', overflow: 'hidden' }}>
       <style>{`
         @keyframes heroCrossfade {
           from { opacity: 0; }

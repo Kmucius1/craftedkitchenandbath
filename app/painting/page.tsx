@@ -155,7 +155,7 @@ export default function PaintingPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "128px 24px 96px",
+          padding: "clamp(112px, 16vw, 128px) 24px clamp(54px, 11vw, 96px)",
         }}
       >
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
@@ -231,7 +231,7 @@ export default function PaintingPage() {
       </section>
 
       {/* ── HERO IMAGE ─────────────────────────────────────────────────── */}
-      <div style={{ width: '100%', height: '460px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ width: '100%', height: 'clamp(280px, 52vw, 460px)', position: 'relative', overflow: 'hidden' }}>
         <Image src="/images/wp/painting.jpg" alt="Professional interior painting services by Crafted Kitchen and Bath" fill priority style={{ objectFit: 'cover', objectPosition: 'center 55%' }} />
       </div>
 
