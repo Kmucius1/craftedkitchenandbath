@@ -211,7 +211,7 @@ export default function HomePage() {
 
       {/* Overlapping white content panel */}
       <div style={{ position: "relative", zIndex: 2, maxWidth: "1240px", margin: "-115px auto 0", padding: "0 24px" }}>
-        <div style={{ background: "#fff", padding: "56px 72px 48px", boxShadow: "0 24px 60px rgba(0,0,0,0.08)", border: "1px solid rgba(0,0,0,0.06)" }}>
+        <div style={{ background: "#fff", padding: "clamp(28px, 6vw, 56px) clamp(22px, 6vw, 72px) clamp(28px, 5vw, 48px)", boxShadow: "0 24px 60px rgba(0,0,0,0.08)", border: "1px solid rgba(0,0,0,0.06)" }}>
 
           {/* Eyebrow */}
           <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "12px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#2c7fc0", fontWeight: 600, margin: "0 0 18px" }}>
@@ -219,7 +219,7 @@ export default function HomePage() {
           </p>
 
           {/* Main headline */}
-          <h1 style={{ fontFamily: "var(--font-display),'Montserrat',system-ui,sans-serif", fontSize: "clamp(48px,5vw,68px)", lineHeight: 1.08, letterSpacing: "0.01em", color: "#121820", maxWidth: "820px", margin: 0, fontWeight: 400 }}>
+          <h1 style={{ fontFamily: "var(--font-display),'Montserrat',system-ui,sans-serif", fontSize: "clamp(30px, 8vw, 68px)", lineHeight: 1.1, letterSpacing: "0.01em", color: "#121820", maxWidth: "820px", margin: 0, fontWeight: 400 }}>
             Beautiful Spaces. Expertly Crafted.<br />Built Around <em>You</em>.
           </h1>
 
@@ -257,7 +257,7 @@ export default function HomePage() {
           </div>
 
           {/* Feature row — inside panel, separated by border-top */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", borderTop: "1px solid rgba(0,0,0,0.08)", paddingTop: "34px" }} className="grid-cols-2 md:grid-cols-4">
+          <div style={{ display: "grid", borderTop: "1px solid rgba(0,0,0,0.08)", paddingTop: "34px", gap: "28px 32px" }} className="grid-cols-2 md:grid-cols-4">
             {([
               { title: "Custom Design",       body: "Personalized layouts and finishes that reflect your style and needs.",
                 icon: <svg className="hero-feature-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#111722" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="11" height="11"/><rect x="20" y="3" width="11" height="11"/><rect x="3" y="20" width="11" height="11"/><rect x="20" y="20" width="11" height="11"/></svg> },
@@ -268,7 +268,7 @@ export default function HomePage() {
               { title: "Built to Last",        body: "Timeless design and quality construction that adds lasting value.",
                 icon: <svg className="hero-feature-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#111722" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3l11 5v9c0 6-5 11-11 13C11 28 6 23 6 17V8l11-5z"/><path d="M12 17l4 4 6-6"/></svg> },
             ] as Array<{ title: string; body: string; icon: React.ReactNode }>).map((f, i) => (
-              <div key={i} style={{ display: "grid", gridTemplateColumns: "46px 1fr", gap: "18px", padding: i === 0 ? "0 28px 0 0" : i === 3 ? "0 0 0 28px" : "0 28px", borderRight: i < 3 ? "1px solid rgba(0,0,0,0.08)" : "none" }}>
+              <div key={i} style={{ display: "grid", gridTemplateColumns: "40px 1fr", gap: "14px", alignItems: "start" }}>
                 {f.icon}
                 <div>
                   <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#111722", marginBottom: "8px", fontWeight: 600 }}>{f.title}</p>
@@ -282,7 +282,7 @@ export default function HomePage() {
       </div>
 
       {/* ─── KITCHEN & BATH SPOTLIGHT ────────────────────────────────── */}
-      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }} className="grid-cols-1 md:grid-cols-2">
+      <section style={{ display: 'grid' }} className="grid-cols-1 md:grid-cols-2">
         {/* Kitchen side */}
         <div style={{ position: 'relative', height: 'clamp(380px, 74vw, 560px)', overflow: 'hidden' }} className="group">
           <Image
@@ -607,7 +607,7 @@ export default function HomePage() {
             <p style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.22em', color: '#2B7CC1', fontWeight: 500 }}>The Crafted Difference</p>
             <h2 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(2.5rem,4vw,4rem)', color: '#FFFFFF', lineHeight: 1.1, marginTop: '24px', letterSpacing: '-0.01em' }}>Built for Kitchen &amp;<br />Bathroom Excellence</h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }} className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          <div style={{ display: 'grid', gap: '24px' }} className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { icon: '◇', title: 'Kitchen Specialists', body: 'From custom cabinetry to quartz islands — we have completed 150+ kitchen transformations across Tampa Bay.' },
               { icon: '◇', title: 'Bath Renovation Experts', body: 'Spa-inspired bathroom design with precision tile work, luxury vanities, and frameless glass showers.' },
