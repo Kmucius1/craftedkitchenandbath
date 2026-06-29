@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import CTASection from "@/components/CTASection";
 import ContactForm from "@/components/ContactForm";
+import AskCrewPrompt from "@/components/AskCrewPrompt";
 
 export const metadata: Metadata = {
   title:
@@ -47,7 +48,7 @@ export default function ContactPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "80px 24px",
+          padding: "140px 24px 80px",
           textAlign: "center",
         }}
       >
@@ -96,11 +97,11 @@ export default function ContactPage() {
         }}
       >
         <div
+          className="contact-split"
           style={{
             maxWidth: "1100px",
             margin: "0 auto",
             display: "grid",
-            gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.5fr)",
             gap: "64px",
             alignItems: "start",
           }}
@@ -397,6 +398,14 @@ export default function ContactPage() {
                 </a>
               </div>
             </div>
+
+            {/* Prefer to chat? Keyton helps get the request moving. */}
+            <AskCrewPrompt
+              mascot="keyton"
+              heading="Prefer to chat?"
+              text="Keyton can take your details and get your free-quote request to the team in under a minute."
+              cta="Start a Chat"
+            />
           </div>
 
           {/* RIGHT — Form */}
@@ -465,11 +474,11 @@ export default function ContactPage() {
         }}
       >
         <div
+          className="row-3"
           style={{
             maxWidth: "900px",
             margin: "0 auto",
             display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
             gap: "24px",
             textAlign: "center",
           }}

@@ -136,6 +136,36 @@ h3, h4 { font-weight: 700 !important; }
   transform: scale(1.04);
 }
 
+/* ── Responsive grid helpers (inline grids lacked breakpoints) ──── */
+/* Two equal columns that stack on small screens — used for form field rows. */
+.row-2 { grid-template-columns: 1fr 1fr; }
+@media (max-width: 560px) { .row-2 { grid-template-columns: 1fr; } }
+
+/* Contact page split: info column + wider form column → stacks on mobile. */
+.contact-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); }
+@media (max-width: 860px) { .contact-split { grid-template-columns: 1fr; gap: 48px !important; } }
+
+/* Three across (trust badges) → single column on phones. */
+.row-3 { grid-template-columns: 1fr 1fr 1fr; }
+@media (max-width: 640px) { .row-3 { grid-template-columns: 1fr; } }
+
+/* Fixed label column + content → stacks on phones to avoid overflow. */
+.spec-row { grid-template-columns: 200px 1fr; }
+@media (max-width: 640px) { .spec-row { grid-template-columns: 1fr; gap: 8px !important; } }
+
+/* ── Featured project rows (alternating image/copy, stacks on mobile) ── */
+.featured-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .featured-row { grid-template-columns: 1fr 1fr; gap: 56px; }
+  .featured-row.reverse .featured-img { grid-column: 2; grid-row: 1; }
+  .featured-row.reverse .featured-copy { grid-column: 1; grid-row: 1; }
+}
+
 /* ── Section reveal base ───────────────────────────────────────── */
 .reveal {
   opacity: 0;

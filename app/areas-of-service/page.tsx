@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import SectionLabel from "@/components/SectionLabel";
 import CTASection from "@/components/CTASection";
@@ -251,6 +252,18 @@ export default function AreasOfServicePage() {
           </p>
         </div>
       </section>
+
+      {/* ── HERO IMAGE ── */}
+      <div style={{ width: "100%", height: "clamp(280px, 40vw, 460px)", position: "relative", overflow: "hidden" }}>
+        <Image
+          src="/images/wp/IMG_2206-scaled.jpeg"
+          alt="Kitchen and bathroom remodeling across Pinellas and Hillsborough County by Crafted Kitchen and Bath"
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: "cover", objectPosition: "center 55%" }}
+        />
+      </div>
 
       {/* ── 2. COUNTY OVERVIEW ───────────────────────────────────────── */}
       <section

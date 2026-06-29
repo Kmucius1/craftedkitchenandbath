@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import SectionLabel from "@/components/SectionLabel";
 import CTASection from "@/components/CTASection";
@@ -116,6 +117,18 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
       </section>
 
+      {/* ── HERO IMAGE ── */}
+      <div style={{ width: "100%", height: "clamp(280px, 42vw, 500px)", position: "relative", overflow: "hidden" }}>
+        <Image
+          src={svc.heroImage}
+          alt={`${svc.name} by Crafted Kitchen and Bath — Tampa Bay`}
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: "cover", objectPosition: "center" }}
+        />
+      </div>
+
       {/* ── OVERVIEW ── */}
       <section style={{ backgroundColor: "#FFFFFF", padding: "88px 24px" }}>
         <div style={{ maxWidth: "760px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "24px" }}>
@@ -125,6 +138,30 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           ))}
         </div>
       </section>
+
+      {/* ── GALLERY ── */}
+      {svc.gallery && svc.gallery.length > 0 && (
+        <section style={{ backgroundColor: "#F7F8FA", padding: "0 0 0" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px 88px" }}>
+            <div style={{ maxWidth: "560px", display: "flex", flexDirection: "column", gap: "16px", marginBottom: "32px" }}>
+              <SectionLabel>Recent Work</SectionLabel>
+              <h2 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "clamp(26px, 3.5vw, 38px)", lineHeight: 1.2, color: "#1A202C", margin: 0 }}>
+                A Look at the Results
+              </h2>
+            </div>
+            <div
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+              style={{ display: "grid", gap: "16px" }}
+            >
+              {svc.gallery.map((g) => (
+                <div key={g.src} style={{ position: "relative", aspectRatio: "4 / 3", overflow: "hidden", borderRadius: "2px", backgroundColor: "#E8ECF0" }}>
+                  <Image src={g.src} alt={g.alt} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" style={{ objectFit: "cover", objectPosition: "center" }} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── FEATURES ── */}
       <section style={{ backgroundColor: "#F7F8FA", padding: "88px 24px" }}>

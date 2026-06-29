@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 
 const NAV_LINKS = [
@@ -38,6 +38,16 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesHovered, setServicesHovered] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openServices = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setServicesHovered(true);
+  };
+  const closeServices = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setServicesHovered(false), 180);
+  };
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
@@ -97,8 +107,8 @@ export default function Header() {
                     <div
                       key={link.href}
                       style={{ position: 'relative' }}
-                      onMouseEnter={() => setServicesHovered(true)}
-                      onMouseLeave={() => setServicesHovered(false)}
+                      onMouseEnter={openServices}
+                      onMouseLeave={closeServices}
                       onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setServicesHovered(false) }}
                       onKeyDown={e => { if (e.key === 'Escape') setServicesHovered(false) }}
                     >
@@ -137,15 +147,16 @@ export default function Header() {
                       </button>
 
                       {/* ── SERVICES DROPDOWN ── */}
+                      {/* Outer wrapper is transparent and includes a 14px top
+                          bridge so the cursor never crosses a dead gap between
+                          the trigger and the menu (which was closing it early). */}
                       <div
                         style={{
                           position: 'absolute',
-                          top: 'calc(100% + 10px)',
+                          top: '100%',
                           left: '50%',
                           transform: 'translateX(-50%)',
-                          backgroundColor: '#FFFFFF',
-                          border: '1px solid rgba(0,0,0,0.10)',
-                          boxShadow: '0 8px 32px rgba(0,0,0,0.10)',
+                          paddingTop: '14px',
                           minWidth: '220px',
                           opacity: servicesHovered ? 1 : 0,
                           pointerEvents: servicesHovered ? 'auto' : 'none',
@@ -153,6 +164,13 @@ export default function Header() {
                           zIndex: 60,
                         }}
                       >
+                       <div
+                         style={{
+                           backgroundColor: '#FFFFFF',
+                           border: '1px solid rgba(0,0,0,0.10)',
+                           boxShadow: '0 8px 32px rgba(0,0,0,0.10)',
+                         }}
+                       >
                         <div style={{ height: '2px', backgroundColor: '#2B7CC1', width: '100%' }} />
                         {SERVICES.map(service => (
                           <Link
@@ -181,6 +199,7 @@ export default function Header() {
                             {service.label}
                           </Link>
                         ))}
+                       </div>
                       </div>
                     </div>
                   );

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import SectionLabel from '@/components/SectionLabel'
 import CTASection from '@/components/CTASection'
+import AskCrewPrompt from '@/components/AskCrewPrompt'
 
 export const metadata: Metadata = {
   title: 'Kitchen & Bathroom Remodeling FAQs | Crafted Kitchen & Bath | Tampa Bay',
@@ -366,6 +367,17 @@ export default function FAQsPage() {
               ))}
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ── ASK THE CREW ───────────────────────────────────────────────── */}
+      <section style={{ backgroundColor: '#F7F8FA', padding: '0 24px 80px' }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <AskCrewPrompt
+            mascot="crafty"
+            heading="Don't see your question?"
+            text="Ask Crafty — our assistant can answer questions about your project, materials, timeline, or service area right now, or get your free quote started."
+          />
         </div>
       </section>
 

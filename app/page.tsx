@@ -5,6 +5,7 @@ import Image from "next/image";
 import CTASection from "@/components/CTASection";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import HeroSlideshow from "@/components/HeroSlideshow";
+import MeetTheCrew from "@/components/MeetTheCrew";
 
 export const metadata: Metadata = {
   title: "Kitchen & Bathroom Remodeling Tampa Bay | Crafted Kitchen & Bath | Oldsmar FL",
@@ -161,21 +162,22 @@ const materials = [
   },
 ];
 
+// Real, verified 5-star Google reviews (from the company's Google Business profile).
 const testimonials = [
   {
     quote:
-      "The craftsmanship was exceptional. Every little detail was handled with real pride in the work. Our kitchen feels completely transformed.",
-    author: "M.R., Palm Harbor",
+      "Crafted renovated our kitchen, flooring, and the interior of our home — incredible work. Tylor and Jim were both awesome. Communication was great, timing was as planned, and quality of work was amazing. Our home is beautiful now!",
+    author: "Myranda Falk",
   },
   {
     quote:
-      "Professional, efficient, and thorough. They upgraded our kitchen, three bathrooms, and all the flooring — not a single detail was missed.",
-    author: "S.T., Clearwater",
+      "They took our outdated kitchen and made it bright, open, and modern. The whole crew did a great job and were very professional. They completed the project within the timeline promised — the quality of their work and materials is excellent. We love our new kitchen!",
+    author: "Darrell Smith",
   },
   {
     quote:
-      "From the first conversation to the final walkthrough, communication was clear and the quality was outstanding.",
-    author: "D.L., Oldsmar",
+      "Tylor and crew did a great job on our kitchen and bath. He communicates all the way through the job and makes sure you are happy till the last piece is done. We LOVE our kitchen and would most definitely use them again and refer them to friends.",
+    author: "Kathy Paro",
   },
 ];
 
@@ -284,7 +286,7 @@ export default function HomePage() {
         {/* Kitchen side */}
         <div style={{ position: 'relative', height: '560px', overflow: 'hidden' }} className="group">
           <Image
-            src="/images/7538a222-6dd1-43e7-8c45-55880dacb434.png"
+            src="/images/wp/IMG_3266-1-scaled.jpg"
             alt="Custom kitchen remodeling Tampa Bay"
             fill
             style={{ objectFit: 'cover', objectPosition: 'center', transition: 'transform 0.7s ease' }}
@@ -295,13 +297,13 @@ export default function HomePage() {
             <p style={{ color: '#2B7CC1', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', margin: '0 0 12px', fontWeight: 500 }}>Our Specialty</p>
             <h2 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: '#FFFFFF', lineHeight: 1.1, margin: '0 0 16px' }}>Kitchen<br />Remodeling</h2>
             <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '14px', lineHeight: 1.7, margin: '0 0 24px', maxWidth: '320px' }}>Custom cabinetry, quartz countertops, kitchen islands, and complete kitchen transformations.</p>
-            <Link href="/kitchen-remodeling" style={{ display: 'inline-block', border: '1px solid rgba(255,255,255,0.7)', color: '#FFFFFF', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.16em', padding: '12px 28px', textDecoration: 'none' }} className="hover:bg-white hover:text-[#1A202C] transition-colors duration-300">Explore Kitchens →</Link>
+            <Link href="/kitchen-remodeling" className="inline-block border border-white/70 bg-transparent text-white hover:bg-white hover:text-[#1A202C] hover:border-white transition-colors duration-300" style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.16em', padding: '12px 28px', textDecoration: 'none' }}>Explore Kitchens →</Link>
           </div>
         </div>
         {/* Bathroom side */}
         <div style={{ position: 'relative', height: '560px', overflow: 'hidden' }} className="group">
           <Image
-            src="/images/e1b3aa11-74f9-47a0-a8bc-6008207b1604.png"
+            src="/images/wp/IMG_1147-1-scaled.jpg"
             alt="Luxury bathroom remodeling Tampa Bay"
             fill
             style={{ objectFit: 'cover', objectPosition: 'center', transition: 'transform 0.7s ease' }}
@@ -312,7 +314,7 @@ export default function HomePage() {
             <p style={{ color: '#2B7CC1', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', margin: '0 0 12px', fontWeight: 500 }}>Our Specialty</p>
             <h2 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: '#FFFFFF', lineHeight: 1.1, margin: '0 0 16px' }}>Bathroom<br />Remodeling</h2>
             <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '14px', lineHeight: 1.7, margin: '0 0 24px', maxWidth: '320px' }}>Spa-inspired finishes, custom tile showers, freestanding tubs, and luxury vanities.</p>
-            <Link href="/bathroom-remodeling" style={{ display: 'inline-block', border: '1px solid rgba(255,255,255,0.7)', color: '#FFFFFF', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.16em', padding: '12px 28px', textDecoration: 'none' }} className="hover:bg-white hover:text-[#1A202C] transition-colors duration-300">Explore Bathrooms →</Link>
+            <Link href="/bathroom-remodeling" className="inline-block border border-white/70 bg-transparent text-white hover:bg-white hover:text-[#1A202C] hover:border-white transition-colors duration-300" style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.16em', padding: '12px 28px', textDecoration: 'none' }}>Explore Bathrooms →</Link>
           </div>
         </div>
       </section>
@@ -355,7 +357,7 @@ export default function HomePage() {
             <AnimateOnScroll delay={0}>
               <Link
                 href="/kitchen-remodeling"
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", display: "block", height: "100%" }}
                 className="group"
               >
                 <div
@@ -363,19 +365,20 @@ export default function HomePage() {
                   style={{
                     backgroundColor: "#FFFFFF",
                     minHeight: "320px",
+                    height: "100%",
                     display: "flex",
                     flexDirection: "column",
                   }}
                 >
                   <div style={{ position: 'relative', width: '100%', height: '240px', overflow: 'hidden' }}>
                     <Image
-                      src="/images/hero-kitchen.jpg"
+                      src="/images/wp/Hunter-Kitchen-hires.png"
                       alt="Kitchen Remodeling"
                       fill
                       style={{ objectFit: 'cover', objectPosition: 'center top' }}
                     />
                   </div>
-                  <div style={{ padding: "24px", backgroundColor: "#FFFFFF" }}>
+                  <div style={{ padding: "24px", backgroundColor: "#FFFFFF", flex: 1 }}>
                     <h3
                       style={{
                         fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
@@ -415,7 +418,7 @@ export default function HomePage() {
             <AnimateOnScroll delay={100}>
               <Link
                 href="/bathroom-remodeling"
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", display: "block", height: "100%" }}
                 className="group"
               >
                 <div
@@ -423,19 +426,20 @@ export default function HomePage() {
                   style={{
                     backgroundColor: "#FFFFFF",
                     minHeight: "320px",
+                    height: "100%",
                     display: "flex",
                     flexDirection: "column",
                   }}
                 >
                   <div style={{ position: 'relative', width: '100%', height: '240px', overflow: 'hidden' }}>
                     <Image
-                      src="/images/e1b3aa11-74f9-47a0-a8bc-6008207b1604.png"
+                      src="/images/wp/IMG_1243-scaled.jpg"
                       alt="Bathroom Remodeling"
                       fill
                       style={{ objectFit: 'cover', objectPosition: 'center center' }}
                     />
                   </div>
-                  <div style={{ padding: "24px", backgroundColor: "#FFFFFF" }}>
+                  <div style={{ padding: "24px", backgroundColor: "#FFFFFF", flex: 1 }}>
                     <h3
                       style={{
                         fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
@@ -475,7 +479,7 @@ export default function HomePage() {
             <AnimateOnScroll delay={200}>
               <Link
                 href="/complete-interior-home-remodeling"
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", display: "block", height: "100%" }}
                 className="group"
               >
                 <div
@@ -483,19 +487,20 @@ export default function HomePage() {
                   style={{
                     backgroundColor: "#FFFFFF",
                     minHeight: "320px",
+                    height: "100%",
                     display: "flex",
                     flexDirection: "column",
                   }}
                 >
-                  <div style={{ position: 'relative', width: '100%', height: '208px', overflow: 'hidden' }}>
+                  <div style={{ position: 'relative', width: '100%', height: '240px', overflow: 'hidden' }}>
                     <Image
-                      src="/images/hero-bathroom.jpg"
+                      src="/images/wp/IMG_6140-scaled.jpeg"
                       alt="Complete Interior Remodeling"
                       fill
                       style={{ objectFit: 'cover', objectPosition: 'center' }}
                     />
                   </div>
-                  <div style={{ padding: "24px", backgroundColor: "#FFFFFF" }}>
+                  <div style={{ padding: "24px", backgroundColor: "#FFFFFF", flex: 1 }}>
                     <h3
                       style={{
                         fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
@@ -535,7 +540,7 @@ export default function HomePage() {
             <AnimateOnScroll delay={300}>
               <Link
                 href="/flooring-installation"
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", display: "block", height: "100%" }}
                 className="group"
               >
                 <div
@@ -543,19 +548,20 @@ export default function HomePage() {
                   style={{
                     backgroundColor: "#FFFFFF",
                     minHeight: "320px",
+                    height: "100%",
                     display: "flex",
                     flexDirection: "column",
                   }}
                 >
-                  <div style={{ position: 'relative', width: '100%', height: '208px', overflow: 'hidden' }}>
+                  <div style={{ position: 'relative', width: '100%', height: '240px', overflow: 'hidden' }}>
                     <Image
-                      src="/images/hero-kitchen.jpg"
+                      src="/images/wp/IMG_1419-scaled.jpg"
                       alt="Flooring & Painting"
                       fill
                       style={{ objectFit: 'cover', objectPosition: 'center' }}
                     />
                   </div>
-                  <div style={{ padding: "24px", backgroundColor: "#FFFFFF" }}>
+                  <div style={{ padding: "24px", backgroundColor: "#FFFFFF", flex: 1 }}>
                     <h3
                       style={{
                         fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
@@ -832,61 +838,16 @@ export default function HomePage() {
 
           {/* Asymmetric grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-            {/* Tall card — spans 2 rows on lg */}
-            <div
-              className="lg:row-span-2 relative overflow-hidden"
-              style={{ height: "480px" }}
-            >
-              <Image
-                src="/images/e1b3aa11-74f9-47a0-a8bc-6008207b1604.png"
-                alt="Luxury bathroom remodel — Clearwater, FL"
-                fill
-                style={{ objectFit: 'cover', objectPosition: 'center top' }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  backgroundColor: "rgba(255,255,255,0.9)",
-                  backdropFilter: "blur(4px)",
-                  padding: "12px 16px",
-                }}
-              >
-                <p
-                  style={{
-                    fontSize: "9px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.14em",
-                    color: "#2B7CC1",
-                  }}
-                >
-                  Bathroom Remodel
-                </p>
-                <p
-                  style={{
-                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
-                    fontStyle: "italic",
-                    fontSize: "0.875rem",
-                    color: "#1A202C",
-                  }}
-                >
-                  Master Bath Retreat — Clearwater
-                </p>
-              </div>
-            </div>
-
-            {/* Medium card 1 */}
+            {/* Card 1 */}
             <div
               className="relative overflow-hidden"
-              style={{ height: "288px" }}
+              style={{ height: "360px" }}
             >
               <Image
-                src="/images/7538a222-6dd1-43e7-8c45-55880dacb434.png"
-                alt="Luxury kitchen remodel — Palm Harbor, FL"
+                src="/images/wp/IMG_2580-scaled.jpeg"
+                alt="Two-tone kitchen remodel with quartz island — Tampa Bay"
                 fill
-                style={{ objectFit: 'cover', objectPosition: 'center' }}
+                style={{ objectFit: 'cover', objectPosition: 'center 70%' }}
               />
               <div
                 style={{
@@ -917,19 +878,19 @@ export default function HomePage() {
                     color: "#1A202C",
                   }}
                 >
-                  Kitchen Remodel — Palm Harbor
+                  Two-Tone Kitchen — Palm Harbor
                 </p>
               </div>
             </div>
 
-            {/* Medium card 2 */}
+            {/* Medium card 1 */}
             <div
               className="relative overflow-hidden"
-              style={{ height: "288px" }}
+              style={{ height: "360px" }}
             >
               <Image
-                src="/images/hero-bathroom.jpg"
-                alt="Bathroom Renovation — Safety Harbor, FL"
+                src="/images/wp/IMG_1243-scaled.jpg"
+                alt="Custom walk-in shower with shiplap walls — Clearwater, FL"
                 fill
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
               />
@@ -952,7 +913,7 @@ export default function HomePage() {
                     color: "#2B7CC1",
                   }}
                 >
-                  Full Interior
+                  Bathroom Remodel
                 </p>
                 <p
                   style={{
@@ -962,7 +923,52 @@ export default function HomePage() {
                     color: "#1A202C",
                   }}
                 >
-                  Full Interior — Safety Harbor
+                  Walk-In Shower — Clearwater
+                </p>
+              </div>
+            </div>
+
+            {/* Medium card 2 */}
+            <div
+              className="relative overflow-hidden"
+              style={{ height: "360px" }}
+            >
+              <Image
+                src="/images/wp/IMG_0801-scaled.jpg"
+                alt="Sage green vanity with brass fixtures — Safety Harbor, FL"
+                fill
+                style={{ objectFit: 'cover', objectPosition: 'center bottom' }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  backgroundColor: "rgba(255,255,255,0.9)",
+                  backdropFilter: "blur(4px)",
+                  padding: "12px 16px",
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: "9px",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.14em",
+                    color: "#2B7CC1",
+                  }}
+                >
+                  Bathroom Remodel
+                </p>
+                <p
+                  style={{
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
+                    fontStyle: "italic",
+                    fontSize: "0.875rem",
+                    color: "#1A202C",
+                  }}
+                >
+                  Sage Vanity — Safety Harbor
                 </p>
               </div>
             </div>
@@ -1052,6 +1058,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ─── MEET THE CREW (mascots + chatbot intro) ─────────────────── */}
+      <MeetTheCrew />
 
       {/* ─── SECTION 7: TESTIMONIALS ─────────────────────────────────── */}
       <section style={{ backgroundColor: "#FFFFFF", padding: "96px 0" }}>

@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
+import MascotChat from "@/components/MascotChat";
 
 const montserrat = Montserrat({
   variable: "--font-display",
@@ -100,6 +101,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <StickyMobileCTA />
+        <MascotChat />
       </body>
     </html>
   );

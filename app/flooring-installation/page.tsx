@@ -270,7 +270,7 @@ export default function FlooringInstallationPage() {
 
       {/* ── HERO IMAGE ─────────────────────────────────────────────────── */}
       <div style={{ width: '100%', height: '460px', position: 'relative', overflow: 'hidden' }}>
-        <Image src="/images/7538a222-6dd1-43e7-8c45-55880dacb434.png" alt="Premium flooring and kitchen remodeling" fill priority style={{ objectFit: 'cover', objectPosition: 'center bottom' }} />
+        <Image src="/images/wp/IMG_1419-scaled.jpg" alt="Premium flooring installation — white kitchen with wood-look plank floors" fill priority style={{ objectFit: 'cover', objectPosition: 'center bottom' }} />
       </div>
 
       {/* ── 2. FLOORING TYPES ──────────────────────────────────────────── */}
@@ -397,11 +397,11 @@ export default function FlooringInstallationPage() {
             {roomScenarios.map((scenario, i) => (
               <div
                 key={i}
+                className="spec-row"
                 style={{
                   borderTop: "1px solid rgba(0,0,0,0.08)",
                   padding: "28px 0",
                   display: "grid",
-                  gridTemplateColumns: "200px 1fr",
                   gap: "32px",
                   alignItems: "start",
                 }}

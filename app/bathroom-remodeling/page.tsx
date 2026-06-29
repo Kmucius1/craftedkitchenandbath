@@ -399,8 +399,8 @@ export default function BathroomRemodelingPage() {
       {/* ── HERO IMAGE ── */}
       <div style={{ width: '100%', height: '520px', position: 'relative', overflow: 'hidden' }}>
         <Image
-          src="/images/e1b3aa11-74f9-47a0-a8bc-6008207b1604.png"
-          alt="Luxury bathroom remodel in Pinellas County by Crafted Kitchen and Bath"
+          src="/images/wp/IMG_6153-scaled.jpeg"
+          alt="Luxury master bathroom remodel with glass walk-in shower and dual vanity in Pinellas County by Crafted Kitchen and Bath"
           fill
           priority
           style={{ objectFit: 'cover', objectPosition: 'center' }}
@@ -492,7 +492,7 @@ export default function BathroomRemodelingPage() {
 
       {/* ── BATHROOM SECONDARY IMAGE ── */}
       <div style={{ width: '100%', height: '460px', position: 'relative', overflow: 'hidden' }}>
-        <Image src="/images/hero-bathroom.jpg" alt="Spa-quality bathroom finishes" fill style={{ objectFit: 'cover', objectPosition: 'center top' }} />
+        <Image src="/images/wp/IMG_6061-1-scaled.jpg" alt="Modern bathroom with vessel sink and marble shower by Crafted Kitchen and Bath" fill style={{ objectFit: 'cover', objectPosition: 'center 58%' }} />
       </div>
 
       {/* ── 3. MATERIALS & FINISHES ── */}

@@ -7,6 +7,8 @@ export type ServicePage = {
   metaDescription: string;
   heroLabel: string;
   heroIntro: string;
+  heroImage: string;
+  gallery?: { src: string; alt: string }[];
   overview: string[];
   features: { title: string; body: string }[];
   process: { step: string; title: string; body: string }[];
@@ -18,6 +20,12 @@ export const servicePages: ServicePage[] = [
   {
     slug: "countertops",
     name: "Countertops",
+    heroImage: "/images/wp/countertops.jpg",
+    gallery: [
+      { src: "/images/wp/IMG_2580-scaled.jpeg", alt: "Waterfall quartz island countertop in a two-tone kitchen — Tampa Bay" },
+      { src: "/images/wp/IMG_6133-scaled.jpeg", alt: "Quartz waterfall island and counters in a walnut kitchen — Pinellas County" },
+      { src: "/images/wp/IMG_2206-scaled.jpeg", alt: "Granite island and stone counters in a white kitchen — Tampa Bay" },
+    ],
     navLabel: "Countertops",
     metaTitle: "Countertops in Tampa Bay | Quartz, Granite & More",
     metaDescription:
@@ -59,6 +67,12 @@ export const servicePages: ServicePage[] = [
   {
     slug: "cabinet-refacing",
     name: "Cabinet Refacing",
+    heroImage: "/images/wp/cabinet-refacing.jpg",
+    gallery: [
+      { src: "/images/wp/IMG_2580-scaled.jpeg", alt: "Two-tone cabinetry with white uppers and walnut lowers — Tampa Bay" },
+      { src: "/images/wp/IMG_2587-scaled.jpeg", alt: "Refreshed white and wood cabinetry with new fronts — Tampa Bay" },
+      { src: "/images/wp/IMG_6133-scaled.jpeg", alt: "Custom kitchen cabinetry in a walnut kitchen — Pinellas County" },
+    ],
     navLabel: "Cabinet Refacing",
     metaTitle: "Cabinet Refacing in Tampa Bay, FL | Refresh & Save",
     metaDescription:
@@ -100,6 +114,12 @@ export const servicePages: ServicePage[] = [
   {
     slug: "ada-aging-in-place-bathrooms",
     name: "ADA & Aging-in-Place Bathrooms",
+    heroImage: "/images/wp/ada-bathroom.jpg",
+    gallery: [
+      { src: "/images/wp/IMG_1243-scaled.jpg", alt: "Curbless walk-in shower with glass enclosure — Clearwater FL" },
+      { src: "/images/wp/IMG_6061-1-scaled.jpg", alt: "Accessible vanity with easy-reach fixtures — Tampa Bay" },
+      { src: "/images/wp/IMG_6153-scaled.jpeg", alt: "Walk-in shower with bench seating and grab-friendly layout — Tampa Bay" },
+    ],
     navLabel: "ADA & Aging-in-Place",
     metaTitle: "Aging-in-Place & ADA Bathrooms | Tampa Bay, FL",
     metaDescription:
@@ -141,6 +161,12 @@ export const servicePages: ServicePage[] = [
   {
     slug: "walk-in-showers",
     name: "Walk-In & Curbless Showers",
+    heroImage: "/images/wp/IMG_1243-scaled.jpg",
+    gallery: [
+      { src: "/images/wp/IMG_6061-1-scaled.jpg", alt: "Marble walk-in shower with matte black fixtures — Tampa Bay" },
+      { src: "/images/wp/IMG_6153-scaled.jpeg", alt: "Frameless glass walk-in shower with floor-to-ceiling tile — Tampa Bay" },
+      { src: "/images/wp/IMG_1147-1-scaled.jpg", alt: "Tiled walk-in shower with bright marble surround — Tampa Bay" },
+    ],
     navLabel: "Walk-In Showers",
     metaTitle: "Walk-In & Curbless Showers in Tampa Bay, FL",
     metaDescription:
@@ -182,6 +208,12 @@ export const servicePages: ServicePage[] = [
   {
     slug: "luxury-vinyl-plank-flooring",
     name: "Luxury Vinyl Plank Flooring",
+    heroImage: "/images/wp/IMG_1419-scaled.jpg",
+    gallery: [
+      { src: "/images/wp/IMG_0824-scaled.jpg", alt: "Luxury vinyl plank flooring samples in wood-look finishes — Oldsmar showroom" },
+      { src: "/images/wp/IMG_6140-scaled.jpeg", alt: "Wood-look plank flooring through an open kitchen and dining room — Tampa Bay" },
+      { src: "/images/wp/IMG_2206-scaled.jpeg", alt: "Durable plank flooring in an open-concept living space — Tampa Bay" },
+    ],
     navLabel: "Luxury Vinyl Plank",
     metaTitle: "Luxury Vinyl Plank Flooring in Tampa Bay, FL",
     metaDescription:
@@ -223,6 +255,10 @@ export const servicePages: ServicePage[] = [
   {
     slug: "outdoor-kitchens",
     name: "Outdoor Kitchens",
+    heroImage: "/images/wp/outdoor-kitchen.jpg",
+    gallery: [
+      { src: "/images/wp/outdoor-kitchen-2.jpg", alt: "Outdoor kitchen island with built-in grill and bar seating by the pool — Tampa Bay" },
+    ],
     navLabel: "Outdoor Kitchens",
     metaTitle: "Outdoor Kitchens in Tampa Bay, FL | Lanai & Pool Deck",
     metaDescription:

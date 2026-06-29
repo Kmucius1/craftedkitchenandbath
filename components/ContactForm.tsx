@@ -177,9 +177,9 @@ export default function ContactForm() {
 
       {/* Row: Full Name + Email */}
       <div
+        className="row-2"
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
           gap: "24px",
         }}
       >
@@ -231,9 +231,9 @@ export default function ContactForm() {
 
       {/* Row: Phone + Service */}
       <div
+        className="row-2"
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
           gap: "24px",
         }}
       >

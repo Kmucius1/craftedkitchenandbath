@@ -2,30 +2,32 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
+// Full-width hero — landscape, high-resolution (2560px) images only so the
+// banner stays crisp on large/Retina displays.
 const SLIDES = [
   {
-    src: '/images/7538a222-6dd1-43e7-8c45-55880dacb434.png',
-    alt: 'Luxury kitchen remodeling by Crafted Kitchen and Bath',
+    src: '/images/wp/IMG_2206-scaled.jpeg',
+    alt: 'White kitchen open to living room with granite island — Tampa Bay',
   },
   {
-    src: '/images/HUNTER-KITCHEN-scaled-e1749228160387-rmoy5v31s7ks5mfa39k77eoxtj9ob0g9p8e51b89qw.png',
-    alt: 'Custom kitchen remodel Tampa Bay',
+    src: '/images/wp/IMG_6137-scaled.jpeg',
+    alt: 'Waterfront kitchen remodel with floating shelves and quartz counters — Tampa Bay',
   },
   {
-    src: '/images/kitchen-marble-island.webp',
-    alt: 'Marble kitchen island remodel',
+    src: '/images/wp/IMG_6133-scaled.jpeg',
+    alt: 'Walnut kitchen with quartz waterfall island — Pinellas County',
   },
   {
-    src: '/images/e1b3aa11-74f9-47a0-a8bc-6008207b1604.png',
-    alt: 'Luxury bathroom remodeling by Crafted Kitchen and Bath',
+    src: '/images/wp/IMG_6153-scaled.jpeg',
+    alt: 'Spa-inspired master bathroom with glass walk-in shower and dual vanity — Tampa Bay',
   },
   {
-    src: '/images/bathroom-dark-marble.webp',
-    alt: 'Dark marble luxury bathroom renovation',
+    src: '/images/wp/IMG_6061-1-scaled.jpg',
+    alt: 'Modern bathroom with vessel sink, round mirror, and marble shower — Tampa Bay',
   },
   {
-    src: '/images/vanity-sage-cabinetry.webp',
-    alt: 'Custom vanity with sage cabinetry',
+    src: '/images/wp/IMG_6140-scaled.jpeg',
+    alt: 'Open kitchen and dining room — complete interior transformation — Tampa Bay',
   },
 ]
 
