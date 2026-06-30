@@ -784,6 +784,29 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+
+          {/* Section CTA */}
+          <div style={{ textAlign: 'center', marginTop: 'clamp(44px, 6vw, 64px)' }}>
+            <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.7)', margin: '0 0 24px', lineHeight: 1.7 }}>
+              Ready to see what Crafted can do for your home?
+            </p>
+            <div style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'center', alignItems: 'center' }}>
+              <Link
+                href="/quote"
+                style={{ background: '#2B7CC1', color: '#fff', padding: '16px 36px', fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 700, textDecoration: 'none', borderRadius: '4px', display: 'inline-block' }}
+                className="transition-colors duration-200 hover:bg-[#3D8BD0]"
+              >
+                Get a Free Quote →
+              </Link>
+              <a
+                href="tel:+17273837550"
+                style={{ color: '#FFFFFF', padding: '16px 30px', border: '1px solid rgba(255,255,255,0.3)', fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 600, textDecoration: 'none', borderRadius: '4px', display: 'inline-block' }}
+                className="transition-colors duration-200 hover:border-[#2B7CC1] hover:text-[#6BA6DC]"
+              >
+                Call (727) 383-7550
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
