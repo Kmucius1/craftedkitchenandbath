@@ -280,7 +280,7 @@ export default function HomePage() {
           </div>{/* /hero-top */}
 
           {/* Feature row — inside panel, separated by border-top */}
-          <div style={{ display: "grid", borderTop: "1px solid rgba(0,0,0,0.08)", paddingTop: "34px", gap: "28px 32px" }} className="grid-cols-2 md:grid-cols-4">
+          <div style={{ display: "grid", borderTop: "1px solid rgba(0,0,0,0.08)", paddingTop: "34px", gap: "28px 32px" }} className="grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
             {([
               { title: "Custom Design",       body: "Personalized layouts and finishes that reflect your style and needs.",
                 icon: <svg className="hero-feature-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#111722" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="11" height="11"/><rect x="20" y="3" width="11" height="11"/><rect x="3" y="20" width="11" height="11"/><rect x="20" y="20" width="11" height="11"/></svg> },
