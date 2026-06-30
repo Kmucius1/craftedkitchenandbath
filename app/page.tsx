@@ -193,6 +193,16 @@ const cities = [
   { name: "Largo", slug: "largo" },
 ];
 
+// Paired problem → solution rows for the "Problems We Solve" transformation section.
+const problemSolutions = [
+  { problem: "Outdated, dated designs", solution: "Modern, custom upgrades tailored to you" },
+  { problem: "Unreliable, no-show contractors", solution: "One accountable team, clear communication" },
+  { problem: "Water damage & everyday wear", solution: "Durable, moisture-resistant materials" },
+  { problem: "Cramped, closed-off spaces", solution: "Smart, open-concept layouts" },
+  { problem: "Worn-out, tired interiors", solution: "Stylish finishes built to last" },
+  { problem: "Budget & pricing anxiety", solution: "Transparent pricing & financing options" },
+];
+
 export default function HomePage() {
   return (
     <>
@@ -212,6 +222,9 @@ export default function HomePage() {
       {/* Overlapping white content panel */}
       <div style={{ position: "relative", zIndex: 2, maxWidth: "1240px", margin: "-115px auto 0", padding: "0 24px" }}>
         <div style={{ background: "#fff", padding: "clamp(28px, 6vw, 56px) clamp(22px, 6vw, 72px) clamp(28px, 5vw, 48px)", boxShadow: "0 24px 60px rgba(0,0,0,0.08)", border: "1px solid rgba(0,0,0,0.06)" }}>
+
+          <div className="hero-top">
+            <div className="hero-top-text">
 
           {/* Eyebrow */}
           <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "12px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#2c7fc0", fontWeight: 600, margin: "0 0 18px" }}>
@@ -255,6 +268,20 @@ export default function HomePage() {
               View Our Work <span aria-hidden="true">→</span>
             </Link>
           </div>
+
+            </div>{/* /hero-top-text */}
+
+            {/* Brand logo panel — fills the right-hand whitespace */}
+            <aside className="hero-logo-panel">
+              <div className="hero-logo-inner">
+                <Image src="/logo.png" alt="Crafted Kitchen & Bath" width={260} height={105} style={{ width: "200px", height: "auto" }} priority />
+                <div style={{ width: "44px", height: "1px", background: "rgba(255,255,255,0.4)", margin: "24px 0" }} />
+                <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", textAlign: "center", lineHeight: 1.8, margin: 0 }}>
+                  Tampa Bay&apos;s<br />Craftsmanship-First<br />Remodeler
+                </p>
+              </div>
+            </aside>
+          </div>{/* /hero-top */}
 
           {/* Feature row — inside panel, separated by border-top */}
           <div style={{ display: "grid", borderTop: "1px solid rgba(0,0,0,0.08)", paddingTop: "34px", gap: "28px 32px" }} className="grid-cols-2 md:grid-cols-4">
@@ -600,6 +627,135 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─── PROBLEMS WE SOLVE (challenge → solution) ────────────────── */}
+      <section style={{ backgroundColor: "#FFFFFF", padding: "clamp(54px, 11vw, 96px) 0" }}>
+        <div className="max-w-[1200px] mx-auto px-8 md:px-16">
+          <div style={{ textAlign: "center", marginBottom: "clamp(40px, 6vw, 64px)" }}>
+            <p style={{ fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.22em", color: "#2B7CC1", fontWeight: 500 }}>
+              The Problems We Solve
+            </p>
+            <h2
+              className="mt-6"
+              style={{
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
+                fontWeight: 300,
+                fontSize: "clamp(2.2rem,4vw,3.6rem)",
+                color: "#1A202C",
+                lineHeight: 1.12,
+                letterSpacing: "-0.01em",
+              }}
+            >
+              From Frustration to Finished
+            </h2>
+            <p style={{ maxWidth: "620px", margin: "20px auto 0", fontSize: "16px", lineHeight: 1.8, color: "#4A5568" }}>
+              Remodeling can feel overwhelming — outdated designs, unreliable contractors, hidden costs. We turn every one of those headaches into a reason to love your home again.
+            </p>
+          </div>
+
+          <div className="ps-grid">
+            {/* Challenges */}
+            <div className="ps-card ps-challenges">
+              <div className="ps-card-head">
+                <span className="ps-tag ps-tag-x">Before</span>
+                <h3 className="ps-card-title" style={{ color: "#1A202C" }}>The Challenges</h3>
+              </div>
+              <ul className="ps-list" data-stagger>
+                {problemSolutions.map((row) => (
+                  <li key={row.problem} className="ps-row">
+                    <span className="ps-ico ps-ico-x" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                        <path d="M3 3l7 7M10 3l-7 7" stroke="#D24C46" strokeWidth="1.8" strokeLinecap="round" />
+                      </svg>
+                    </span>
+                    <span style={{ color: "#4A5568", fontSize: "15px", lineHeight: 1.4 }}>{row.problem}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Arrow badge */}
+            <div className="ps-arrow" aria-hidden="true">
+              <span className="ps-arrow-badge">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 12h15M13 6l6 6-6 6" stroke="#2B7CC1" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </div>
+
+            {/* Solutions */}
+            <div className="ps-card ps-solutions">
+              <div className="ps-card-head">
+                <span className="ps-tag ps-tag-check">After</span>
+                <h3 className="ps-card-title" style={{ color: "#FFFFFF" }}>The Crafted Solution</h3>
+              </div>
+              <ul className="ps-list" data-stagger>
+                {problemSolutions.map((row) => (
+                  <li key={row.solution} className="ps-row ps-row-light">
+                    <span className="ps-ico ps-ico-check" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                        <path d="M2.5 6.8L5 9.3 10.5 3.5" stroke="#FFFFFF" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                    <span style={{ color: "#FFFFFF", fontSize: "15px", lineHeight: 1.4, fontWeight: 500 }}>{row.solution}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <style>{`
+          .ps-grid {
+            display: grid;
+            grid-template-columns: 1fr 76px 1fr;
+            align-items: stretch;
+            max-width: 1040px;
+            margin: 0 auto;
+          }
+          @media (max-width: 900px) {
+            .ps-grid { grid-template-columns: 1fr; }
+          }
+          .ps-card { border-radius: 12px; padding: clamp(26px, 3.6vw, 44px); }
+          .ps-challenges {
+            background: #FFFFFF;
+            border: 1px solid rgba(0,0,0,0.10);
+            box-shadow: 0 24px 60px -34px rgba(26,32,44,0.45);
+          }
+          .ps-solutions {
+            background: linear-gradient(155deg, #2B5DA8 0%, #1B4287 100%);
+            box-shadow: 0 34px 70px -28px rgba(27,66,135,0.6);
+          }
+          .ps-card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; padding-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.07); }
+          .ps-solutions .ps-card-head { border-bottom-color: rgba(255,255,255,0.16); }
+          .ps-tag {
+            font-family: var(--font-dm-sans),'DM Sans',system-ui,sans-serif;
+            font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700;
+            padding: 5px 10px; border-radius: 4px;
+          }
+          .ps-tag-x { background: rgba(210,76,70,0.1); color: #C0413B; }
+          .ps-tag-check { background: rgba(255,255,255,0.18); color: #FFFFFF; }
+          .ps-card-title { font-family: var(--font-display),'Montserrat',system-ui,sans-serif; font-weight: 400; font-size: clamp(20px,2.4vw,24px); margin: 0; }
+          .ps-list { list-style: none; margin: 0; padding: 0; }
+          .ps-row { display: flex; align-items: center; gap: 14px; padding: 14px 0; }
+          .ps-row + .ps-row { border-top: 1px solid rgba(0,0,0,0.06); }
+          .ps-row-light + .ps-row-light { border-top-color: rgba(255,255,255,0.12); }
+          .ps-ico { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+          .ps-ico-x { background: rgba(210,76,70,0.1); }
+          .ps-ico-check { background: rgba(255,255,255,0.18); }
+          .ps-arrow { display: flex; align-items: center; justify-content: center; }
+          .ps-arrow-badge {
+            width: 54px; height: 54px; border-radius: 50%;
+            background: #FFFFFF; border: 1px solid rgba(43,124,193,0.3);
+            box-shadow: 0 12px 30px -12px rgba(26,32,44,0.35);
+            display: flex; align-items: center; justify-content: center;
+          }
+          @media (max-width: 900px) {
+            .ps-arrow { padding: 26px 0; }
+            .ps-arrow-badge { transform: rotate(90deg); }
+          }
+        `}</style>
+      </section>
+
       {/* ─── WHY CRAFTED FOR KITCHEN & BATH ─────────────────────────── */}
       <section style={{ backgroundColor: '#1A202C', padding: 'clamp(54px, 11vw, 96px) 0' }}>
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
@@ -608,14 +764,14 @@ export default function HomePage() {
             <h2 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(2.5rem,4vw,4rem)', color: '#FFFFFF', lineHeight: 1.1, marginTop: '24px', letterSpacing: '-0.01em' }}>Built for Kitchen &amp;<br />Bathroom Excellence</h2>
           </div>
           <div style={{ display: 'grid', gap: '24px' }} className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { icon: '◇', title: 'Kitchen Specialists', body: 'From custom cabinetry to quartz islands — we have completed 150+ kitchen transformations across Tampa Bay.' },
-              { icon: '◇', title: 'Bath Renovation Experts', body: 'Spa-inspired bathroom design with precision tile work, luxury vanities, and frameless glass showers.' },
-              { icon: '◇', title: 'One-Stop Shop', body: 'Kitchen, bath, flooring, and paint — one licensed team, one seamless project, zero coordination headaches.' },
-              { icon: '◇', title: 'Licensed & Insured', body: 'Florida licensed contractor CRC1333143. Fully insured. Your home is protected every step of the way.' },
-              { icon: '◇', title: 'Premium Materials', body: 'We source quartz, marble, custom cabinetry, and designer fixtures from trusted suppliers.' },
-              { icon: '◇', title: '5-Star Track Record', body: '250+ homes transformed. Every project ends with a full walkthrough and your complete satisfaction.' },
-            ].map((f, i) => (
+            {([
+              { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M4 9h16M8 5.5h2M8 12.5v5"/></svg>, title: 'Kitchen Specialists', body: 'From custom cabinetry to quartz islands — we have completed 150+ kitchen transformations across Tampa Bay.' },
+              { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3Z"/><path d="M6 12V6a2 2 0 0 1 2-2c1 0 1.5.5 1.8 1M9 6.5h2"/></svg>, title: 'Bath Renovation Experts', body: 'Spa-inspired bathroom design with precision tile work, luxury vanities, and frameless glass showers.' },
+              { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l8 4-8 4-8-4 8-4Z"/><path d="M4 12l8 4 8-4M4 16.5l8 4 8-4"/></svg>, title: 'One-Stop Shop', body: 'Kitchen, bath, flooring, and paint — one licensed team, one seamless project, zero coordination headaches.' },
+              { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l8 3.5v5C20 17 16.4 21 12 22 7.6 21 4 17 4 11.5v-5L12 3Z"/><path d="M9 11.5l2 2 4-4.5"/></svg>, title: 'Licensed & Insured', body: 'Florida licensed contractor CRC1333143. Fully insured. Your home is protected every step of the way.' },
+              { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 3h12l3 5-9 13L3 8l3-5Z"/><path d="M3 8h18M9 3l3 18M15 3l-3 18"/></svg>, title: 'Premium Materials', body: 'We source quartz, marble, custom cabinetry, and designer fixtures from trusted suppliers.' },
+              { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.25 4.15 1 5.85L12 17.9 6.75 19.6l1-5.85L3.5 9.7l5.9-.9L12 3.5Z"/></svg>, title: '5-Star Track Record', body: '250+ homes transformed. Every project ends with a full walkthrough and your complete satisfaction.' },
+            ] as Array<{ icon: React.ReactNode; title: string; body: string }>).map((f) => (
               <div
                 key={f.title}
                 className="glow-card"
@@ -626,7 +782,7 @@ export default function HomePage() {
                   transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
                 }}
               >
-                <p style={{ color: '#2B7CC1', fontSize: '20px', marginBottom: '16px' }}>{f.icon}</p>
+                <span style={{ display: 'inline-flex', width: '56px', height: '56px', borderRadius: '50%', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', color: '#6BA6DC', background: 'rgba(43,124,193,0.12)', border: '1px solid rgba(43,124,193,0.4)' }}>{f.icon}</span>
                 <h3 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 400, fontSize: '1.25rem', color: '#FFFFFF', marginBottom: '12px' }}>{f.title}</h3>
                 <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.75 }}>{f.body}</p>
               </div>
