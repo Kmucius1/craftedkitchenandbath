@@ -11,7 +11,7 @@ export default function CTASection({
   headline = "Ready to Begin Your Remodel?",
   subtext = "Schedule a complimentary consultation with our team. We serve homeowners across Pinellas and Hillsborough County.",
   primaryCTA = "Get a Free Quote",
-  primaryHref = "/contact",
+  primaryHref = "/quote",
   secondaryCTA = "Call (727) 383-7550",
   secondaryHref = "tel:+17273837550",
 }: CTASectionProps) {

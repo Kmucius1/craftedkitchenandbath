@@ -251,7 +251,7 @@ export default function Header() {
                 {PHONE}
               </a>
               <Link
-                href="/contact"
+                href="/quote"
                 style={{
                   fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif",
                   border: 'none',
@@ -372,7 +372,7 @@ export default function Header() {
 
         {/* Mobile CTA */}
         <div style={{ padding: '20px 24px 36px', borderTop: '1px solid rgba(0,0,0,0.08)', flexShrink: 0 }}>
-          <Link href="/contact" onClick={() => setMobileOpen(false)} style={{ display: 'block', textAlign: 'center', fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif", border: '1px solid #111822', color: '#111822', backgroundColor: 'transparent', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 600, padding: '16px 0', textDecoration: 'none', transition: 'background-color 0.2s ease, color 0.2s ease' }} onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = '#111822'; (e.currentTarget as HTMLElement).style.color = '#FFFFFF'; }} onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'; (e.currentTarget as HTMLElement).style.color = '#111822'; }}>
+          <Link href="/quote" onClick={() => setMobileOpen(false)} style={{ display: 'block', textAlign: 'center', fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif", border: '1px solid #111822', color: '#111822', backgroundColor: 'transparent', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 600, padding: '16px 0', textDecoration: 'none', transition: 'background-color 0.2s ease, color 0.2s ease' }} onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = '#111822'; (e.currentTarget as HTMLElement).style.color = '#FFFFFF'; }} onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'; (e.currentTarget as HTMLElement).style.color = '#111822'; }}>
             Get a Free Quote
           </Link>
         </div>

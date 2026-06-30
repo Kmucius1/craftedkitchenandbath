@@ -46,7 +46,7 @@ export default function StickyMobileCTA() {
           Call
         </a>
         <Link
-          href="/contact"
+          href="/quote"
           style={{
             flex: 1,
             display: "flex",

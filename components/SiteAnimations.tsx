@@ -36,6 +36,26 @@ export default function SiteAnimations() {
       }
     };
 
+    // 0) Auto-stagger grids. Any grid / wrapped-flex container with 3+ items
+    //    inside a section gets its children cascaded in (instead of the whole
+    //    block fading as one). We tag it with data-stagger so the existing
+    //    passes below handle it uniformly; the tag is removed on cleanup.
+    const autoTagged: Element[] = [];
+    const isGridLike = (el: Element) => {
+      const cs = getComputedStyle(el);
+      if (cs.display === 'grid' || cs.display === 'inline-grid') return true;
+      return (cs.display === 'flex' || cs.display === 'inline-flex') && cs.flexWrap === 'wrap';
+    };
+    document.querySelectorAll('main section *').forEach((el) => {
+      if (el.childElementCount < 3) return; // leaf or layout pair — skip the style read
+      if (el.hasAttribute('data-stagger') || el.hasAttribute('data-reveal')) return;
+      if (el.closest('[data-stagger]')) return; // already inside a stagger container — avoid nesting
+      if (el.closest('[style*="opacity"]')) return; // inside a self-animating block — don't fight it
+      if (!isGridLike(el)) return;
+      el.setAttribute('data-stagger', '');
+      autoTagged.push(el);
+    });
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -93,6 +113,7 @@ export default function SiteAnimations() {
         el.classList.remove('sa-hidden', 'sa-hidden-soft', 'sa-reveal');
         Array.from(el.children).forEach((c) => c.classList.remove('sa-hidden-soft', 'sa-reveal'));
       });
+      autoTagged.forEach((el) => el.removeAttribute('data-stagger'));
     };
   }, [pathname]);
 

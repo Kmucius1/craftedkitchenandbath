@@ -182,15 +182,15 @@ const testimonials = [
 ];
 
 const cities = [
-  "Oldsmar",
-  "Clearwater",
-  "Palm Harbor",
-  "Safety Harbor",
-  "Tampa",
-  "Dunedin",
-  "St. Petersburg",
-  "Tarpon Springs",
-  "Largo",
+  { name: "Oldsmar", slug: "oldsmar" },
+  { name: "Clearwater", slug: "clearwater" },
+  { name: "Palm Harbor", slug: "palm-harbor" },
+  { name: "Safety Harbor", slug: "safety-harbor" },
+  { name: "Tampa", slug: "tampa" },
+  { name: "Dunedin", slug: "dunedin" },
+  { name: "St. Petersburg", slug: "st-petersburg" },
+  { name: "Tarpon Springs", slug: "tarpon-springs" },
+  { name: "Largo", slug: "largo" },
 ];
 
 export default function HomePage() {
@@ -1200,18 +1200,21 @@ export default function HomePage() {
               }}
             >
               {cities.map((city) => (
-                <span
-                  key={city}
+                <Link
+                  key={city.slug}
+                  href={`/areas-of-service/${city.slug}`}
+                  className="hover:border-[#2B57A6] hover:text-[#2B57A6] hover:bg-white transition-colors duration-200"
                   style={{
                     display: "inline-block",
                     border: "1px solid rgba(0,0,0,0.14)",
                     fontSize: "10px",
                     color: "#4A5568",
                     padding: "8px 16px",
+                    textDecoration: "none",
                   }}
                 >
-                  {city}
-                </span>
+                  {city.name}
+                </Link>
               ))}
             </div>
           </div>

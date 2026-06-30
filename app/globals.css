@@ -228,6 +228,14 @@ main p { overflow-wrap: break-word; }
 .spec-row { grid-template-columns: 200px 1fr; }
 @media (max-width: 640px) { .spec-row { grid-template-columns: 1fr; gap: 8px !important; } }
 
+/* Quote questionnaire: contact-step field pairs stack on small screens. */
+.quote-row-2 { grid-template-columns: 1fr 1fr; }
+@media (max-width: 560px) { .quote-row-2 { grid-template-columns: 1fr; } }
+
+/* Quote option cards: two across on wider screens, single column on phones. */
+.quote-options { grid-template-columns: 1fr 1fr; }
+@media (max-width: 560px) { .quote-options { grid-template-columns: 1fr; } }
+
 /* ── Featured project rows (alternating image/copy, stacks on mobile) ── */
 .featured-row {
   display: grid;
