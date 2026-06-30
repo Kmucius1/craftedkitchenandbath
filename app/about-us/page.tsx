@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import CTASection from "@/components/CTASection";
+import BuildTogetherCTA from "@/components/BuildTogetherCTA";
 
 export const metadata: Metadata = {
   title: "About Crafted Kitchen & Bath | Kitchen & Bathroom Remodeling Experts | Oldsmar FL",
@@ -1105,7 +1105,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* ── 7. FINAL CTA ─────────────────────────────────────────────── */}
-      <CTASection />
+      <BuildTogetherCTA />
     </>
   );
 }

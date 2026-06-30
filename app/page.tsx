@@ -271,14 +271,10 @@ export default function HomePage() {
 
             </div>{/* /hero-top-text */}
 
-            {/* Brand logo panel — fills the right-hand whitespace */}
+            {/* Brand logo — fills the right-hand whitespace, natural brand colors on white */}
             <aside className="hero-logo-panel">
               <div className="hero-logo-inner">
-                <Image src="/logo.png" alt="Crafted Kitchen & Bath" width={260} height={105} style={{ width: "200px", height: "auto" }} priority />
-                <div style={{ width: "44px", height: "1px", background: "rgba(255,255,255,0.4)", margin: "24px 0" }} />
-                <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "10px", letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.85)", textAlign: "center", lineHeight: 1.8, margin: 0 }}>
-                  Tampa Bay&apos;s<br />Craftsmanship-First<br />Remodeler
-                </p>
+                <Image src="/logo.png" alt="Crafted Kitchen & Bath" width={300} height={122} style={{ width: "min(260px, 82%)", height: "auto" }} priority />
               </div>
             </aside>
           </div>{/* /hero-top */}
