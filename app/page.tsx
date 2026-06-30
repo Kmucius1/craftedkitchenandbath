@@ -1195,7 +1195,7 @@ export default function HomePage() {
               style={{
                 display: "flex",
                 flexWrap: "wrap",
-                gap: "12px",
+                gap: "14px",
                 alignContent: "flex-start",
               }}
             >
@@ -1206,10 +1206,11 @@ export default function HomePage() {
                   className="hover:border-[#2B57A6] hover:text-[#2B57A6] hover:bg-white transition-colors duration-200"
                   style={{
                     display: "inline-block",
-                    border: "1px solid rgba(0,0,0,0.14)",
-                    fontSize: "10px",
+                    border: "1px solid rgba(0,0,0,0.16)",
+                    fontSize: "15px",
                     color: "#4A5568",
-                    padding: "8px 16px",
+                    padding: "13px 26px",
+                    letterSpacing: "0.01em",
                     textDecoration: "none",
                   }}
                 >

@@ -71,8 +71,8 @@ export default function QuotePage() {
       {/* ── WIZARD ───────────────────────────────────────────────────────── */}
       <section
         style={{
-          backgroundColor: "#FFFFFF",
-          padding: "clamp(40px, 7vw, 72px) 24px",
+          backgroundColor: "#F1F3F6",
+          padding: "clamp(28px, 5vw, 56px) 24px clamp(48px, 8vw, 80px)",
         }}
       >
         <QuoteWizard />

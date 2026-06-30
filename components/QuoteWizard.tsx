@@ -7,7 +7,7 @@ import { useState } from "react";
    "card" pickers. The final contact step is rendered specially. Adding/removing
    a question here is all it takes to change the questionnaire. */
 
-type Opt = { value: string; desc?: string };
+type Opt = { value: string; desc?: string; icon?: IconName };
 type Question = {
   id: string;
   label: string;
@@ -17,11 +17,12 @@ type Question = {
   // When set, this question's joined answer also fills the lead's `service`.
   asService?: boolean;
 };
-type Step = { title: string; intro?: string; questions: Question[] };
+type Step = { title: string; short: string; intro?: string; questions: Question[] };
 
 const STEPS: Step[] = [
   {
     title: "What are we remodeling?",
+    short: "Project",
     intro: "Pick everything you're considering — you can choose more than one.",
     questions: [
       {
@@ -31,19 +32,20 @@ const STEPS: Step[] = [
         required: true,
         asService: true,
         options: [
-          { value: "Kitchen", desc: "Cabinets, counters, layout" },
-          { value: "Bathroom", desc: "Primary, guest, or powder" },
-          { value: "Whole-home interior", desc: "Multiple rooms" },
-          { value: "Flooring", desc: "Tile, LVP, hardwood" },
-          { value: "Painting", desc: "Interior repaint" },
-          { value: "Cabinets & countertops", desc: "Refresh only" },
-          { value: "Not sure yet", desc: "Help me figure it out" },
+          { value: "Kitchen", desc: "Cabinets, counters, layout", icon: "kitchen" },
+          { value: "Bathroom", desc: "Primary, guest, or powder", icon: "bath" },
+          { value: "Whole-home interior", desc: "Multiple rooms", icon: "home" },
+          { value: "Flooring", desc: "Tile, LVP, hardwood", icon: "floor" },
+          { value: "Painting", desc: "Interior repaint", icon: "paint" },
+          { value: "Cabinets & countertops", desc: "Refresh only", icon: "cabinet" },
+          { value: "Not sure yet", desc: "Help me figure it out", icon: "help" },
         ],
       },
     ],
   },
   {
     title: "How far do you want to take it?",
+    short: "Scope",
     questions: [
       {
         id: "Scope",
@@ -75,6 +77,7 @@ const STEPS: Step[] = [
   },
   {
     title: "Tell us about the home",
+    short: "Your home",
     questions: [
       {
         id: "Property type",
@@ -101,6 +104,7 @@ const STEPS: Step[] = [
   },
   {
     title: "Budget & timeline",
+    short: "Budget",
     intro: "Ballpark is fine — it helps us tailor the right options for you.",
     questions: [
       {
@@ -144,6 +148,7 @@ const STEPS: Step[] = [
   },
   {
     title: "Your vision",
+    short: "Vision",
     questions: [
       {
         id: "Design style",
@@ -212,7 +217,9 @@ export default function QuoteWizard() {
 
   const totalSteps = STEPS.length + 1; // + contact step
   const isContact = step === STEPS.length;
-  const progress = Math.round(((step + (isContact ? 1 : 0)) / totalSteps) * 100);
+  const currentIndex = isContact ? STEPS.length : step;
+  const progress = Math.round(((currentIndex + (isContact ? 1 : 0)) / totalSteps) * 100);
+  const stepLabels = [...STEPS.map((s) => s.short), "Your details"];
 
   function toggle(q: Question, value: string) {
     setError(null);
@@ -246,10 +253,17 @@ export default function QuoteWizard() {
     if (!validateStep()) return;
     setError(null);
     setStep((s) => Math.min(s + 1, STEPS.length));
+    scrollUp();
   }
   function back() {
     setError(null);
     setStep((s) => Math.max(s - 1, 0));
+    scrollUp();
+  }
+  function scrollUp() {
+    if (typeof document !== "undefined") {
+      document.getElementById("quote-top")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }
 
   async function submit() {
@@ -285,6 +299,7 @@ export default function QuoteWizard() {
         throw new Error(data?.error || "Something went wrong. Please call us at (727) 383-7550.");
       }
       setSubmitted(true);
+      scrollUp();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please call (727) 383-7550.");
     } finally {
@@ -295,34 +310,35 @@ export default function QuoteWizard() {
   /* ── Success ───────────────────────────────────────────────────────────── */
   if (submitted) {
     return (
-      <div
-        style={{
-          backgroundColor: "#EBF4FF",
-          border: "1px solid rgba(43,124,193,0.3)",
-          padding: "56px 32px",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "16px",
-        }}
-      >
-        <svg width="48" height="48" viewBox="0 0 44 44" fill="none" aria-hidden="true">
-          <circle cx="22" cy="22" r="21" stroke={ACCENT} strokeWidth="1.5" />
-          <path d="M14 22.5L19.5 28L30 16" stroke={ACCENT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-        <p style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontSize: "24px", fontWeight: 300, color: INK, margin: 0 }}>
-          Thank you, {contact.fullName.split(" ")[0] || "and welcome"} — your project details are in.
-        </p>
-        <p style={{ fontSize: "14px", color: "#4A5568", margin: 0, lineHeight: 1.7, maxWidth: "440px" }}>
-          A member of our team will review your answers and reach out within 24 hours to schedule your complimentary in-home consultation.
-        </p>
-        <a
-          href="tel:+17273837550"
-          style={{ marginTop: "8px", color: ACCENT, textDecoration: "none", fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}
+      <div id="quote-top" className="quote-card" style={{ maxWidth: "640px", margin: "0 auto" }}>
+        <div
+          style={{
+            padding: "clamp(48px, 8vw, 72px) clamp(28px, 6vw, 56px)",
+            textAlign: "center",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "18px",
+          }}
         >
-          Prefer to talk now? Call (727) 383-7550 →
-        </a>
+          <span style={{ display: "inline-flex", width: "72px", height: "72px", borderRadius: "50%", backgroundColor: "rgba(43,124,193,0.1)", alignItems: "center", justifyContent: "center" }}>
+            <svg width="34" height="34" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+              <path d="M14 22.5L19.5 28L30 16" stroke={ACCENT} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+          <h2 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontSize: "clamp(24px, 4vw, 30px)", fontWeight: 300, color: INK, margin: 0, lineHeight: 1.25 }}>
+            Thank you, {contact.fullName.split(" ")[0] || "and welcome"} — your project details are in.
+          </h2>
+          <p style={{ fontSize: "15px", color: "#4A5568", margin: 0, lineHeight: 1.7, maxWidth: "440px" }}>
+            A member of our team will review your answers and reach out within 24 hours to schedule your complimentary in-home consultation.
+          </p>
+          <a
+            href="tel:+17273837550"
+            style={{ marginTop: "8px", color: ACCENT, textDecoration: "none", fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase" }}
+          >
+            Prefer to talk now? Call (727) 383-7550 →
+          </a>
+        </div>
       </div>
     );
   }
@@ -334,7 +350,7 @@ export default function QuoteWizard() {
     textTransform: "uppercase",
     color: "#6B7280",
     marginBottom: "6px",
-    fontWeight: 500,
+    fontWeight: 600,
   };
   const inputStyle: React.CSSProperties = {
     width: "100%",
@@ -354,163 +370,269 @@ export default function QuoteWizard() {
   const blur = (e: React.FocusEvent<HTMLElement>) => ((e.currentTarget as HTMLElement).style.borderBottomColor = "rgba(0,0,0,0.18)");
 
   return (
-    <div style={{ maxWidth: "760px", margin: "0 auto" }}>
-      {/* Progress */}
-      <div style={{ marginBottom: "36px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "10px" }}>
-          <span style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: ACCENT, fontWeight: 600 }}>
-            Step {Math.min(step + 1, totalSteps)} of {totalSteps}
-          </span>
-          <span style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#9AA3AF" }}>{progress}% complete</span>
-        </div>
-        <div style={{ height: "3px", backgroundColor: "rgba(0,0,0,0.08)", overflow: "hidden" }}>
-          <div style={{ height: "100%", width: `${progress}%`, backgroundColor: ACCENT, transition: "width 0.45s cubic-bezier(0.16,1,0.3,1)" }} />
-        </div>
-      </div>
-
-      {/* Step heading */}
-      <h2 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: "clamp(24px, 3.2vw, 34px)", color: INK, margin: "0 0 8px", lineHeight: 1.2 }}>
-        {isContact ? "Almost there — where should we send it?" : STEPS[step].title}
-      </h2>
-      {(isContact ? "Tell us how to reach you and we'll follow up within 24 hours." : STEPS[step].intro) && (
-        <p style={{ fontSize: "14px", color: "#6B7280", margin: "0 0 32px", lineHeight: 1.7 }}>
-          {isContact ? "Tell us how to reach you and we'll follow up within 24 hours." : STEPS[step].intro}
+    <div id="quote-top" className="quote-card quote-shell" style={{ scrollMarginTop: "120px" }}>
+      {/* ── LEFT RAIL (desktop) — stepper + reassurance ─────────────────── */}
+      <aside className="quote-rail">
+        <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: ACCENT, fontWeight: 700, margin: "0 0 28px" }}>
+          Free Project Quote
         </p>
-      )}
-      {!isContact && !STEPS[step].intro && <div style={{ height: "20px" }} />}
 
-      {/* Body */}
-      {isContact ? (
-        <ContactStep contact={contact} setContact={setContact} labelStyle={labelStyle} inputStyle={inputStyle} focus={focus} blur={blur} />
-      ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: "36px" }}>
-          {STEPS[step].questions.map((q) => (
-            <div key={q.id}>
-              <label style={labelStyle}>
-                {q.label} {q.required && <span style={{ color: ACCENT }}>*</span>}
-                {q.type === "multi" && <span style={{ textTransform: "none", letterSpacing: "0.02em", color: "#9AA3AF", marginLeft: "8px" }}>select all that apply</span>}
-              </label>
-              <div className="quote-options" style={{ display: "grid", gap: "10px", marginTop: "10px" }}>
-                {q.options.map((opt) => {
-                  const active = (answers[q.id] || []).includes(opt.value);
-                  return (
-                    <button
-                      key={opt.value}
-                      type="button"
-                      onClick={() => toggle(q, opt.value)}
-                      style={{
-                        textAlign: "left",
-                        cursor: "pointer",
-                        border: `1px solid ${active ? ACCENT : "rgba(0,0,0,0.14)"}`,
-                        backgroundColor: active ? "rgba(43,124,193,0.06)" : "#FFFFFF",
-                        padding: "16px 18px",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "14px",
-                        transition: "border-color 0.18s ease, background-color 0.18s ease",
-                        fontFamily: "inherit",
-                      }}
-                    >
-                      <span
-                        aria-hidden="true"
-                        style={{
-                          flexShrink: 0,
-                          width: "18px",
-                          height: "18px",
-                          borderRadius: q.type === "multi" ? "3px" : "50%",
-                          border: `1.5px solid ${active ? ACCENT : "rgba(0,0,0,0.25)"}`,
-                          backgroundColor: active ? ACCENT : "transparent",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        {active && (
-                          <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-                            <path d="M2 5.5L4.5 8L9 3" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        )}
-                      </span>
-                      <span>
-                        <span style={{ display: "block", fontSize: "15px", color: INK, fontWeight: active ? 500 : 400 }}>{opt.value}</span>
-                        {opt.desc && <span style={{ display: "block", fontSize: "12px", color: "#9AA3AF", marginTop: "2px" }}>{opt.desc}</span>}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+        <ol style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "4px" }}>
+          {stepLabels.map((label, i) => {
+            const done = i < currentIndex;
+            const active = i === currentIndex;
+            return (
+              <li key={label} style={{ display: "flex", alignItems: "center", gap: "14px", padding: "9px 0", opacity: active || done ? 1 : 0.45, transition: "opacity 0.25s ease" }}>
+                <span
+                  aria-hidden="true"
+                  style={{
+                    flexShrink: 0,
+                    width: "26px",
+                    height: "26px",
+                    borderRadius: "50%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "11px",
+                    fontWeight: 700,
+                    border: `1.5px solid ${active ? ACCENT : done ? ACCENT : "rgba(255,255,255,0.3)"}`,
+                    backgroundColor: done ? ACCENT : active ? "rgba(43,124,193,0.2)" : "transparent",
+                    color: done ? "#fff" : active ? "#fff" : "rgba(255,255,255,0.7)",
+                    transition: "all 0.25s ease",
+                  }}
+                >
+                  {done ? (
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                      <path d="M2.5 6L5 8.5L9.5 3.5" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  ) : (
+                    i + 1
+                  )}
+                </span>
+                <span style={{ fontSize: "13px", color: active ? "#fff" : "rgba(255,255,255,0.85)", fontWeight: active ? 600 : 400, letterSpacing: "0.01em" }}>{label}</span>
+              </li>
+            );
+          })}
+        </ol>
+
+        <div style={{ height: "1px", backgroundColor: "rgba(255,255,255,0.12)", margin: "28px 0" }} />
+
+        <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
+          {[
+            { icon: "clock", text: "Takes about 2 minutes" },
+            { icon: "shield", text: "No obligation, ever" },
+            { icon: "reply", text: "Personal reply within 24 hrs" },
+          ].map((r) => (
+            <li key={r.text} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+              <span style={{ color: ACCENT, flexShrink: 0, display: "inline-flex" }}>
+                <RailIcon name={r.icon as "clock" | "shield" | "reply"} />
+              </span>
+              <span style={{ fontSize: "12.5px", color: "rgba(255,255,255,0.8)", lineHeight: 1.4 }}>{r.text}</span>
+            </li>
           ))}
+        </ul>
+
+        <div style={{ marginTop: "auto", paddingTop: "32px" }}>
+          <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)", margin: "0 0 4px", letterSpacing: "0.04em" }}>Prefer to talk?</p>
+          <a href="tel:+17273837550" style={{ color: "#fff", textDecoration: "none", fontSize: "16px", fontWeight: 600, letterSpacing: "0.02em" }}>(727) 383-7550</a>
         </div>
-      )}
+      </aside>
 
-      {error && (
-        <p style={{ color: "#C53030", fontSize: "13px", margin: "20px 0 0", lineHeight: 1.5 }}>{error}</p>
-      )}
+      {/* ── MAIN COLUMN ─────────────────────────────────────────────────── */}
+      <div className="quote-main">
+        {/* Mobile progress (rail hidden under breakpoint) */}
+        <div className="quote-mobinfo" style={{ marginBottom: "28px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "10px" }}>
+            <span style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: ACCENT, fontWeight: 700 }}>
+              Step {Math.min(currentIndex + 1, totalSteps)} of {totalSteps} · {stepLabels[currentIndex]}
+            </span>
+            <span style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#9AA3AF" }}>{progress}%</span>
+          </div>
+          <div style={{ height: "3px", backgroundColor: "rgba(0,0,0,0.08)", overflow: "hidden", borderRadius: "2px" }}>
+            <div style={{ height: "100%", width: `${progress}%`, backgroundColor: ACCENT, transition: "width 0.45s cubic-bezier(0.16,1,0.3,1)" }} />
+          </div>
+        </div>
 
-      {/* Nav */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "40px", gap: "16px" }}>
-        <button
-          type="button"
-          onClick={back}
-          disabled={step === 0}
-          style={{
-            fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif",
-            fontSize: "9px",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-            fontWeight: 600,
-            color: step === 0 ? "#C2C8D0" : INK,
-            background: "transparent",
-            border: "none",
-            cursor: step === 0 ? "default" : "pointer",
-            padding: "12px 0",
-          }}
-        >
-          ← Back
-        </button>
+        {/* Step heading */}
+        <h2 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: "clamp(24px, 3.2vw, 33px)", color: INK, margin: "0 0 8px", lineHeight: 1.2 }}>
+          {isContact ? "Almost there — where should we send it?" : STEPS[step].title}
+        </h2>
+        <p style={{ fontSize: "14px", color: "#6B7280", margin: "0 0 32px", lineHeight: 1.7 }}>
+          {isContact ? "Tell us how to reach you and we'll follow up within 24 hours." : STEPS[step].intro || "Choose the option that fits best — you can refine details with us later."}
+        </p>
+
+        {/* Body */}
         {isContact ? (
-          <button
-            type="button"
-            onClick={submit}
-            disabled={submitting}
-            style={{
-              fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif",
-              fontSize: "10px",
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-              fontWeight: 600,
-              color: "#FFFFFF",
-              backgroundColor: submitting ? "#7FA9CF" : ACCENT,
-              border: "none",
-              cursor: submitting ? "default" : "pointer",
-              padding: "18px 40px",
-              transition: "background-color 0.2s ease",
-            }}
-          >
-            {submitting ? "Sending…" : "Submit My Project →"}
-          </button>
+          <ContactStep contact={contact} setContact={setContact} labelStyle={labelStyle} inputStyle={inputStyle} focus={focus} blur={blur} />
         ) : (
+          <div style={{ display: "flex", flexDirection: "column", gap: "36px" }}>
+            {STEPS[step].questions.map((q) => (
+              <div key={q.id}>
+                <label style={labelStyle}>
+                  {q.label} {q.required && <span style={{ color: ACCENT }}>*</span>}
+                  {q.type === "multi" && <span style={{ textTransform: "none", letterSpacing: "0.02em", color: "#9AA3AF", marginLeft: "8px", fontWeight: 400 }}>select all that apply</span>}
+                </label>
+                <div className="quote-options" style={{ display: "grid", gap: "12px", marginTop: "12px" }}>
+                  {q.options.map((opt) => {
+                    const active = (answers[q.id] || []).includes(opt.value);
+                    return (
+                      <button
+                        key={opt.value}
+                        type="button"
+                        onClick={() => toggle(q, opt.value)}
+                        className="quote-opt"
+                        data-active={active ? "1" : "0"}
+                      >
+                        {opt.icon && (
+                          <span className="quote-opt-icon" style={{ color: active ? ACCENT : "#9AA3AF" }}>
+                            <OptIcon name={opt.icon} />
+                          </span>
+                        )}
+                        <span style={{ flex: 1, minWidth: 0 }}>
+                          <span style={{ display: "block", fontSize: "15px", color: INK, fontWeight: active ? 600 : 500 }}>{opt.value}</span>
+                          {opt.desc && <span style={{ display: "block", fontSize: "12.5px", color: "#9AA3AF", marginTop: "2px" }}>{opt.desc}</span>}
+                        </span>
+                        <span
+                          aria-hidden="true"
+                          style={{
+                            flexShrink: 0,
+                            width: "20px",
+                            height: "20px",
+                            borderRadius: q.type === "multi" ? "4px" : "50%",
+                            border: `1.5px solid ${active ? ACCENT : "rgba(0,0,0,0.22)"}`,
+                            backgroundColor: active ? ACCENT : "transparent",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            transition: "all 0.18s ease",
+                          }}
+                        >
+                          {active && (
+                            <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                              <path d="M2 5.5L4.5 8L9 3" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                          )}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {error && (
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "#C53030", fontSize: "13px", margin: "22px 0 0", lineHeight: 1.5 }}>
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
+              <circle cx="7.5" cy="7.5" r="6.5" stroke="#C53030" strokeWidth="1.2" />
+              <path d="M7.5 4.5V8" stroke="#C53030" strokeWidth="1.4" strokeLinecap="round" />
+              <circle cx="7.5" cy="10.5" r="0.7" fill="#C53030" />
+            </svg>
+            {error}
+          </div>
+        )}
+
+        {/* Nav */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "40px", paddingTop: "28px", borderTop: "1px solid rgba(0,0,0,0.07)", gap: "16px" }}>
           <button
             type="button"
-            onClick={next}
+            onClick={back}
+            disabled={step === 0}
             style={{
               fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif",
-              fontSize: "10px",
+              fontSize: "9px",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              fontWeight: 600,
-              color: "#FFFFFF",
-              backgroundColor: INK,
+              fontWeight: 700,
+              color: step === 0 ? "#C2C8D0" : INK,
+              background: "transparent",
               border: "none",
-              cursor: "pointer",
-              padding: "18px 40px",
+              cursor: step === 0 ? "default" : "pointer",
+              padding: "12px 4px",
             }}
           >
-            Continue →
+            ← Back
           </button>
-        )}
+          <button
+            type="button"
+            onClick={isContact ? submit : next}
+            disabled={submitting}
+            className="quote-next"
+            style={{ backgroundColor: isContact ? ACCENT : INK, opacity: submitting ? 0.7 : 1 }}
+          >
+            {isContact ? (submitting ? "Sending…" : "Submit My Project →") : "Continue →"}
+          </button>
+        </div>
       </div>
+
+      <style>{`
+        .quote-card {
+          background: #FFFFFF;
+          border: 1px solid rgba(0,0,0,0.07);
+          border-radius: 6px;
+          box-shadow: 0 30px 70px -28px rgba(26,32,44,0.28);
+          overflow: hidden;
+        }
+        .quote-shell {
+          display: grid;
+          grid-template-columns: 300px 1fr;
+          max-width: 1080px;
+          margin: 0 auto;
+        }
+        .quote-rail {
+          background: #111822;
+          color: #fff;
+          padding: 44px 36px;
+          display: flex;
+          flex-direction: column;
+        }
+        .quote-main { padding: clamp(32px, 4.5vw, 56px); }
+        .quote-mobinfo { display: none; }
+        @media (max-width: 860px) {
+          .quote-shell { grid-template-columns: 1fr; }
+          .quote-rail { display: none; }
+          .quote-mobinfo { display: block; }
+        }
+        .quote-opt {
+          text-align: left;
+          cursor: pointer;
+          border: 1px solid rgba(0,0,0,0.13);
+          background: #FFFFFF;
+          border-radius: 5px;
+          padding: 16px 18px;
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          font-family: inherit;
+          transition: border-color 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+        }
+        .quote-opt:hover {
+          border-color: rgba(43,124,193,0.55);
+          box-shadow: 0 8px 22px -12px rgba(26,32,44,0.35);
+          transform: translateY(-2px);
+        }
+        .quote-opt[data-active="1"] {
+          border-color: ${ACCENT};
+          background: rgba(43,124,193,0.05);
+          box-shadow: inset 0 0 0 1px ${ACCENT};
+        }
+        .quote-opt-icon { flex-shrink: 0; display: inline-flex; transition: color 0.18s ease; }
+        .quote-next {
+          font-family: var(--font-dm-sans),'DM Sans',system-ui,sans-serif;
+          font-size: 10px;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          font-weight: 700;
+          color: #fff;
+          border: none;
+          cursor: pointer;
+          padding: 18px 40px;
+          border-radius: 4px;
+          transition: opacity 0.2s ease, transform 0.18s ease, box-shadow 0.2s ease;
+        }
+        .quote-next:hover { transform: translateY(-2px); box-shadow: 0 12px 26px -12px rgba(26,32,44,0.5); }
+      `}</style>
     </div>
   );
 }
@@ -597,4 +719,34 @@ function ContactStep({
       </div>
     </div>
   );
+}
+
+/* ── Icons ─────────────────────────────────────────────────────────────── */
+type IconName = "kitchen" | "bath" | "home" | "floor" | "paint" | "cabinet" | "help";
+
+function OptIcon({ name }: { name: IconName }) {
+  const p = { width: 24, height: 24, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.4, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  switch (name) {
+    case "kitchen":
+      return (<svg {...p}><rect x="4" y="3" width="16" height="18" rx="1.5" /><path d="M4 9h16" /><path d="M8 5.5h2M8 12.5v5" /></svg>);
+    case "bath":
+      return (<svg {...p}><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3Z" /><path d="M6 12V6a2 2 0 0 1 2-2c1 0 1.5.5 1.8 1" /><path d="M9 6.5h2" /></svg>);
+    case "home":
+      return (<svg {...p}><path d="M3 11l9-7 9 7" /><path d="M5 9.5V20h14V9.5" /><path d="M10 20v-5h4v5" /></svg>);
+    case "floor":
+      return (<svg {...p}><rect x="3" y="3" width="18" height="18" rx="1" /><path d="M3 9h18M3 15h18M9 3v6M15 9v6M9 15v6" /></svg>);
+    case "paint":
+      return (<svg {...p}><rect x="3" y="4" width="13" height="6" rx="1" /><path d="M16 7h3a1.5 1.5 0 0 1 1.5 1.5V11a1.5 1.5 0 0 1-1.5 1.5h-7V14" /><rect x="10" y="14" width="4" height="6" rx="1" /></svg>);
+    case "cabinet":
+      return (<svg {...p}><rect x="4" y="3" width="16" height="18" rx="1" /><path d="M12 3v18M7 7.5h1M16 7.5h-1M7 14.5h1M16 14.5h-1" /></svg>);
+    case "help":
+      return (<svg {...p}><circle cx="12" cy="12" r="9" /><path d="M9.5 9.5a2.5 2.5 0 1 1 3.2 2.4c-.7.25-1.2.9-1.2 1.6v.5" /><circle cx="12" cy="17" r="0.6" fill="currentColor" stroke="none" /></svg>);
+  }
+}
+
+function RailIcon({ name }: { name: "clock" | "shield" | "reply" }) {
+  const p = { width: 17, height: 17, viewBox: "0 0 18 18", fill: "none", stroke: "currentColor", strokeWidth: 1.3, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  if (name === "clock") return (<svg {...p}><circle cx="9" cy="9" r="7" /><path d="M9 5v4l2.5 2" /></svg>);
+  if (name === "shield") return (<svg {...p}><path d="M9 2l6 3v4c0 3.3-2.7 6.3-6 7-3.3-.7-6-3.7-6-7V5l6-3Z" /><path d="M6.5 9l2 2 3-4" /></svg>);
+  return (<svg {...p}><path d="M8 4L3 9l5 5" /><path d="M3 9h8a4 4 0 0 1 4 4v1" /></svg>);
 }
