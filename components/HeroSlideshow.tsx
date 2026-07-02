@@ -4,11 +4,11 @@ import Image from 'next/image'
 
 const SLIDES = [
   {
-    src: '/images/7538a222-6dd1-43e7-8c45-55880dacb434.png',
+    src: '/images/7538a222-6dd1-43e7-8c45-55880dacb434.webp',
     alt: 'Luxury kitchen remodeling by Crafted Kitchen and Bath',
   },
   {
-    src: '/images/HUNTER-KITCHEN-scaled-e1749228160387-rmoy5v31s7ks5mfa39k77eoxtj9ob0g9p8e51b89qw.png',
+    src: '/images/HUNTER-KITCHEN-scaled-e1749228160387-rmoy5v31s7ks5mfa39k77eoxtj9ob0g9p8e51b89qw.webp',
     alt: 'Custom kitchen remodel Tampa Bay',
   },
   {
@@ -16,12 +16,12 @@ const SLIDES = [
     alt: 'Marble kitchen island remodel',
   },
   {
-    src: '/images/e1b3aa11-74f9-47a0-a8bc-6008207b1604.png',
+    src: '/images/e1b3aa11-74f9-47a0-a8bc-6008207b1604.webp',
     alt: 'Luxury bathroom remodeling by Crafted Kitchen and Bath',
   },
   {
-    src: '/images/bathroom-dark-marble.webp',
-    alt: 'Dark marble luxury bathroom renovation',
+    src: '/images/bathroom-marble-shower.webp',
+    alt: 'Glass-enclosed marble shower renovation',
   },
   {
     src: '/images/vanity-sage-cabinetry.webp',

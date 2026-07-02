@@ -4,98 +4,102 @@ import Image from 'next/image'
 import SectionLabel from '@/components/SectionLabel'
 import CTASection from '@/components/CTASection'
 import Breadcrumb from '@/components/Breadcrumb'
+import SchemaScript from '@/components/SchemaScript'
+import TrackedLink from '@/components/TrackedLink'
 
 export const metadata: Metadata = {
-  title: 'Kitchen & Bathroom Remodeling Portfolio | Tampa Bay Projects | Crafted Kitchen & Bath',
+  title: 'Kitchen & Bathroom Remodeling Portfolio',
   description:
     'Browse completed kitchen remodeling and bathroom renovation projects across Oldsmar, Clearwater, Palm Harbor, Tampa, and Pinellas County. See the Crafted Kitchen & Bath difference.',
+  alternates: {
+    canonical: 'https://craftedkitchenandbath.com/our-work',
+  },
 }
 
 const projects = [
   {
     id: 1,
-    name: 'Kitchen Remodel — Oldsmar',
+    name: 'Kitchen Remodel — Seminole',
     category: 'Kitchen',
-    caption: 'Open-concept layout with custom cabinetry, quartz countertops, and wine cooler.',
+    caption: 'Custom cabinetry, quartz countertops, and an open dining layout with a waterfront view.',
     orientation: 'landscape',
-    photo: '/images/HUNTER-KITCHEN-scaled-e1749228160387-rmoy5v31s7ks5mfa39k77eoxtj9ob0g9p8e51b89qw.png',
-    photoAlt: 'Custom kitchen remodel — Oldsmar, FL',
+    photo: '/images/7538a222-6dd1-43e7-8c45-55880dacb434.webp',
+    photoAlt: 'Custom kitchen remodel — Seminole, FL',
   },
   {
     id: 2,
-    name: 'Master Bath Retreat — Clearwater',
+    name: 'Bathroom Remodel — Tampa',
     category: 'Bathroom',
-    caption: 'Marble double vanity, frameless glass shower, freestanding tub, and heated tile floors.',
+    caption: 'Marble double vanity, brass fixtures, and arched mirrors.',
     orientation: 'landscape',
-    photo: '/images/e1b3aa11-74f9-47a0-a8bc-6008207b1604.png',
-    photoAlt: 'Luxury spa bathroom remodel — Clearwater, FL',
+    photo: '/images/e1b3aa11-74f9-47a0-a8bc-6008207b1604.webp',
+    photoAlt: 'Luxury marble bathroom remodel — Tampa, FL',
   },
   {
     id: 3,
-    name: 'Full Interior — Safety Harbor',
-    category: 'Interior',
-    caption: 'Complete kitchen, two baths, and whole-home flooring replacement.',
-    orientation: 'landscape',
-    photo: '/images/hero-kitchen.jpg',
-    photoAlt: 'Full interior remodel — Safety Harbor, FL',
+    name: 'Kitchen Remodel — Dunedin',
+    category: 'Kitchen',
+    caption: 'Custom cabinetry, marble countertops, and brass pendant lighting.',
+    orientation: 'portrait',
+    photo: '/images/hero-kitchen.webp',
+    photoAlt: 'Custom kitchen remodel — Dunedin, FL',
   },
   {
     id: 4,
-    name: 'Bathroom Renovation — Palm Harbor',
+    name: 'Bathroom Remodel — Trinity',
     category: 'Bathroom',
-    caption: 'Walk-in tile shower, double vanity, and updated lighting throughout.',
+    caption: 'Frameless glass shower with matte black fixtures and marble-look tile.',
     orientation: 'portrait',
-    photo: '/images/hero-bathroom.jpg',
-    photoAlt: 'Luxury bathroom renovation — Palm Harbor, FL',
+    photo: '/images/our-work/carlson-trinity-bathroom.webp',
+    photoAlt: 'Glass shower bathroom remodel — Trinity, FL',
   },
   {
     id: 5,
-    name: 'Kitchen Remodel — Dunedin',
+    name: 'Kitchen Remodel — Oldsmar',
     category: 'Kitchen',
-    caption: 'Marble waterfall island, custom cabinetry, and gold pendant lighting.',
+    caption: 'Vaulted ceilings, custom cabinetry, and a spacious center island.',
     orientation: 'landscape',
-    photo: '/images/7538a222-6dd1-43e7-8c45-55880dacb434.png',
-    photoAlt: 'Luxury kitchen remodel — Dunedin, FL',
+    photo: '/images/HUNTER-KITCHEN-scaled-e1749228160387-rmoy5v31s7ks5mfa39k77eoxtj9ob0g9p8e51b89qw.webp',
+    photoAlt: 'Custom kitchen remodel — Oldsmar, FL',
   },
   {
     id: 6,
-    name: 'LVP Flooring — Tarpon Springs',
-    category: 'Flooring',
-    caption: 'Whole-home luxury vinyl plank installation, 1,800 sq ft.',
-    orientation: 'landscape',
-    photo: 'https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=1200&q=90',
-    photoAlt: 'Luxury bathroom and flooring — Tarpon Springs, FL',
+    name: 'Kitchen Remodel — Seminole',
+    category: 'Kitchen',
+    caption: 'Custom cabinetry, quartz countertops, and a statement kitchen island.',
+    orientation: 'portrait',
+    photo: '/images/kitchen-marble-island.webp',
+    photoAlt: 'Kitchen island remodel — Seminole, FL',
   },
   {
     id: 7,
-    name: 'Interior Painting — St. Petersburg',
-    category: 'Painting',
-    caption: 'Full interior repaint including trim, doors, and accent walls.',
+    name: 'Kitchen Remodel — Odessa',
+    category: 'Kitchen',
+    caption: 'Custom cabinetry with brass fixtures and a marble backsplash.',
     orientation: 'portrait',
-    photo: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=90',
-    photoAlt: 'Interior remodel — St. Petersburg, FL',
+    photo: '/images/our-work/fink-odessa-kitchen.webp',
+    photoAlt: 'Custom kitchen remodel — Odessa, FL',
   },
   {
     id: 8,
-    name: 'Kitchen Remodel — Tampa',
+    name: 'Kitchen Remodel — Trinity',
     category: 'Kitchen',
-    caption: 'Open-concept layout, custom cabinetry, and stone countertops.',
-    orientation: 'landscape',
-    photo: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200&q=90',
-    photoAlt: 'Kitchen remodel — Tampa, FL',
-  },
-  {
-    id: 9,
-    name: 'Bathroom Refresh — Largo',
-    category: 'Bathroom',
-    caption: 'Vanity replacement, tile surround, and updated fixtures.',
-    orientation: 'landscape',
-    photo: '/images/e1b3aa11-74f9-47a0-a8bc-6008207b1604.png',
-    photoAlt: 'Bathroom refresh — Largo, FL',
+    caption: 'Bright white cabinetry in a vaulted, open-concept layout.',
+    orientation: 'portrait',
+    photo: '/images/our-work/carlson-trinity-kitchen.webp',
+    photoAlt: 'White kitchen remodel — Trinity, FL',
   },
 ]
 
 const filters = ['All', 'Kitchens', 'Bathrooms', 'Interiors', 'Flooring', 'Painting']
+
+const categoryHref: Record<string, string> = {
+  Kitchen: '/kitchen-remodeling',
+  Bathroom: '/bathroom-remodeling',
+  Interior: '/complete-interior-home-remodeling',
+  Flooring: '/flooring-installation',
+  Painting: '/painting',
+}
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -129,12 +133,9 @@ const jsonLd = {
 export default function OurWorkPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <SchemaScript data={jsonLd} />
 
-      <main style={{ backgroundColor: '#F7F8FA' }}>
+      <div style={{ backgroundColor: '#F7F8FA' }}>
 
         {/* ── HERO ──────────────────────────────────────────────────────── */}
         <section
@@ -282,6 +283,7 @@ export default function OurWorkPage() {
                         src={project.photo!}
                         alt={project.photoAlt!}
                         fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         style={{ objectFit: 'cover', objectPosition: 'center' }}
                       />
                     </div>
@@ -334,7 +336,7 @@ export default function OurWorkPage() {
                         backdropFilter: 'blur(2px)',
                       }}
                     >
-                      {/* Category tag */}
+                      {/* Category tag — links to the related service page */}
                       <p
                         style={{
                           fontSize: '9px',
@@ -345,7 +347,18 @@ export default function OurWorkPage() {
                           fontWeight: 500,
                         }}
                       >
-                        {project.category}
+                        {categoryHref[project.category] ? (
+                          <TrackedLink
+                            href={categoryHref[project.category]}
+                            eventName="portfolio_view"
+                            eventParams={{ service_type: project.category, button_text: project.name }}
+                            style={{ color: 'inherit', textDecoration: 'none' }}
+                          >
+                            {project.category}
+                          </TrackedLink>
+                        ) : (
+                          project.category
+                        )}
                       </p>
 
                       {/* Project title */}
@@ -529,7 +542,7 @@ export default function OurWorkPage() {
           primaryHref="/contact"
         />
 
-      </main>
+      </div>
     </>
   )
 }
