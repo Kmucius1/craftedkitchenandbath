@@ -193,7 +193,7 @@ export default function FlooringInstallationPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "128px 24px 96px",
+          padding: "clamp(112px, 16vw, 128px) 24px clamp(54px, 11vw, 96px)",
         }}
       >
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
@@ -221,7 +221,7 @@ export default function FlooringInstallationPage() {
 
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(36px, 5vw, 64px)",
               color: "#1A202C",
@@ -269,8 +269,8 @@ export default function FlooringInstallationPage() {
       </section>
 
       {/* ── HERO IMAGE ─────────────────────────────────────────────────── */}
-      <div style={{ width: '100%', height: '460px', position: 'relative', overflow: 'hidden' }}>
-        <Image src="/images/7538a222-6dd1-43e7-8c45-55880dacb434.png" alt="Premium flooring and kitchen remodeling" fill priority style={{ objectFit: 'cover', objectPosition: 'center bottom' }} />
+      <div style={{ width: '100%', height: 'clamp(280px, 52vw, 460px)', position: 'relative', overflow: 'hidden' }}>
+        <Image src="/images/wp/IMG_1419-scaled.jpg" alt="Premium flooring installation — white kitchen with wood-look plank floors" fill priority style={{ objectFit: 'cover', objectPosition: 'center bottom' }} />
       </div>
 
       {/* ── 2. FLOORING TYPES ──────────────────────────────────────────── */}
@@ -297,7 +297,7 @@ export default function FlooringInstallationPage() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(480px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 480px), 1fr))",
               gap: "2px",
             }}
           >
@@ -324,7 +324,7 @@ export default function FlooringInstallationPage() {
 
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "22px",
                     color: "#1A202C",
@@ -352,7 +352,7 @@ export default function FlooringInstallationPage() {
                     fontSize: "11px",
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
-                    color: "#9CA3AF",
+                    color: "#6B7280",
                     margin: 0,
                     fontWeight: 500,
                   }}
@@ -375,7 +375,7 @@ export default function FlooringInstallationPage() {
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <h2
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(28px, 3.5vw, 48px)",
               color: "#1A202C",
@@ -397,18 +397,18 @@ export default function FlooringInstallationPage() {
             {roomScenarios.map((scenario, i) => (
               <div
                 key={i}
+                className="spec-row"
                 style={{
                   borderTop: "1px solid rgba(0,0,0,0.08)",
                   padding: "28px 0",
                   display: "grid",
-                  gridTemplateColumns: "200px 1fr",
                   gap: "32px",
                   alignItems: "start",
                 }}
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
                     color: "#2B7CC1",
@@ -460,7 +460,7 @@ export default function FlooringInstallationPage() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 1fr))",
               gap: "2px",
             }}
           >
@@ -497,7 +497,7 @@ export default function FlooringInstallationPage() {
 
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
                     color: "#1A202C",
@@ -512,7 +512,7 @@ export default function FlooringInstallationPage() {
                   style={{
                     fontSize: "14px",
                     lineHeight: 1.75,
-                    color: "#9CA3AF",
+                    color: "#6B7280",
                     margin: 0,
                   }}
                 >
@@ -556,7 +556,7 @@ export default function FlooringInstallationPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
                     color: "#1A202C",

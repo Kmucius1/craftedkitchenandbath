@@ -10,6 +10,7 @@ type FormState = {
   city: string;
   description: string;
   contactMethod: string;
+  company: string; // honeypot — kept empty by real users, filled by bots
 };
 
 const initialForm: FormState = {
@@ -20,11 +21,14 @@ const initialForm: FormState = {
   city: "",
   description: "",
   contactMethod: "Either",
+  company: "",
 };
 
 export default function ContactForm() {
   const [form, setForm] = useState<FormState>(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   function handleChange(
     e: React.ChangeEvent<
@@ -34,9 +38,34 @@ export default function ContactForm() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
+    if (submitting) return;
+    setError(null);
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data?.ok) {
+        throw new Error(
+          (data && data.error) ||
+            "Something went wrong. Please call us at (727) 383-7550."
+        );
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please call us at (727) 383-7550."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   const inputStyle: React.CSSProperties = {
@@ -59,7 +88,7 @@ export default function ContactForm() {
     fontSize: "10px",
     letterSpacing: "0.16em",
     textTransform: "uppercase",
-    color: "#9CA3AF",
+    color: "#6B7280",
     marginBottom: "4px",
     fontWeight: 500,
   };
@@ -103,7 +132,7 @@ export default function ContactForm() {
         </svg>
         <p
           style={{
-            fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+            fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
             fontSize: "22px",
             fontWeight: 300,
             color: "#1A202C",
@@ -130,14 +159,27 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      noValidate
       style={{ display: "flex", flexDirection: "column", gap: "28px" }}
     >
+      {/* Honeypot — hidden from real users; bots that fill it are rejected server-side */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", top: 0, width: 1, height: 1, overflow: "hidden" }}>
+        <label htmlFor="company">Company (leave blank)</label>
+        <input
+          id="company"
+          name="company"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={form.company}
+          onChange={handleChange}
+        />
+      </div>
+
       {/* Row: Full Name + Email */}
       <div
+        className="row-2"
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
           gap: "24px",
         }}
       >
@@ -189,9 +231,9 @@ export default function ContactForm() {
 
       {/* Row: Phone + Service */}
       <div
+        className="row-2"
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
           gap: "24px",
         }}
       >
@@ -243,7 +285,7 @@ export default function ContactForm() {
               (e.currentTarget.style.borderBottomColor = "rgba(0,0,0,0.18)")
             }
           >
-            <option value="" style={{ background: "#FFFFFF", color: "#9CA3AF" }}>
+            <option value="" style={{ background: "#FFFFFF", color: "#6B7280" }}>
               Select a service…
             </option>
             <option
@@ -348,7 +390,7 @@ export default function ContactForm() {
                 gap: "10px",
                 cursor: "pointer",
                 fontSize: "13px",
-                color: form.contactMethod === method ? "#1A202C" : "#9CA3AF",
+                color: form.contactMethod === method ? "#1A202C" : "#6B7280",
                 letterSpacing: "0.04em",
                 transition: "color 0.2s ease",
               }}
@@ -399,12 +441,28 @@ export default function ContactForm() {
         </div>
       </div>
 
+      {/* Error message */}
+      {error && (
+        <p
+          role="alert"
+          style={{
+            fontSize: "13px",
+            color: "#B91C1C",
+            margin: 0,
+            lineHeight: 1.6,
+          }}
+        >
+          {error}
+        </p>
+      )}
+
       {/* Submit */}
       <div style={{ paddingTop: "8px" }}>
         <button
           type="submit"
+          disabled={submitting}
           style={{
-            backgroundColor: "#2B7CC1",
+            backgroundColor: submitting ? "#7FA9CB" : "#2B7CC1",
             color: "#FFFFFF",
             border: "none",
             fontSize: "9px",
@@ -412,18 +470,18 @@ export default function ContactForm() {
             letterSpacing: "0.18em",
             textTransform: "uppercase",
             padding: "16px 32px",
-            cursor: "pointer",
+            cursor: submitting ? "default" : "pointer",
             fontFamily: "inherit",
             transition: "background-color 0.2s ease",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "#1E5C96";
+            if (!submitting) e.currentTarget.style.backgroundColor = "#1E5C96";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "#2B7CC1";
+            if (!submitting) e.currentTarget.style.backgroundColor = "#2B7CC1";
           }}
         >
-          Send My Request
+          {submitting ? "Sending…" : "Send My Request"}
         </button>
       </div>
     </form>

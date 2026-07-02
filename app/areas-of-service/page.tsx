@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import SectionLabel from "@/components/SectionLabel";
 import CTASection from "@/components/CTASection";
@@ -65,34 +66,42 @@ const breadcrumbSchema = {
 const pinellasCities = [
   {
     name: "Oldsmar",
+    slug: "oldsmar",
     copy: "Our home base. We're a short drive from most Oldsmar neighborhoods and know the home styles here well.",
   },
   {
     name: "Clearwater",
+    slug: "clearwater",
     copy: "Clearwater homeowners trust us for kitchen and bathroom renovations that match the Gulf Coast lifestyle.",
   },
   {
     name: "Palm Harbor",
+    slug: "palm-harbor",
     copy: "From master bath upgrades to full kitchen remodels, Palm Harbor is one of our most active service areas.",
   },
   {
     name: "Safety Harbor",
+    slug: "safety-harbor",
     copy: "Safety Harbor's character-rich homes often benefit from custom cabinetry and thoughtful layout updates.",
   },
   {
     name: "Dunedin",
+    slug: "dunedin",
     copy: "Dunedin's charming bungalows and coastal properties are a joy to work in — we respect the character while updating the function.",
   },
   {
     name: "Tarpon Springs",
+    slug: "tarpon-springs",
     copy: "We serve Tarpon Springs homeowners with full remodeling services, from sponge-dock neighborhoods to inland communities.",
   },
   {
     name: "Largo",
+    slug: "largo",
     copy: "Largo homeowners get the same quality and care as every other community we serve.",
   },
   {
     name: "St. Petersburg",
+    slug: "st-petersburg",
     copy: "From historic homes to modern condos, St. Petersburg's variety means we're always solving interesting design challenges.",
   },
 ];
@@ -100,10 +109,22 @@ const pinellasCities = [
 const hillsboroughCities = [
   {
     name: "Tampa",
-    copy: "Tampa's diverse neighborhoods — from Hyde Park to New Tampa — keep us busy with kitchen and bath renovations.",
+    slug: "tampa",
+    copy: "Tampa's diverse neighborhoods — from Hyde Park to Seminole Heights — keep us busy with kitchen and bath renovations.",
+  },
+  {
+    name: "Westchase",
+    slug: "westchase",
+    copy: "Westchase's master-planned villages are reaching the age where original kitchens and baths are ready for a refresh.",
+  },
+  {
+    name: "Carrollwood",
+    slug: "carrollwood",
+    copy: "From Original Carrollwood's oak-shaded ranches to Carrollwood Village, we update these homes with care.",
   },
   {
     name: "Brandon",
+    slug: "brandon",
     copy: "We extend our services to Brandon and surrounding Hillsborough County communities.",
   },
 ];
@@ -125,7 +146,7 @@ export default function AreasOfServicePage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "128px 24px 96px",
+          padding: "clamp(112px, 16vw, 128px) 24px clamp(54px, 11vw, 96px)",
         }}
       >
         <div
@@ -156,7 +177,7 @@ export default function AreasOfServicePage() {
                     fontSize: "11px",
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
-                    color: "#9CA3AF",
+                    color: "#6B7280",
                     textDecoration: "none",
                   }}
                 >
@@ -201,7 +222,7 @@ export default function AreasOfServicePage() {
           {/* H1 */}
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(40px, 6.5vw, 76px)",
               lineHeight: 1.1,
@@ -232,11 +253,23 @@ export default function AreasOfServicePage() {
         </div>
       </section>
 
+      {/* ── HERO IMAGE ── */}
+      <div style={{ width: "100%", height: "clamp(280px, 40vw, 460px)", position: "relative", overflow: "hidden" }}>
+        <Image
+          src="/images/wp/IMG_2206-scaled.jpeg"
+          alt="Kitchen and bathroom remodeling across Pinellas and Hillsborough County by Crafted Kitchen and Bath"
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: "cover", objectPosition: "center 55%" }}
+        />
+      </div>
+
       {/* ── 2. COUNTY OVERVIEW ───────────────────────────────────────── */}
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
         }}
       >
         <div
@@ -264,7 +297,7 @@ export default function AreasOfServicePage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 3.5vw, 40px)",
                 lineHeight: 1.2,
@@ -337,7 +370,7 @@ export default function AreasOfServicePage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 3.5vw, 40px)",
                 lineHeight: 1.2,
@@ -401,7 +434,7 @@ export default function AreasOfServicePage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
         }}
       >
         <div
@@ -426,7 +459,7 @@ export default function AreasOfServicePage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(26px, 3.5vw, 38px)",
                 lineHeight: 1.2,
@@ -442,17 +475,20 @@ export default function AreasOfServicePage() {
           {/* Cards grid */}
           <div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px"
+            data-stagger
             style={{ backgroundColor: "rgba(43,124,193,0.1)" }}
           >
             {pinellasCities.map((city) => (
-              <div
+              <Link
                 key={city.name}
+                href={`/areas-of-service/${city.slug}`}
                 style={{
                   backgroundColor: "#FFFFFF",
                   padding: "32px 28px",
                   display: "flex",
                   flexDirection: "column",
                   gap: "16px",
+                  textDecoration: "none",
                 }}
               >
                 <div
@@ -466,7 +502,7 @@ export default function AreasOfServicePage() {
 
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "20px",
                     color: "#1A202C",
@@ -488,7 +524,20 @@ export default function AreasOfServicePage() {
                 >
                   {city.copy}
                 </p>
-              </div>
+
+                <span
+                  style={{
+                    fontSize: "10px",
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                    color: "#2B7CC1",
+                    fontWeight: 600,
+                    marginTop: "4px",
+                  }}
+                >
+                  View {city.name} &rarr;
+                </span>
+              </Link>
             ))}
           </div>
         </div>
@@ -498,7 +547,7 @@ export default function AreasOfServicePage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
         }}
       >
         <div
@@ -523,7 +572,7 @@ export default function AreasOfServicePage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(26px, 3.5vw, 38px)",
                 lineHeight: 1.2,
@@ -539,20 +588,23 @@ export default function AreasOfServicePage() {
           {/* Cards — narrower grid for 2 cities */}
           <div
             className="grid grid-cols-1 sm:grid-cols-2 gap-px"
+            data-stagger
             style={{
               backgroundColor: "rgba(43,124,193,0.1)",
               maxWidth: "640px",
             }}
           >
             {hillsboroughCities.map((city) => (
-              <div
+              <Link
                 key={city.name}
+                href={`/areas-of-service/${city.slug}`}
                 style={{
                   backgroundColor: "#F7F8FA",
                   padding: "32px 28px",
                   display: "flex",
                   flexDirection: "column",
                   gap: "16px",
+                  textDecoration: "none",
                 }}
               >
                 <div
@@ -566,7 +618,7 @@ export default function AreasOfServicePage() {
 
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "20px",
                     color: "#1A202C",
@@ -588,7 +640,20 @@ export default function AreasOfServicePage() {
                 >
                   {city.copy}
                 </p>
-              </div>
+
+                <span
+                  style={{
+                    fontSize: "10px",
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                    color: "#2B7CC1",
+                    fontWeight: 600,
+                    marginTop: "4px",
+                  }}
+                >
+                  View {city.name} &rarr;
+                </span>
+              </Link>
             ))}
           </div>
         </div>
@@ -598,7 +663,7 @@ export default function AreasOfServicePage() {
       <section
         style={{
           backgroundColor: "#EEF0F4",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
         }}
       >
         <div
@@ -624,7 +689,7 @@ export default function AreasOfServicePage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 44px)",
                 lineHeight: 1.2,
@@ -741,7 +806,7 @@ export default function AreasOfServicePage() {
                 fontSize: "10px",
                 letterSpacing: "0.22em",
                 textTransform: "uppercase",
-                color: "#9CA3AF",
+                color: "#6B7280",
                 margin: 0,
               }}
             >
@@ -802,7 +867,7 @@ export default function AreasOfServicePage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "64px 24px",
+          padding: "clamp(36px, 7vw, 64px) 24px",
           borderTop: "1px solid rgba(0,0,0,0.08)",
         }}
       >

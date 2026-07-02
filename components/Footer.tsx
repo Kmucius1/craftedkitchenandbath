@@ -40,7 +40,7 @@ export default function Footer() {
               {/* Phone */}
               <li>
                 <a
-                  href="tel:7273837550"
+                  href="tel:+17273837550"
                   style={{ color: "#4A5568", textDecoration: "none" }}
                   className="text-sm flex items-start gap-2 transition-colors duration-200 hover:text-[#1A202C]"
                 >
@@ -118,7 +118,7 @@ export default function Footer() {
             </ul>
 
             {/* License */}
-            <p style={{ color: "#9CA3AF", fontSize: "11px" }}>
+            <p style={{ color: "#6B7280", fontSize: "11px" }}>
               License: CRC1333143
             </p>
 
@@ -129,7 +129,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                style={{ color: "#9CA3AF" }}
+                style={{ color: "#6B7280" }}
                 className="transition-colors duration-200 hover:text-[#1A202C]"
               >
                 <svg
@@ -147,7 +147,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                style={{ color: "#9CA3AF" }}
+                style={{ color: "#6B7280" }}
                 className="transition-colors duration-200 hover:text-[#1A202C]"
               >
                 <svg
@@ -190,6 +190,9 @@ export default function Footer() {
                 { label: "About Us", href: "/about-us" },
                 { label: "Services", href: "/services" },
                 { label: "Our Work", href: "/our-work" },
+                { label: "Our Process", href: "/process" },
+                { label: "Financing", href: "/financing" },
+                { label: "Warranty", href: "/warranty" },
                 { label: "FAQs", href: "/faqs" },
                 { label: "Contact", href: "/contact" },
                 { label: "Blog", href: "/blog" },
@@ -302,7 +305,7 @@ export default function Footer() {
       <div style={{ backgroundColor: "#EEF0F4" }} className="px-6 py-5 md:px-12 lg:px-20">
         <div className="mx-auto max-w-7xl flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           {/* Left: copyright */}
-          <p style={{ color: "#9CA3AF", fontSize: "11px" }}>
+          <p style={{ color: "#6B7280", fontSize: "11px" }}>
             &copy; 2026 Crafted Kitchen and Bath. All rights reserved.
           </p>
 
@@ -310,7 +313,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <Link
               href="/privacy-policy"
-              style={{ color: "#9CA3AF", fontSize: "11px", textDecoration: "none" }}
+              style={{ color: "#6B7280", fontSize: "11px", textDecoration: "none" }}
               className="transition-colors duration-200 hover:text-[#1A202C]"
             >
               Privacy Policy
@@ -318,7 +321,7 @@ export default function Footer() {
             <span style={{ color: "rgba(0,0,0,0.2)", fontSize: "11px" }}>|</span>
             <Link
               href="/terms-and-conditions"
-              style={{ color: "#9CA3AF", fontSize: "11px", textDecoration: "none" }}
+              style={{ color: "#6B7280", fontSize: "11px", textDecoration: "none" }}
               className="transition-colors duration-200 hover:text-[#1A202C]"
             >
               Terms and Conditions
@@ -326,7 +329,7 @@ export default function Footer() {
           </div>
 
           {/* Right: license note */}
-          <p style={{ color: "#9CA3AF", fontSize: "11px" }}>
+          <p style={{ color: "#6B7280", fontSize: "11px" }}>
             Licensed Contractor CRC1333143 &nbsp;|&nbsp; Serving Pinellas &amp; Hillsborough County
           </p>
         </div>

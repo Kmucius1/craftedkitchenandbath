@@ -8,7 +8,7 @@
   --color-cool-gray: #D8DDE6;
   --color-dark: #1A202C;
   --color-text-secondary: #4A5568;
-  --color-text-muted: #9CA3AF;
+  --color-text-muted: #6B7280;
   --color-blue: #2B7CC1;
   --color-blue-dark: #1E5C96;
   --color-blue-light: #EBF4FF;
@@ -16,12 +16,14 @@
   --color-border-med: rgba(0, 0, 0, 0.14);
 
   /* Typography */
-  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-serif: var(--font-display), "Montserrat", system-ui, sans-serif;
   --font-sans: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;           /* never allow sideways scroll on mobile */
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -30,7 +32,54 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
 }
+
+/* Media never forces horizontal overflow */
+img, video, svg, iframe { max-width: 100%; }
+
+/* ── Mobile layout polish ──────────────────────────────────────────
+   Tighten oversized desktop gutters on small phones so content gets
+   more width, and keep tap targets comfortable. (Most vertical rhythm
+   and hero/image heights are handled inline via clamp().) */
+@media (max-width: 600px) {
+  /* Big desktop container gutters → comfortable phone gutters */
+  .px-8 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+  .px-6 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+  /* Comfortable, finger-friendly hit areas for inline links/buttons */
+  a, button { -webkit-tap-highlight-color: rgba(43,124,193,0.15); }
+
+  /* Contact map overlay card: stack + fit the screen instead of overflowing */
+  .map-card {
+    left: 16px !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    transform: none !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+    white-space: normal !important;
+    padding: 18px 20px !important;
+  }
+  .map-card p:last-of-type { font-size: 16px !important; line-height: 1.4 !important; }
+}
+
+/* Brand typography — bold geometric sans on all headings (overrides the old
+   light-serif inline weights for a confident, masculine, on-brand feel). */
+h1, h2, h3, h4 {
+  font-family: var(--font-display), "Montserrat", system-ui, sans-serif !important;
+  letter-spacing: -0.015em;
+  /* Never let a heading exceed its container (e.g. inside centered flex
+     columns, where flex items otherwise size to max-content and clip on
+     mobile). Forces clean wrapping. */
+  max-width: 100%;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+h1, h2 { font-weight: 800 !important; }
+h3, h4 { font-weight: 700 !important; }
+/* Same guard for body copy in flex/centered contexts */
+main p { overflow-wrap: break-word; }
 
 ::selection {
   background-color: #2B7CC1;
@@ -76,9 +125,44 @@ body {
 .delay-700 { animation-delay: 0.7s; }
 
 /* ── Glow card effect ──────────────────────────────────────────── */
+.glow-card {
+  transition: border-color 0.3s ease, box-shadow 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
 .glow-card:hover {
   border-color: rgba(43, 124, 193, 0.55) !important;
   box-shadow: 0 0 0 1px rgba(43, 124, 193, 0.2), 0 8px 40px rgba(43, 124, 193, 0.18);
+}
+
+/* ───────────────────────────────────────────────────────────────
+   MOTION SYSTEM — classy scroll reveals, hero ken-burns, hover lift.
+   Every hidden state is applied by JS (components/SiteAnimations), so
+   content is always visible without JS, and everything is disabled for
+   visitors who prefer reduced motion.
+   ─────────────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .sa-reveal {
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .sa-hidden { opacity: 0; transform: translateY(26px); }
+  .sa-hidden-soft { opacity: 0; transform: translateY(16px); }
+
+  /* Ken Burns — slow, near-imperceptible drift that makes hero imagery breathe */
+  @keyframes kenburns {
+    0%   { transform: scale(1.03); }
+    100% { transform: scale(1.11); }
+  }
+  .kenburns { animation: kenburns 20s ease-in-out infinite alternate; }
+
+  /* Opt-in hover lift for cards/tiles */
+  .lift { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; }
+  .lift:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(26, 32, 44, 0.13); }
+
+  /* Subtle float for the chat launcher so it gently invites a click */
+  @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+  .mascot-launcher { animation: floatY 4.5s ease-in-out infinite; }
+  .mascot-launcher:hover { animation-play-state: paused; }
 }
 
 /* ── CTA button shimmer ────────────────────────────────────────── */
@@ -104,8 +188,19 @@ body {
   border-bottom-color: #2B7CC1;
 }
 .input-luxury::placeholder {
-  color: #9CA3AF;
+  color: #6B7280;
   font-size: 13px;
+}
+
+/* ── Keyboard focus visibility (a11y) ──────────────────────────── */
+:focus-visible {
+  outline: 2px solid #2B7CC1;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+/* Don't show the ring for mouse clicks, only keyboard nav */
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 /* ── Scale hover on images ─────────────────────────────────────── */
@@ -114,6 +209,57 @@ body {
 }
 .img-zoom:hover img {
   transform: scale(1.04);
+}
+
+/* ── Responsive grid helpers (inline grids lacked breakpoints) ──── */
+/* Two equal columns that stack on small screens — used for form field rows. */
+.row-2 { grid-template-columns: 1fr 1fr; }
+@media (max-width: 560px) { .row-2 { grid-template-columns: 1fr; } }
+
+/* Contact page split: info column + wider form column → stacks on mobile. */
+.contact-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); }
+@media (max-width: 860px) { .contact-split { grid-template-columns: 1fr; gap: 48px !important; } }
+
+/* Three across (trust badges) → single column on phones. */
+.row-3 { grid-template-columns: 1fr 1fr 1fr; }
+@media (max-width: 640px) { .row-3 { grid-template-columns: 1fr; } }
+
+/* Fixed label column + content → stacks on phones to avoid overflow. */
+.spec-row { grid-template-columns: 200px 1fr; }
+@media (max-width: 640px) { .spec-row { grid-template-columns: 1fr; gap: 8px !important; } }
+
+/* Quote questionnaire: contact-step field pairs stack on small screens. */
+.quote-row-2 { grid-template-columns: 1fr 1fr; }
+@media (max-width: 560px) { .quote-row-2 { grid-template-columns: 1fr; } }
+
+/* Quote option cards: two across on wider screens, single column on phones. */
+.quote-options { grid-template-columns: 1fr 1fr; }
+@media (max-width: 560px) { .quote-options { grid-template-columns: 1fr; } }
+
+/* Hero: headline/CTA text beside a brand logo panel filling the right space. */
+.hero-top { display: flex; align-items: stretch; gap: clamp(32px, 4vw, 56px); }
+.hero-top-text { flex: 1; min-width: 0; }
+.hero-logo-panel { flex-shrink: 0; width: 280px; display: flex; }
+.hero-logo-inner {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 0;
+}
+@media (max-width: 1024px) { .hero-logo-panel { display: none; } }
+
+/* ── Featured project rows (alternating image/copy, stacks on mobile) ── */
+.featured-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .featured-row { grid-template-columns: 1fr 1fr; gap: 56px; }
+  .featured-row.reverse .featured-img { grid-column: 2; grid-row: 1; }
+  .featured-row.reverse .featured-copy { grid-column: 1; grid-row: 1; }
 }
 
 /* ── Section reveal base ───────────────────────────────────────── */

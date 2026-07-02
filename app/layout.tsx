@@ -1,22 +1,26 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Montserrat, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
+import MascotChat from "@/components/MascotChat";
+import SiteAnimations from "@/components/SiteAnimations";
+import AmbientMotion from "@/components/AmbientMotion";
+import NewsletterPopup from "@/components/NewsletterPopup";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const montserrat = Montserrat({
+  variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "500", "600"],
-  style: ["normal", "italic"],
+  weight: ["500", "600", "700", "800"],
 });
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "500"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -93,12 +97,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${dmSans.variable}`}
+      className={`${montserrat.variable} ${dmSans.variable}`}
     >
       <body className="bg-white text-[#1A202C] antialiased flex flex-col min-h-screen">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <StickyMobileCTA />
+        <MascotChat />
+        <SiteAnimations />
+        <AmbientMotion />
+        <NewsletterPopup />
       </body>
     </html>
   );

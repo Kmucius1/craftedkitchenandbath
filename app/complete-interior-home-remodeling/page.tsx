@@ -239,29 +239,29 @@ export default function CompleteInteriorRemodelingPage() {
               padding: 0,
               fontSize: "11px",
               letterSpacing: "0.06em",
-              color: "#9CA3AF",
+              color: "#6B7280",
             }}
           >
             <li>
               <Link
                 href="/"
-                style={{ color: "#9CA3AF", textDecoration: "none" }}
+                style={{ color: "#6B7280", textDecoration: "none" }}
               >
                 Home
               </Link>
             </li>
-            <li aria-hidden="true" style={{ color: "#9CA3AF" }}>
+            <li aria-hidden="true" style={{ color: "#6B7280" }}>
               /
             </li>
             <li>
               <Link
                 href="/services"
-                style={{ color: "#9CA3AF", textDecoration: "none" }}
+                style={{ color: "#6B7280", textDecoration: "none" }}
               >
                 Services
               </Link>
             </li>
-            <li aria-hidden="true" style={{ color: "#9CA3AF" }}>
+            <li aria-hidden="true" style={{ color: "#6B7280" }}>
               /
             </li>
             <li style={{ color: "#2B7CC1" }} aria-current="page">
@@ -294,7 +294,7 @@ export default function CompleteInteriorRemodelingPage() {
 
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(36px, 5.5vw, 68px)",
               color: "#1A202C",
@@ -343,15 +343,15 @@ export default function CompleteInteriorRemodelingPage() {
       </section>
 
       {/* ── HERO IMAGE ───────────────────────────────────────────────────── */}
-      <div style={{ width: '100%', height: '520px', position: 'relative', overflow: 'hidden' }}>
-        <Image src="/images/7538a222-6dd1-43e7-8c45-55880dacb434.png" alt="Complete interior home remodeling — luxury kitchen" fill priority style={{ objectFit: 'cover', objectPosition: 'center' }} />
+      <div style={{ width: '100%', height: 'clamp(300px, 56vw, 520px)', position: 'relative', overflow: 'hidden' }}>
+        <Image src="/images/wp/IMG_6140-scaled.jpeg" alt="Complete interior home remodeling — open kitchen and dining room transformation" fill priority style={{ objectFit: 'cover', objectPosition: 'center' }} />
       </div>
 
       {/* ── 2. SCOPE OF WORK ─────────────────────────────────────────────── */}
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "80px 24px",
+          padding: "clamp(44px, 9vw, 80px) 24px",
         }}
       >
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
@@ -367,7 +367,7 @@ export default function CompleteInteriorRemodelingPage() {
             <SectionLabel>Scope of Work</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 46px)",
                 color: "#1A202C",
@@ -385,7 +385,7 @@ export default function CompleteInteriorRemodelingPage() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 1fr))",
               gap: "2px",
             }}
           >
@@ -426,7 +426,7 @@ export default function CompleteInteriorRemodelingPage() {
 
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
                     color: "#1A202C",
@@ -458,7 +458,7 @@ export default function CompleteInteriorRemodelingPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "80px 24px",
+          padding: "clamp(44px, 9vw, 80px) 24px",
         }}
       >
         <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
@@ -474,7 +474,7 @@ export default function CompleteInteriorRemodelingPage() {
             <SectionLabel>Our Process</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 46px)",
                 color: "#1A202C",
@@ -522,7 +522,7 @@ export default function CompleteInteriorRemodelingPage() {
                 >
                   <span
                     style={{
-                      fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                      fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       fontWeight: 300,
                       fontSize: "11px",
                       letterSpacing: "0.14em",
@@ -557,7 +557,7 @@ export default function CompleteInteriorRemodelingPage() {
                 >
                   <h3
                     style={{
-                      fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                      fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       fontWeight: 300,
                       fontSize: "22px",
                       color: "#1A202C",
@@ -589,7 +589,7 @@ export default function CompleteInteriorRemodelingPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "80px 24px",
+          padding: "clamp(44px, 9vw, 80px) 24px",
         }}
       >
         <div
@@ -615,7 +615,7 @@ export default function CompleteInteriorRemodelingPage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 48px)",
                 color: "#1A202C",
@@ -704,7 +704,7 @@ export default function CompleteInteriorRemodelingPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
                     color: "#1A202C",
@@ -718,7 +718,7 @@ export default function CompleteInteriorRemodelingPage() {
                   style={{
                     fontSize: "14px",
                     lineHeight: 1.75,
-                    color: "#9CA3AF",
+                    color: "#6B7280",
                     margin: 0,
                   }}
                 >
@@ -734,7 +734,7 @@ export default function CompleteInteriorRemodelingPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "80px 24px",
+          padding: "clamp(44px, 9vw, 80px) 24px",
         }}
       >
         <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
@@ -759,7 +759,7 @@ export default function CompleteInteriorRemodelingPage() {
 
               <h2
                 style={{
-                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(26px, 3.5vw, 42px)",
                   color: "#1A202C",
@@ -887,7 +887,7 @@ export default function CompleteInteriorRemodelingPage() {
                     >
                       <span
                         style={{
-                          fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                          fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                           fontSize: "10px",
                           color: "rgba(43,124,193,0.5)",
                           letterSpacing: "0.1em",
@@ -910,7 +910,7 @@ export default function CompleteInteriorRemodelingPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "64px 24px",
+          padding: "clamp(36px, 7vw, 64px) 24px",
         }}
       >
         <div
@@ -936,7 +936,7 @@ export default function CompleteInteriorRemodelingPage() {
 
           <h2
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(22px, 3vw, 36px)",
               color: "#1A202C",
@@ -988,7 +988,7 @@ export default function CompleteInteriorRemodelingPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "80px 24px",
+          padding: "clamp(44px, 9vw, 80px) 24px",
         }}
       >
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
@@ -1004,7 +1004,7 @@ export default function CompleteInteriorRemodelingPage() {
             <SectionLabel>Common Questions</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 44px)",
                 color: "#1A202C",
@@ -1039,7 +1039,7 @@ export default function CompleteInteriorRemodelingPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
                     color: "#1A202C",
@@ -1079,7 +1079,7 @@ export default function CompleteInteriorRemodelingPage() {
         primaryCTA="Get a Free Quote"
         primaryHref="/contact"
         secondaryCTA="Call (727) 383-7550"
-        secondaryHref="tel:7273837550"
+        secondaryHref="tel:+17273837550"
       />
     </>
   );

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import CTASection from "@/components/CTASection";
 import ContactForm from "@/components/ContactForm";
+import AskCrewPrompt from "@/components/AskCrewPrompt";
 
 export const metadata: Metadata = {
   title:
@@ -47,7 +48,7 @@ export default function ContactPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "80px 24px",
+          padding: "clamp(116px, 17vw, 140px) 24px clamp(44px, 9vw, 80px)",
           textAlign: "center",
         }}
       >
@@ -55,17 +56,13 @@ export default function ContactPage() {
           style={{
             maxWidth: "640px",
             margin: "0 auto",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "24px",
           }}
         >
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
-              fontSize: "clamp(36px, 5vw, 58px)",
+              fontSize: "clamp(32px, 7vw, 58px)",
               color: "#1A202C",
               lineHeight: 1.18,
               margin: 0,
@@ -79,7 +76,7 @@ export default function ContactPage() {
               fontSize: "16px",
               lineHeight: 1.8,
               color: "#4A5568",
-              margin: 0,
+              margin: "24px auto 0",
               maxWidth: "520px",
             }}
           >
@@ -92,15 +89,15 @@ export default function ContactPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "64px 24px",
+          padding: "clamp(36px, 7vw, 64px) 24px",
         }}
       >
         <div
+          className="contact-split"
           style={{
             maxWidth: "1100px",
             margin: "0 auto",
             display: "grid",
-            gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.5fr)",
             gap: "64px",
             alignItems: "start",
           }}
@@ -111,7 +108,7 @@ export default function ContactPage() {
             <div>
               <h2
                 style={{
-                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(22px, 2.5vw, 30px)",
                   color: "#1A202C",
@@ -160,7 +157,7 @@ export default function ContactPage() {
                   />
                 </svg>
                 <a
-                  href="tel:7273837550"
+                  href="tel:+17273837550"
                   style={{
                     color: "#2B7CC1",
                     textDecoration: "none",
@@ -358,7 +355,7 @@ export default function ContactPage() {
                   </span>
                   <span
                     style={{
-                      color: "#9CA3AF",
+                      color: "#6B7280",
                       fontSize: "13px",
                       fontStyle: "italic",
                       display: "block",
@@ -397,13 +394,21 @@ export default function ContactPage() {
                 </a>
               </div>
             </div>
+
+            {/* Prefer to chat? Keyton helps get the request moving. */}
+            <AskCrewPrompt
+              mascot="keyton"
+              heading="Prefer to chat?"
+              text="Keyton can take your details and get your free-quote request to the team in under a minute."
+              cta="Start a Chat"
+            />
           </div>
 
           {/* RIGHT — Form */}
           <div>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(22px, 2.5vw, 30px)",
                 color: "#1A202C",
@@ -440,10 +445,10 @@ export default function ContactPage() {
           title="Crafted Kitchen and Bath map"
         />
         {/* Overlay CTA card */}
-        <div style={{ position: "absolute", bottom: "32px", left: "50%", transform: "translateX(-50%)", backgroundColor: "#FFFFFF", padding: "24px 32px", boxShadow: "0 8px 40px rgba(0,0,0,0.14)", border: "1px solid rgba(0,0,0,0.06)", display: "flex", alignItems: "center", gap: "32px", whiteSpace: "nowrap", zIndex: 1 }}>
+        <div className="map-card" style={{ position: "absolute", bottom: "32px", left: "50%", transform: "translateX(-50%)", backgroundColor: "#FFFFFF", padding: "24px 32px", boxShadow: "0 8px 40px rgba(0,0,0,0.14)", border: "1px solid rgba(0,0,0,0.06)", display: "flex", alignItems: "center", gap: "32px", whiteSpace: "nowrap", zIndex: 1 }}>
           <div>
             <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.18em", color: "#2B7CC1", fontWeight: 600, margin: "0 0 6px" }}>Our Location</p>
-            <p style={{ fontFamily: "var(--font-cormorant),'Cormorant Garamond',Georgia,serif", fontSize: "20px", color: "#111822", margin: 0, fontWeight: 400 }}>120 Commerce Blvd Suite 4, Oldsmar FL</p>
+            <p style={{ fontFamily: "var(--font-display),'Montserrat',system-ui,sans-serif", fontSize: "20px", color: "#111822", margin: 0, fontWeight: 400 }}>120 Commerce Blvd Suite 4, Oldsmar FL</p>
           </div>
           <a
             href="https://maps.google.com/?q=Crafted+Home+Improvements+120+Commerce+Blvd+Suite+4+Oldsmar+FL"
@@ -465,11 +470,11 @@ export default function ContactPage() {
         }}
       >
         <div
+          className="row-3"
           style={{
             maxWidth: "900px",
             margin: "0 auto",
             display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
             gap: "24px",
             textAlign: "center",
           }}
@@ -485,7 +490,7 @@ export default function ContactPage() {
                 fontSize: "11px",
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color: "#9CA3AF",
+                color: "#6B7280",
                 margin: 0,
                 lineHeight: 1.5,
               }}
@@ -501,7 +506,7 @@ export default function ContactPage() {
         headline="Ready to Transform Your Space?"
         subtext="Our team serves homeowners across Pinellas County and Hillsborough County with white-glove remodeling service from consultation to completion."
         primaryCTA="Call (727) 383-7550"
-        primaryHref="tel:7273837550"
+        primaryHref="tel:+17273837550"
         secondaryCTA="Explore Our Work"
         secondaryHref="/our-work"
       />

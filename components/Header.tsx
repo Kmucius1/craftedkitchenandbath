@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 
 const NAV_LINKS = [
@@ -21,6 +21,12 @@ const SERVICES = [
   { label: 'Complete Interior Remodeling', href: '/complete-interior-home-remodeling' },
   { label: 'Flooring Installation', href: '/flooring-installation' },
   { label: 'Painting', href: '/painting' },
+  { label: 'Countertops', href: '/services/countertops' },
+  { label: 'Cabinet Refacing', href: '/services/cabinet-refacing' },
+  { label: 'ADA & Aging-in-Place', href: '/services/ada-aging-in-place-bathrooms' },
+  { label: 'Walk-In Showers', href: '/services/walk-in-showers' },
+  { label: 'Luxury Vinyl Plank', href: '/services/luxury-vinyl-plank-flooring' },
+  { label: 'Outdoor Kitchens', href: '/services/outdoor-kitchens' },
   { label: 'Areas of Service', href: '/areas-of-service' },
 ];
 
@@ -32,6 +38,16 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesHovered, setServicesHovered] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openServices = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setServicesHovered(true);
+  };
+  const closeServices = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setServicesHovered(false), 180);
+  };
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
@@ -58,9 +74,9 @@ export default function Header() {
       <header
         className="fixed top-0 left-0 right-0 z-50"
         style={{
-          backgroundColor: '#FFFFFF',
-          borderBottom: '1px solid rgba(0,0,0,0.08)',
-          boxShadow: '0 1px 24px rgba(0,0,0,0.07)',
+          backgroundColor: '#1F5FAC',
+          borderBottom: '1px solid rgba(255,255,255,0.14)',
+          boxShadow: '0 2px 24px rgba(0,0,0,0.18)',
         }}
       >
         <div style={{ maxWidth: '1480px', margin: '0 auto', padding: '0 2rem' }} className="md:px-14">
@@ -74,7 +90,7 @@ export default function Header() {
                 width={168}
                 height={56}
                 priority
-                style={{ objectFit: 'contain', height: '46px', width: 'auto' }}
+                style={{ objectFit: 'contain', height: '46px', width: 'auto', filter: 'brightness(0) invert(1)' }}
               />
             </Link>
 
@@ -91,13 +107,17 @@ export default function Header() {
                     <div
                       key={link.href}
                       style={{ position: 'relative' }}
-                      onMouseEnter={() => setServicesHovered(true)}
-                      onMouseLeave={() => setServicesHovered(false)}
+                      onMouseEnter={openServices}
+                      onMouseLeave={closeServices}
+                      onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setServicesHovered(false) }}
+                      onKeyDown={e => { if (e.key === 'Escape') setServicesHovered(false) }}
                     >
                       <button
+                        onClick={() => setServicesHovered(v => !v)}
+                        onFocus={() => setServicesHovered(true)}
                         style={{
                           fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif",
-                          color: active ? '#111822' : '#4A5568',
+                          color: active ? '#FFFFFF' : 'rgba(255,255,255,0.85)',
                           fontSize: '11px',
                           letterSpacing: '0.13em',
                           textTransform: 'uppercase',
@@ -112,8 +132,8 @@ export default function Header() {
                           whiteSpace: 'nowrap',
                           transition: 'color 0.2s ease',
                         }}
-                        onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#111822'}
-                        onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = active ? '#111822' : '#4A5568'}
+                        onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#FFFFFF'}
+                        onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = active ? '#FFFFFF' : 'rgba(255,255,255,0.85)'}
                         aria-haspopup="true"
                         aria-expanded={servicesHovered}
                       >
@@ -127,15 +147,16 @@ export default function Header() {
                       </button>
 
                       {/* ── SERVICES DROPDOWN ── */}
+                      {/* Outer wrapper is transparent and includes a 14px top
+                          bridge so the cursor never crosses a dead gap between
+                          the trigger and the menu (which was closing it early). */}
                       <div
                         style={{
                           position: 'absolute',
-                          top: 'calc(100% + 10px)',
+                          top: '100%',
                           left: '50%',
                           transform: 'translateX(-50%)',
-                          backgroundColor: '#FFFFFF',
-                          border: '1px solid rgba(0,0,0,0.10)',
-                          boxShadow: '0 8px 32px rgba(0,0,0,0.10)',
+                          paddingTop: '14px',
                           minWidth: '220px',
                           opacity: servicesHovered ? 1 : 0,
                           pointerEvents: servicesHovered ? 'auto' : 'none',
@@ -143,6 +164,13 @@ export default function Header() {
                           zIndex: 60,
                         }}
                       >
+                       <div
+                         style={{
+                           backgroundColor: '#FFFFFF',
+                           border: '1px solid rgba(0,0,0,0.10)',
+                           boxShadow: '0 8px 32px rgba(0,0,0,0.10)',
+                         }}
+                       >
                         <div style={{ height: '2px', backgroundColor: '#2B7CC1', width: '100%' }} />
                         {SERVICES.map(service => (
                           <Link
@@ -171,6 +199,7 @@ export default function Header() {
                             {service.label}
                           </Link>
                         ))}
+                       </div>
                       </div>
                     </div>
                   );
@@ -182,19 +211,19 @@ export default function Header() {
                     href={link.href}
                     style={{
                       fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif",
-                      color: active ? '#111822' : '#4A5568',
+                      color: active ? '#FFFFFF' : 'rgba(255,255,255,0.85)',
                       fontSize: '11px',
                       letterSpacing: '0.13em',
                       textTransform: 'uppercase',
-                      fontWeight: active ? 600 : 500,
+                      fontWeight: active ? 700 : 600,
                       textDecoration: 'none',
                       whiteSpace: 'nowrap',
                       transition: 'color 0.2s ease',
-                      borderBottom: active ? '1.5px solid #111822' : '1.5px solid transparent',
+                      borderBottom: active ? '2px solid #FFFFFF' : '2px solid transparent',
                       paddingBottom: '2px',
                     }}
-                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#111822'}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = active ? '#111822' : '#4A5568'}
+                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#FFFFFF'}
+                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = active ? '#FFFFFF' : 'rgba(255,255,255,0.85)'}
                   >
                     {link.label}
                   </Link>
@@ -208,42 +237,41 @@ export default function Header() {
                 href={PHONE_HREF}
                 style={{
                   fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif",
-                  color: '#4A5568',
+                  color: 'rgba(255,255,255,0.9)',
                   fontSize: '11px',
+                  fontWeight: 600,
                   letterSpacing: '0.06em',
                   textDecoration: 'none',
                   whiteSpace: 'nowrap',
                   transition: 'color 0.2s ease',
                 }}
-                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#111822'}
-                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#4A5568'}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#FFFFFF'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.9)'}
               >
                 {PHONE}
               </a>
               <Link
-                href="/contact"
+                href="/quote"
                 style={{
                   fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif",
-                  border: '1px solid #111822',
-                  color: '#111822',
-                  backgroundColor: 'transparent',
-                  fontSize: '9px',
+                  border: 'none',
+                  color: '#1F5FAC',
+                  backgroundColor: '#FFFFFF',
+                  fontSize: '10px',
                   letterSpacing: '0.2em',
                   textTransform: 'uppercase',
-                  fontWeight: 600,
-                  padding: '12px 24px',
+                  fontWeight: 700,
+                  padding: '13px 26px',
                   textDecoration: 'none',
                   whiteSpace: 'nowrap',
                   display: 'inline-block',
                   transition: 'background-color 0.2s ease, color 0.2s ease',
                 }}
                 onMouseEnter={e => {
-                  (e.currentTarget as HTMLElement).style.backgroundColor = '#111822';
-                  (e.currentTarget as HTMLElement).style.color = '#FFFFFF';
+                  (e.currentTarget as HTMLElement).style.backgroundColor = '#EAF1FB';
                 }}
                 onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent';
-                  (e.currentTarget as HTMLElement).style.color = '#111822';
+                  (e.currentTarget as HTMLElement).style.backgroundColor = '#FFFFFF';
                 }}
               >
                 Get a Free Quote
@@ -258,9 +286,9 @@ export default function Header() {
               style={{ display: 'none', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '40px', height: '40px', gap: '5px', background: 'none', border: 'none', cursor: 'pointer', flexShrink: 0, marginLeft: 'auto' }}
               className="md-hamburger"
             >
-              <span style={{ display: 'block', width: '20px', height: '1px', backgroundColor: '#111822', transition: 'transform 0.25s ease, opacity 0.25s ease', transform: mobileOpen ? 'translateY(6px) rotate(45deg)' : 'none' }} />
-              <span style={{ display: 'block', width: '20px', height: '1px', backgroundColor: '#111822', transition: 'opacity 0.25s ease', opacity: mobileOpen ? 0 : 1 }} />
-              <span style={{ display: 'block', width: '20px', height: '1px', backgroundColor: '#111822', transition: 'transform 0.25s ease, opacity 0.25s ease', transform: mobileOpen ? 'translateY(-6px) rotate(-45deg)' : 'none' }} />
+              <span style={{ display: 'block', width: '20px', height: '2px', backgroundColor: '#FFFFFF', transition: 'transform 0.25s ease, opacity 0.25s ease', transform: mobileOpen ? 'translateY(6px) rotate(45deg)' : 'none' }} />
+              <span style={{ display: 'block', width: '20px', height: '2px', backgroundColor: '#FFFFFF', transition: 'opacity 0.25s ease', opacity: mobileOpen ? 0 : 1 }} />
+              <span style={{ display: 'block', width: '20px', height: '2px', backgroundColor: '#FFFFFF', transition: 'transform 0.25s ease, opacity 0.25s ease', transform: mobileOpen ? 'translateY(-6px) rotate(-45deg)' : 'none' }} />
             </button>
 
             <style>{`
@@ -287,10 +315,10 @@ export default function Header() {
         {/* Mobile top bar */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px', height: '92px', borderBottom: '1px solid rgba(0,0,0,0.08)', flexShrink: 0 }}>
           <Link href="/" onClick={() => setMobileOpen(false)} style={{ display: 'flex', flexDirection: 'column', lineHeight: 1, textDecoration: 'none' }}>
-            <span style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontWeight: 300, fontStyle: 'italic', fontSize: '20px', letterSpacing: '-0.01em', color: '#111822', lineHeight: 1.1 }}>Crafted</span>
+            <span style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontStyle: 'italic', fontSize: '20px', letterSpacing: '-0.01em', color: '#111822', lineHeight: 1.1 }}>Crafted</span>
             <span style={{ fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif", fontSize: '8px', textTransform: 'uppercase', letterSpacing: '0.22em', color: '#2B7CC1', display: 'block', marginTop: '1px' }}>Kitchen + Bath</span>
           </Link>
-          <button onClick={() => setMobileOpen(false)} aria-label="Close menu" style={{ color: '#9CA3AF', background: 'none', border: 'none', cursor: 'pointer', padding: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'color 0.2s ease' }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#111822'} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9CA3AF'}>
+          <button onClick={() => setMobileOpen(false)} aria-label="Close menu" style={{ color: '#6B7280', background: 'none', border: 'none', cursor: 'pointer', padding: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'color 0.2s ease' }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#111822'} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#6B7280'}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 1L15 15M15 1L1 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
           </button>
         </div>
@@ -311,9 +339,9 @@ export default function Header() {
               if (link.hasDropdown) {
                 return (
                   <li key={link.href} style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
-                    <button onClick={() => setMobileServicesOpen(prev => !prev)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '20px 0', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontWeight: 300, fontStyle: 'italic', color: '#111822', fontSize: '24px', letterSpacing: '0em', textAlign: 'left', transition: 'color 0.2s ease' }}>
+                    <button onClick={() => setMobileServicesOpen(prev => !prev)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '20px 0', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontStyle: 'italic', color: '#111822', fontSize: '24px', letterSpacing: '0em', textAlign: 'left', transition: 'color 0.2s ease' }}>
                       {link.label}
-                      <svg width="14" height="14" viewBox="0 0 10 10" fill="none" style={{ transform: mobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.25s ease', color: '#9CA3AF', flexShrink: 0 }}>
+                      <svg width="14" height="14" viewBox="0 0 10 10" fill="none" style={{ transform: mobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.25s ease', color: '#6B7280', flexShrink: 0 }}>
                         <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </button>
@@ -333,7 +361,7 @@ export default function Header() {
               }
               return (
                 <li key={link.href} style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
-                  <Link href={link.href} onClick={() => setMobileOpen(false)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontWeight: 300, fontStyle: 'italic', color: '#111822', fontSize: '24px', letterSpacing: '0em', padding: '20px 0', textDecoration: 'none', transition: 'color 0.2s ease' }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#2B7CC1'} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#111822'}>
+                  <Link href={link.href} onClick={() => setMobileOpen(false)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontStyle: 'italic', color: '#111822', fontSize: '24px', letterSpacing: '0em', padding: '20px 0', textDecoration: 'none', transition: 'color 0.2s ease' }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#2B7CC1'} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#111822'}>
                     {link.label}
                   </Link>
                 </li>
@@ -344,7 +372,7 @@ export default function Header() {
 
         {/* Mobile CTA */}
         <div style={{ padding: '20px 24px 36px', borderTop: '1px solid rgba(0,0,0,0.08)', flexShrink: 0 }}>
-          <Link href="/contact" onClick={() => setMobileOpen(false)} style={{ display: 'block', textAlign: 'center', fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif", border: '1px solid #111822', color: '#111822', backgroundColor: 'transparent', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 600, padding: '16px 0', textDecoration: 'none', transition: 'background-color 0.2s ease, color 0.2s ease' }} onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = '#111822'; (e.currentTarget as HTMLElement).style.color = '#FFFFFF'; }} onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'; (e.currentTarget as HTMLElement).style.color = '#111822'; }}>
+          <Link href="/quote" onClick={() => setMobileOpen(false)} style={{ display: 'block', textAlign: 'center', fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif", border: '1px solid #111822', color: '#111822', backgroundColor: 'transparent', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 600, padding: '16px 0', textDecoration: 'none', transition: 'background-color 0.2s ease, color 0.2s ease' }} onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = '#111822'; (e.currentTarget as HTMLElement).style.color = '#FFFFFF'; }} onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = 'transparent'; (e.currentTarget as HTMLElement).style.color = '#111822'; }}>
             Get a Free Quote
           </Link>
         </div>

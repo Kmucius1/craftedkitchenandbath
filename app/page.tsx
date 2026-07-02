@@ -5,6 +5,7 @@ import Image from "next/image";
 import CTASection from "@/components/CTASection";
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import HeroSlideshow from "@/components/HeroSlideshow";
+import MeetTheCrew from "@/components/MeetTheCrew";
 
 export const metadata: Metadata = {
   title: "Kitchen & Bathroom Remodeling Tampa Bay | Crafted Kitchen & Bath | Oldsmar FL",
@@ -54,11 +55,9 @@ const jsonLd = {
         "Largo",
       ],
       priceRange: "$$",
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "5",
-        reviewCount: "50",
-      },
+      // NOTE: aggregateRating removed — Google requires it to reflect real,
+      // on-page, verifiable reviews. Restore once genuine reviews are displayed
+      // on the site (e.g. pulled from the Google Business Profile).
       openingHoursSpecification: {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -163,34 +162,45 @@ const materials = [
   },
 ];
 
+// Real, verified 5-star Google reviews (from the company's Google Business profile).
 const testimonials = [
   {
     quote:
-      "The craftsmanship was exceptional. Every little detail was handled with real pride in the work. Our kitchen feels completely transformed.",
-    author: "M.R., Palm Harbor",
+      "Crafted renovated our kitchen, flooring, and the interior of our home — incredible work. Tylor and Jim were both awesome. Communication was great, timing was as planned, and quality of work was amazing. Our home is beautiful now!",
+    author: "Myranda Falk",
   },
   {
     quote:
-      "Professional, efficient, and thorough. They upgraded our kitchen, three bathrooms, and all the flooring — not a single detail was missed.",
-    author: "S.T., Clearwater",
+      "They took our outdated kitchen and made it bright, open, and modern. The whole crew did a great job and were very professional. They completed the project within the timeline promised — the quality of their work and materials is excellent. We love our new kitchen!",
+    author: "Darrell Smith",
   },
   {
     quote:
-      "From the first conversation to the final walkthrough, communication was clear and the quality was outstanding.",
-    author: "D.L., Oldsmar",
+      "Tylor and crew did a great job on our kitchen and bath. He communicates all the way through the job and makes sure you are happy till the last piece is done. We LOVE our kitchen and would most definitely use them again and refer them to friends.",
+    author: "Kathy Paro",
   },
 ];
 
 const cities = [
-  "Oldsmar",
-  "Clearwater",
-  "Palm Harbor",
-  "Safety Harbor",
-  "Tampa",
-  "Dunedin",
-  "St. Petersburg",
-  "Tarpon Springs",
-  "Largo",
+  { name: "Oldsmar", slug: "oldsmar" },
+  { name: "Clearwater", slug: "clearwater" },
+  { name: "Palm Harbor", slug: "palm-harbor" },
+  { name: "Safety Harbor", slug: "safety-harbor" },
+  { name: "Tampa", slug: "tampa" },
+  { name: "Dunedin", slug: "dunedin" },
+  { name: "St. Petersburg", slug: "st-petersburg" },
+  { name: "Tarpon Springs", slug: "tarpon-springs" },
+  { name: "Largo", slug: "largo" },
+];
+
+// Paired problem → solution rows for the "Problems We Solve" transformation section.
+const problemSolutions = [
+  { problem: "Outdated, dated designs", solution: "Modern, custom upgrades tailored to you" },
+  { problem: "Unreliable, no-show contractors", solution: "One accountable team, clear communication" },
+  { problem: "Water damage & everyday wear", solution: "Durable, moisture-resistant materials" },
+  { problem: "Cramped, closed-off spaces", solution: "Smart, open-concept layouts" },
+  { problem: "Worn-out, tired interiors", solution: "Stylish finishes built to last" },
+  { problem: "Budget & pricing anxiety", solution: "Transparent pricing & financing options" },
 ];
 
 export default function HomePage() {
@@ -211,7 +221,10 @@ export default function HomePage() {
 
       {/* Overlapping white content panel */}
       <div style={{ position: "relative", zIndex: 2, maxWidth: "1240px", margin: "-115px auto 0", padding: "0 24px" }}>
-        <div style={{ background: "#fff", padding: "56px 72px 48px", boxShadow: "0 24px 60px rgba(0,0,0,0.08)", border: "1px solid rgba(0,0,0,0.06)" }}>
+        <div style={{ background: "#fff", padding: "clamp(28px, 6vw, 56px) clamp(22px, 6vw, 72px) clamp(28px, 5vw, 48px)", boxShadow: "0 24px 60px rgba(0,0,0,0.08)", border: "1px solid rgba(0,0,0,0.06)" }}>
+
+          <div className="hero-top">
+            <div className="hero-top-text">
 
           {/* Eyebrow */}
           <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "12px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#2c7fc0", fontWeight: 600, margin: "0 0 18px" }}>
@@ -219,7 +232,7 @@ export default function HomePage() {
           </p>
 
           {/* Main headline */}
-          <h1 style={{ fontFamily: "var(--font-cormorant),'Cormorant Garamond',Georgia,serif", fontSize: "clamp(48px,5vw,68px)", lineHeight: 1.08, letterSpacing: "0.01em", color: "#121820", maxWidth: "820px", margin: 0, fontWeight: 400 }}>
+          <h1 style={{ fontFamily: "var(--font-display),'Montserrat',system-ui,sans-serif", fontSize: "clamp(30px, 8vw, 68px)", lineHeight: 1.1, letterSpacing: "0.01em", color: "#121820", maxWidth: "820px", margin: 0, fontWeight: 400 }}>
             Beautiful Spaces. Expertly Crafted.<br />Built Around <em>You</em>.
           </h1>
 
@@ -232,14 +245,21 @@ export default function HomePage() {
           </p>
 
           {/* CTA buttons */}
-          <div style={{ display: "flex", alignItems: "center", gap: "28px", marginBottom: "52px", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "52px", flexWrap: "wrap" }}>
             <Link
-              href="/services"
-              style={{ background: "#111722", color: "#fff", padding: "15px 30px", fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", textDecoration: "none", display: "inline-block" }}
-              className="transition-colors duration-200 hover:bg-[#2B7CC1]"
+              href="/contact"
+              style={{ background: "#2B7CC1", color: "#fff", padding: "15px 32px", fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", textDecoration: "none", display: "inline-block" }}
+              className="transition-colors duration-200 hover:bg-[#1E5C96]"
             >
-              Explore Our Services
+              Get a Free Quote
             </Link>
+            <a
+              href="tel:+17273837550"
+              style={{ background: "transparent", color: "#111722", padding: "15px 30px", border: "1px solid rgba(0,0,0,0.25)", fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", textDecoration: "none", display: "inline-block" }}
+              className="transition-colors duration-200 hover:border-[#2B7CC1] hover:text-[#2B7CC1]"
+            >
+              Call (727) 383-7550
+            </a>
             <Link
               href="/our-work"
               style={{ color: "#111722", fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "8px" }}
@@ -249,8 +269,18 @@ export default function HomePage() {
             </Link>
           </div>
 
+            </div>{/* /hero-top-text */}
+
+            {/* Brand logo — fills the right-hand whitespace, natural brand colors on white */}
+            <aside className="hero-logo-panel">
+              <div className="hero-logo-inner">
+                <Image src="/logo.png" alt="Crafted Kitchen & Bath" width={300} height={122} style={{ width: "min(260px, 82%)", height: "auto" }} priority />
+              </div>
+            </aside>
+          </div>{/* /hero-top */}
+
           {/* Feature row — inside panel, separated by border-top */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", borderTop: "1px solid rgba(0,0,0,0.08)", paddingTop: "34px" }} className="grid-cols-2 md:grid-cols-4">
+          <div style={{ display: "grid", borderTop: "1px solid rgba(0,0,0,0.08)", paddingTop: "34px", gap: "28px 32px" }} className="grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
             {([
               { title: "Custom Design",       body: "Personalized layouts and finishes that reflect your style and needs.",
                 icon: <svg className="hero-feature-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#111722" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="11" height="11"/><rect x="20" y="3" width="11" height="11"/><rect x="3" y="20" width="11" height="11"/><rect x="20" y="20" width="11" height="11"/></svg> },
@@ -261,7 +291,7 @@ export default function HomePage() {
               { title: "Built to Last",        body: "Timeless design and quality construction that adds lasting value.",
                 icon: <svg className="hero-feature-icon" width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#111722" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3l11 5v9c0 6-5 11-11 13C11 28 6 23 6 17V8l11-5z"/><path d="M12 17l4 4 6-6"/></svg> },
             ] as Array<{ title: string; body: string; icon: React.ReactNode }>).map((f, i) => (
-              <div key={i} style={{ display: "grid", gridTemplateColumns: "46px 1fr", gap: "18px", padding: i === 0 ? "0 28px 0 0" : i === 3 ? "0 0 0 28px" : "0 28px", borderRight: i < 3 ? "1px solid rgba(0,0,0,0.08)" : "none" }}>
+              <div key={i} style={{ display: "grid", gridTemplateColumns: "40px 1fr", gap: "14px", alignItems: "start" }}>
                 {f.icon}
                 <div>
                   <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#111722", marginBottom: "8px", fontWeight: 600 }}>{f.title}</p>
@@ -275,11 +305,11 @@ export default function HomePage() {
       </div>
 
       {/* ─── KITCHEN & BATH SPOTLIGHT ────────────────────────────────── */}
-      <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }} className="grid-cols-1 md:grid-cols-2">
+      <section style={{ display: 'grid' }} className="grid-cols-1 md:grid-cols-2">
         {/* Kitchen side */}
-        <div style={{ position: 'relative', height: '560px', overflow: 'hidden' }} className="group">
+        <div style={{ position: 'relative', height: 'clamp(380px, 74vw, 560px)', overflow: 'hidden' }} className="group">
           <Image
-            src="/images/7538a222-6dd1-43e7-8c45-55880dacb434.png"
+            src="/images/wp/IMG_3266-1-scaled.jpg"
             alt="Custom kitchen remodeling Tampa Bay"
             fill
             style={{ objectFit: 'cover', objectPosition: 'center', transition: 'transform 0.7s ease' }}
@@ -288,15 +318,15 @@ export default function HomePage() {
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)' }} />
           <div style={{ position: 'absolute', bottom: 0, left: 0, padding: '40px 36px' }}>
             <p style={{ color: '#2B7CC1', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', margin: '0 0 12px', fontWeight: 500 }}>Our Specialty</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontWeight: 300, fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: '#FFFFFF', lineHeight: 1.1, margin: '0 0 16px' }}>Kitchen<br />Remodeling</h2>
+            <h2 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: '#FFFFFF', lineHeight: 1.1, margin: '0 0 16px' }}>Kitchen<br />Remodeling</h2>
             <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '14px', lineHeight: 1.7, margin: '0 0 24px', maxWidth: '320px' }}>Custom cabinetry, quartz countertops, kitchen islands, and complete kitchen transformations.</p>
-            <Link href="/kitchen-remodeling" style={{ display: 'inline-block', border: '1px solid rgba(255,255,255,0.7)', color: '#FFFFFF', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.16em', padding: '12px 28px', textDecoration: 'none' }} className="hover:bg-white hover:text-[#1A202C] transition-colors duration-300">Explore Kitchens →</Link>
+            <Link href="/kitchen-remodeling" className="inline-block border border-white/70 bg-transparent text-white hover:bg-white hover:text-[#1A202C] hover:border-white transition-colors duration-300" style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.16em', padding: '12px 28px', textDecoration: 'none' }}>Explore Kitchens →</Link>
           </div>
         </div>
         {/* Bathroom side */}
-        <div style={{ position: 'relative', height: '560px', overflow: 'hidden' }} className="group">
+        <div style={{ position: 'relative', height: 'clamp(380px, 74vw, 560px)', overflow: 'hidden' }} className="group">
           <Image
-            src="/images/e1b3aa11-74f9-47a0-a8bc-6008207b1604.png"
+            src="/images/wp/IMG_1147-1-scaled.jpg"
             alt="Luxury bathroom remodeling Tampa Bay"
             fill
             style={{ objectFit: 'cover', objectPosition: 'center', transition: 'transform 0.7s ease' }}
@@ -305,15 +335,15 @@ export default function HomePage() {
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)' }} />
           <div style={{ position: 'absolute', bottom: 0, left: 0, padding: '40px 36px' }}>
             <p style={{ color: '#2B7CC1', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', margin: '0 0 12px', fontWeight: 500 }}>Our Specialty</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontWeight: 300, fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: '#FFFFFF', lineHeight: 1.1, margin: '0 0 16px' }}>Bathroom<br />Remodeling</h2>
+            <h2 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: '#FFFFFF', lineHeight: 1.1, margin: '0 0 16px' }}>Bathroom<br />Remodeling</h2>
             <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '14px', lineHeight: 1.7, margin: '0 0 24px', maxWidth: '320px' }}>Spa-inspired finishes, custom tile showers, freestanding tubs, and luxury vanities.</p>
-            <Link href="/bathroom-remodeling" style={{ display: 'inline-block', border: '1px solid rgba(255,255,255,0.7)', color: '#FFFFFF', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.16em', padding: '12px 28px', textDecoration: 'none' }} className="hover:bg-white hover:text-[#1A202C] transition-colors duration-300">Explore Bathrooms →</Link>
+            <Link href="/bathroom-remodeling" className="inline-block border border-white/70 bg-transparent text-white hover:bg-white hover:text-[#1A202C] hover:border-white transition-colors duration-300" style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.16em', padding: '12px 28px', textDecoration: 'none' }}>Explore Bathrooms →</Link>
           </div>
         </div>
       </section>
 
       {/* ─── SECTION 2: SIGNATURE SERVICES ──────────────────────────── */}
-      <section style={{ backgroundColor: "#F7F8FA", padding: "96px 0" }}>
+      <section style={{ backgroundColor: "#F7F8FA", padding: "clamp(54px, 11vw, 96px) 0" }}>
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <div className="mb-16">
             <p
@@ -330,7 +360,7 @@ export default function HomePage() {
             <h2
               className="mt-6"
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(2.5rem,4vw,4rem)",
                 color: "#1A202C",
@@ -350,7 +380,7 @@ export default function HomePage() {
             <AnimateOnScroll delay={0}>
               <Link
                 href="/kitchen-remodeling"
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", display: "block", height: "100%" }}
                 className="group"
               >
                 <div
@@ -358,22 +388,23 @@ export default function HomePage() {
                   style={{
                     backgroundColor: "#FFFFFF",
                     minHeight: "320px",
+                    height: "100%",
                     display: "flex",
                     flexDirection: "column",
                   }}
                 >
-                  <div style={{ position: 'relative', width: '100%', height: '240px', overflow: 'hidden' }}>
+                  <div style={{ position: 'relative', width: '100%', height: 'clamp(150px, 38vw, 240px)', overflow: 'hidden' }}>
                     <Image
-                      src="/images/hero-kitchen.jpg"
+                      src="/images/wp/Hunter-Kitchen-hires.png"
                       alt="Kitchen Remodeling"
                       fill
                       style={{ objectFit: 'cover', objectPosition: 'center top' }}
                     />
                   </div>
-                  <div style={{ padding: "24px", backgroundColor: "#FFFFFF" }}>
+                  <div style={{ padding: "24px", backgroundColor: "#FFFFFF", flex: 1 }}>
                     <h3
                       style={{
-                        fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                        fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                         fontWeight: 400,
                         fontStyle: "italic",
                         fontSize: "1.25rem",
@@ -394,7 +425,7 @@ export default function HomePage() {
                     <p
                       style={{
                         fontSize: "12px",
-                        color: "#9CA3AF",
+                        color: "#6B7280",
                         marginTop: "8px",
                         lineHeight: 1.6,
                       }}
@@ -410,7 +441,7 @@ export default function HomePage() {
             <AnimateOnScroll delay={100}>
               <Link
                 href="/bathroom-remodeling"
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", display: "block", height: "100%" }}
                 className="group"
               >
                 <div
@@ -418,22 +449,23 @@ export default function HomePage() {
                   style={{
                     backgroundColor: "#FFFFFF",
                     minHeight: "320px",
+                    height: "100%",
                     display: "flex",
                     flexDirection: "column",
                   }}
                 >
-                  <div style={{ position: 'relative', width: '100%', height: '240px', overflow: 'hidden' }}>
+                  <div style={{ position: 'relative', width: '100%', height: 'clamp(150px, 38vw, 240px)', overflow: 'hidden' }}>
                     <Image
-                      src="/images/e1b3aa11-74f9-47a0-a8bc-6008207b1604.png"
+                      src="/images/wp/IMG_1243-scaled.jpg"
                       alt="Bathroom Remodeling"
                       fill
                       style={{ objectFit: 'cover', objectPosition: 'center center' }}
                     />
                   </div>
-                  <div style={{ padding: "24px", backgroundColor: "#FFFFFF" }}>
+                  <div style={{ padding: "24px", backgroundColor: "#FFFFFF", flex: 1 }}>
                     <h3
                       style={{
-                        fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                        fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                         fontWeight: 400,
                         fontStyle: "italic",
                         fontSize: "1.25rem",
@@ -454,7 +486,7 @@ export default function HomePage() {
                     <p
                       style={{
                         fontSize: "12px",
-                        color: "#9CA3AF",
+                        color: "#6B7280",
                         marginTop: "8px",
                         lineHeight: 1.6,
                       }}
@@ -470,7 +502,7 @@ export default function HomePage() {
             <AnimateOnScroll delay={200}>
               <Link
                 href="/complete-interior-home-remodeling"
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", display: "block", height: "100%" }}
                 className="group"
               >
                 <div
@@ -478,22 +510,23 @@ export default function HomePage() {
                   style={{
                     backgroundColor: "#FFFFFF",
                     minHeight: "320px",
+                    height: "100%",
                     display: "flex",
                     flexDirection: "column",
                   }}
                 >
-                  <div style={{ position: 'relative', width: '100%', height: '208px', overflow: 'hidden' }}>
+                  <div style={{ position: 'relative', width: '100%', height: 'clamp(150px, 38vw, 240px)', overflow: 'hidden' }}>
                     <Image
-                      src="/images/hero-bathroom.jpg"
+                      src="/images/wp/IMG_6140-scaled.jpeg"
                       alt="Complete Interior Remodeling"
                       fill
                       style={{ objectFit: 'cover', objectPosition: 'center' }}
                     />
                   </div>
-                  <div style={{ padding: "24px", backgroundColor: "#FFFFFF" }}>
+                  <div style={{ padding: "24px", backgroundColor: "#FFFFFF", flex: 1 }}>
                     <h3
                       style={{
-                        fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                        fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                         fontWeight: 400,
                         fontStyle: "italic",
                         fontSize: "1.25rem",
@@ -514,7 +547,7 @@ export default function HomePage() {
                     <p
                       style={{
                         fontSize: "12px",
-                        color: "#9CA3AF",
+                        color: "#6B7280",
                         marginTop: "8px",
                         lineHeight: 1.6,
                       }}
@@ -530,7 +563,7 @@ export default function HomePage() {
             <AnimateOnScroll delay={300}>
               <Link
                 href="/flooring-installation"
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none", display: "block", height: "100%" }}
                 className="group"
               >
                 <div
@@ -538,22 +571,23 @@ export default function HomePage() {
                   style={{
                     backgroundColor: "#FFFFFF",
                     minHeight: "320px",
+                    height: "100%",
                     display: "flex",
                     flexDirection: "column",
                   }}
                 >
-                  <div style={{ position: 'relative', width: '100%', height: '208px', overflow: 'hidden' }}>
+                  <div style={{ position: 'relative', width: '100%', height: 'clamp(150px, 38vw, 240px)', overflow: 'hidden' }}>
                     <Image
-                      src="/images/hero-kitchen.jpg"
+                      src="/images/wp/IMG_1419-scaled.jpg"
                       alt="Flooring & Painting"
                       fill
                       style={{ objectFit: 'cover', objectPosition: 'center' }}
                     />
                   </div>
-                  <div style={{ padding: "24px", backgroundColor: "#FFFFFF" }}>
+                  <div style={{ padding: "24px", backgroundColor: "#FFFFFF", flex: 1 }}>
                     <h3
                       style={{
-                        fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                        fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                         fontWeight: 400,
                         fontStyle: "italic",
                         fontSize: "1.25rem",
@@ -574,7 +608,7 @@ export default function HomePage() {
                     <p
                       style={{
                         fontSize: "12px",
-                        color: "#9CA3AF",
+                        color: "#6B7280",
                         marginTop: "8px",
                         lineHeight: 1.6,
                       }}
@@ -589,22 +623,151 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─── PROBLEMS WE SOLVE (challenge → solution) ────────────────── */}
+      <section style={{ backgroundColor: "#FFFFFF", padding: "clamp(54px, 11vw, 96px) 0" }}>
+        <div className="max-w-[1200px] mx-auto px-8 md:px-16">
+          <div style={{ textAlign: "center", marginBottom: "clamp(40px, 6vw, 64px)" }}>
+            <p style={{ fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.22em", color: "#2B7CC1", fontWeight: 500 }}>
+              The Problems We Solve
+            </p>
+            <h2
+              className="mt-6"
+              style={{
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
+                fontWeight: 300,
+                fontSize: "clamp(2.2rem,4vw,3.6rem)",
+                color: "#1A202C",
+                lineHeight: 1.12,
+                letterSpacing: "-0.01em",
+              }}
+            >
+              From Frustration to Finished
+            </h2>
+            <p style={{ maxWidth: "620px", margin: "20px auto 0", fontSize: "16px", lineHeight: 1.8, color: "#4A5568" }}>
+              Remodeling can feel overwhelming — outdated designs, unreliable contractors, hidden costs. We turn every one of those headaches into a reason to love your home again.
+            </p>
+          </div>
+
+          <div className="ps-grid">
+            {/* Challenges */}
+            <div className="ps-card ps-challenges">
+              <div className="ps-card-head">
+                <span className="ps-tag ps-tag-x">Before</span>
+                <h3 className="ps-card-title" style={{ color: "#1A202C" }}>The Challenges</h3>
+              </div>
+              <ul className="ps-list" data-stagger>
+                {problemSolutions.map((row) => (
+                  <li key={row.problem} className="ps-row">
+                    <span className="ps-ico ps-ico-x" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                        <path d="M3 3l7 7M10 3l-7 7" stroke="#D24C46" strokeWidth="1.8" strokeLinecap="round" />
+                      </svg>
+                    </span>
+                    <span style={{ color: "#4A5568", fontSize: "15px", lineHeight: 1.4 }}>{row.problem}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Arrow badge */}
+            <div className="ps-arrow" aria-hidden="true">
+              <span className="ps-arrow-badge">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 12h15M13 6l6 6-6 6" stroke="#2B7CC1" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </div>
+
+            {/* Solutions */}
+            <div className="ps-card ps-solutions">
+              <div className="ps-card-head">
+                <span className="ps-tag ps-tag-check">After</span>
+                <h3 className="ps-card-title" style={{ color: "#FFFFFF" }}>The Crafted Solution</h3>
+              </div>
+              <ul className="ps-list" data-stagger>
+                {problemSolutions.map((row) => (
+                  <li key={row.solution} className="ps-row ps-row-light">
+                    <span className="ps-ico ps-ico-check" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                        <path d="M2.5 6.8L5 9.3 10.5 3.5" stroke="#FFFFFF" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                    <span style={{ color: "#FFFFFF", fontSize: "15px", lineHeight: 1.4, fontWeight: 500 }}>{row.solution}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <style>{`
+          .ps-grid {
+            display: grid;
+            grid-template-columns: 1fr 76px 1fr;
+            align-items: stretch;
+            max-width: 1040px;
+            margin: 0 auto;
+          }
+          @media (max-width: 900px) {
+            .ps-grid { grid-template-columns: 1fr; }
+          }
+          .ps-card { border-radius: 12px; padding: clamp(26px, 3.6vw, 44px); }
+          .ps-challenges {
+            background: #FFFFFF;
+            border: 1px solid rgba(0,0,0,0.10);
+            box-shadow: 0 24px 60px -34px rgba(26,32,44,0.45);
+          }
+          .ps-solutions {
+            background: linear-gradient(155deg, #2B5DA8 0%, #1B4287 100%);
+            box-shadow: 0 34px 70px -28px rgba(27,66,135,0.6);
+          }
+          .ps-card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; padding-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.07); }
+          .ps-solutions .ps-card-head { border-bottom-color: rgba(255,255,255,0.16); }
+          .ps-tag {
+            font-family: var(--font-dm-sans),'DM Sans',system-ui,sans-serif;
+            font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700;
+            padding: 5px 10px; border-radius: 4px;
+          }
+          .ps-tag-x { background: rgba(210,76,70,0.1); color: #C0413B; }
+          .ps-tag-check { background: rgba(255,255,255,0.18); color: #FFFFFF; }
+          .ps-card-title { font-family: var(--font-display),'Montserrat',system-ui,sans-serif; font-weight: 400; font-size: clamp(20px,2.4vw,24px); margin: 0; }
+          .ps-list { list-style: none; margin: 0; padding: 0; }
+          .ps-row { display: flex; align-items: center; gap: 14px; padding: 14px 0; }
+          .ps-row + .ps-row { border-top: 1px solid rgba(0,0,0,0.06); }
+          .ps-row-light + .ps-row-light { border-top-color: rgba(255,255,255,0.12); }
+          .ps-ico { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+          .ps-ico-x { background: rgba(210,76,70,0.1); }
+          .ps-ico-check { background: rgba(255,255,255,0.18); }
+          .ps-arrow { display: flex; align-items: center; justify-content: center; }
+          .ps-arrow-badge {
+            width: 54px; height: 54px; border-radius: 50%;
+            background: #FFFFFF; border: 1px solid rgba(43,124,193,0.3);
+            box-shadow: 0 12px 30px -12px rgba(26,32,44,0.35);
+            display: flex; align-items: center; justify-content: center;
+          }
+          @media (max-width: 900px) {
+            .ps-arrow { padding: 26px 0; }
+            .ps-arrow-badge { transform: rotate(90deg); }
+          }
+        `}</style>
+      </section>
+
       {/* ─── WHY CRAFTED FOR KITCHEN & BATH ─────────────────────────── */}
-      <section style={{ backgroundColor: '#1A202C', padding: '96px 0' }}>
+      <section style={{ backgroundColor: '#1A202C', padding: 'clamp(54px, 11vw, 96px) 0' }}>
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <div style={{ textAlign: 'center', marginBottom: '64px' }}>
             <p style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.22em', color: '#2B7CC1', fontWeight: 500 }}>The Crafted Difference</p>
-            <h2 style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontWeight: 300, fontSize: 'clamp(2.5rem,4vw,4rem)', color: '#FFFFFF', lineHeight: 1.1, marginTop: '24px', letterSpacing: '-0.01em' }}>Built for Kitchen &amp;<br />Bathroom Excellence</h2>
+            <h2 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(2.5rem,4vw,4rem)', color: '#FFFFFF', lineHeight: 1.1, marginTop: '24px', letterSpacing: '-0.01em' }}>Built for Kitchen &amp;<br />Bathroom Excellence</h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px' }} className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              { icon: '◇', title: 'Kitchen Specialists', body: 'From custom cabinetry to quartz islands — we have completed 150+ kitchen transformations across Tampa Bay.' },
-              { icon: '◇', title: 'Bath Renovation Experts', body: 'Spa-inspired bathroom design with precision tile work, luxury vanities, and frameless glass showers.' },
-              { icon: '◇', title: 'One-Stop Shop', body: 'Kitchen, bath, flooring, and paint — one licensed team, one seamless project, zero coordination headaches.' },
-              { icon: '◇', title: 'Licensed & Insured', body: 'Florida licensed contractor CRC1333143. Fully insured. Your home is protected every step of the way.' },
-              { icon: '◇', title: 'Premium Materials', body: 'We source quartz, marble, custom cabinetry, and designer fixtures from trusted suppliers.' },
-              { icon: '◇', title: '5-Star Track Record', body: '250+ homes transformed. Every project ends with a full walkthrough and your complete satisfaction.' },
-            ].map((f, i) => (
+          <div style={{ display: 'grid', gap: '24px' }} className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {([
+              { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M4 9h16M8 5.5h2M8 12.5v5"/></svg>, title: 'Kitchen Specialists', body: 'From custom cabinetry to quartz islands — we have completed 150+ kitchen transformations across Tampa Bay.' },
+              { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3Z"/><path d="M6 12V6a2 2 0 0 1 2-2c1 0 1.5.5 1.8 1M9 6.5h2"/></svg>, title: 'Bath Renovation Experts', body: 'Spa-inspired bathroom design with precision tile work, luxury vanities, and frameless glass showers.' },
+              { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l8 4-8 4-8-4 8-4Z"/><path d="M4 12l8 4 8-4M4 16.5l8 4 8-4"/></svg>, title: 'One-Stop Shop', body: 'Kitchen, bath, flooring, and paint — one licensed team, one seamless project, zero coordination headaches.' },
+              { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l8 3.5v5C20 17 16.4 21 12 22 7.6 21 4 17 4 11.5v-5L12 3Z"/><path d="M9 11.5l2 2 4-4.5"/></svg>, title: 'Licensed & Insured', body: 'Florida licensed contractor CRC1333143. Fully insured. Your home is protected every step of the way.' },
+              { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 3h12l3 5-9 13L3 8l3-5Z"/><path d="M3 8h18M9 3l3 18M15 3l-3 18"/></svg>, title: 'Premium Materials', body: 'We source quartz, marble, custom cabinetry, and designer fixtures from trusted suppliers.' },
+              { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.25 4.15 1 5.85L12 17.9 6.75 19.6l1-5.85L3.5 9.7l5.9-.9L12 3.5Z"/></svg>, title: '5-Star Track Record', body: '250+ homes transformed. Every project ends with a full walkthrough and your complete satisfaction.' },
+            ] as Array<{ icon: React.ReactNode; title: string; body: string }>).map((f) => (
               <div
                 key={f.title}
                 className="glow-card"
@@ -615,17 +778,40 @@ export default function HomePage() {
                   transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
                 }}
               >
-                <p style={{ color: '#2B7CC1', fontSize: '20px', marginBottom: '16px' }}>{f.icon}</p>
-                <h3 style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontWeight: 400, fontSize: '1.25rem', color: '#FFFFFF', marginBottom: '12px' }}>{f.title}</h3>
+                <span style={{ display: 'inline-flex', width: '56px', height: '56px', borderRadius: '50%', alignItems: 'center', justifyContent: 'center', marginBottom: '20px', color: '#6BA6DC', background: 'rgba(43,124,193,0.12)', border: '1px solid rgba(43,124,193,0.4)' }}>{f.icon}</span>
+                <h3 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 400, fontSize: '1.25rem', color: '#FFFFFF', marginBottom: '12px' }}>{f.title}</h3>
                 <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.75 }}>{f.body}</p>
               </div>
             ))}
+          </div>
+
+          {/* Section CTA */}
+          <div style={{ textAlign: 'center', marginTop: 'clamp(44px, 6vw, 64px)' }}>
+            <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.7)', margin: '0 0 24px', lineHeight: 1.7 }}>
+              Ready to see what Crafted can do for your home?
+            </p>
+            <div style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'center', alignItems: 'center' }}>
+              <Link
+                href="/quote"
+                style={{ background: '#2B7CC1', color: '#fff', padding: '16px 36px', fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 700, textDecoration: 'none', borderRadius: '4px', display: 'inline-block' }}
+                className="transition-colors duration-200 hover:bg-[#3D8BD0]"
+              >
+                Get a Free Quote →
+              </Link>
+              <a
+                href="tel:+17273837550"
+                style={{ color: '#FFFFFF', padding: '16px 30px', border: '1px solid rgba(255,255,255,0.3)', fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 600, textDecoration: 'none', borderRadius: '4px', display: 'inline-block' }}
+                className="transition-colors duration-200 hover:border-[#2B7CC1] hover:text-[#6BA6DC]"
+              >
+                Call (727) 383-7550
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ─── SECTION 3: PROCESS ──────────────────────────────────────── */}
-      <section style={{ backgroundColor: "#FFFFFF", padding: "96px 0" }}>
+      <section style={{ backgroundColor: "#FFFFFF", padding: "clamp(54px, 11vw, 96px) 0" }}>
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <div className="mb-16">
             <p
@@ -642,7 +828,7 @@ export default function HomePage() {
             <h2
               className="mt-6 max-w-xl"
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(2.5rem,4vw,4rem)",
                 color: "#1A202C",
@@ -673,7 +859,7 @@ export default function HomePage() {
                 <div
                   style={{
                     flexShrink: 0,
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 200,
                     fontSize: "4.5rem",
                     color: "rgba(43,124,193,0.18)",
@@ -686,7 +872,7 @@ export default function HomePage() {
                 <div>
                   <h3
                     style={{
-                      fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                      fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       fontWeight: 400,
                       fontSize: "1.25rem",
                       color: "#1A202C",
@@ -715,7 +901,7 @@ export default function HomePage() {
       <section
         style={{
           backgroundColor: "#EEF0F4",
-          padding: "64px 0",
+          padding: "clamp(36px, 7vw, 64px) 0",
           borderTop: "1px solid rgba(0,0,0,0.08)",
           borderBottom: "1px solid rgba(0,0,0,0.08)",
         }}
@@ -740,7 +926,7 @@ export default function HomePage() {
                 >
                   <div
                     style={{
-                      fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                      fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       fontWeight: 300,
                       fontSize: "3.75rem",
                       color: "#2B7CC1",
@@ -796,7 +982,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── SECTION 5: FEATURED WORK ────────────────────────────────── */}
-      <section style={{ backgroundColor: "#FFFFFF", padding: "96px 0" }}>
+      <section style={{ backgroundColor: "#FFFFFF", padding: "clamp(54px, 11vw, 96px) 0" }}>
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <div className="mb-16">
             <p
@@ -813,7 +999,7 @@ export default function HomePage() {
             <h2
               className="mt-6"
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(2.5rem,4vw,4rem)",
                 color: "#1A202C",
@@ -827,61 +1013,16 @@ export default function HomePage() {
 
           {/* Asymmetric grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-            {/* Tall card — spans 2 rows on lg */}
-            <div
-              className="lg:row-span-2 relative overflow-hidden"
-              style={{ height: "480px" }}
-            >
-              <Image
-                src="/images/e1b3aa11-74f9-47a0-a8bc-6008207b1604.png"
-                alt="Luxury bathroom remodel — Clearwater, FL"
-                fill
-                style={{ objectFit: 'cover', objectPosition: 'center top' }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  backgroundColor: "rgba(255,255,255,0.9)",
-                  backdropFilter: "blur(4px)",
-                  padding: "12px 16px",
-                }}
-              >
-                <p
-                  style={{
-                    fontSize: "9px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.14em",
-                    color: "#2B7CC1",
-                  }}
-                >
-                  Bathroom Remodel
-                </p>
-                <p
-                  style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
-                    fontStyle: "italic",
-                    fontSize: "0.875rem",
-                    color: "#1A202C",
-                  }}
-                >
-                  Master Bath Retreat — Clearwater
-                </p>
-              </div>
-            </div>
-
-            {/* Medium card 1 */}
+            {/* Card 1 */}
             <div
               className="relative overflow-hidden"
-              style={{ height: "288px" }}
+              style={{ height: "360px" }}
             >
               <Image
-                src="/images/7538a222-6dd1-43e7-8c45-55880dacb434.png"
-                alt="Luxury kitchen remodel — Palm Harbor, FL"
+                src="/images/wp/IMG_2580-scaled.jpeg"
+                alt="Two-tone kitchen remodel with quartz island — Tampa Bay"
                 fill
-                style={{ objectFit: 'cover', objectPosition: 'center' }}
+                style={{ objectFit: 'cover', objectPosition: 'center 70%' }}
               />
               <div
                 style={{
@@ -906,25 +1047,25 @@ export default function HomePage() {
                 </p>
                 <p
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontStyle: "italic",
                     fontSize: "0.875rem",
                     color: "#1A202C",
                   }}
                 >
-                  Kitchen Remodel — Palm Harbor
+                  Two-Tone Kitchen — Palm Harbor
                 </p>
               </div>
             </div>
 
-            {/* Medium card 2 */}
+            {/* Medium card 1 */}
             <div
               className="relative overflow-hidden"
-              style={{ height: "288px" }}
+              style={{ height: "360px" }}
             >
               <Image
-                src="/images/hero-bathroom.jpg"
-                alt="Bathroom Renovation — Safety Harbor, FL"
+                src="/images/wp/IMG_1243-scaled.jpg"
+                alt="Custom walk-in shower with shiplap walls — Clearwater, FL"
                 fill
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
               />
@@ -947,17 +1088,62 @@ export default function HomePage() {
                     color: "#2B7CC1",
                   }}
                 >
-                  Full Interior
+                  Bathroom Remodel
                 </p>
                 <p
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontStyle: "italic",
                     fontSize: "0.875rem",
                     color: "#1A202C",
                   }}
                 >
-                  Full Interior — Safety Harbor
+                  Walk-In Shower — Clearwater
+                </p>
+              </div>
+            </div>
+
+            {/* Medium card 2 */}
+            <div
+              className="relative overflow-hidden"
+              style={{ height: "360px" }}
+            >
+              <Image
+                src="/images/wp/IMG_0801-scaled.jpg"
+                alt="Sage green vanity with brass fixtures — Safety Harbor, FL"
+                fill
+                style={{ objectFit: 'cover', objectPosition: 'center bottom' }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  backgroundColor: "rgba(255,255,255,0.9)",
+                  backdropFilter: "blur(4px)",
+                  padding: "12px 16px",
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: "9px",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.14em",
+                    color: "#2B7CC1",
+                  }}
+                >
+                  Bathroom Remodel
+                </p>
+                <p
+                  style={{
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
+                    fontStyle: "italic",
+                    fontSize: "0.875rem",
+                    color: "#1A202C",
+                  }}
+                >
+                  Sage Vanity — Safety Harbor
                 </p>
               </div>
             </div>
@@ -982,7 +1168,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── SECTION 6: MATERIALS BOARD ──────────────────────────────── */}
-      <section style={{ backgroundColor: "#F7F8FA", padding: "96px 0" }}>
+      <section style={{ backgroundColor: "#F7F8FA", padding: "clamp(54px, 11vw, 96px) 0" }}>
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <div className="mb-16">
             <p
@@ -999,7 +1185,7 @@ export default function HomePage() {
             <h2
               className="mt-6"
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(2.5rem,4vw,4rem)",
                 color: "#1A202C",
@@ -1036,7 +1222,7 @@ export default function HomePage() {
                   className="mt-1"
                   style={{
                     fontSize: "11px",
-                    color: "#9CA3AF",
+                    color: "#6B7280",
                     lineHeight: 1.6,
                   }}
                 >
@@ -1048,14 +1234,17 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─── MEET THE CREW (mascots + chatbot intro) ─────────────────── */}
+      <MeetTheCrew />
+
       {/* ─── SECTION 7: TESTIMONIALS ─────────────────────────────────── */}
-      <section style={{ backgroundColor: "#FFFFFF", padding: "96px 0" }}>
+      <section style={{ backgroundColor: "#FFFFFF", padding: "clamp(54px, 11vw, 96px) 0" }}>
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <div className="mb-16 text-center">
             <p style={{ fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.22em", color: "#2B7CC1", fontWeight: 500 }}>
               Client Stories
             </p>
-            <h2 className="mt-6" style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontWeight: 300, fontSize: "clamp(2.5rem,4vw,4rem)", color: "#1A202C", lineHeight: 1.1, letterSpacing: "-0.01em" }}>
+            <h2 className="mt-6" style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: "clamp(2.5rem,4vw,4rem)", color: "#1A202C", lineHeight: 1.1, letterSpacing: "-0.01em" }}>
               What Our Clients Say
             </h2>
             {/* Google rating badge */}
@@ -1070,7 +1259,7 @@ export default function HomePage() {
                 {[1,2,3,4,5].map(s => <span key={s} style={{ color: "#F59E0B", fontSize: "14px" }}>★</span>)}
               </div>
               <span style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "13px", color: "#1A202C", fontWeight: 500 }}>5.0</span>
-              <span style={{ fontSize: "13px", color: "#9CA3AF" }}>· Google Reviews</span>
+              <span style={{ fontSize: "13px", color: "#6B7280" }}>· Google Reviews</span>
             </div>
           </div>
 
@@ -1086,10 +1275,10 @@ export default function HomePage() {
                       <path fill="#4285F4" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#34A853" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#FBBC05" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#EA4335" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/>
                     </svg>
                   </div>
-                  <p style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontSize: "1.25rem", color: "#1A202C", lineHeight: 1.6, margin: 0 }}>
+                  <p style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontStyle: "italic", fontSize: "1rem", color: "#1A202C", lineHeight: 1.7, margin: 0 }}>
                     &ldquo;{t.quote}&rdquo;
                   </p>
-                  <p className="mt-4" style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.12em", color: "#9CA3AF" }}>
+                  <p className="mt-4" style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.12em", color: "#6B7280" }}>
                     — {t.author}
                   </p>
                 </div>
@@ -1119,7 +1308,7 @@ export default function HomePage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "64px 0",
+          padding: "clamp(36px, 7vw, 64px) 0",
           borderTop: "1px solid rgba(0,0,0,0.08)",
         }}
       >
@@ -1140,7 +1329,7 @@ export default function HomePage() {
               <h2
                 className="mt-6 mb-6"
                 style={{
-                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(2.5rem,4vw,4rem)",
                   color: "#1A202C",
@@ -1181,23 +1370,27 @@ export default function HomePage() {
               style={{
                 display: "flex",
                 flexWrap: "wrap",
-                gap: "12px",
+                gap: "14px",
                 alignContent: "flex-start",
               }}
             >
               {cities.map((city) => (
-                <span
-                  key={city}
+                <Link
+                  key={city.slug}
+                  href={`/areas-of-service/${city.slug}`}
+                  className="hover:border-[#2B57A6] hover:text-[#2B57A6] hover:bg-white transition-colors duration-200"
                   style={{
                     display: "inline-block",
-                    border: "1px solid rgba(0,0,0,0.14)",
-                    fontSize: "10px",
+                    border: "1px solid rgba(0,0,0,0.16)",
+                    fontSize: "15px",
                     color: "#4A5568",
-                    padding: "8px 16px",
+                    padding: "13px 26px",
+                    letterSpacing: "0.01em",
+                    textDecoration: "none",
                   }}
                 >
-                  {city}
-                </span>
+                  {city.name}
+                </Link>
               ))}
             </div>
           </div>
@@ -1211,7 +1404,7 @@ export default function HomePage() {
         primaryCTA="Book a Free Consultation"
         primaryHref="/contact"
         secondaryCTA="Call (727) 383-7550"
-        secondaryHref="tel:7273837550"
+        secondaryHref="tel:+17273837550"
       />
     </>
   );

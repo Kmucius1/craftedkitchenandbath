@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 // ─── shared heading style ───────────────────────────────────────────────────
 const sectionHeadingStyle: React.CSSProperties = {
-  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
   fontWeight: 300,
   fontSize: 'clamp(20px, 2.5vw, 24px)',
   color: '#1A202C',
@@ -34,7 +34,7 @@ const dividerStyle: React.CSSProperties = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <main style={{ backgroundColor: '#F7F8FA' }}>
+    <div style={{ backgroundColor: '#F7F8FA' }}>
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section
@@ -69,7 +69,7 @@ export default function PrivacyPolicyPage() {
 
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: 'clamp(36px, 5vw, 56px)',
               color: '#1A202C',
@@ -84,7 +84,7 @@ export default function PrivacyPolicyPage() {
           <p
             style={{
               fontSize: '14px',
-              color: '#9CA3AF',
+              color: '#6B7280',
               letterSpacing: '0.06em',
               textTransform: 'uppercase',
               margin: 0,
@@ -515,7 +515,7 @@ export default function PrivacyPolicyPage() {
               </p>
               <p style={{ fontSize: '15px', lineHeight: 1.75, color: '#4A5568', margin: 0 }}>
                 <span style={{ color: '#1A202C' }}>Phone: </span>
-                <a href="tel:7273837550" style={{ color: '#2B7CC1', textDecoration: 'none' }}>
+                <a href="tel:+17273837550" style={{ color: '#2B7CC1', textDecoration: 'none' }}>
                   (727) 383-7550
                 </a>
               </p>
@@ -578,7 +578,7 @@ export default function PrivacyPolicyPage() {
                 fontSize: '12px',
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
-                color: '#9CA3AF',
+                color: '#6B7280',
                 textDecoration: 'none',
               }}
             >
@@ -588,6 +588,6 @@ export default function PrivacyPolicyPage() {
 
         </div>
       </section>
-    </main>
+    </div>
   )
 }

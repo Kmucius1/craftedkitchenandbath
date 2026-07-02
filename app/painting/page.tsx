@@ -155,7 +155,7 @@ export default function PaintingPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "128px 24px 96px",
+          padding: "clamp(112px, 16vw, 128px) 24px clamp(54px, 11vw, 96px)",
         }}
       >
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
@@ -183,7 +183,7 @@ export default function PaintingPage() {
 
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(36px, 5vw, 64px)",
               color: "#1A202C",
@@ -231,8 +231,8 @@ export default function PaintingPage() {
       </section>
 
       {/* ── HERO IMAGE ─────────────────────────────────────────────────── */}
-      <div style={{ width: '100%', height: '460px', position: 'relative', overflow: 'hidden' }}>
-        <Image src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1920&q=90" alt="Interior painting services" fill priority style={{ objectFit: 'cover', objectPosition: 'center 40%' }} />
+      <div style={{ width: '100%', height: 'clamp(280px, 52vw, 460px)', position: 'relative', overflow: 'hidden' }}>
+        <Image src="/images/wp/painting.jpg" alt="Professional interior painting services by Crafted Kitchen and Bath" fill priority style={{ objectFit: 'cover', objectPosition: 'center 55%' }} />
       </div>
 
       {/* ── 2. WHAT WE PAINT ───────────────────────────────────────────── */}
@@ -259,7 +259,7 @@ export default function PaintingPage() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 1fr))",
               gap: "2px",
             }}
           >
@@ -287,7 +287,7 @@ export default function PaintingPage() {
 
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
                     color: "#1A202C",
@@ -303,7 +303,7 @@ export default function PaintingPage() {
                   style={{
                     fontSize: "14px",
                     lineHeight: 1.75,
-                    color: "#9CA3AF",
+                    color: "#6B7280",
                     margin: 0,
                   }}
                 >
@@ -325,7 +325,7 @@ export default function PaintingPage() {
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <h2
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(28px, 3.5vw, 48px)",
               color: "#1A202C",
@@ -371,7 +371,7 @@ export default function PaintingPage() {
 
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "20px",
                     color: "#1A202C",
@@ -386,7 +386,7 @@ export default function PaintingPage() {
                   style={{
                     fontSize: "14px",
                     lineHeight: 1.8,
-                    color: "#9CA3AF",
+                    color: "#6B7280",
                     margin: 0,
                   }}
                 >
@@ -408,7 +408,7 @@ export default function PaintingPage() {
         <div style={{ maxWidth: "820px", margin: "0 auto" }}>
           <h2
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(24px, 3vw, 40px)",
               color: "#1A202C",
@@ -473,7 +473,7 @@ export default function PaintingPage() {
 
           <h2
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(26px, 3.5vw, 44px)",
               color: "#1A202C",
@@ -566,7 +566,7 @@ export default function PaintingPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
                     color: "#1A202C",

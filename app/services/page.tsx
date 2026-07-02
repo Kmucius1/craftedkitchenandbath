@@ -67,10 +67,45 @@ const services = [
   },
   {
     num: "06",
-    name: "Countertops & Cabinetry",
-    href: "/services",
+    name: "Countertops",
+    href: "/services/countertops",
     description:
-      "Premium stone countertops and custom cabinetry are available across all remodeling projects.",
+      "Quartz, granite, quartzite, and marble — expertly templated, fabricated, and installed for kitchens and baths.",
+  },
+  {
+    num: "07",
+    name: "Cabinet Refacing",
+    href: "/services/cabinet-refacing",
+    description:
+      "A fresh kitchen for a fraction of replacement — new doors, drawer fronts, veneer, and hardware on your existing boxes.",
+  },
+  {
+    num: "08",
+    name: "ADA & Aging-in-Place Bathrooms",
+    href: "/services/ada-aging-in-place-bathrooms",
+    description:
+      "Accessible, beautiful bathrooms — curbless showers, grab bars, and comfort-height fixtures that keep dignity intact.",
+  },
+  {
+    num: "09",
+    name: "Walk-In & Curbless Showers",
+    href: "/services/walk-in-showers",
+    description:
+      "Custom walk-in showers with frameless glass, tile, niches, and linear drains. Tub-to-shower conversions a specialty.",
+  },
+  {
+    num: "10",
+    name: "Luxury Vinyl Plank Flooring",
+    href: "/services/luxury-vinyl-plank-flooring",
+    description:
+      "Waterproof, wood-look LVP built for Florida humidity, kids, and pets — installed throughout the whole home.",
+  },
+  {
+    num: "11",
+    name: "Outdoor Kitchens",
+    href: "/services/outdoor-kitchens",
+    description:
+      "Weatherproof outdoor kitchens for your lanai or pool deck — built for year-round Tampa Bay entertaining.",
   },
 ];
 
@@ -118,7 +153,7 @@ export default function ServicesPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "128px 24px 96px",
+          padding: "clamp(112px, 16vw, 128px) 24px clamp(54px, 11vw, 96px)",
         }}
       >
         <div
@@ -154,7 +189,7 @@ export default function ServicesPage() {
           {/* H1 */}
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(36px, 5vw, 64px)",
               color: "#1A202C",
@@ -228,7 +263,7 @@ export default function ServicesPage() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 320px), 1fr))",
               gap: "2px",
             }}
           >
@@ -270,7 +305,7 @@ export default function ServicesPage() {
                 {/* Service name */}
                 <h2
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "20px",
                     color: "#1A202C",
@@ -321,14 +356,14 @@ export default function ServicesPage() {
       <section
         style={{
           backgroundColor: "#EEF0F4",
-          padding: "64px 24px",
+          padding: "clamp(36px, 7vw, 64px) 24px",
         }}
       >
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           {/* Heading */}
           <h2
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(28px, 3.5vw, 48px)",
               color: "#1A202C",
@@ -358,7 +393,7 @@ export default function ServicesPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
                     color: "#1A202C",
@@ -426,7 +461,7 @@ export default function ServicesPage() {
               >
                 <span
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "clamp(20px, 2.5vw, 28px)",
                     color: "#2B7CC1",
@@ -456,7 +491,7 @@ export default function ServicesPage() {
           <p
             style={{
               fontSize: "13px",
-              color: "#9CA3AF",
+              color: "#6B7280",
               lineHeight: 1.7,
               margin: 0,
               letterSpacing: "0.02em",

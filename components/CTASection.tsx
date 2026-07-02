@@ -11,15 +11,15 @@ export default function CTASection({
   headline = "Ready to Begin Your Remodel?",
   subtext = "Schedule a complimentary consultation with our team. We serve homeowners across Pinellas and Hillsborough County.",
   primaryCTA = "Get a Free Quote",
-  primaryHref = "/contact",
+  primaryHref = "/quote",
   secondaryCTA = "Call (727) 383-7550",
-  secondaryHref = "tel:7273837550",
+  secondaryHref = "tel:+17273837550",
 }: CTASectionProps) {
   return (
     <section
       style={{
         backgroundColor: "#FFFFFF",
-        padding: "112px 24px",
+        padding: "clamp(64px, 13vw, 112px) 24px",
         borderTop: "1px solid rgba(0,0,0,0.08)",
         textAlign: "center",
       }}
@@ -47,7 +47,7 @@ export default function CTASection({
         {/* Headline */}
         <h2
           style={{
-            fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+            fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
             fontSize: "clamp(32px, 4vw, 52px)",
             fontWeight: 300,
             color: "#1A202C",
@@ -83,7 +83,7 @@ export default function CTASection({
             href={primaryHref}
             className="
               inline-block
-              text-[9px] font-medium uppercase tracking-[0.18em]
+              text-[11px] font-medium uppercase tracking-[0.18em]
               px-9 py-4
               no-underline
               transition-colors duration-200
@@ -102,7 +102,7 @@ export default function CTASection({
             href={secondaryHref}
             className="
               inline-block
-              text-[9px] font-medium uppercase tracking-[0.18em]
+              text-[11px] font-medium uppercase tracking-[0.18em]
               px-9 py-4
               no-underline
               transition-colors duration-200

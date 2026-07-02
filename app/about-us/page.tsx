@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import CTASection from "@/components/CTASection";
+import BuildTogetherCTA from "@/components/BuildTogetherCTA";
+import CountUp from "@/components/CountUp";
+import MissionVision from "@/components/MissionVision";
 
 export const metadata: Metadata = {
   title: "About Crafted Kitchen & Bath | Kitchen & Bathroom Remodeling Experts | Oldsmar FL",
@@ -53,12 +56,9 @@ const jsonLd = {
     "Largo",
   ],
   priceRange: "$$",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5",
-    bestRating: "5",
-    reviewCount: "250",
-  },
+  // NOTE: aggregateRating removed — it conflicted with the homepage count and was
+  // not backed by real on-page reviews (Google rich-results policy risk). Restore
+  // with genuine, displayed reviews and a count consistent across all pages.
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
     dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -133,17 +133,30 @@ export default function AboutUsPage() {
         style={{
           backgroundColor: "#F7F8FA",
           paddingTop: "128px",
-          paddingBottom: "96px",
+          paddingBottom: "0",
           minHeight: "70vh",
           display: "flex",
-          alignItems: "center",
+          alignItems: "stretch",
+          overflow: "hidden",
         }}
       >
         <div
           style={{
-            maxWidth: "820px",
+            maxWidth: "1400px",
             margin: "0 auto",
             padding: "0 24px",
+            width: "100%",
+            display: "grid",
+            gridTemplateColumns: "1fr",
+            gap: "0",
+            alignItems: "center",
+          }}
+          className="lg:!grid-cols-[1fr_520px]"
+        >
+        {/* Text column */}
+        <div
+          style={{
+            paddingBottom: "96px",
             display: "flex",
             flexDirection: "column",
           }}
@@ -175,7 +188,7 @@ export default function AboutUsPage() {
           {/* H1 */}
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: "clamp(44px, 7vw, 80px)",
               lineHeight: 1.1,
@@ -222,14 +235,38 @@ export default function AboutUsPage() {
           >
             Licensed &middot; CRC1333143
           </span>
+        </div>{/* end text column */}
+
+        {/* Showroom photo column — flush to section bottom/right */}
+        <div
+          className="hidden lg:block"
+          style={{ position: "relative", minHeight: "520px", alignSelf: "stretch" }}
+        >
+          <Image
+            src="/images/wp/IMG_0887-1-scaled.jpg"
+            alt="Crafted Kitchen and Bath showroom in Oldsmar FL"
+            fill
+            priority
+            style={{ objectFit: "cover", objectPosition: "center" }}
+          />
+          {/* Subtle gradient to blend into section background on left edge */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(to right, #F7F8FA 0%, transparent 18%)",
+            }}
+          />
         </div>
+        </div>{/* end grid */}
       </section>
 
       {/* ── 2. WHO WE ARE ────────────────────────────────────────────── */}
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
         }}
       >
         <div
@@ -265,7 +302,7 @@ export default function AboutUsPage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 44px)",
                 lineHeight: 1.2,
@@ -326,7 +363,7 @@ export default function AboutUsPage() {
             >
               <div
                 style={{
-                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(52px, 7vw, 76px)",
                   color: "#2B7CC1",
@@ -334,7 +371,7 @@ export default function AboutUsPage() {
                   letterSpacing: "-0.01em",
                 }}
               >
-                250+
+                <CountUp end={250} suffix="+" />
               </div>
               <div
                 style={{
@@ -358,7 +395,7 @@ export default function AboutUsPage() {
             >
               <div
                 style={{
-                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(52px, 7vw, 76px)",
                   color: "#2B7CC1",
@@ -366,7 +403,7 @@ export default function AboutUsPage() {
                   letterSpacing: "-0.01em",
                 }}
               >
-                100%
+                <CountUp end={100} suffix="%" />
               </div>
               <div
                 style={{
@@ -390,7 +427,7 @@ export default function AboutUsPage() {
             >
               <div
                 style={{
-                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(52px, 7vw, 76px)",
                   color: "#2B7CC1",
@@ -398,7 +435,7 @@ export default function AboutUsPage() {
                   letterSpacing: "-0.01em",
                 }}
               >
-                5&#9733;
+                <CountUp end={5} suffix={"★"} />
               </div>
               <div
                 style={{
@@ -416,11 +453,60 @@ export default function AboutUsPage() {
         </div>
       </section>
 
+      {/* ── LET'S BUILD TOGETHER (moved up for prominence) ──────────── */}
+      <BuildTogetherCTA />
+
+      {/* ── MISSION & VISION ────────────────────────────────────────── */}
+      <MissionVision />
+
+      {/* ── PROJECT PHOTO STRIP ─────────────────────────────────────── */}
+      <section style={{ backgroundColor: "#FFFFFF", padding: "0" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "2px",
+            backgroundColor: "rgba(0,0,0,0.06)",
+          }}
+          className="grid-cols-1 sm:grid-cols-3"
+        >
+          {[
+            { src: "/images/wp/IMG_6133-scaled.jpeg", alt: "Walnut kitchen with quartz waterfall island — Tampa Bay", label: "Kitchen Remodel" },
+            { src: "/images/wp/IMG_6061-1-scaled.jpg", alt: "Modern master bathroom with vessel sink and marble shower — Tampa Bay", label: "Bathroom Remodel" },
+            { src: "/images/wp/IMG_2580-scaled.jpeg", alt: "Two-tone kitchen with brass pendants — Oldsmar FL", label: "Kitchen Remodel" },
+          ].map(({ src, alt, label }) => (
+            <div key={src} style={{ position: "relative", height: "320px", overflow: "hidden" }} className="group">
+              <Image
+                src={src}
+                alt={alt}
+                fill
+                style={{ objectFit: "cover", objectPosition: "center", transition: "transform 0.7s ease" }}
+                className="group-hover:scale-105"
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  padding: "10px 14px",
+                  background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%)",
+                }}
+              >
+                <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.16em", margin: 0 }}>
+                  {label}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ── 3. WHAT MAKES US DIFFERENT ───────────────────────────────── */}
       <section
         style={{
           backgroundColor: "#EEF0F4",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
         }}
       >
         <div
@@ -455,7 +541,7 @@ export default function AboutUsPage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 44px)",
                 lineHeight: 1.2,
@@ -469,7 +555,7 @@ export default function AboutUsPage() {
           </div>
 
           {/* 4-col grid (2 on mobile) */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px" style={{ backgroundColor: "rgba(43,124,193,0.1)" }}>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px" data-stagger style={{ backgroundColor: "rgba(43,124,193,0.1)" }}>
             {differentiators.map((item, i) => (
               <div
                 key={i}
@@ -493,7 +579,7 @@ export default function AboutUsPage() {
 
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "20px",
                     color: "#1A202C",
@@ -524,7 +610,7 @@ export default function AboutUsPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
         }}
       >
         <div
@@ -560,7 +646,7 @@ export default function AboutUsPage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 44px)",
                 lineHeight: 1.2,
@@ -596,7 +682,7 @@ export default function AboutUsPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontStyle: "italic",
                     fontSize: "clamp(22px, 3vw, 28px)",
@@ -628,7 +714,7 @@ export default function AboutUsPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "64px 24px",
+          padding: "clamp(36px, 7vw, 64px) 24px",
         }}
       >
         <div
@@ -652,7 +738,7 @@ export default function AboutUsPage() {
           >
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 44px)",
                 lineHeight: 1.2,
@@ -788,7 +874,7 @@ export default function AboutUsPage() {
                   fontSize: "10px",
                   letterSpacing: "0.24em",
                   textTransform: "uppercase",
-                  color: "#9CA3AF",
+                  color: "#6B7280",
                   margin: 0,
                   fontVariant: "small-caps",
                 }}
@@ -799,7 +885,7 @@ export default function AboutUsPage() {
               {/* License number */}
               <div
                 style={{
-                  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(28px, 5vw, 44px)",
                   color: "#2B7CC1",
@@ -828,7 +914,7 @@ export default function AboutUsPage() {
                   fontSize: "10px",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  color: "#9CA3AF",
+                  color: "#6B7280",
                   margin: 0,
                 }}
               >
@@ -843,7 +929,7 @@ export default function AboutUsPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "64px 24px",
+          padding: "clamp(36px, 7vw, 64px) 24px",
         }}
       >
         <div
@@ -877,7 +963,7 @@ export default function AboutUsPage() {
 
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontWeight: 300,
                 fontSize: "clamp(28px, 4vw, 44px)",
                 lineHeight: 1.2,
@@ -908,7 +994,7 @@ export default function AboutUsPage() {
               >
                 <div
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "clamp(20px, 3vw, 28px)",
                     color: "#2B7CC1",
@@ -950,7 +1036,7 @@ export default function AboutUsPage() {
           <p
             style={{
               fontSize: "12px",
-              color: "#9CA3AF",
+              color: "#6B7280",
               margin: 0,
               letterSpacing: "0.02em",
             }}
@@ -960,9 +1046,6 @@ export default function AboutUsPage() {
           </p>
         </div>
       </section>
-
-      {/* ── 7. FINAL CTA ─────────────────────────────────────────────── */}
-      <CTASection />
     </>
   );
 }

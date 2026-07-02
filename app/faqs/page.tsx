@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import SectionLabel from '@/components/SectionLabel'
 import CTASection from '@/components/CTASection'
+import AskCrewPrompt from '@/components/AskCrewPrompt'
 
 export const metadata: Metadata = {
   title: 'Kitchen & Bathroom Remodeling FAQs | Crafted Kitchen & Bath | Tampa Bay',
@@ -157,7 +158,7 @@ const jsonLd = {
 // ─────────────────────────────────────────────
 export default function FAQsPage() {
   return (
-    <main style={{ backgroundColor: '#F7F8FA' }}>
+    <div style={{ backgroundColor: '#F7F8FA' }}>
       {/* JSON-LD */}
       <script
         type="application/ld+json"
@@ -194,7 +195,7 @@ export default function FAQsPage() {
                     fontSize: '11px',
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
-                    color: '#9CA3AF',
+                    color: '#6B7280',
                     textDecoration: 'none',
                   }}
                 >
@@ -228,7 +229,7 @@ export default function FAQsPage() {
           {/* H1 */}
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: 'clamp(40px, 6vw, 68px)',
               lineHeight: 1.1,
@@ -343,7 +344,7 @@ export default function FAQsPage() {
                         fontSize: '18px',
                         lineHeight: 1,
                         fontWeight: 300,
-                        fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                        fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       }}
                     />
                   </summary>
@@ -369,6 +370,17 @@ export default function FAQsPage() {
         </div>
       </section>
 
+      {/* ── ASK THE CREW ───────────────────────────────────────────────── */}
+      <section style={{ backgroundColor: '#F7F8FA', padding: '0 24px 80px' }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+          <AskCrewPrompt
+            mascot="crafty"
+            heading="Don't see your question?"
+            text="Ask Crafty — our assistant can answer questions about your project, materials, timeline, or service area right now, or get your free quote started."
+          />
+        </div>
+      </section>
+
       {/* ── FINAL CTA ──────────────────────────────────────────────────── */}
       <CTASection
         headline="Still Have Questions?"
@@ -376,8 +388,8 @@ export default function FAQsPage() {
         primaryCTA="Send a Message"
         primaryHref="/contact"
         secondaryCTA="Call (727) 383-7550"
-        secondaryHref="tel:7273837550"
+        secondaryHref="tel:+17273837550"
       />
-    </main>
+    </div>
   )
 }

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 }
 
 const h2Style: React.CSSProperties = {
-  fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+  fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
   fontWeight: 300,
   fontSize: '22px',
   color: '#1A202C',
@@ -45,7 +45,7 @@ const dividerStyle: React.CSSProperties = {
 
 export default function TermsAndConditionsPage() {
   return (
-    <main style={{ backgroundColor: '#F7F8FA' }}>
+    <div style={{ backgroundColor: '#F7F8FA' }}>
       {/* HERO */}
       <section
         style={{
@@ -60,7 +60,7 @@ export default function TermsAndConditionsPage() {
           </div>
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontWeight: 300,
               fontSize: 'clamp(32px, 5vw, 48px)',
               color: '#1A202C',
@@ -71,7 +71,7 @@ export default function TermsAndConditionsPage() {
           >
             Terms and Conditions
           </h1>
-          <p style={{ fontSize: '14px', color: '#9CA3AF', margin: 0 }}>
+          <p style={{ fontSize: '14px', color: '#6B7280', margin: 0 }}>
             Effective Date: January 1, 2024 &nbsp;&bull;&nbsp; Last Updated: January 1, 2024
           </p>
         </div>
@@ -356,7 +356,7 @@ export default function TermsAndConditionsPage() {
                 </a>
                 <br />
                 Phone:{' '}
-                <a href="tel:7273837550" style={{ color: '#2B7CC1', textDecoration: 'none' }}>
+                <a href="tel:+17273837550" style={{ color: '#2B7CC1', textDecoration: 'none' }}>
                   (727) 383-7550
                 </a>
               </p>
@@ -380,6 +380,6 @@ export default function TermsAndConditionsPage() {
 
         </div>
       </section>
-    </main>
+    </div>
   )
 }

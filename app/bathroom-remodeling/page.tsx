@@ -288,7 +288,7 @@ export default function BathroomRemodelingPage() {
                 Home
               </Link>
             </li>
-            <li aria-hidden="true" style={{ color: "#9CA3AF" }}>
+            <li aria-hidden="true" style={{ color: "#6B7280" }}>
               /
             </li>
             <li>
@@ -306,13 +306,13 @@ export default function BathroomRemodelingPage() {
                 Services
               </Link>
             </li>
-            <li aria-hidden="true" style={{ color: "#9CA3AF" }}>
+            <li aria-hidden="true" style={{ color: "#6B7280" }}>
               /
             </li>
             <li
               aria-current="page"
               style={{
-                color: "#9CA3AF",
+                color: "#6B7280",
                 textTransform: "uppercase",
                 letterSpacing: "0.10em",
                 fontSize: "11px",
@@ -346,7 +346,7 @@ export default function BathroomRemodelingPage() {
 
           <h1
             style={{
-              fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
               fontSize: "clamp(36px, 5vw, 64px)",
               fontWeight: 300,
               color: "#1A202C",
@@ -397,10 +397,10 @@ export default function BathroomRemodelingPage() {
       </section>
 
       {/* ── HERO IMAGE ── */}
-      <div style={{ width: '100%', height: '520px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ width: '100%', height: 'clamp(300px, 56vw, 520px)', position: 'relative', overflow: 'hidden' }}>
         <Image
-          src="/images/e1b3aa11-74f9-47a0-a8bc-6008207b1604.png"
-          alt="Luxury bathroom remodel in Pinellas County by Crafted Kitchen and Bath"
+          src="/images/wp/IMG_6153-scaled.jpeg"
+          alt="Luxury master bathroom remodel with glass walk-in shower and dual vanity in Pinellas County by Crafted Kitchen and Bath"
           fill
           priority
           style={{ objectFit: 'cover', objectPosition: 'center' }}
@@ -411,7 +411,7 @@ export default function BathroomRemodelingPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
           borderBottom: "1px solid rgba(0,0,0,0.08)",
         }}
       >
@@ -428,7 +428,7 @@ export default function BathroomRemodelingPage() {
             <SectionLabel>What We Handle</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontSize: "clamp(28px, 3.5vw, 42px)",
                 fontWeight: 300,
                 color: "#1A202C",
@@ -463,7 +463,7 @@ export default function BathroomRemodelingPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontSize: "18px",
                     fontWeight: 300,
                     color: "#1A202C",
@@ -491,15 +491,15 @@ export default function BathroomRemodelingPage() {
       </section>
 
       {/* ── BATHROOM SECONDARY IMAGE ── */}
-      <div style={{ width: '100%', height: '460px', position: 'relative', overflow: 'hidden' }}>
-        <Image src="/images/hero-bathroom.jpg" alt="Spa-quality bathroom finishes" fill style={{ objectFit: 'cover', objectPosition: 'center top' }} />
+      <div style={{ width: '100%', height: 'clamp(280px, 52vw, 460px)', position: 'relative', overflow: 'hidden' }}>
+        <Image src="/images/wp/IMG_6061-1-scaled.jpg" alt="Modern bathroom with vessel sink and marble shower by Crafted Kitchen and Bath" fill style={{ objectFit: 'cover', objectPosition: 'center 58%' }} />
       </div>
 
       {/* ── 3. MATERIALS & FINISHES ── */}
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
           borderBottom: "1px solid rgba(0,0,0,0.08)",
         }}
       >
@@ -517,7 +517,7 @@ export default function BathroomRemodelingPage() {
             <SectionLabel>Materials & Finishes</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontSize: "clamp(28px, 3.5vw, 42px)",
                 fontWeight: 300,
                 color: "#1A202C",
@@ -563,7 +563,7 @@ export default function BathroomRemodelingPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontSize: "18px",
                     fontWeight: 300,
                     color: "#1A202C",
@@ -593,7 +593,7 @@ export default function BathroomRemodelingPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
           borderBottom: "1px solid rgba(0,0,0,0.08)",
         }}
       >
@@ -610,7 +610,7 @@ export default function BathroomRemodelingPage() {
             <SectionLabel>Design Directions</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontSize: "clamp(28px, 3.5vw, 42px)",
                 fontWeight: 300,
                 color: "#1A202C",
@@ -645,7 +645,7 @@ export default function BathroomRemodelingPage() {
                 {/* Blue number */}
                 <span
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontSize: "13px",
                     color: "#2B7CC1",
                     letterSpacing: "0.12em",
@@ -657,7 +657,7 @@ export default function BathroomRemodelingPage() {
 
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontSize: "20px",
                     fontWeight: 300,
                     color: "#1A202C",
@@ -699,7 +699,7 @@ export default function BathroomRemodelingPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
           borderBottom: "1px solid rgba(0,0,0,0.08)",
         }}
       >
@@ -717,7 +717,7 @@ export default function BathroomRemodelingPage() {
             <SectionLabel>How We Work</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontSize: "clamp(28px, 3.5vw, 42px)",
                 fontWeight: 300,
                 color: "#1A202C",
@@ -763,7 +763,7 @@ export default function BathroomRemodelingPage() {
                 {/* Step number */}
                 <span
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontSize: "clamp(28px, 4vw, 40px)",
                     fontWeight: 300,
                     color: "#2B7CC1",
@@ -785,7 +785,7 @@ export default function BathroomRemodelingPage() {
                 >
                   <h3
                     style={{
-                      fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                      fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       fontSize: "20px",
                       fontWeight: 300,
                       color: "#1A202C",
@@ -817,7 +817,7 @@ export default function BathroomRemodelingPage() {
       <section
         style={{
           backgroundColor: "#FFFFFF",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
           borderBottom: "1px solid rgba(0,0,0,0.08)",
         }}
       >
@@ -834,7 +834,7 @@ export default function BathroomRemodelingPage() {
             <SectionLabel>Where We Work</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontSize: "clamp(26px, 3.5vw, 40px)",
                 fontWeight: 300,
                 color: "#1A202C",
@@ -900,7 +900,7 @@ export default function BathroomRemodelingPage() {
       <section
         style={{
           backgroundColor: "#F7F8FA",
-          padding: "96px 24px",
+          padding: "clamp(54px, 11vw, 96px) 24px",
           borderBottom: "1px solid rgba(0,0,0,0.08)",
         }}
       >
@@ -917,7 +917,7 @@ export default function BathroomRemodelingPage() {
             <SectionLabel>Common Questions</SectionLabel>
             <h2
               style={{
-                fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                 fontSize: "clamp(28px, 3.5vw, 42px)",
                 fontWeight: 300,
                 color: "#1A202C",
@@ -946,7 +946,7 @@ export default function BathroomRemodelingPage() {
               >
                 <h3
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontSize: "19px",
                     fontWeight: 300,
                     color: "#1A202C",
