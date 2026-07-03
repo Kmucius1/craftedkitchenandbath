@@ -232,7 +232,8 @@ export default function PaintingPage() {
 
       {/* ── HERO IMAGE ─────────────────────────────────────────────────── */}
       <div style={{ width: '100%', height: 'clamp(280px, 52vw, 460px)', position: 'relative', overflow: 'hidden' }}>
-        <Image src="/images/wp/painting.jpg" alt="Professional interior painting services by Crafted Kitchen and Bath" fill priority style={{ objectFit: 'cover', objectPosition: 'center 55%' }} />
+        <Image src="/images/wp/painting.jpg" alt="Professional interior painting services by Crafted Kitchen and Bath" fill
+          sizes="100vw" priority style={{ objectFit: 'cover', objectPosition: 'center 55%' }} />
       </div>
 
       {/* ── 2. WHAT WE PAINT ───────────────────────────────────────────── */}

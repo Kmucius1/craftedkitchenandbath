@@ -246,6 +246,7 @@ export default function AboutUsPage() {
             src="/images/wp/IMG_0887-1-scaled.jpg"
             alt="Crafted Kitchen and Bath showroom in Oldsmar FL"
             fill
+          sizes="50vw"
             priority
             style={{ objectFit: "cover", objectPosition: "center" }}
           />
@@ -480,6 +481,7 @@ export default function AboutUsPage() {
                 src={src}
                 alt={alt}
                 fill
+          sizes="(max-width: 640px) 100vw, 33vw"
                 style={{ objectFit: "cover", objectPosition: "center", transition: "transform 0.7s ease" }}
                 className="group-hover:scale-105"
               />

@@ -370,6 +370,7 @@ export default function KitchenRemodelingPage() {
           src="/images/wp/IMG_2580-scaled.jpeg"
           alt="Two-tone custom kitchen remodel in Pinellas County by Crafted Kitchen and Bath"
           fill
+          sizes="100vw"
           priority
           style={{ objectFit: 'cover', objectPosition: 'center 70%' }}
         />
@@ -472,7 +473,8 @@ export default function KitchenRemodelingPage() {
 
       {/* ── KITCHEN SECONDARY IMAGE ──────────────────────────────────── */}
       <div style={{ width: '100%', height: 'clamp(280px, 52vw, 460px)', position: 'relative', overflow: 'hidden' }}>
-        <Image src="/images/wp/IMG_6133-scaled.jpeg" alt="Walnut kitchen with quartz waterfall island by Crafted Kitchen and Bath" fill style={{ objectFit: 'cover', objectPosition: 'center 60%' }} />
+        <Image src="/images/wp/IMG_6133-scaled.jpeg" alt="Walnut kitchen with quartz waterfall island by Crafted Kitchen and Bath" fill
+          sizes="100vw" style={{ objectFit: 'cover', objectPosition: 'center 60%' }} />
       </div>
 
       {/* ── 3. DESIGN STYLES ─────────────────────────────────────────── */}

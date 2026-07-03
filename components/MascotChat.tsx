@@ -193,7 +193,7 @@ export default function MascotChat() {
           onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 8px 30px rgba(26,32,44,0.18)'; }}
         >
           <Avatar mascot="crafty" size={44} />
-          <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: 1.15 }}>
+          <span className="mascot-launcher-label" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: 1.15 }}>
             <span style={{ fontFamily: display, fontWeight: 700, fontSize: '13px', color: '#1A202C' }}>Ask Crafty</span>
             <span style={{ fontFamily: sans, fontSize: '10px', letterSpacing: '0.04em', color: ACCENT }}>How can we help?</span>
           </span>
@@ -351,7 +351,9 @@ export default function MascotChat() {
         @keyframes mascotDot { 0%,60%,100%{opacity:0.3;transform:translateY(0)} 30%{opacity:1;transform:translateY(-3px)} }
         @media (max-width: 480px) {
           .mascot-panel { bottom: 0 !important; right: 0 !important; width: 100vw !important; height: 100dvh !important; border-radius: 0 !important; }
-          .mascot-launcher { bottom: 68px !important; right: 16px !important; }
+          /* Icon-only on small screens so the launcher doesn't sit on top of page content while scrolling */
+          .mascot-launcher { bottom: 68px !important; right: 16px !important; padding: 8px !important; gap: 0 !important; }
+          .mascot-launcher-label { display: none !important; }
         }
       `}</style>
     </>

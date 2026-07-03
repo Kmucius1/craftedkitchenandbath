@@ -312,6 +312,7 @@ export default function HomePage() {
             src="/images/wp/IMG_3266-1-scaled.jpg"
             alt="Custom kitchen remodeling Tampa Bay"
             fill
+          sizes="(max-width: 768px) 100vw, 50vw"
             style={{ objectFit: 'cover', objectPosition: 'center', transition: 'transform 0.7s ease' }}
             className="group-hover:scale-105"
           />
@@ -329,6 +330,7 @@ export default function HomePage() {
             src="/images/wp/IMG_1147-1-scaled.jpg"
             alt="Luxury bathroom remodeling Tampa Bay"
             fill
+          sizes="(max-width: 768px) 100vw, 50vw"
             style={{ objectFit: 'cover', objectPosition: 'center', transition: 'transform 0.7s ease' }}
             className="group-hover:scale-105"
           />
@@ -398,6 +400,7 @@ export default function HomePage() {
                       src="/images/wp/Hunter-Kitchen-hires.png"
                       alt="Kitchen Remodeling"
                       fill
+          sizes="(max-width: 1280px) 50vw, 25vw"
                       style={{ objectFit: 'cover', objectPosition: 'center top' }}
                     />
                   </div>
@@ -407,7 +410,7 @@ export default function HomePage() {
                         fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                         fontWeight: 400,
                         fontStyle: "italic",
-                        fontSize: "1.25rem",
+                        fontSize: "clamp(1.05rem, 4.2vw, 1.25rem)",
                         color: "#1A202C",
                       }}
                     >
@@ -459,6 +462,7 @@ export default function HomePage() {
                       src="/images/wp/IMG_1243-scaled.jpg"
                       alt="Bathroom Remodeling"
                       fill
+          sizes="(max-width: 1280px) 50vw, 25vw"
                       style={{ objectFit: 'cover', objectPosition: 'center center' }}
                     />
                   </div>
@@ -468,7 +472,7 @@ export default function HomePage() {
                         fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                         fontWeight: 400,
                         fontStyle: "italic",
-                        fontSize: "1.25rem",
+                        fontSize: "clamp(1.05rem, 4.2vw, 1.25rem)",
                         color: "#1A202C",
                       }}
                     >
@@ -520,6 +524,7 @@ export default function HomePage() {
                       src="/images/wp/IMG_6140-scaled.jpeg"
                       alt="Complete Interior Remodeling"
                       fill
+          sizes="(max-width: 1280px) 50vw, 25vw"
                       style={{ objectFit: 'cover', objectPosition: 'center' }}
                     />
                   </div>
@@ -529,7 +534,7 @@ export default function HomePage() {
                         fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                         fontWeight: 400,
                         fontStyle: "italic",
-                        fontSize: "1.25rem",
+                        fontSize: "clamp(1.05rem, 4.2vw, 1.25rem)",
                         color: "#1A202C",
                       }}
                     >
@@ -581,6 +586,7 @@ export default function HomePage() {
                       src="/images/wp/IMG_1419-scaled.jpg"
                       alt="Flooring & Painting"
                       fill
+          sizes="(max-width: 1280px) 50vw, 25vw"
                       style={{ objectFit: 'cover', objectPosition: 'center' }}
                     />
                   </div>
@@ -590,7 +596,7 @@ export default function HomePage() {
                         fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                         fontWeight: 400,
                         fontStyle: "italic",
-                        fontSize: "1.25rem",
+                        fontSize: "clamp(1.05rem, 4.2vw, 1.25rem)",
                         color: "#1A202C",
                       }}
                     >
@@ -1022,6 +1028,7 @@ export default function HomePage() {
                 src="/images/wp/IMG_2580-scaled.jpeg"
                 alt="Two-tone kitchen remodel with quartz island — Tampa Bay"
                 fill
+          sizes="(max-width: 1024px) 100vw, 33vw"
                 style={{ objectFit: 'cover', objectPosition: 'center 70%' }}
               />
               <div
@@ -1067,6 +1074,7 @@ export default function HomePage() {
                 src="/images/wp/IMG_1243-scaled.jpg"
                 alt="Custom walk-in shower with shiplap walls — Clearwater, FL"
                 fill
+          sizes="(max-width: 1024px) 100vw, 33vw"
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
               />
               <div
@@ -1112,6 +1120,7 @@ export default function HomePage() {
                 src="/images/wp/IMG_0801-scaled.jpg"
                 alt="Sage green vanity with brass fixtures — Safety Harbor, FL"
                 fill
+          sizes="(max-width: 1024px) 100vw, 33vw"
                 style={{ objectFit: 'cover', objectPosition: 'center bottom' }}
               />
               <div

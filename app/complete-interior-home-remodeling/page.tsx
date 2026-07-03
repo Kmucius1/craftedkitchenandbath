@@ -344,7 +344,8 @@ export default function CompleteInteriorRemodelingPage() {
 
       {/* ── HERO IMAGE ───────────────────────────────────────────────────── */}
       <div style={{ width: '100%', height: 'clamp(300px, 56vw, 520px)', position: 'relative', overflow: 'hidden' }}>
-        <Image src="/images/wp/IMG_6140-scaled.jpeg" alt="Complete interior home remodeling — open kitchen and dining room transformation" fill priority style={{ objectFit: 'cover', objectPosition: 'center' }} />
+        <Image src="/images/wp/IMG_6140-scaled.jpeg" alt="Complete interior home remodeling — open kitchen and dining room transformation" fill
+          sizes="100vw" priority style={{ objectFit: 'cover', objectPosition: 'center' }} />
       </div>
 
       {/* ── 2. SCOPE OF WORK ─────────────────────────────────────────────── */}

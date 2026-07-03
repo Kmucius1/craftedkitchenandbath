@@ -270,7 +270,8 @@ export default function FlooringInstallationPage() {
 
       {/* ── HERO IMAGE ─────────────────────────────────────────────────── */}
       <div style={{ width: '100%', height: 'clamp(280px, 52vw, 460px)', position: 'relative', overflow: 'hidden' }}>
-        <Image src="/images/wp/IMG_1419-scaled.jpg" alt="Premium flooring installation — white kitchen with wood-look plank floors" fill priority style={{ objectFit: 'cover', objectPosition: 'center bottom' }} />
+        <Image src="/images/wp/IMG_1419-scaled.jpg" alt="Premium flooring installation — white kitchen with wood-look plank floors" fill
+          sizes="100vw" priority style={{ objectFit: 'cover', objectPosition: 'center bottom' }} />
       </div>
 
       {/* ── 2. FLOORING TYPES ──────────────────────────────────────────── */}
