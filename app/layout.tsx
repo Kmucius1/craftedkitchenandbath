@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Montserrat, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -87,6 +87,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://craftedkitchenandbath.com",
   },
+};
+
+// Force light mode everywhere — this is a brand marketing site, not an app,
+// so it should never be auto-inverted/darkened by a visitor's OS/browser
+// dark-mode setting.
+export const viewport: Viewport = {
+  colorScheme: "light",
 };
 
 export default function RootLayout({

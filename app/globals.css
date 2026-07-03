@@ -24,6 +24,7 @@ html {
   scroll-behavior: smooth;
   overflow-x: clip;           /* never allow sideways scroll on mobile */
   -webkit-text-size-adjust: 100%;
+  color-scheme: light only;   /* stop browsers from auto-dark-theming this site */
 }
 
 body {
