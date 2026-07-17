@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";
 
 const steps = [
-  { n: "01", title: "Free In-Home Consultation", body: "We come to you — no showroom visit required. We measure your space, learn how you live and use it, and talk through your goals, timeline, and budget. You get honest guidance from the start." },
+  { n: "01", title: "Free In-Home Consultation", body: "We come to you. We measure your space, learn how you live and use it, and talk through your goals, timeline, and budget. You get honest guidance from the start — and you're always welcome to visit our Oldsmar showroom." },
   { n: "02", title: "Design & Material Selection", body: "We help you choose layouts, cabinetry, countertops, tile, flooring, and finishes, bringing samples to your home so every decision makes sense in your own light. You approve the plan before anything begins." },
   { n: "03", title: "Clear Proposal & Scheduling", body: "You receive a detailed scope and a clear timeline so you know exactly what's included and what to expect. We coordinate permits where required and schedule the work around your life." },
   { n: "04", title: "Craft & Build", body: "Our licensed team handles the whole project in-house — demolition, plumbing and electrical coordination, tile, cabinetry, and finish work — with care for your home and tidy, respectful job sites." },
@@ -60,13 +60,12 @@ export default function ProcessPage() {
               </div>
             ))}
             <div style={{ marginTop: "32px", display: "flex", gap: "20px", flexWrap: "wrap" }}>
-              <Link href="/financing" style={textLink}>Financing options →</Link>
               <Link href="/warranty" style={textLink}>Our workmanship guarantee →</Link>
             </div>
           </div>
         </section>
 
-        <CTASection headline="Ready for Step One?" subtext="Schedule your free in-home consultation. We'll measure, listen, and give you honest guidance — no pressure, no showroom visit required." />
+        <CTASection headline="Ready for Step One?" subtext="Schedule your free in-home consultation. We'll measure, listen, and give you honest guidance — no pressure." />
       </div>
     </>
   );

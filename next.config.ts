@@ -48,6 +48,21 @@ const nextConfig: NextConfig = {
         destination: '/blog',
         permanent: true,
       },
+      {
+        source: '/services/walk-in-showers',
+        destination: '/bathroom-remodeling',
+        permanent: true,
+      },
+      {
+        source: '/services/luxury-vinyl-plank-flooring',
+        destination: '/flooring-installation',
+        permanent: true,
+      },
+      {
+        source: '/financing',
+        destination: '/contact',
+        permanent: true,
+      },
     ]
   },
   images: {

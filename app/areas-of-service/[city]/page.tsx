@@ -204,7 +204,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
 
       <CTASection
         headline={`Remodeling in ${area.name}? Let's Talk.`}
-        subtext={`Schedule a complimentary in-home consultation. We serve ${area.name} and all of Tampa Bay — no showroom visit required.`}
+        subtext={`Schedule a complimentary in-home consultation. We serve ${area.name} and all of Tampa Bay.`}
       />
     </>
   );

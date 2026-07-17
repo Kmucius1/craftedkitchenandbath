@@ -73,7 +73,7 @@ const flooringTypes = [
     swatchColor: "#8B6F4E",
     description:
       "Waterproof, durable, and convincingly realistic. Available in wood and stone looks — ideal for kitchens, baths, and anywhere that sees moisture.",
-    idealRooms: "Kitchens, Bathrooms, Basements, Laundry Rooms",
+    idealRooms: "Kitchens, Bathrooms, Laundry Rooms",
   },
   {
     name: "Porcelain & Ceramic Tile",

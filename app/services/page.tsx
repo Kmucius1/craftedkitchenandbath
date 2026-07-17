@@ -74,34 +74,13 @@ const services = [
   },
   {
     num: "07",
-    name: "Cabinet Refacing",
-    href: "/services/cabinet-refacing",
-    description:
-      "A fresh kitchen for a fraction of replacement — new doors, drawer fronts, veneer, and hardware on your existing boxes.",
-  },
-  {
-    num: "08",
     name: "ADA & Aging-in-Place Bathrooms",
     href: "/services/ada-aging-in-place-bathrooms",
     description:
       "Accessible, beautiful bathrooms — curbless showers, grab bars, and comfort-height fixtures that keep dignity intact.",
   },
   {
-    num: "09",
-    name: "Walk-In & Curbless Showers",
-    href: "/services/walk-in-showers",
-    description:
-      "Custom walk-in showers with frameless glass, tile, niches, and linear drains. Tub-to-shower conversions a specialty.",
-  },
-  {
-    num: "10",
-    name: "Luxury Vinyl Plank Flooring",
-    href: "/services/luxury-vinyl-plank-flooring",
-    description:
-      "Waterproof, wood-look LVP built for Florida humidity, kids, and pets — installed throughout the whole home.",
-  },
-  {
-    num: "11",
+    num: "08",
     name: "Outdoor Kitchens",
     href: "/services/outdoor-kitchens",
     description:
@@ -111,8 +90,8 @@ const services = [
 
 const whyPoints = [
   {
-    title: "No Subcontractor Chaos",
-    detail: "We manage the entire project in-house — no hand-offs, no gaps.",
+    title: "One Team, Start to Finish",
+    detail: "We manage your entire project from first consultation through final walkthrough.",
   },
   {
     title: "Materials Sourced and Supplied",

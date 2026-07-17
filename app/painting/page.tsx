@@ -15,7 +15,7 @@ const serviceJsonLd = {
   "@type": "Service",
   name: "Interior Painting Services",
   description:
-    "Professional interior painting in Oldsmar, Clearwater, Palm Harbor, and across Pinellas County. Walls, trim, cabinets. Expert prep and premium finishes.",
+    "Professional interior painting in Oldsmar, Clearwater, Palm Harbor, and across Pinellas County. Walls, trim, doors, and more. Expert prep and premium finishes.",
   provider: {
     "@type": "LocalBusiness",
     name: "Crafted Kitchen and Bath",
@@ -79,11 +79,6 @@ const whatWePaint = [
       "Clean, precise painting of all trim elements that frames a room properly.",
   },
   {
-    name: "Cabinet Painting & Refinishing",
-    description:
-      "Transform kitchen or bath cabinets without replacement — prep, prime, finish.",
-  },
-  {
     name: "Interior Doors & Frames",
     description:
       "Often overlooked, always noticed — we paint doors and frames to a clean standard.",
@@ -131,10 +126,6 @@ const faqs = [
   {
     q: "Do you handle prep work?",
     a: "Yes — all surface prep, sanding, filling, and priming is included. We don't cut corners before we cut in edges.",
-  },
-  {
-    q: "Can you paint cabinets without replacing them?",
-    a: "Absolutely. Cabinet painting is a cost-effective way to update your kitchen or bathroom with professional results.",
   },
 ];
 
@@ -208,7 +199,7 @@ export default function PaintingPage() {
           >
             Paint is the finish that holds a remodel together. We deliver clean
             lines, expert prep, and coats that last — for walls, ceilings, trim,
-            and cabinetry.
+            and doors.
           </p>
 
           <Link
@@ -435,7 +426,7 @@ export default function PaintingPage() {
             satin offer a soft luster with improved washability — the right call
             for hallways and living rooms. Semi-gloss is most durable and
             moisture-resistant, which is why it belongs on trim, baseboards, and
-            cabinetry.
+            doors.
           </p>
 
           <p
@@ -452,84 +443,6 @@ export default function PaintingPage() {
             that cleans easily and resists wear. We help you select the right
             sheen for each surface before a drop of paint goes on the wall.
           </p>
-        </div>
-      </section>
-
-      {/* ── 5. CABINET PAINTING CALLOUT ────────────────────────────────── */}
-      <section
-        style={{
-          backgroundColor: "#F7F8FA",
-          padding: "64px 24px 80px",
-        }}
-      >
-        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
-          <div
-            style={{
-              width: "48px",
-              height: "1px",
-              backgroundColor: "#2B7CC1",
-              marginBottom: "32px",
-            }}
-          />
-
-          <h2
-            style={{
-              fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
-              fontWeight: 300,
-              fontSize: "clamp(26px, 3.5vw, 44px)",
-              color: "#1A202C",
-              margin: "0 0 24px",
-              lineHeight: 1.2,
-              letterSpacing: "0.01em",
-            }}
-          >
-            Cabinet Painting &amp; Refinishing
-          </h2>
-
-          <p
-            style={{
-              fontSize: "16px",
-              lineHeight: 1.85,
-              color: "#4A5568",
-              margin: "0 0 20px",
-              letterSpacing: "0.01em",
-            }}
-          >
-            Restore or transform existing cabinets without full replacement. We
-            clean, sand, prime, and apply a professional-grade finish — spray or
-            brush — that holds up to kitchen and bath use.
-          </p>
-
-          <p
-            style={{
-              fontSize: "16px",
-              lineHeight: 1.85,
-              color: "#1A202C",
-              margin: "0 0 36px",
-              letterSpacing: "0.01em",
-              fontWeight: 500,
-            }}
-          >
-            A cost-effective way to dramatically update a kitchen or bathroom.
-          </p>
-
-          <Link
-            href="/contact"
-            style={{
-              display: "inline-block",
-              backgroundColor: "transparent",
-              color: "#1A202C",
-              fontSize: "11px",
-              fontWeight: 600,
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
-              textDecoration: "none",
-              padding: "14px 32px",
-              border: "1px solid rgba(0,0,0,0.25)",
-            }}
-          >
-            Ask About Cabinet Painting
-          </Link>
         </div>
       </section>
 

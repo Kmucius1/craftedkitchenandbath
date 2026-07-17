@@ -35,11 +35,11 @@ export const servicePages: ServicePage[] = [
       "The right countertop anchors the whole room. We help you choose, template, and install surfaces that look beautiful and hold up to real Florida life.",
     overview: [
       "Your countertops do more work than any other surface in the home, so they should be chosen with care. We walk you through quartz, granite, quartzite, and marble in the comfort of your own kitchen, weighing how each material looks, feels, and performs against the way you actually live and cook.",
-      "Because we bring samples and ideas to you, there is no showroom trip required. We help you match veining, edge profiles, and finishes to your cabinetry and your home's character, whether that's a clean modern look or something warmer and more traditional.",
+      "We bring samples and ideas to you, and you're always welcome to visit our Oldsmar showroom to see full slabs and finishes in person. We help you match veining, edge profiles, and finishes to your cabinetry and your home's character, whether that's a clean modern look or something warmer and more traditional.",
       "Every project is precisely templated and fabricated to your space, then installed by our own craftspeople. The result is tight seams, level surfaces, and an outcome that feels custom because it is.",
     ],
     features: [
-      { title: "Quartz", body: "Engineered for consistency and low maintenance, quartz resists staining and never needs sealing, making it a practical favorite for busy kitchens." },
+      { title: "Quartz", body: "Engineered for consistency and low maintenance, quartz resists staining and wipes clean easily, making it a practical favorite for busy kitchens." },
       { title: "Granite & Quartzite", body: "Natural stone with genuine depth and one-of-a-kind movement; quartzite in particular offers stone beauty with excellent durability and heat tolerance." },
       { title: "Marble", body: "Timeless, luminous, and ideal for baths or baking stations where you want softness and elegance, with honest guidance on care and patina." },
       { title: "Precision Templating", body: "We digitally template your space so cutouts, overhangs, and seams land exactly where they should, with no guesswork at install." },
@@ -53,8 +53,8 @@ export const servicePages: ServicePage[] = [
       { step: "04", title: "Installation", body: "We set, level, and seal as needed, then walk you through care so your surfaces stay beautiful for years." },
     ],
     faqs: [
-      { q: "Which countertop material is best for a Florida kitchen?", a: "It depends on how you use the space. Quartz is the most carefree for everyday cooking since it doesn't need sealing, while quartzite and granite offer natural stone beauty with strong durability. Marble is stunning but softer, so we're honest about where it shines and where it asks for more care." },
-      { q: "Do natural stone countertops need to be sealed?", a: "Granite, quartzite, and marble are natural stone and benefit from periodic sealing to resist stains, while engineered quartz does not. We seal natural stone at installation and show you a simple maintenance routine to keep it protected." },
+      { q: "Which countertop material is best for a Florida kitchen?", a: "It depends on how you use the space. Quartz is a durable, low-maintenance favorite for everyday cooking, while quartzite and granite offer natural stone beauty with strong durability. Marble is stunning but softer, so we're honest about where it shines and where it asks for more care." },
+      { q: "Do countertops need to be sealed?", a: "Natural stone like granite, quartzite, and marble benefits from periodic sealing to resist stains. We seal it at installation and walk you through a simple maintenance routine so your surfaces stay protected and looking their best." },
       { q: "How long does a countertop project take?", a: "After templating, fabrication typically takes a week or two depending on the material and the shop's schedule, followed by a single install day for most kitchens. We give you a clear timeline up front so you can plan around it." },
       { q: "Can you replace just the countertops without redoing my cabinets?", a: "Yes. Many homeowners refresh their kitchen or bath simply by updating the countertops, and we can do that as a standalone project. If you're also considering new doors or fronts, we can pair it with cabinet refacing for a bigger visual change at a lower cost than full replacement." },
     ],
@@ -154,102 +154,8 @@ export const servicePages: ServicePage[] = [
     ],
     related: [
       { label: "Bathroom Remodeling", href: "/bathroom-remodeling" },
-      { label: "Walk-In & Curbless Showers", href: "/services/walk-in-showers" },
-      { label: "Luxury Vinyl Plank Flooring", href: "/services/luxury-vinyl-plank-flooring" },
-    ],
-  },
-  {
-    slug: "walk-in-showers",
-    name: "Walk-In & Curbless Showers",
-    heroImage: "/images/wp/IMG_1243-scaled.jpg",
-    gallery: [
-      { src: "/images/wp/IMG_6061-1-scaled.jpg", alt: "Marble walk-in shower with matte black fixtures — Tampa Bay" },
-      { src: "/images/wp/IMG_6153-scaled.jpeg", alt: "Frameless glass walk-in shower with floor-to-ceiling tile — Tampa Bay" },
-      { src: "/images/wp/IMG_1147-1-scaled.jpg", alt: "Tiled walk-in shower with bright marble surround — Tampa Bay" },
-    ],
-    navLabel: "Walk-In Showers",
-    metaTitle: "Walk-In & Curbless Showers in Tampa Bay, FL",
-    metaDescription:
-      "Custom walk-in and curbless showers in Tampa Bay. Frameless glass, custom tile, niches, benches, and linear drains. Convert your tub to a spa-like shower.",
-    heroLabel: "Showers",
-    heroIntro:
-      "A walk-in shower opens up the bathroom and feels like a daily escape. We build custom showers that are as practical as they are beautiful.",
-    overview: [
-      "Replacing a cramped tub or a dated enclosure with a custom walk-in shower is one of the most rewarding bathroom upgrades. The room feels larger and more open, entry is easier, and the right tile and glass turn a routine into something that feels like a spa.",
-      "We build each shower to your space and taste, from frameless glass and custom tilework to recessed niches, built-in benches, and clean linear drains. A curbless design takes it further, removing the threshold for a seamless, modern look that's also far easier to step into.",
-      "Tub-to-shower conversions are a specialty. Many homeowners rarely use their tub and would gladly trade it for a generous, easy-access shower, and we handle the plumbing, waterproofing, and finish work to make that swap clean and watertight.",
-    ],
-    features: [
-      { title: "Frameless Glass", body: "Minimal hardware and clear panels keep sightlines open and make the bathroom feel larger and more luxurious." },
-      { title: "Custom Tilework", body: "From large-format porcelain to handmade accents, the tile sets the tone, and we install it with crisp, lasting workmanship." },
-      { title: "Recessed Niches", body: "Built-in shelving keeps bottles off the floor and integrates storage cleanly into the tile design." },
-      { title: "Built-In Benches", body: "A seamless bench adds comfort and accessibility, perfect for shaving, relaxing, or seated bathing." },
-      { title: "Linear Drains", body: "A sleek linear drain enables single-slope, curbless designs and a cleaner tile layout than a traditional center drain." },
-      { title: "Proper Waterproofing", body: "Behind the beauty is correct waterproofing and slope, essential for keeping water where it belongs in humid Florida bathrooms." },
-    ],
-    process: [
-      { step: "01", title: "In-Home Design", body: "We visit to measure, discuss layout, and bring tile, glass, and fixture options to you, no showroom trip needed." },
-      { step: "02", title: "Demolition & Prep", body: "We remove the old tub or enclosure and prepare the substrate, framing and waterproofing for a watertight result." },
-      { step: "03", title: "Tile & Build", body: "We set tile, install niches and benches, and add the linear drain and any curbless sloping with precision." },
-      { step: "04", title: "Glass & Finish", body: "Frameless glass and fixtures go in last, followed by a final walkthrough to confirm everything is sealed and beautiful." },
-    ],
-    faqs: [
-      { q: "Can you convert my bathtub into a walk-in shower?", a: "Yes, tub-to-shower conversions are one of our most popular projects. We remove the existing tub, reconfigure the plumbing and drain, waterproof the space, and build a custom shower in its place. Many homeowners gain a more open, accessible bathroom they use every day." },
-      { q: "What's the advantage of a curbless shower?", a: "A curbless shower has no threshold to step over, which makes it easier to enter, easier to clean, and more accessible for all ages. It also creates a sleek, continuous look, especially with a linear drain. Correct sloping and waterproofing are critical, which is why professional installation is so important." },
-      { q: "Will a walk-in shower without a tub hurt my home's resale value?", a: "In most homes it's fine, and often a plus, as long as at least one bathroom retains a tub, which appeals to families with young children. If yours is the only tub in the house, we'll talk through the tradeoffs so your decision fits both your lifestyle and your long-term plans." },
-      { q: "How do you keep water from escaping a frameless or curbless shower?", a: "It comes down to proper slope, drain placement, and waterproofing membranes installed correctly behind the tile. We size the shower and position glass and drains to manage water flow, and a linear drain in particular helps a curbless design stay contained. Done right, these showers perform beautifully for years." },
-    ],
-    related: [
-      { label: "Bathroom Remodeling", href: "/bathroom-remodeling" },
-      { label: "ADA & Aging-in-Place Bathrooms", href: "/services/ada-aging-in-place-bathrooms" },
-      { label: "Countertops", href: "/services/countertops" },
-    ],
-  },
-  {
-    slug: "luxury-vinyl-plank-flooring",
-    name: "Luxury Vinyl Plank Flooring",
-    heroImage: "/images/wp/IMG_1419-scaled.jpg",
-    gallery: [
-      { src: "/images/wp/IMG_0824-scaled.jpg", alt: "Luxury vinyl plank flooring samples in wood-look finishes — Oldsmar showroom" },
-      { src: "/images/wp/IMG_6140-scaled.jpeg", alt: "Wood-look plank flooring through an open kitchen and dining room — Tampa Bay" },
-      { src: "/images/wp/IMG_2206-scaled.jpeg", alt: "Durable plank flooring in an open-concept living space — Tampa Bay" },
-    ],
-    navLabel: "Luxury Vinyl Plank",
-    metaTitle: "Luxury Vinyl Plank Flooring in Tampa Bay, FL",
-    metaDescription:
-      "Waterproof luxury vinyl plank flooring in Tampa Bay. Durable, wood-look LVP that stands up to Florida humidity, kids, and pets. Whole-home installation.",
-    heroLabel: "Flooring",
-    heroIntro:
-      "Luxury vinyl plank gives you the warmth of real wood with waterproof durability built for Florida living. Beautiful, practical, and remarkably tough.",
-    overview: [
-      "Luxury vinyl plank, or LVP, has become the go-to flooring for Florida homes, and for good reason. It looks like real hardwood, feels solid underfoot, and is genuinely waterproof, a major advantage in a climate of high humidity, summer storms, and the occasional spill.",
-      "Compared with hardwood, LVP won't swell, warp, or fade the way natural wood can in Florida's heat and moisture. Compared with tile, it's warmer and softer underfoot, quieter, and easier to install over many existing surfaces, while still standing up to kids, pets, and heavy daily traffic.",
-      "We install LVP throughout the whole home or room by room, helping you choose plank width, color, and finish that suit your style. The result is a cohesive, low-maintenance floor that looks high-end and lives easy for years to come.",
-    ],
-    features: [
-      { title: "Truly Waterproof", body: "LVP shrugs off spills, mop water, and humidity, making it ideal for Florida kitchens, baths, and open living spaces." },
-      { title: "Realistic Wood Look", body: "Modern printing and embossing mimic real wood grain convincingly, giving you the warmth of hardwood without the upkeep." },
-      { title: "Durable & Scratch-Resistant", body: "A tough wear layer handles pets, kids, furniture, and sandy beach-day feet better than natural wood." },
-      { title: "Comfortable Underfoot", body: "Softer and warmer than tile, with a quieter step, making whole-home spaces feel cozier." },
-      { title: "Whole-Home Consistency", body: "Running one floor throughout makes a home feel larger and more cohesive, and LVP makes that affordable to do." },
-      { title: "Low Maintenance", body: "No sealing, no waxing, no refinishing; routine sweeping and the occasional mop keep it looking great." },
-    ],
-    process: [
-      { step: "01", title: "In-Home Consultation", body: "We visit to assess your subfloor and rooms, then bring plank samples so you can see colors and textures in your own light." },
-      { step: "02", title: "Subfloor Prep", body: "We evaluate and prepare the existing surface, leveling and addressing any moisture concerns for a lasting install." },
-      { step: "03", title: "Installation", body: "Our installers lay the planks with proper expansion gaps and clean transitions between rooms and surfaces." },
-      { step: "04", title: "Finishing Touches", body: "We install trim and transitions, clean up, and walk the floor with you to confirm a flawless result." },
-    ],
-    faqs: [
-      { q: "Is luxury vinyl plank really better than tile or hardwood in Florida?", a: "For many Florida homes, yes. LVP is waterproof like tile but warmer and quieter underfoot, and unlike hardwood it won't warp or swell in our humidity. Tile and hardwood still have their place, but LVP offers a rare combination of durability, comfort, and a wood look at an approachable cost." },
-      { q: "Can LVP be installed over my existing floors?", a: "Often, yes. LVP can frequently be installed over many existing hard surfaces if they're sound and level, which can save time and cost. We always assess the subfloor first, since proper preparation and addressing any moisture issues are what make the floor last." },
-      { q: "Is luxury vinyl plank good for homes with pets and kids?", a: "It's one of the best choices for busy households. The wear layer resists scratches and scuffs, spills wipe up easily, and the waterproof core means accidents won't ruin the floor. It's also comfortable for kids and pets to be on all day." },
-      { q: "How long does whole-home LVP installation take?", a: "It depends on square footage and how much subfloor prep is needed, but many homes are completed in several days. We give you a clear schedule up front and work efficiently to minimize disruption to your daily routine." },
-    ],
-    related: [
       { label: "Flooring Installation", href: "/flooring-installation" },
-      { label: "Complete Interior Remodeling", href: "/complete-interior-home-remodeling" },
-      { label: "Kitchen Remodeling", href: "/kitchen-remodeling" },
+      { label: "Countertops", href: "/services/countertops" },
     ],
   },
   {

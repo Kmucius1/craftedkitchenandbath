@@ -5,7 +5,7 @@ import type { Lead } from "./db";
 // lead from being saved. Sender domain must be verified in Resend.
 export async function notifyNewLead(lead: Partial<Lead>): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.LEAD_NOTIFY_EMAIL;
+  const to = process.env.LEAD_NOTIFY_EMAIL || "info@craftedkitchenandbath.com";
   const from = process.env.LEAD_NOTIFY_FROM || "Crafted Leads <leads@craftedkitchenandbath.com>";
   if (!apiKey || !to) return;
 

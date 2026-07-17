@@ -108,7 +108,7 @@ export const blogArticles: BlogArticle[] = [
     ],
     related: [
       { label: "Bathroom Remodeling", href: "/bathroom-remodeling" },
-      { label: "Walk-In Showers", href: "/services/walk-in-showers" },
+      { label: "Walk-In Showers", href: "/bathroom-remodeling" },
       { label: "ADA & Aging-in-Place Bathrooms", href: "/services/ada-aging-in-place-bathrooms" },
     ],
   },
@@ -189,7 +189,7 @@ export const blogArticles: BlogArticle[] = [
     ],
     related: [
       { label: "Flooring Installation", href: "/flooring-installation" },
-      { label: "Luxury Vinyl Plank Flooring", href: "/services/luxury-vinyl-plank-flooring" },
+      { label: "Luxury Vinyl Plank Flooring", href: "/flooring-installation" },
       { label: "Complete Interior Home Remodeling", href: "/complete-interior-home-remodeling" },
     ],
   },
@@ -281,7 +281,7 @@ export const blogArticles: BlogArticle[] = [
     ],
     related: [
       { label: "ADA & Aging-in-Place Bathrooms", href: "/services/ada-aging-in-place-bathrooms" },
-      { label: "Walk-In Showers", href: "/services/walk-in-showers" },
+      { label: "Walk-In Showers", href: "/bathroom-remodeling" },
       { label: "Bathroom Remodeling", href: "/bathroom-remodeling" },
     ],
   },

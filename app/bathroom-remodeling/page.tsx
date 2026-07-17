@@ -193,7 +193,7 @@ const processSteps = [
     step: "04",
     title: "Installation",
     detail:
-      "Tile, vanity, fixtures, shower glass, lighting, and every finish installed by our team — no subcontractor handoffs mid-project.",
+      "Tile, vanity, fixtures, shower glass, lighting, and every finish handled by our team and carefully coordinated from start to finish.",
   },
   {
     step: "05",

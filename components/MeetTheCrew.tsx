@@ -8,9 +8,9 @@ const ACCENT = '#2B7CC1';
 
 const CREW = [
   { id: 'crafty', name: 'Crafty', role: 'Blueprint Builder', line: 'Guides your project from first idea to final finish.', img: '/images/mascots/crafty.jpg' },
-  { id: 'chip', name: 'Chip', role: 'Cabinet Craftsman', line: 'Kitchens, cabinetry, refacing, and countertops.', img: '/images/mascots/chip.jpg' },
+  { id: 'chip', name: 'Chip', role: 'Cabinet Craftsman', line: 'Kitchens, cabinetry, and countertops.', img: '/images/mascots/chip.jpg' },
   { id: 'ty', name: 'Ty', role: 'Remodel Pro', line: 'Bathrooms, tile, showers, flooring, and paint.', img: '/images/mascots/ty.jpg' },
-  { id: 'keyton', name: 'Keyton', role: 'Home Upgrade Helper', line: 'Quotes, financing, scheduling, and next steps.', img: '/images/mascots/keyton.jpg' },
+  { id: 'keyton', name: 'Keyton', role: 'Home Upgrade Helper', line: 'Quotes, scheduling, and next steps.', img: '/images/mascots/keyton.jpg' },
 ];
 
 function openChat() {

@@ -136,11 +136,11 @@ const STEPS: Step[] = [
       },
       {
         id: "Financing",
-        label: "Financing",
+        label: "Payment",
         type: "single",
         options: [
-          { value: "Interested in financing options" },
           { value: "Paying out of pocket" },
+          { value: "Using my own financing" },
           { value: "Not sure / tell me more" },
         ],
       },

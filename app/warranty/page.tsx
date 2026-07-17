@@ -16,7 +16,7 @@ const points = [
   { title: "Licensed & Insured", body: "Crafted Kitchen & Bath is a licensed Florida contractor (CRC1333143). You're protected by working with a properly licensed, insured professional — not an unlicensed handyman." },
   { title: "Built to Last", body: "We use quality materials and proven methods, with proper waterproofing and prep behind the finishes — the work you don't see is what makes a remodel last in Florida's climate." },
   { title: "We Stand Behind It", body: "We don't consider a project finished until you're satisfied at the final walkthrough, and we stand behind the craftsmanship of what we build." },
-  { title: "One Accountable Team", body: "Because we manage the whole project in-house rather than handing off to subcontractors, there's a single, accountable point of contact for your project — start to finish." },
+  { title: "One Accountable Team", body: "Because we manage your whole project from start to finish, there's a single, accountable point of contact the entire way through." },
 ];
 
 const breadcrumbSchema = {

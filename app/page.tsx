@@ -195,12 +195,12 @@ const cities = [
 
 // Paired problem → solution rows for the "Problems We Solve" transformation section.
 const problemSolutions = [
-  { problem: "Outdated, dated designs", solution: "Modern, custom upgrades tailored to you" },
+  { problem: "Outdated designs", solution: "Modern, custom upgrades tailored to you" },
   { problem: "Unreliable, no-show contractors", solution: "One accountable team, clear communication" },
   { problem: "Water damage & everyday wear", solution: "Durable, moisture-resistant materials" },
   { problem: "Cramped, closed-off spaces", solution: "Smart, open-concept layouts" },
   { problem: "Worn-out, tired interiors", solution: "Stylish finishes built to last" },
-  { problem: "Budget & pricing anxiety", solution: "Transparent pricing & financing options" },
+  { problem: "Budget & pricing anxiety", solution: "Clear, transparent pricing up front" },
 ];
 
 export default function HomePage() {

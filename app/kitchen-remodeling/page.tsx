@@ -173,7 +173,7 @@ const faqs = [
       "We handle the full project — cabinetry, countertops, tile, electrical coordination, plumbing coordination, painting, and flooring. One team, one contract.",
   },
   {
-    question: "Do you offer financing or promotional discounts?",
+    question: "Do you offer any promotional discounts?",
     answer:
       "Yes. We currently offer up to $3,000 off a full kitchen remodel, plus military and first responder discounts. Contact us for details.",
   },

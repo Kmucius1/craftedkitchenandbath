@@ -191,7 +191,6 @@ export default function Footer() {
                 { label: "Services", href: "/services" },
                 { label: "Our Work", href: "/our-work" },
                 { label: "Our Process", href: "/process" },
-                { label: "Financing", href: "/financing" },
                 { label: "Warranty", href: "/warranty" },
                 { label: "FAQs", href: "/faqs" },
                 { label: "Contact", href: "/contact" },
@@ -236,7 +235,7 @@ export default function Footer() {
                 { label: "Complete Interior Remodeling", href: "/complete-interior-home-remodeling" },
                 { label: "Flooring Installation", href: "/flooring-installation" },
                 { label: "Painting", href: "/painting" },
-                { label: "Countertops & Cabinetry", href: "/services" },
+                { label: "Countertops & Cabinetry", href: "/services/countertops" },
               ].map(({ label, href }) => (
                 <li key={label}>
                   <Link
@@ -272,7 +271,7 @@ export default function Footer() {
             </h3>
             <ul className="flex flex-col gap-3">
               {[
-                "Oldsmar, FL",
+                "Oldsmar",
                 "Clearwater",
                 "Palm Harbor",
                 "Safety Harbor",
@@ -281,6 +280,11 @@ export default function Footer() {
                 "St. Petersburg",
                 "Tarpon Springs",
                 "Largo",
+                "Seminole",
+                "Odessa",
+                "Trinity",
+                "Lutz",
+                "Gulf Beaches",
                 "Pinellas County",
                 "Hillsborough County",
               ].map((area) => (

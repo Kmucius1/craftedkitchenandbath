@@ -341,9 +341,8 @@ export default function AboutUsPage() {
               What sets us apart isn&rsquo;t just the craftsmanship — it&rsquo;s
               the approach. We manage the entire project from concept to
               completion, supplying high-quality materials, coordinating every
-              trade, and staying in close communication throughout. No
-              subcontractor chaos. No hidden surprises. Just honest work, done
-              well.
+              trade, and staying in close communication throughout. No hidden
+              surprises. Just honest work, done well.
             </p>
           </div>
 

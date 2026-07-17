@@ -22,10 +22,7 @@ const SERVICES = [
   { label: 'Flooring Installation', href: '/flooring-installation' },
   { label: 'Painting', href: '/painting' },
   { label: 'Countertops', href: '/services/countertops' },
-  { label: 'Cabinet Refacing', href: '/services/cabinet-refacing' },
   { label: 'ADA & Aging-in-Place', href: '/services/ada-aging-in-place-bathrooms' },
-  { label: 'Walk-In Showers', href: '/services/walk-in-showers' },
-  { label: 'Luxury Vinyl Plank', href: '/services/luxury-vinyl-plank-flooring' },
   { label: 'Outdoor Kitchens', href: '/services/outdoor-kitchens' },
   { label: 'Areas of Service', href: '/areas-of-service' },
 ];
@@ -121,16 +118,18 @@ export default function Header() {
                           fontSize: '11px',
                           letterSpacing: '0.13em',
                           textTransform: 'uppercase',
-                          fontWeight: active ? 600 : 500,
+                          fontWeight: active ? 700 : 600,
                           background: 'none',
                           border: 'none',
+                          borderBottom: active ? '2px solid #FFFFFF' : '2px solid transparent',
                           cursor: 'pointer',
-                          padding: 0,
+                          padding: '0 0 2px',
                           display: 'flex',
                           alignItems: 'center',
                           gap: '4px',
                           whiteSpace: 'nowrap',
                           transition: 'color 0.2s ease',
+                          lineHeight: 1,
                         }}
                         onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#FFFFFF'}
                         onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = active ? '#FFFFFF' : 'rgba(255,255,255,0.85)'}

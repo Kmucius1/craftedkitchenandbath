@@ -709,10 +709,10 @@ export default function AreasOfServicePage() {
                 margin: 0,
               }}
             >
-              We don&rsquo;t require homeowners to travel to a showroom. Our
-              team visits your home, assesses the space, and begins planning
-              on-site. If you&rsquo;re in Pinellas or Hillsborough County, we
-              can be there.
+              Our team visits your home, assesses the space, and begins
+              planning on-site — and you&rsquo;re always welcome to visit our
+              Oldsmar showroom to see materials in person. If you&rsquo;re in
+              Pinellas or Hillsborough County, we can be there.
             </p>
 
             <Link
@@ -892,7 +892,7 @@ export default function AreasOfServicePage() {
       {/* ── 7. FINAL CTA ─────────────────────────────────────────────── */}
       <CTASection
         headline="Ready to Begin Your Remodel?"
-        subtext="Schedule a complimentary in-home consultation with our team. We serve homeowners across Pinellas and Hillsborough County — no showroom visit required."
+        subtext="Schedule a complimentary in-home consultation with our team. We serve homeowners across Pinellas and Hillsborough County."
       />
     </>
   );

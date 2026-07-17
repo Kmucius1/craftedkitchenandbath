@@ -242,7 +242,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
       <CTASection
         headline={`Interested in ${svc.name}?`}
-        subtext="Schedule a complimentary in-home consultation. We bring the samples and the design conversation to you — no showroom visit required."
+        subtext="Schedule a complimentary in-home consultation. We bring the samples and the design conversation to you, and you're always welcome to visit our Oldsmar showroom."
       />
     </>
   );
