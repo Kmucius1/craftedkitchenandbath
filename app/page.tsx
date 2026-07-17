@@ -1071,8 +1071,8 @@ export default function HomePage() {
               style={{ height: "360px" }}
             >
               <Image
-                src="/images/wp/IMG_1243-scaled.jpg"
-                alt="Custom walk-in shower with shiplap walls — Clearwater, FL"
+                src="/images/wp/IMG_6153-scaled.jpeg"
+                alt="Frameless glass walk-in shower with tile surround — Tampa Bay"
                 fill
           sizes="(max-width: 1024px) 100vw, 33vw"
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
@@ -1106,7 +1106,7 @@ export default function HomePage() {
                     color: "#1A202C",
                   }}
                 >
-                  Walk-In Shower — Clearwater
+                  Walk-In Shower — Tampa Bay
                 </p>
               </div>
             </div>

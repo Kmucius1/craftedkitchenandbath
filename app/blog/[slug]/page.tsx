@@ -138,7 +138,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       <CTASection
         headline="Ready to Start Your Project?"
-        subtext="Schedule a complimentary in-home consultation. We bring the design conversation to you — no showroom visit required."
+        subtext="Schedule a complimentary in-home consultation. We bring the design conversation to you, and you're welcome to visit our Oldsmar showroom too."
       />
     </>
   );

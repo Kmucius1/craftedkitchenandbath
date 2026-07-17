@@ -4,6 +4,7 @@ import Link from "next/link";
 import BuildTogetherCTA from "@/components/BuildTogetherCTA";
 import CountUp from "@/components/CountUp";
 import MissionVision from "@/components/MissionVision";
+import MeetTheTeam from "@/components/MeetTheTeam";
 
 export const metadata: Metadata = {
   title: "About Crafted Kitchen & Bath | Kitchen & Bathroom Remodeling Experts | Oldsmar FL",
@@ -660,11 +661,10 @@ export default function AboutUsPage() {
             </h2>
           </div>
 
-          {/* 3 pillars in a row with vertical dividers */}
+          {/* 3 pillars in a row with vertical dividers (stacks on mobile) */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
             }}
             className="grid-cols-1 md:!grid-cols-3"
           >
@@ -925,6 +925,9 @@ export default function AboutUsPage() {
           </div>
         </div>
       </section>
+
+      {/* ── MEET THE TEAM ────────────────────────────────────────────── */}
+      <MeetTheTeam />
 
       {/* ── 6. PROMOTIONS ────────────────────────────────────────────── */}
       <section

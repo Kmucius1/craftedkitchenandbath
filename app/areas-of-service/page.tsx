@@ -104,6 +104,16 @@ const pinellasCities = [
     slug: "st-petersburg",
     copy: "From historic homes to modern condos, St. Petersburg's variety means we're always solving interesting design challenges.",
   },
+  {
+    name: "Seminole",
+    slug: "seminole",
+    copy: "Seminole homeowners choose us for kitchen and bath remodels built for easy, everyday Gulf-coast living.",
+  },
+  {
+    name: "Gulf Beaches",
+    slug: "gulf-beaches",
+    copy: "From Indian Rocks to Treasure Island, we remodel beach-area kitchens and baths with salt-air-ready finishes.",
+  },
 ];
 
 const hillsboroughCities = [
@@ -126,6 +136,24 @@ const hillsboroughCities = [
     name: "Brandon",
     slug: "brandon",
     copy: "We extend our services to Brandon and surrounding Hillsborough County communities.",
+  },
+  {
+    name: "Lutz",
+    slug: "lutz",
+    copy: "Lutz's established and newer homes alike get modern, hard-wearing kitchen and bath updates from our team.",
+  },
+];
+
+const pascoCities = [
+  {
+    name: "Trinity",
+    slug: "trinity",
+    copy: "Trinity's golf and gated communities are maturing — we bring their kitchens and baths up to today's standards.",
+  },
+  {
+    name: "Odessa",
+    slug: "odessa",
+    copy: "Odessa's acreage homes and lakefront properties get custom kitchen and bath remodeling built to last.",
   },
 ];
 
@@ -281,7 +309,7 @@ export default function AreasOfServicePage() {
             gap: "2px",
             backgroundColor: "rgba(43,124,193,0.12)",
           }}
-          className="md:!grid-cols-2"
+          className="md:!grid-cols-3"
         >
           {/* Pinellas County */}
           <div
@@ -407,6 +435,77 @@ export default function AreasOfServicePage() {
               }}
             >
               {hillsboroughCities.map((city) => (
+                <li key={city.name}>
+                  <span
+                    style={{
+                      display: "inline-block",
+                      border: "1px solid rgba(0,0,0,0.12)",
+                      color: "#4A5568",
+                      backgroundColor: "#FFFFFF",
+                      fontSize: "10px",
+                      letterSpacing: "0.16em",
+                      textTransform: "uppercase",
+                      padding: "6px 14px",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {city.name}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Pasco County */}
+          <div
+            style={{
+              backgroundColor: "#F7F8FA",
+              padding: "56px 48px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "24px",
+            }}
+          >
+            <SectionLabel>Extended Area</SectionLabel>
+
+            <h2
+              style={{
+                fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
+                fontWeight: 300,
+                fontSize: "clamp(28px, 3.5vw, 40px)",
+                lineHeight: 1.2,
+                color: "#1A202C",
+                margin: 0,
+                letterSpacing: "0.01em",
+              }}
+            >
+              Pasco County
+            </h2>
+
+            <p
+              style={{
+                fontSize: "16px",
+                lineHeight: 1.85,
+                color: "#4A5568",
+                margin: 0,
+              }}
+            >
+              We also serve nearby Pasco County communities like Trinity and
+              Odessa, bringing the same craftsmanship north of the county line.
+            </p>
+
+            {/* City chips */}
+            <ul
+              style={{
+                listStyle: "none",
+                margin: "8px 0 0",
+                padding: 0,
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "10px",
+              }}
+            >
+              {pascoCities.map((city) => (
                 <li key={city.name}>
                   <span
                     style={{
@@ -832,7 +931,7 @@ export default function AreasOfServicePage() {
                 gap: "14px",
               }}
             >
-              {[...pinellasCities, ...hillsboroughCities].map((city) => (
+              {[...pinellasCities, ...hillsboroughCities, ...pascoCities].map((city) => (
                 <li
                   key={city.name}
                   style={{
@@ -882,8 +981,8 @@ export default function AreasOfServicePage() {
             }}
           >
             Crafted Kitchen and Bath is a licensed Florida contractor (CRC1333143) serving homeowners
-            throughout Pinellas County and Hillsborough County. Our team specializes in kitchen
-            remodeling, bathroom renovations, luxury vinyl plank flooring, tile installation, and
+            throughout Pinellas, Hillsborough, and Pasco County. Our team specializes in kitchen
+            remodeling, bathroom renovations, flooring, tile installation, and
             interior painting — all delivered with the craftsmanship and communication you deserve.
           </p>
         </div>
