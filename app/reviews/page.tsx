@@ -107,9 +107,9 @@ export default async function ReviewsPage() {
         {/* ── Review grid ────────────────────────────────────────── */}
         <section style={{ backgroundColor: "#FFFFFF", padding: "clamp(40px, 7vw, 72px) 24px" }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
               {reviews.map((r, idx) => (
-                <div key={`${r.author}-${idx}`} style={{ backgroundColor: "#F7F8FA", padding: "32px", borderTop: "2px solid #F59E0B", display: "flex", flexDirection: "column" }}>
+                <div key={`${r.author}-${idx}`} style={{ backgroundColor: "#F7F8FA", padding: "32px", borderTop: "2px solid #F59E0B", breakInside: "avoid", marginBottom: "24px" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
                     <div style={{ display: "flex", gap: "2px" }}>
                       {[1, 2, 3, 4, 5].map((s) => (
@@ -118,10 +118,10 @@ export default async function ReviewsPage() {
                     </div>
                     <GoogleIcon size={14} />
                   </div>
-                  <p style={{ fontFamily: bodyFont, fontWeight: 400, fontSize: "13.5px", color: "#1A202C", lineHeight: 1.7, margin: 0, flexGrow: 1 }}>
+                  <p style={{ fontFamily: bodyFont, fontWeight: 400, fontSize: "13.5px", color: "#1A202C", lineHeight: 1.7, margin: 0 }}>
                     &ldquo;{r.quote}&rdquo;
                   </p>
-                  <p className="mt-4" style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.12em", color: "#6B7280" }}>
+                  <p className="mt-4" style={{ fontSize: "12px", textTransform: "uppercase", letterSpacing: "0.12em", color: "#6B7280", marginBottom: 0 }}>
                     — {r.author}
                   </p>
                 </div>
