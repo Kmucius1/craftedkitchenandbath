@@ -1,15 +1,18 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// Google reviews feed (auto-synced via Featurable).
+// Google reviews feed — pulled straight from the Google Places API (New).
 //
 // How it works:
-//   • Featurable connects to Crafted's Google Business Profile (public Place ID —
-//     no Google login required) and re-syncs new reviews every ~48h.
-//   • We pull its free JSON API here, keep only 4★+ reviews (MIN_RATING), and the
-//     site renders them in Crafted's own styling.
-//   • New 5★ reviews on Google appear on the site automatically; 1–3★ never show.
+//   • We call Google Place Details for Crafted's Google Business Profile
+//     (PLACE_ID below) once a day and read its rating, total count, and reviews.
+//   • We keep only 4★+ reviews (MIN_RATING); the site renders them in Crafted's
+//     own styling. New reviews Google surfaces show up automatically; low ones
+//     never appear.
+//   • Google returns up to 5 individual reviews per call (an API limitation) plus
+//     the true aggregate rating + total count (e.g. 4.9 · 41 reviews).
 //
-// Setup: set FEATURABLE_WIDGET_ID in the Vercel env (optional FEATURABLE_API_KEY).
-// Until that's set — or if the feed is ever unreachable — we fall back to the
+// Setup: set GOOGLE_PLACES_API_KEY in the Vercel env (server-side only — the key
+//   is never sent to the browser). Optionally override GOOGLE_PLACE_ID.
+// Until the key is set — or if the API is ever unreachable — we fall back to the
 // hand-verified real reviews below, so this section never breaks or goes empty.
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -25,14 +28,17 @@ export type ReviewsResult = {
   reviews: Review[];
   aggregateRating: number;
   totalCount: number;
-  source: "featurable" | "fallback";
+  source: "google" | "fallback";
 };
 
 // Only show reviews at or above this star rating.
 export const MIN_RATING = 4;
 
+// Crafted Kitchen and Bath — verified Google Place ID (Oldsmar, FL).
+const PLACE_ID = process.env.GOOGLE_PLACE_ID || "ChIJBX3Sf3ThwogRfasm-zec18Y";
+
 // Real, verified 5★ Google reviews from Crafted's Google Business Profile.
-// Used until the live Featurable feed is wired up, and as a safety net if it fails.
+// Used until the live API key is wired up, and as a safety net if it fails.
 export const FALLBACK_REVIEWS: Review[] = [
   {
     author: "Myranda Falk",
@@ -54,83 +60,74 @@ export const FALLBACK_REVIEWS: Review[] = [
   },
 ];
 
-// Featurable exposes two shapes across its plans; normalize both defensively.
-function toRating(r: unknown): number {
-  if (typeof r === "number") return r;
-  if (r && typeof r === "object" && typeof (r as { value?: number }).value === "number") {
-    return (r as { value: number }).value;
-  }
-  const words: Record<string, number> = { ONE: 1, TWO: 2, THREE: 3, FOUR: 4, FIVE: 5 };
-  if (typeof r === "string") {
-    if (words[r]) return words[r];
-    const n = Number(r);
-    if (Number.isFinite(n)) return n;
-  }
-  return 0;
-}
+type GooglePlaceReview = {
+  rating?: number;
+  text?: { text?: string };
+  originalText?: { text?: string };
+  authorAttribution?: { displayName?: string; photoUri?: string };
+  publishTime?: string;
+};
 
-type RawReview = Record<string, any>;
-
-function normalize(raw: RawReview): Review | null {
-  const author =
-    raw?.reviewer?.displayName ??
-    raw?.author?.name ??
-    (typeof raw?.author === "string" ? raw.author : undefined) ??
-    "Google Reviewer";
-  const quote = String(raw?.comment ?? raw?.text ?? "").trim();
-  const rating = toRating(raw?.starRating ?? raw?.rating);
-  const avatarUrl = raw?.reviewer?.profilePhotoUrl ?? raw?.author?.avatarUrl;
-  const date = raw?.createTime ?? raw?.publishedAt ?? raw?.createdAt;
+function normalize(raw: GooglePlaceReview): Review | null {
+  const quote = String(raw?.text?.text ?? raw?.originalText?.text ?? "").trim();
   if (!quote) return null;
-  return { author, quote, rating, avatarUrl, date };
+  return {
+    quote,
+    author: raw?.authorAttribution?.displayName ?? "Google Reviewer",
+    rating: typeof raw?.rating === "number" ? raw.rating : 0,
+    avatarUrl: raw?.authorAttribution?.photoUri,
+    date: raw?.publishTime,
+  };
 }
 
-function fallbackResult(limit?: number): ReviewsResult {
+function fallbackResult(limit?: number, aggregateRating = 4.9, totalCount = 41): ReviewsResult {
   return {
     reviews: limit ? FALLBACK_REVIEWS.slice(0, limit) : FALLBACK_REVIEWS,
-    aggregateRating: 4.9,
-    totalCount: 41,
+    aggregateRating,
+    totalCount,
     source: "fallback",
   };
 }
 
 /**
- * Fetch Crafted's Google reviews (4★+), newest-first as Featurable orders them.
- * Refreshes daily. Never throws — always returns a usable result.
+ * Fetch Crafted's Google reviews (4★+) via the Google Places API (New).
+ * Refreshes daily. Never throws — always returns a usable result. When the API
+ * returns the aggregate but no usable individual reviews, we keep the real
+ * aggregate (rating + count) and fall back to curated review cards.
  */
 export async function getGoogleReviews(limit?: number): Promise<ReviewsResult> {
-  const widgetId = process.env.FEATURABLE_WIDGET_ID;
-  if (!widgetId) return fallbackResult(limit);
+  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+  if (!apiKey) return fallbackResult(limit);
 
   try {
-    const res = await fetch(`https://featurable.com/api/v1/widgets/${widgetId}`, {
-      next: { revalidate: 86400 }, // refresh once a day (Featurable itself syncs Google ~48h)
-      headers: process.env.FEATURABLE_API_KEY
-        ? { "X-API-Key": process.env.FEATURABLE_API_KEY }
-        : {},
+    const url = `https://places.googleapis.com/v1/places/${PLACE_ID}`;
+    const res = await fetch(url, {
+      next: { revalidate: 86400 }, // refresh once a day
+      headers: {
+        "X-Goog-Api-Key": apiKey,
+        "X-Goog-FieldMask": "rating,userRatingCount,reviews",
+      },
     });
     if (!res.ok) return fallbackResult(limit);
 
     const data = await res.json();
-    const rawReviews: RawReview[] = data?.reviews ?? data?.widget?.reviews ?? [];
-    const reviews = rawReviews
+    const aggregateRating = Number(data?.rating);
+    const totalCount = Number(data?.userRatingCount);
+    const safeAgg = Number.isFinite(aggregateRating) ? aggregateRating : 4.9;
+    const safeCount = Number.isFinite(totalCount) ? totalCount : 41;
+
+    const reviews = (Array.isArray(data?.reviews) ? data.reviews : [])
       .map(normalize)
-      .filter((r): r is Review => r !== null && r.rating >= MIN_RATING);
+      .filter((r: Review | null): r is Review => r !== null && r.rating >= MIN_RATING);
 
-    if (reviews.length === 0) return fallbackResult(limit);
-
-    const aggregateRating = Number(
-      data?.averageRating ?? data?.widget?.gbpLocationSummary?.rating ?? 4.9,
-    );
-    const totalCount = Number(
-      data?.totalReviewCount ?? data?.widget?.gbpLocationSummary?.reviewsCount ?? reviews.length,
-    );
+    // No usable individual reviews came back, but the aggregate is real — keep it.
+    if (reviews.length === 0) return fallbackResult(limit, safeAgg, safeCount);
 
     return {
       reviews: limit ? reviews.slice(0, limit) : reviews,
-      aggregateRating: Number.isFinite(aggregateRating) ? aggregateRating : 4.9,
-      totalCount: Number.isFinite(totalCount) ? totalCount : reviews.length,
-      source: "featurable",
+      aggregateRating: safeAgg,
+      totalCount: safeCount,
+      source: "google",
     };
   } catch {
     return fallbackResult(limit);
