@@ -1,14 +1,16 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// Google reviews feed — pulled straight from the Google Places API (New).
+// Google reviews feed — pulled straight from the Google Places API (Place Details).
 //
 // How it works:
 //   • We call Google Place Details for Crafted's Google Business Profile
-//     (PLACE_ID below) once a day and read its rating, total count, and reviews.
+//     (PLACE_ID below) once a day and read its rating, total count, and reviews
+//     (sorted newest-first).
 //   • We keep only 4★+ reviews (MIN_RATING); the site renders them in Crafted's
 //     own styling. New reviews Google surfaces show up automatically; low ones
 //     never appear.
 //   • Google returns up to 5 individual reviews per call (an API limitation) plus
 //     the true aggregate rating + total count (e.g. 4.9 · 41 reviews).
+//   • Uses the same API key EHM Strategies uses (enabled for the legacy Places API).
 //
 // Setup: set GOOGLE_PLACES_API_KEY in the Vercel env (server-side only — the key
 //   is never sent to the browser). Optionally override GOOGLE_PLACE_ID.
@@ -62,21 +64,21 @@ export const FALLBACK_REVIEWS: Review[] = [
 
 type GooglePlaceReview = {
   rating?: number;
-  text?: { text?: string };
-  originalText?: { text?: string };
-  authorAttribution?: { displayName?: string; photoUri?: string };
-  publishTime?: string;
+  text?: string;
+  author_name?: string;
+  profile_photo_url?: string;
+  relative_time_description?: string;
 };
 
 function normalize(raw: GooglePlaceReview): Review | null {
-  const quote = String(raw?.text?.text ?? raw?.originalText?.text ?? "").trim();
+  const quote = String(raw?.text ?? "").trim();
   if (!quote) return null;
   return {
     quote,
-    author: raw?.authorAttribution?.displayName ?? "Google Reviewer",
+    author: raw?.author_name ?? "Google Reviewer",
     rating: typeof raw?.rating === "number" ? raw.rating : 0,
-    avatarUrl: raw?.authorAttribution?.photoUri,
-    date: raw?.publishTime,
+    avatarUrl: raw?.profile_photo_url,
+    date: raw?.relative_time_description,
   };
 }
 
@@ -100,23 +102,27 @@ export async function getGoogleReviews(limit?: number): Promise<ReviewsResult> {
   if (!apiKey) return fallbackResult(limit);
 
   try {
-    const url = `https://places.googleapis.com/v1/places/${PLACE_ID}`;
-    const res = await fetch(url, {
-      next: { revalidate: 86400 }, // refresh once a day
-      headers: {
-        "X-Goog-Api-Key": apiKey,
-        "X-Goog-FieldMask": "rating,userRatingCount,reviews",
-      },
+    const params = new URLSearchParams({
+      place_id: PLACE_ID,
+      fields: "rating,user_ratings_total,reviews",
+      reviews_sort: "newest",
+      key: apiKey,
     });
+    const res = await fetch(
+      `https://maps.googleapis.com/maps/api/place/details/json?${params}`,
+      { next: { revalidate: 86400 } }, // refresh once a day
+    );
     if (!res.ok) return fallbackResult(limit);
 
     const data = await res.json();
-    const aggregateRating = Number(data?.rating);
-    const totalCount = Number(data?.userRatingCount);
+    if (data?.status !== "OK") return fallbackResult(limit);
+    const result = data.result ?? {};
+    const aggregateRating = Number(result?.rating);
+    const totalCount = Number(result?.user_ratings_total);
     const safeAgg = Number.isFinite(aggregateRating) ? aggregateRating : 4.9;
     const safeCount = Number.isFinite(totalCount) ? totalCount : 41;
 
-    const reviews = (Array.isArray(data?.reviews) ? data.reviews : [])
+    const reviews = (Array.isArray(result?.reviews) ? result.reviews : [])
       .map(normalize)
       .filter((r: Review | null): r is Review => r !== null && r.rating >= MIN_RATING);
 
