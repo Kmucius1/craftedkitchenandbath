@@ -190,6 +190,7 @@ export default function Footer() {
                 { label: "About Us", href: "/about-us" },
                 { label: "Services", href: "/services" },
                 { label: "Our Work", href: "/our-work" },
+                { label: "Reviews", href: "/reviews" },
                 { label: "Our Process", href: "/process" },
                 { label: "Warranty", href: "/warranty" },
                 { label: "FAQs", href: "/faqs" },
