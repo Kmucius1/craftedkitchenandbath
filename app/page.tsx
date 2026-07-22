@@ -386,7 +386,7 @@ export default async function HomePage() {
                       alt="Kitchen Remodeling"
                       fill
           sizes="(max-width: 1280px) 50vw, 25vw"
-                      style={{ objectFit: 'cover', objectPosition: 'center 80%' }}
+                      style={{ objectFit: 'cover', objectPosition: 'center 45%' }}
                     />
                   </div>
                   <div style={{ padding: "24px", backgroundColor: "#FFFFFF", flex: 1 }}>
