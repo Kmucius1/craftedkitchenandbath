@@ -22,10 +22,6 @@ const SLIDES = [
     alt: 'Bathroom vanity with backlit LED mirrors — Tampa Bay',
   },
   {
-    src: '/images/wp/Hunter-Kitchen-hires.png',
-    alt: 'Hunter kitchen remodel with custom cabinetry — Tampa Bay',
-  },
-  {
     src: '/images/wp/IMG_0888-scaled.jpg',
     alt: 'Kitchen remodel — Tampa Bay',
   },
