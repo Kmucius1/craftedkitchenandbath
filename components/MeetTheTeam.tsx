@@ -17,24 +17,14 @@ type Member = { name: string; role: string; bio: string; img?: string };
 
 const TEAM: Member[] = [
   {
-    name: "Tyler",
+    name: "Tylor Craft",
     role: "Owner & Lead Contractor",
     bio: "Founded Crafted to bring honest, craftsmanship-first remodeling to Tampa Bay, and still walks every job site.",
   },
   {
-    name: "Team Member",
+    name: "Matt Tharp",
     role: "Project Manager",
     bio: "Keeps your remodel on schedule and on budget, and is your point of contact from first measure to final walkthrough.",
-  },
-  {
-    name: "Team Member",
-    role: "Lead Craftsman",
-    bio: "Leads the build crew on tile, cabinetry, and finish work, holding every detail to the standard our name is on.",
-  },
-  {
-    name: "Team Member",
-    role: "Design Consultant",
-    bio: "Helps you choose materials, finishes, and layouts that fit how you live — and look right in your own light.",
   },
 ];
 
@@ -63,7 +53,7 @@ export default function MeetTheTeam() {
         </div>
 
         {/* Team grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4" data-stagger style={{ gap: "16px" }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 max-w-[720px] mx-auto" data-stagger style={{ gap: "16px" }}>
           {TEAM.map((m, i) => (
             <div
               key={`${m.name}-${i}`}
