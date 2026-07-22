@@ -382,11 +382,11 @@ export default async function HomePage() {
                 >
                   <div style={{ position: 'relative', width: '100%', height: 'clamp(150px, 38vw, 240px)', overflow: 'hidden' }}>
                     <Image
-                      src="/images/wp/Hunter-Kitchen-hires.png"
+                      src="/images/wp/IMG_2580-scaled.jpeg"
                       alt="Kitchen Remodeling"
                       fill
           sizes="(max-width: 1280px) 50vw, 25vw"
-                      style={{ objectFit: 'cover', objectPosition: 'center top' }}
+                      style={{ objectFit: 'cover', objectPosition: 'center 35%' }}
                     />
                   </div>
                   <div style={{ padding: "24px", backgroundColor: "#FFFFFF", flex: 1 }}>
@@ -444,7 +444,7 @@ export default async function HomePage() {
                 >
                   <div style={{ position: 'relative', width: '100%', height: 'clamp(150px, 38vw, 240px)', overflow: 'hidden' }}>
                     <Image
-                      src="/images/wp/IMG_1243-scaled.jpg"
+                      src="/images/wp/IMG_6153-scaled.jpeg"
                       alt="Bathroom Remodeling"
                       fill
           sizes="(max-width: 1280px) 50vw, 25vw"
