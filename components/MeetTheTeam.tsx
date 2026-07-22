@@ -23,8 +23,13 @@ const TEAM: Member[] = [
   },
   {
     name: "Matt Tharp",
-    role: "Project Manager",
-    bio: "Keeps your remodel on schedule and on budget, and is your point of contact from first measure to final walkthrough.",
+    role: "COO & Office Manager",
+    bio: "Runs day-to-day operations and the office, keeping every project — and every homeowner — organized from first call to final invoice.",
+  },
+  {
+    name: "Jim Mazaris",
+    role: "Project Manager & Foreman",
+    bio: "Keeps your remodel on schedule and on budget, and is your point of contact on site from first measure to final walkthrough.",
   },
 ];
 
@@ -53,7 +58,7 @@ export default function MeetTheTeam() {
         </div>
 
         {/* Team grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 max-w-[720px] mx-auto" data-stagger style={{ gap: "16px" }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-[1040px] mx-auto" data-stagger style={{ gap: "16px" }}>
           {TEAM.map((m, i) => (
             <div
               key={`${m.name}-${i}`}
