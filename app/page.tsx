@@ -312,7 +312,7 @@ export default async function HomePage() {
         {/* Bathroom side */}
         <div style={{ position: 'relative', height: 'clamp(380px, 74vw, 560px)', overflow: 'hidden' }} className="group">
           <Image
-            src="/images/wp/IMG_1147-1-scaled.jpg"
+            src="/images/wp/IMG_6465-scaled.jpeg"
             alt="Luxury bathroom remodeling Tampa Bay"
             fill
           sizes="(max-width: 768px) 100vw, 50vw"
