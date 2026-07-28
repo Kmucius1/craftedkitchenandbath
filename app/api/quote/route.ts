@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/db";
-import { notifyNewLead } from "@/lib/notify";
+import { notifyNewLead, notifyLeadConfirmation } from "@/lib/notify";
 
 // In-depth quote questionnaire endpoint. Captures the structured qualification
 // answers, folds them into a readable `description` block, and stores the result
@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  await notifyNewLead(lead);
+  await Promise.all([notifyNewLead(lead), notifyLeadConfirmation(lead)]);
 
   return NextResponse.json({ ok: true });
 }

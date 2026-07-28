@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/db";
-import { notifyNewLead } from "@/lib/notify";
+import { notifyNewLead, notifyLeadConfirmation } from "@/lib/notify";
 
 // Lead-capture endpoint. Validates the contact form, blocks spam, stores the
 // lead in Postgres, and (optionally) emails a notification. Leads are viewable
@@ -72,8 +72,8 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Fire-and-forget notification; failure here must not fail the request.
-  await notifyNewLead(lead);
+  // Fire-and-forget notifications; failure here must not fail the request.
+  await Promise.all([notifyNewLead(lead), notifyLeadConfirmation(lead)]);
 
   return NextResponse.json({ ok: true });
 }

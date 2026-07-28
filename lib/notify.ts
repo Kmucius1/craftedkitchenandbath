@@ -1,5 +1,46 @@
 import type { Lead } from "./db";
 
+const BUSINESS_NAME = "Crafted Kitchen and Bath";
+const BUSINESS_PHONE = "(727) 383-7550";
+
+// Best-effort confirmation email to the homeowner who just submitted a form.
+// No-ops (and never throws) unless RESEND_API_KEY is set, so a missing config
+// never blocks a lead from being saved. Sender domain must be verified in Resend.
+export async function notifyLeadConfirmation(lead: Partial<Lead>): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.LEAD_NOTIFY_FROM || "Crafted Kitchen and Bath <leads@craftedkitchenandbath.com>";
+  if (!apiKey || !lead.email) return;
+
+  const firstName = (lead.full_name || "").trim().split(/\s+/)[0] || "there";
+
+  const html = `
+    <div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:520px;margin:0 auto;color:#1A202C">
+      <h2 style="margin:0 0 16px">Thanks, ${firstName} — we've got your project details.</h2>
+      <p style="line-height:1.6">A member of our team will review your answers and reach out within 24 hours to schedule your complimentary in-home consultation.</p>
+      <p style="line-height:1.6">Prefer to talk now? Call us at <a href="tel:${BUSINESS_PHONE.replace(/[^\d+]/g, "")}" style="color:#2B7CC1">${BUSINESS_PHONE}</a>.</p>
+      <p style="margin-top:32px;color:#6B7280;font-size:13px">— ${BUSINESS_NAME}</p>
+    </div>`;
+
+  try {
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [lead.email],
+        subject: `We received your request — ${BUSINESS_NAME}`,
+        html,
+      }),
+      signal: AbortSignal.timeout(8000),
+    });
+  } catch (err) {
+    console.error("[notify] lead confirmation email failed (non-fatal):", err);
+  }
+}
+
 // Best-effort new-lead notification via Resend. No-ops (and never throws) unless
 // RESEND_API_KEY + LEAD_NOTIFY_EMAIL are set, so a missing config never blocks a
 // lead from being saved. Sender domain must be verified in Resend.
