@@ -20,6 +20,7 @@ async function sendResendEmail(payload: Record<string, unknown>, apiKey: string,
     if (!res.ok) {
       const body = await res.text().catch(() => "");
       console.error(`[notify] ${label} rejected by Resend (${res.status}):`, body);
+      console.error(`[notify] ${label} payload.from was:`, JSON.stringify(payload.from));
     }
   } catch (err) {
     console.error(`[notify] ${label} failed (non-fatal):`, err);
