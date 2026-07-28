@@ -3,6 +3,29 @@ import type { Lead } from "./db";
 const BUSINESS_NAME = "Crafted Kitchen and Bath";
 const BUSINESS_PHONE = "(727) 383-7550";
 
+// Resend resolves on 4xx/5xx just like on success — fetch() only rejects on
+// network failure — so callers must check response.ok or a bad API key /
+// unverified sending domain fails completely silently.
+async function sendResendEmail(payload: Record<string, unknown>, apiKey: string, label: string) {
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!res.ok) {
+      const body = await res.text().catch(() => "");
+      console.error(`[notify] ${label} rejected by Resend (${res.status}):`, body);
+    }
+  } catch (err) {
+    console.error(`[notify] ${label} failed (non-fatal):`, err);
+  }
+}
+
 // Best-effort confirmation email to the homeowner who just submitted a form.
 // No-ops (and never throws) unless RESEND_API_KEY is set, so a missing config
 // never blocks a lead from being saved. Sender domain must be verified in Resend.
@@ -21,24 +44,11 @@ export async function notifyLeadConfirmation(lead: Partial<Lead>): Promise<void>
       <p style="margin-top:32px;color:#6B7280;font-size:13px">— ${BUSINESS_NAME}</p>
     </div>`;
 
-  try {
-    await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from,
-        to: [lead.email],
-        subject: `We received your request — ${BUSINESS_NAME}`,
-        html,
-      }),
-      signal: AbortSignal.timeout(8000),
-    });
-  } catch (err) {
-    console.error("[notify] lead confirmation email failed (non-fatal):", err);
-  }
+  await sendResendEmail(
+    { from, to: [lead.email], subject: `We received your request — ${BUSINESS_NAME}`, html },
+    apiKey,
+    "lead confirmation email"
+  );
 }
 
 // Best-effort new-lead notification via Resend. No-ops (and never throws) unless
@@ -65,23 +75,15 @@ export async function notifyNewLead(lead: Partial<Lead>): Promise<void> {
       .replace(/</g, "&lt;")}</td></tr>`)
     .join("")}</table><p style="color:#888">View all leads at /admin/leads</p>`;
 
-  try {
-    await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from,
-        to: to.split(",").map((s) => s.trim()),
-        subject: `New lead: ${lead.full_name || "Website"}${lead.service ? ` — ${lead.service}` : ""}`,
-        html,
-        reply_to: lead.email || undefined,
-      }),
-      signal: AbortSignal.timeout(8000),
-    });
-  } catch (err) {
-    console.error("[notify] lead email failed (non-fatal):", err);
-  }
+  await sendResendEmail(
+    {
+      from,
+      to: to.split(",").map((s) => s.trim()),
+      subject: `New lead: ${lead.full_name || "Website"}${lead.service ? ` — ${lead.service}` : ""}`,
+      html,
+      reply_to: lead.email || undefined,
+    },
+    apiKey,
+    "new lead notification"
+  );
 }
