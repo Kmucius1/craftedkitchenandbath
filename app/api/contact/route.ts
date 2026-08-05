@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/db";
 import { notifyNewLead, notifyLeadConfirmation } from "@/lib/notify";
+import { crmFieldsFromContact } from "@/lib/crm-fields";
 
 // Lead-capture endpoint. Validates the contact form, blocks spam, stores the
 // lead in Postgres, and (optionally) emails a notification. Leads are viewable
@@ -57,6 +58,11 @@ export async function POST(req: NextRequest) {
     description: (body.description || "").trim() || null,
     contact_method: (body.contactMethod || "").trim() || null,
     source: "craftedkitchenandbath.com",
+    // Structured fields the CRM sorts and scores on, plus the verbatim body.
+    // The raw payload is the safety net: a field added to this form later is
+    // captured even before the CRM knows to read it.
+    ...crmFieldsFromContact(service),
+    intake_payload: body as unknown as Record<string, unknown>,
   };
 
   try {

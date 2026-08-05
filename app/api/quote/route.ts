@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/db";
 import { notifyNewLead, notifyLeadConfirmation } from "@/lib/notify";
+import { crmFieldsFromQuote } from "@/lib/crm-fields";
 
 // In-depth quote questionnaire endpoint. Captures the structured qualification
 // answers, folds them into a readable `description` block, and stores the result
@@ -72,6 +73,11 @@ export async function POST(req: NextRequest) {
     description: description.trim() || null,
     contact_method: (body.contactMethod || "").trim() || null,
     source: "Quote Questionnaire · craftedkitchenandbath.com",
+    // The wizard already asks about budget, timeline, ownership and scope; this
+    // lands those answers in real columns instead of only inside the bulleted
+    // `description` text above.
+    ...crmFieldsFromQuote(responses, bestTime),
+    intake_payload: body as unknown as Record<string, unknown>,
   };
 
   try {
