@@ -13,18 +13,21 @@ const ACCENT = "#2B7CC1";
 //          Leave img undefined and a clean initials avatar is shown instead,
 //          so nothing looks broken until real photos are dropped in.
 // ─────────────────────────────────────────────────────────────────────────
-type Member = { name: string; role: string; bio: string; img?: string };
+type Member = { name: string; role: string; bio: string; img?: string; imgPosition?: string };
 
 const TEAM: Member[] = [
   {
     name: "Tylor Craft",
     role: "Owner & Lead Contractor",
     bio: "Founded Crafted to bring honest, craftsmanship-first remodeling to Tampa Bay, and still walks every job site.",
+    img: "/images/team/tylor.jpg",
+    imgPosition: "center 20%",
   },
   {
     name: "Matt Tharp",
     role: "COO & Office Manager",
     bio: "Runs day-to-day operations and the office, keeping every project — and every homeowner — organized from first call to final invoice.",
+    img: "/images/team/matt.jpg",
   },
   {
     name: "Jim Mazaris",
@@ -57,6 +60,14 @@ export default function MeetTheTeam() {
           </p>
         </div>
 
+        {/* Owner + COO, together */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", margin: "0 0 56px" }}>
+          <div style={{ position: "relative", width: "220px", aspectRatio: "3 / 4", borderRadius: "4px", overflow: "hidden", boxShadow: "0 12px 28px rgba(0,0,0,0.12)" }}>
+            <Image src="/images/team/tylor-and-matt.jpg" alt="Tylor Craft and Matt Tharp" fill sizes="220px" style={{ objectFit: "cover" }} />
+          </div>
+          <p style={{ fontFamily: sans, fontSize: "12px", color: "#6B7280", margin: "14px 0 0" }}>Tylor Craft &amp; Matt Tharp</p>
+        </div>
+
         {/* Team grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-[1040px] mx-auto" data-stagger style={{ gap: "16px" }}>
           {TEAM.map((m, i) => (
@@ -67,7 +78,7 @@ export default function MeetTheTeam() {
               {/* Avatar: photo if provided, otherwise a clean initials circle */}
               <div style={{ position: "relative", width: "104px", height: "104px", borderRadius: "50%", overflow: "hidden", marginBottom: "16px", backgroundColor: "#E7EEF6", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 {m.img ? (
-                  <Image src={m.img} alt={`${m.name} — ${m.role}`} fill sizes="104px" style={{ objectFit: "cover" }} />
+                  <Image src={m.img} alt={`${m.name} — ${m.role}`} fill sizes="104px" style={{ objectFit: "cover", objectPosition: m.imgPosition ?? "center" }} />
                 ) : (
                   <span style={{ fontFamily: display, fontWeight: 300, fontSize: "34px", color: ACCENT, lineHeight: 1 }}>
                     {initials(m.name)}
