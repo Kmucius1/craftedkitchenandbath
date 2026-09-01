@@ -4,6 +4,7 @@ import SectionLabel from "@/components/SectionLabel";
 import CTASection from "@/components/CTASection";
 import Breadcrumb from "@/components/Breadcrumb";
 import { blogArticles, articleDate, articleDisplayDate } from "@/lib/blog-articles";
+import { getRemotePosts, remoteReadMinutes, remoteDisplayDate } from "@/lib/remote-blog";
 
 export const metadata: Metadata = {
   title: "Remodeling Blog | Tips, Guides & Inspiration",
@@ -11,28 +12,59 @@ export const metadata: Metadata = {
     "Remodeling tips, cost guides, and material comparisons from the Crafted Kitchen and Bath team. Serving Oldsmar, Pinellas County, and the Tampa Bay area.",
 };
 
-// Newest first
-const posts = [...blogArticles].sort((a, b) => (articleDate(a.slug) < articleDate(b.slug) ? 1 : -1));
-const featured = posts[0];
-const rest = posts.slice(1);
+interface ListPost {
+  slug: string;
+  title: string;
+  category: string;
+  excerpt: string;
+  date: string;
+  displayDate: string;
+  readMinutes: number;
+}
+
+async function getPosts(): Promise<ListPost[]> {
+  const local: ListPost[] = blogArticles.map((a) => ({
+    slug: a.slug,
+    title: a.title,
+    category: a.category,
+    excerpt: a.excerpt,
+    date: articleDate(a.slug),
+    displayDate: articleDisplayDate(a.slug),
+    readMinutes: a.readMinutes,
+  }));
+  const remote = (await getRemotePosts()).map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    category: p.category || "Insights",
+    excerpt: p.excerpt || "",
+    date: p.published_at,
+    displayDate: remoteDisplayDate(p.published_at),
+    readMinutes: remoteReadMinutes(p.content),
+  }));
+  return [...local, ...remote].sort((a, b) => (a.date < b.date ? 1 : -1));
+}
 
 const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";
 
-const blogSchema = {
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  name: "Crafted Kitchen and Bath Blog",
-  url: "https://craftedkitchenandbath.com/blog",
-  blogPost: posts.map((p) => ({
-    "@type": "BlogPosting",
-    headline: p.title,
-    description: p.excerpt,
-    datePublished: articleDate(p.slug),
-    url: `https://craftedkitchenandbath.com/blog/${p.slug}`,
-  })),
-};
+export default async function BlogPage() {
+  const posts = await getPosts();
+  const featured = posts[0];
+  const rest = posts.slice(1);
 
-export default function BlogPage() {
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: "Crafted Kitchen and Bath Blog",
+    url: "https://craftedkitchenandbath.com/blog",
+    blogPost: posts.map((p) => ({
+      "@type": "BlogPosting",
+      headline: p.title,
+      description: p.excerpt,
+      datePublished: p.date,
+      url: `https://craftedkitchenandbath.com/blog/${p.slug}`,
+    })),
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }} />
@@ -71,7 +103,7 @@ export default function BlogPage() {
               <div style={{ padding: "48px 40px", display: "flex", flexDirection: "column", justifyContent: "center", gap: "16px" }}>
                 <span style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#2B7CC1", fontWeight: 500 }}>{featured.category}</span>
                 <h2 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "clamp(22px, 3vw, 32px)", color: "#1A202C", lineHeight: 1.25, margin: 0 }}>{featured.title}</h2>
-                <p style={{ fontSize: "12px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#6B7280", margin: 0 }}>{articleDisplayDate(featured.slug)} · {featured.readMinutes} min read</p>
+                <p style={{ fontSize: "12px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#6B7280", margin: 0 }}>{featured.displayDate} · {featured.readMinutes} min read</p>
                 <p style={{ fontSize: "15px", lineHeight: 1.8, color: "#4A5568", margin: 0 }}>{featured.excerpt}</p>
                 <span style={{ color: "#2B7CC1", fontSize: "12px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", marginTop: "8px" }}>Read More →</span>
               </div>
@@ -93,7 +125,7 @@ export default function BlogPage() {
                   <div style={{ padding: "26px 28px 30px", display: "flex", flexDirection: "column", flexGrow: 1, gap: "10px" }}>
                     <span style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#2B7CC1", fontWeight: 500 }}>{post.category}</span>
                     <h3 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "19px", color: "#1A202C", lineHeight: 1.35, margin: 0 }}>{post.title}</h3>
-                    <p style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#6B7280", margin: 0 }}>{articleDisplayDate(post.slug)} · {post.readMinutes} min</p>
+                    <p style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#6B7280", margin: 0 }}>{post.displayDate} · {post.readMinutes} min</p>
                     <p style={{ fontSize: "13px", lineHeight: 1.75, color: "#4A5568", margin: 0, flexGrow: 1 }}>{post.excerpt}</p>
                     <span style={{ color: "#2B7CC1", fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", marginTop: "4px" }}>Read More →</span>
                   </div>
