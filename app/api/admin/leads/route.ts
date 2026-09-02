@@ -1,9 +1,42 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase, LEAD_STATUSES, type LeadStatus } from "@/lib/db";
 
-// Update a lead's status or notes. Access is gated by proxy.ts (admin cookie).
+// Create/update leads. Access is gated by proxy.ts (admin cookie).
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+// Staff-logged inbound call — no telephony vendor integration, just a manual
+// record so calls show up in the same pipeline as web leads.
+export async function POST(req: NextRequest) {
+  let body: { fullName?: string; phone?: string; notes?: string };
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ ok: false, error: "Invalid request" }, { status: 400 });
+  }
+
+  const fullName = (body.fullName || "").trim();
+  if (!fullName) return NextResponse.json({ ok: false, error: "Name is required" }, { status: 422 });
+
+  const lead = {
+    full_name: fullName,
+    email: "",
+    phone: (body.phone || "").trim() || null,
+    notes: (body.notes || "").trim() || null,
+    source: "Phone call (logged)",
+    channel: "phone_call",
+  };
+
+  try {
+    const supabase = getSupabase();
+    const { data, error } = await supabase.from("leads").insert(lead).select().single();
+    if (error) throw error;
+    return NextResponse.json({ ok: true, lead: data });
+  } catch (err) {
+    console.error("[admin/leads] log call failed:", err);
+    return NextResponse.json({ ok: false, error: "Could not log call" }, { status: 500 });
+  }
+}
 
 export async function PATCH(req: NextRequest) {
   let body: { id?: string; status?: string; notes?: string };

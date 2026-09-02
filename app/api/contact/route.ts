@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/db";
 import { notifyNewLead, notifyLeadConfirmation } from "@/lib/notify";
+import { crmFieldsFromContact } from "@/lib/crm-fields";
+import { attributionColumns, type Attribution } from "@/lib/campaign";
+import { resolveCampaignId } from "@/lib/campaign-match";
 
 // Lead-capture endpoint. Validates the contact form, blocks spam, stores the
 // lead in Postgres, and (optionally) emails a notification. Leads are viewable
@@ -17,6 +20,7 @@ type LeadPayload = {
   description?: string;
   contactMethod?: string;
   company?: string; // honeypot — real users leave this empty
+  attribution?: Partial<Attribution>; // from lib/campaign.ts's getStoredAttribution()
 };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -48,6 +52,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: "Please enter a valid email." }, { status: 422 });
   }
 
+  const attribution = attributionColumns(body.attribution);
+  const campaign_id = await resolveCampaignId(attribution.utm_campaign);
+
   const lead = {
     full_name: fullName,
     email,
@@ -57,6 +64,13 @@ export async function POST(req: NextRequest) {
     description: (body.description || "").trim() || null,
     contact_method: (body.contactMethod || "").trim() || null,
     source: "craftedkitchenandbath.com",
+    // Structured fields the CRM sorts and scores on, plus the verbatim body.
+    // The raw payload is the safety net: a field added to this form later is
+    // captured even before the CRM knows to read it.
+    ...crmFieldsFromContact(service),
+    intake_payload: body as unknown as Record<string, unknown>,
+    ...attribution,
+    campaign_id,
   };
 
   try {

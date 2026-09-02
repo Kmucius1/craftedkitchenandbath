@@ -1,4 +1,4 @@
-import type { Lead } from "./db";
+import type { Lead, ReviewRequest } from "./db";
 
 const BUSINESS_NAME = "Crafted Kitchen and Bath";
 const BUSINESS_PHONE = "(727) 383-7550";
@@ -86,5 +86,33 @@ export async function notifyNewLead(lead: Partial<Lead>): Promise<void> {
     },
     apiKey,
     "new lead notification"
+  );
+}
+
+// Best-effort review-request email — sends a past customer the real Google
+// "write a review" link (review.review_link, set by the caller from
+// lib/reviews.ts's GOOGLE_WRITE_REVIEW_URL). No-ops without RESEND_API_KEY.
+export async function notifyReviewRequest(review: Pick<ReviewRequest, "customer_name" | "customer_email" | "review_link">): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.LEAD_NOTIFY_FROM || `${BUSINESS_NAME} <leads@craftedkitchenandbath.com>`;
+  if (!apiKey || !review.customer_email || !review.review_link) return;
+
+  const firstName = (review.customer_name || "").trim().split(/\s+/)[0] || "there";
+
+  const html = `
+    <div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:520px;margin:0 auto;color:#1A202C">
+      <h2 style="margin:0 0 16px">Hi ${firstName} — how did we do?</h2>
+      <p style="line-height:1.6">It was a pleasure working on your project. If you have a minute, a quick Google review helps other Tampa Bay homeowners find us.</p>
+      <p style="margin:28px 0">
+        <a href="${review.review_link}" style="background:#2B7CC1;color:#fff;padding:12px 24px;text-decoration:none;border-radius:4px;display:inline-block">Leave a Review</a>
+      </p>
+      <p style="line-height:1.6;color:#6B7280;font-size:13px">Thank you for trusting us with your home.</p>
+      <p style="margin-top:32px;color:#6B7280;font-size:13px">— ${BUSINESS_NAME}</p>
+    </div>`;
+
+  await sendResendEmail(
+    { from, to: [review.customer_email], subject: `Would you leave us a review? — ${BUSINESS_NAME}`, html },
+    apiKey,
+    "review request email"
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Montserrat, DM_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -8,6 +9,7 @@ import MascotChat from "@/components/MascotChat";
 import SiteAnimations from "@/components/SiteAnimations";
 import AmbientMotion from "@/components/AmbientMotion";
 import NewsletterPopup from "@/components/NewsletterPopup";
+import CampaignCapture from "@/components/CampaignCapture";
 
 const montserrat = Montserrat({
   variable: "--font-display",
@@ -96,6 +98,8 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
 export default function RootLayout({
   children,
 }: {
@@ -107,6 +111,21 @@ export default function RootLayout({
       className={`${montserrat.variable} ${dmSans.variable}`}
     >
       <body className="bg-white text-[#1A202C] antialiased flex flex-col min-h-screen">
+        {GA_MEASUREMENT_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}');`}
+            </Script>
+          </>
+        )}
+        <CampaignCapture />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

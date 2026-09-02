@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/db";
 import { notifyNewLead, notifyLeadConfirmation } from "@/lib/notify";
+import { crmFieldsFromQuote } from "@/lib/crm-fields";
+import { attributionColumns, type Attribution } from "@/lib/campaign";
+import { resolveCampaignId } from "@/lib/campaign-match";
 
 // In-depth quote questionnaire endpoint. Captures the structured qualification
 // answers, folds them into a readable `description` block, and stores the result
@@ -21,6 +24,7 @@ type QuotePayload = {
   notes?: string;
   responses?: Response[];
   company?: string; // honeypot — real users leave this empty
+  attribution?: Partial<Attribution>; // from lib/campaign.ts's getStoredAttribution()
 };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -63,6 +67,9 @@ export async function POST(req: NextRequest) {
   const description =
     lines.join("\n") + (notes ? `\n\nNotes from homeowner:\n${notes}` : "");
 
+  const attribution = attributionColumns(body.attribution);
+  const campaign_id = await resolveCampaignId(attribution.utm_campaign);
+
   const lead = {
     full_name: fullName,
     email,
@@ -72,6 +79,13 @@ export async function POST(req: NextRequest) {
     description: description.trim() || null,
     contact_method: (body.contactMethod || "").trim() || null,
     source: "Quote Questionnaire · craftedkitchenandbath.com",
+    // The wizard already asks about budget, timeline, ownership and scope; this
+    // lands those answers in real columns instead of only inside the bulleted
+    // `description` text above.
+    ...crmFieldsFromQuote(responses, bestTime),
+    intake_payload: body as unknown as Record<string, unknown>,
+    ...attribution,
+    campaign_id,
   };
 
   try {

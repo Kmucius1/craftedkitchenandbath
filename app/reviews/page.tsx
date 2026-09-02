@@ -3,7 +3,7 @@ import Link from "next/link";
 import SectionLabel from "@/components/SectionLabel";
 import CTASection from "@/components/CTASection";
 import Breadcrumb from "@/components/Breadcrumb";
-import { getGoogleReviews } from "@/lib/reviews";
+import { getGoogleReviews, GOOGLE_WRITE_REVIEW_URL } from "@/lib/reviews";
 
 export const metadata: Metadata = {
   title: "Reviews | Crafted Kitchen & Bath | Tampa Bay Remodeling",
@@ -133,7 +133,7 @@ export default async function ReviewsPage() {
               <Link href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "10px", border: "1px solid rgba(0,0,0,0.12)", padding: "14px 28px", textDecoration: "none", fontFamily: bodyFont, fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.16em", color: "#1A202C", fontWeight: 500 }} className="hover:bg-[#F7F8FA] transition-colors duration-200">
                 <GoogleIcon size={16} /> Read All Reviews on Google
               </Link>
-              <Link href={`${GOOGLE_REVIEWS_URL}`} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "#2B7CC1", padding: "14px 28px", textDecoration: "none", fontFamily: bodyFont, fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.16em", color: "#FFFFFF", fontWeight: 500 }} className="hover:opacity-90 transition-opacity duration-200">
+              <Link href={GOOGLE_WRITE_REVIEW_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "#2B7CC1", padding: "14px 28px", textDecoration: "none", fontFamily: bodyFont, fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.16em", color: "#FFFFFF", fontWeight: 500 }} className="hover:opacity-90 transition-opacity duration-200">
                 Leave Us a Review
               </Link>
             </div>

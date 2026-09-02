@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { getStoredAttribution } from "@/lib/campaign";
 
 type FormState = {
   fullName: string;
@@ -47,7 +48,7 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, attribution: getStoredAttribution() }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data?.ok) {

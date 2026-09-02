@@ -2,7 +2,9 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { LEAD_STATUSES, type Lead, type LeadStatus } from "@/lib/db";
+import AdminNav from "@/components/admin/AdminNav";
 
 const STATUS_COLORS: Record<LeadStatus, { bg: string; fg: string }> = {
   New: { bg: "#EBF4FF", fg: "#1E5C96" },
@@ -51,6 +53,11 @@ export default function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("");
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [logCallOpen, setLogCallOpen] = useState(false);
+  const [logCallForm, setLogCallForm] = useState({ fullName: "", phone: "", notes: "" });
+  const [loggingCall, setLoggingCall] = useState(false);
+  const [convertingId, setConvertingId] = useState<string | null>(null);
+  const [convertedProjectId, setConvertedProjectId] = useState<Record<string, string>>({});
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -81,6 +88,49 @@ export default function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
     router.replace("/admin");
   }
 
+  async function logCall() {
+    if (!logCallForm.fullName.trim() || loggingCall) return;
+    setLoggingCall(true);
+    try {
+      const res = await fetch("/api/admin/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(logCallForm),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data?.ok && data.lead) {
+        setLeads((prev) => [data.lead as Lead, ...prev]);
+        setLogCallForm({ fullName: "", phone: "", notes: "" });
+        setLogCallOpen(false);
+      }
+    } finally {
+      setLoggingCall(false);
+    }
+  }
+
+  async function convertToProject(l: Lead) {
+    if (convertingId) return;
+    setConvertingId(l.id);
+    try {
+      const res = await fetch("/api/admin/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          lead_id: l.id,
+          title: `${l.full_name}'s Project`,
+          city: l.city,
+          category: l.service,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data?.ok && data.id) {
+        setConvertedProjectId((prev) => ({ ...prev, [l.id]: data.id }));
+      }
+    } finally {
+      setConvertingId(null);
+    }
+  }
+
   const th: React.CSSProperties = {
     textAlign: "left",
     fontSize: 10,
@@ -102,6 +152,7 @@ export default function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
 
   return (
     <div style={{ padding: "28px clamp(16px, 4vw, 40px)", fontFamily: "var(--font-dm-sans), system-ui, sans-serif", background: "#F7F8FA", minHeight: "100vh" }}>
+      <AdminNav />
       {/* Header */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 12, marginBottom: 20 }}>
         <div>
@@ -113,10 +164,46 @@ export default function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
           </p>
         </div>
         <div style={{ display: "flex", gap: 8 }}>
+          <button onClick={() => setLogCallOpen((v) => !v)} style={btnSecondary}>Log a call</button>
           <button onClick={() => exportCSV(filtered)} style={btnSecondary}>Export CSV</button>
           <button onClick={logout} style={btnGhost}>Sign out</button>
         </div>
       </div>
+
+      {logCallOpen && (
+        <div style={{ background: "#fff", border: "1px solid #E5E7EB", borderRadius: 10, padding: 16, marginBottom: 16, display: "flex", gap: 10, flexWrap: "wrap", alignItems: "flex-end" }}>
+          <div style={{ flex: "1 1 160px" }}>
+            <div style={detailLabel}>Name</div>
+            <input
+              value={logCallForm.fullName}
+              onChange={(e) => setLogCallForm((f) => ({ ...f, fullName: e.target.value }))}
+              placeholder="Caller's name"
+              style={{ width: "100%", border: "1px solid #E5E7EB", borderRadius: 6, padding: "8px 10px", fontSize: 13 }}
+            />
+          </div>
+          <div style={{ flex: "1 1 140px" }}>
+            <div style={detailLabel}>Phone</div>
+            <input
+              value={logCallForm.phone}
+              onChange={(e) => setLogCallForm((f) => ({ ...f, phone: e.target.value }))}
+              placeholder="(727) 000-0000"
+              style={{ width: "100%", border: "1px solid #E5E7EB", borderRadius: 6, padding: "8px 10px", fontSize: 13 }}
+            />
+          </div>
+          <div style={{ flex: "2 1 220px" }}>
+            <div style={detailLabel}>Notes</div>
+            <input
+              value={logCallForm.notes}
+              onChange={(e) => setLogCallForm((f) => ({ ...f, notes: e.target.value }))}
+              placeholder="What the call was about"
+              style={{ width: "100%", border: "1px solid #E5E7EB", borderRadius: 6, padding: "8px 10px", fontSize: 13 }}
+            />
+          </div>
+          <button onClick={logCall} disabled={loggingCall || !logCallForm.fullName.trim()} style={btnSecondary}>
+            {loggingCall ? "Logging…" : "Save call"}
+          </button>
+        </div>
+      )}
 
       {/* Controls */}
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 16 }}>
@@ -164,7 +251,7 @@ export default function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
                     <td style={{ ...td, whiteSpace: "nowrap", color: "#6B7280" }}>{fmtDate(l.created_at)}</td>
                     <td style={{ ...td, fontWeight: 600 }}>{l.full_name}</td>
                     <td style={td}>
-                      <a href={`mailto:${l.email}`} style={{ color: "#2B7CC1", textDecoration: "none", display: "block" }}>{l.email}</a>
+                      {l.email && <a href={`mailto:${l.email}`} style={{ color: "#2B7CC1", textDecoration: "none", display: "block" }}>{l.email}</a>}
                       {l.phone && <a href={`tel:${l.phone}`} style={{ color: "#6B7280", textDecoration: "none", fontSize: 12 }}>{l.phone}</a>}
                     </td>
                     <td style={td}>{l.service || "—"}</td>
@@ -211,6 +298,19 @@ export default function LeadsTable({ initialLeads }: { initialLeads: Lead[] }) {
                             style={{ width: "100%", border: "1px solid #E5E7EB", borderRadius: 6, padding: "8px 10px", fontSize: 13, fontFamily: "inherit", resize: "vertical" }}
                           />
                         </div>
+                        {l.status === "Won" && (
+                          <div>
+                            {convertedProjectId[l.id] ? (
+                              <Link href={`/admin/projects/${convertedProjectId[l.id]}`} style={{ ...btnSecondary, textDecoration: "none", display: "inline-block" }}>
+                                Open project →
+                              </Link>
+                            ) : (
+                              <button onClick={() => convertToProject(l)} disabled={convertingId === l.id} style={btnSecondary}>
+                                {convertingId === l.id ? "Converting…" : "Convert to project"}
+                              </button>
+                            )}
+                          </div>
+                        )}
                       </div>
                     </td>
                   </tr>

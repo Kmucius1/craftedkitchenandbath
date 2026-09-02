@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { getStoredAttribution } from "@/lib/campaign";
 
 /* ── Questionnaire config ──────────────────────────────────────────────────
    Each step holds one or more questions. Questions are single- or multi-select
@@ -292,6 +293,7 @@ export default function QuoteWizard() {
           notes: contact.notes,
           responses,
           company: contact.company,
+          attribution: getStoredAttribution(),
         }),
       });
       const data = await res.json().catch(() => ({}));

@@ -39,6 +39,12 @@ export const MIN_RATING = 4;
 // Crafted Kitchen and Bath — verified Google Place ID (Oldsmar, FL).
 const PLACE_ID = process.env.GOOGLE_PLACE_ID || "ChIJBX3Sf3ThwogRfasm-zec18Y";
 
+// The real "write a review" deep link (opens Google's review composer
+// directly) — distinct from a search-results URL, which only opens the
+// business's profile page. Used by the "Leave Us a Review" CTA and by
+// review-request emails (lib/notify.ts's notifyReviewRequest).
+export const GOOGLE_WRITE_REVIEW_URL = `https://search.google.com/local/writereview?placeid=${PLACE_ID}`;
+
 // Real, verified 5★ Google reviews from Crafted's Google Business Profile.
 // Used until the live API key is wired up, and as a safety net if it fails.
 export const FALLBACK_REVIEWS: Review[] = [
