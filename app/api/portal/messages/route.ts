@@ -11,7 +11,7 @@ type Category = (typeof CATEGORIES)[number];
 async function findOrCreateThread(projectId: string, category: Category): Promise<string> {
   const admin = getSupabase();
   const { data: existing } = await admin
-    .from("message_threads")
+    .from("portal_message_threads")
     .select("id")
     .eq("project_id", projectId)
     .eq("category", category)
@@ -19,7 +19,7 @@ async function findOrCreateThread(projectId: string, category: Category): Promis
   if (existing) return existing.id;
 
   const { data: created, error } = await admin
-    .from("message_threads")
+    .from("portal_message_threads")
     .insert({ project_id: projectId, category })
     .select("id")
     .single();
@@ -36,7 +36,7 @@ export async function GET(req: NextRequest) {
 
   const admin = getSupabase();
   const { data: thread } = await admin
-    .from("message_threads")
+    .from("portal_message_threads")
     .select("id")
     .eq("project_id", projectId)
     .eq("category", category)
@@ -45,7 +45,7 @@ export async function GET(req: NextRequest) {
   if (!thread) return NextResponse.json({ ok: true, messages: [] });
 
   const { data: messages, error } = await admin
-    .from("messages")
+    .from("portal_messages")
     .select("id, author_type, author_staff_name, body, created_at")
     .eq("thread_id", thread.id)
     .order("created_at", { ascending: true });
@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
       ? { thread_id: threadId, author_type: "staff", author_staff_name: "Crafted Team", author_portal_user_id: null, body: text }
       : { thread_id: threadId, author_type: "client", author_portal_user_id: access.portalUser!.id, author_staff_name: null, body: text };
 
-    const { data, error } = await admin.from("messages").insert(insertPayload).select().single();
+    const { data, error } = await admin.from("portal_messages").insert(insertPayload).select().single();
     if (error) throw error;
 
     return NextResponse.json({ ok: true, message: data });
