@@ -2,13 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Montserrat, DM_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import StickyMobileCTA from "@/components/StickyMobileCTA";
-import MascotChat from "@/components/MascotChat";
-import SiteAnimations from "@/components/SiteAnimations";
-import AmbientMotion from "@/components/AmbientMotion";
-import NewsletterPopup from "@/components/NewsletterPopup";
+import SiteChrome from "@/components/SiteChrome";
 import CampaignCapture from "@/components/CampaignCapture";
 
 const montserrat = Montserrat({
@@ -126,14 +120,7 @@ export default function RootLayout({
           </>
         )}
         <CampaignCapture />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <StickyMobileCTA />
-        <MascotChat />
-        <SiteAnimations />
-        <AmbientMotion />
-        <NewsletterPopup />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

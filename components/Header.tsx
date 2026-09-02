@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { label: 'Areas of Service', href: '/areas-of-service' },
   { label: 'FAQs', href: '/faqs' },
   { label: 'Contact', href: '/contact' },
+  { label: 'Client Portal', href: '/portal/login' },
 ];
 
 const SERVICES = [
