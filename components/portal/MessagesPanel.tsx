@@ -61,19 +61,20 @@ export default function MessagesPanel({ projectId }: { projectId: string }) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-      <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 6, flexWrap: "wrap", justifyContent: "center" }}>
         {CATEGORIES.map((c) => (
           <button
             key={c.value}
             onClick={() => setCategory(c.value)}
             style={{
-              fontSize: 12,
+              fontSize: 11,
               fontWeight: 600,
-              padding: "6px 12px",
+              padding: "5px 12px",
               borderRadius: 999,
               border: "1px solid " + (category === c.value ? "#2B7CC1" : "#E5E7EB"),
               background: category === c.value ? "#EBF4FF" : "#fff",
               color: category === c.value ? "#1E5C96" : "#6B7280",
+              textAlign: "center",
               cursor: "pointer",
             }}
           >
