@@ -4,20 +4,11 @@ import { useEffect, useState } from "react";
 
 type Message = { id: string; author_type: "staff" | "client"; author_staff_name: string | null; body: string; created_at: string };
 
-const CATEGORIES: { value: string; label: string }[] = [
-  { value: "general", label: "General" },
-  { value: "design", label: "Design" },
-  { value: "schedule", label: "Schedule" },
-  { value: "financial", label: "Financial" },
-  { value: "warranty", label: "Warranty" },
-];
-
 function fmt(iso: string): string {
   return new Date(iso).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
 }
 
 export default function MessagesPanel({ projectId }: { projectId: string }) {
-  const [category, setCategory] = useState("general");
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
   const [draft, setDraft] = useState("");
@@ -26,7 +17,7 @@ export default function MessagesPanel({ projectId }: { projectId: string }) {
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
-    fetch(`/api/portal/messages?projectId=${projectId}&category=${category}`)
+    fetch(`/api/portal/messages?projectId=${projectId}`)
       .then((res) => res.json())
       .then((data) => {
         if (!cancelled) setMessages(data?.messages || []);
@@ -37,7 +28,7 @@ export default function MessagesPanel({ projectId }: { projectId: string }) {
     return () => {
       cancelled = true;
     };
-  }, [projectId, category]);
+  }, [projectId]);
 
   async function send() {
     const text = draft.trim();
@@ -47,7 +38,7 @@ export default function MessagesPanel({ projectId }: { projectId: string }) {
       const res = await fetch("/api/portal/messages", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ projectId, category, body: text }),
+        body: JSON.stringify({ projectId, body: text }),
       });
       const data = await res.json();
       if (data?.ok && data.message) {
@@ -61,28 +52,6 @@ export default function MessagesPanel({ projectId }: { projectId: string }) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-      <div style={{ display: "flex", gap: 6, flexWrap: "wrap", justifyContent: "center" }}>
-        {CATEGORIES.map((c) => (
-          <button
-            key={c.value}
-            onClick={() => setCategory(c.value)}
-            style={{
-              fontSize: 11,
-              fontWeight: 600,
-              padding: "5px 12px",
-              borderRadius: 999,
-              border: "1px solid " + (category === c.value ? "#2B7CC1" : "#E5E7EB"),
-              background: category === c.value ? "#EBF4FF" : "#fff",
-              color: category === c.value ? "#1E5C96" : "#6B7280",
-              textAlign: "center",
-              cursor: "pointer",
-            }}
-          >
-            {c.label}
-          </button>
-        ))}
-      </div>
-
       <div style={{ background: "#fff", border: "1px solid #E5E7EB", borderRadius: 10, padding: 20, minHeight: 320, display: "flex", flexDirection: "column", gap: 12 }}>
         {loading ? (
           <div style={{ fontSize: 13, color: "#6B7280" }}>Loading…</div>

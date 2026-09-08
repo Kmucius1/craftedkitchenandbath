@@ -1,8 +1,13 @@
 -- Crafted Kitchen & Bath — homeowner client portal.
 --
--- NOT YET APPLIED. Depends on db/crm-schema.sql having been applied first
--- (public.projects must exist). Run by hand, reviewed separately, same as
--- every other schema file in this repo.
+-- APPLIED to production. Depends on db/crm-schema.sql having been applied
+-- first (public.projects must exist).
+--
+-- NOTE: `message_threads` and `messages` below were renamed to
+-- `portal_message_threads` / `portal_messages` before being applied, to
+-- avoid colliding with the separate Crafted CRM app's own differently-shaped
+-- `message_threads`/`messages` tables in the same Supabase project. This
+-- file reflects the names actually in production.
 --
 -- This is the first table set in the repo reachable by a non-service-role
 -- identity (a signed-in homeowner via Supabase Auth), so it's the only file
@@ -171,7 +176,13 @@ create table if not exists public.schedule_milestones (
 );
 
 -- ── Messages ───────────────────────────────────────────────────────────
-create table if not exists public.message_threads (
+-- DEPRECATED — unused. Client-portal messaging moved to the Crafted CRM's
+-- own `communications` table (channel='portal'), which the CRM already had
+-- schema, RLS, staff auth, and a UI tab for. app/api/portal/messages reads
+-- and writes `communications` directly; these two tables are left in place,
+-- inert, rather than dropped (there is a demo row in prod and dropping a
+-- table is not something to do without the user explicitly asking for it).
+create table if not exists public.portal_message_threads (
   id         uuid primary key default gen_random_uuid(),
   project_id uuid not null references public.projects(id) on delete cascade,
   category   text not null default 'general' check (category in ('general','design','schedule','financial','warranty')),
@@ -179,9 +190,9 @@ create table if not exists public.message_threads (
   created_at timestamptz not null default now()
 );
 
-create table if not exists public.messages (
+create table if not exists public.portal_messages (
   id                    uuid primary key default gen_random_uuid(),
-  thread_id             uuid not null references public.message_threads(id) on delete cascade,
+  thread_id             uuid not null references public.portal_message_threads(id) on delete cascade,
   author_type           text not null check (author_type in ('staff','client')),
   author_portal_user_id uuid references public.portal_users(id),
   author_staff_name     text,
@@ -245,7 +256,7 @@ begin
   foreach t in array array[
     'portal_users','project_members','project_updates','project_photos',
     'selections','selection_options','selection_comments','selection_decisions',
-    'change_orders','schedule_milestones','message_threads','messages',
+    'change_orders','schedule_milestones','portal_message_threads','portal_messages',
     'project_documents','punch_list_items','invoices','project_notes'
   ]
   loop
@@ -324,19 +335,19 @@ create policy "members read own schedule" on public.schedule_milestones
     where pm.project_id = schedule_milestones.project_id and pm.portal_user_id = auth.uid()
   ));
 
-drop policy if exists "members read own message threads" on public.message_threads;
-create policy "members read own message threads" on public.message_threads
+drop policy if exists "members read own message threads" on public.portal_message_threads;
+create policy "members read own message threads" on public.portal_message_threads
   for select using (exists (
     select 1 from public.project_members pm
-    where pm.project_id = message_threads.project_id and pm.portal_user_id = auth.uid()
+    where pm.project_id = portal_message_threads.project_id and pm.portal_user_id = auth.uid()
   ));
 
-drop policy if exists "members read own messages" on public.messages;
-create policy "members read own messages" on public.messages
+drop policy if exists "members read own messages" on public.portal_messages;
+create policy "members read own messages" on public.portal_messages
   for select using (exists (
-    select 1 from public.message_threads mt
+    select 1 from public.portal_message_threads mt
     join public.project_members pm on pm.project_id = mt.project_id
-    where mt.id = messages.thread_id and pm.portal_user_id = auth.uid()
+    where mt.id = portal_messages.thread_id and pm.portal_user_id = auth.uid()
   ));
 
 drop policy if exists "members read own documents" on public.project_documents;

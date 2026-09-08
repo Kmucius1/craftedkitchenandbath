@@ -89,6 +89,41 @@ export async function notifyNewLead(lead: Partial<Lead>): Promise<void> {
   );
 }
 
+// Best-effort staff alert when a homeowner sends a client-portal message.
+// No-ops without RESEND_API_KEY. Recipient is the project's PM email
+// (projects.pm_email), falling back to the general lead inbox — the portal
+// message itself lands in the Crafted CRM's Portal tab regardless of whether
+// this email goes out.
+export async function notifyStaffNewPortalMessage(opts: {
+  projectTitle: string;
+  projectId: string;
+  pmEmail: string | null;
+  clientName: string;
+  body: string;
+}): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  const to = opts.pmEmail || process.env.LEAD_NOTIFY_EMAIL || "info@craftedkitchenandbath.com";
+  const from = process.env.LEAD_NOTIFY_FROM || `${BUSINESS_NAME} <leads@craftedkitchenandbath.com>`;
+  if (!apiKey || !to) return;
+
+  const crmUrl = `https://crm.craftedkitchenandbath.com/projects/${opts.projectId}?tab=portal`;
+  const html = `
+    <div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:520px;margin:0 auto;color:#1A202C">
+      <h2 style="margin:0 0 16px">New portal message — ${opts.projectTitle}</h2>
+      <p style="line-height:1.6"><strong>${opts.clientName}</strong> wrote:</p>
+      <p style="line-height:1.6;background:#F7F8FA;border-radius:8px;padding:16px;white-space:pre-wrap">${opts.body.replace(/</g, "&lt;")}</p>
+      <p style="margin:28px 0">
+        <a href="${crmUrl}" style="background:#2B7CC1;color:#fff;padding:12px 24px;text-decoration:none;border-radius:4px;display:inline-block">Reply in the CRM</a>
+      </p>
+    </div>`;
+
+  await sendResendEmail(
+    { from, to: [to], subject: `New portal message — ${opts.projectTitle}`, html },
+    apiKey,
+    "portal message notification"
+  );
+}
+
 // Best-effort review-request email — sends a past customer the real Google
 // "write a review" link (review.review_link, set by the caller from
 // lib/reviews.ts's GOOGLE_WRITE_REVIEW_URL). No-ops without RESEND_API_KEY.
