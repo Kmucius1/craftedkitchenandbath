@@ -13,12 +13,10 @@ export type PortalNavItem = { href: string; label: string; icon: string };
 export default function PortalShell({
   projectTitle,
   navItems,
-  isStaffPreview,
   children,
 }: {
   projectTitle?: string;
   navItems?: PortalNavItem[];
-  isStaffPreview?: boolean;
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
@@ -36,13 +34,7 @@ export default function PortalShell({
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#F7F8FA", fontFamily: bodyFont }}>
-      {isStaffPreview && (
-        <div style={{ background: "#1A202C", color: "#fff", textAlign: "center", padding: "8px 16px", fontSize: 12, letterSpacing: "0.04em" }}>
-          Viewing as client — staff preview
-        </div>
-      )}
-
-      <div className="md:flex" style={{ minHeight: isStaffPreview ? "calc(100vh - 34px)" : "100vh" }}>
+      <div className="md:flex" style={{ minHeight: "100vh" }}>
         {/* Sidebar (desktop) */}
         <aside
           className="hidden md:flex"

@@ -33,7 +33,7 @@ export default async function PortalProjectLayout({
   ];
 
   return (
-    <PortalShell projectTitle={p.title} navItems={navItems} isStaffPreview={access.isStaffPreview}>
+    <PortalShell projectTitle={p.title} navItems={navItems}>
       {children}
     </PortalShell>
   );

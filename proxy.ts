@@ -1,30 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 
-// Gate the admin area. The login page (/admin) and the login/logout endpoints
-// are public; everything else under /admin or /api/admin requires the session
-// cookie set on successful login (value must equal ADMIN_SESSION_SECRET).
-function proxyAdmin(request: NextRequest): NextResponse {
-  const { pathname } = request.nextUrl;
-
-  const cookie = request.cookies.get("ck_admin")?.value;
-  const authed = !!cookie && cookie === process.env.ADMIN_SESSION_SECRET;
-  if (authed) return NextResponse.next();
-
-  if (pathname.startsWith("/api/")) {
-    return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
-  }
-  const url = request.nextUrl.clone();
-  url.pathname = "/admin";
-  url.searchParams.set("next", pathname);
-  return NextResponse.redirect(url);
-}
-
 // Gate the homeowner portal. /portal/login and /portal/auth/callback are
 // public; everything else under /portal requires a live Supabase Auth
-// session. This is a separate identity system from the admin's ck_admin
-// cookie — staff previewing a project as a client is handled inside the
-// page itself (lib/portal-auth.ts's assertProjectAccess), not here.
+// session.
 async function proxyPortal(request: NextRequest): Promise<NextResponse> {
   const { pathname } = request.nextUrl;
   const isPublic = pathname === "/portal/login" || pathname.startsWith("/portal/auth/callback");
@@ -64,21 +43,9 @@ async function proxyPortal(request: NextRequest): Promise<NextResponse> {
 }
 
 export function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-
-  if (pathname.startsWith("/portal")) {
-    return proxyPortal(request);
-  }
-
-  const isAdminPublic =
-    pathname === "/admin" ||
-    pathname.startsWith("/api/admin/login") ||
-    pathname.startsWith("/api/admin/logout");
-  if (isAdminPublic) return NextResponse.next();
-
-  return proxyAdmin(request);
+  return proxyPortal(request);
 }
 
 export const config = {
-  matcher: ["/admin", "/admin/:path*", "/api/admin/:path*", "/portal", "/portal/:path*"],
+  matcher: ["/portal", "/portal/:path*"],
 };

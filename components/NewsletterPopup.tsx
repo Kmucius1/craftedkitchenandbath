@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
  * First-visit newsletter popup. Appears once, after a short delay, on content
  * pages only. Dismissal and successful signup are both remembered in
  * localStorage so it never nags a returning visitor. Closes on overlay click or
- * Esc. Suppressed on admin pages and on the pages where the visitor is already
+ * Esc. Suppressed on the portal and on the pages where the visitor is already
  * converting (quote / contact).
  */
 const STORAGE_KEY = "ckb_newsletter_v1"; // value: "dismissed" | "subscribed"
@@ -25,7 +25,7 @@ export default function NewsletterPopup() {
   const [error, setError] = useState<string | null>(null);
 
   const suppressed =
-    pathname?.startsWith("/admin") ||
+    pathname?.startsWith("/portal") ||
     pathname === "/quote" ||
     pathname === "/contact";
 

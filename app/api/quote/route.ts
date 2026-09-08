@@ -7,7 +7,7 @@ import { resolveCampaignId } from "@/lib/campaign-match";
 
 // In-depth quote questionnaire endpoint. Captures the structured qualification
 // answers, folds them into a readable `description` block, and stores the result
-// in the same `leads` table as the contact form (viewable at /admin/leads).
+// in the same `leads` table as the contact form (viewable in the Crafted CRM).
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 

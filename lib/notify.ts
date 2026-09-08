@@ -74,7 +74,7 @@ export async function notifyNewLead(lead: Partial<Lead>): Promise<void> {
     .map(([k, v]) => `<tr><td><strong>${k}</strong></td><td>${(v || "—")
       .toString()
       .replace(/</g, "&lt;")}</td></tr>`)
-    .join("")}</table><p style="color:#888">View all leads at /admin/leads</p>`;
+    .join("")}</table><p style="color:#888">View all leads in the Crafted CRM</p>`;
 
   await sendResendEmail(
     {

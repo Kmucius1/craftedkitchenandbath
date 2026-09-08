@@ -188,10 +188,11 @@ Notes:
   `/services/cabinet-refacing`, and `/quote`.
 - SEO: SSG the category pages + individual material pages; add to `app/sitemap.ts`.
 
-### Admin — `/admin/materials`
+### Admin — materials curation
 
-Extends the existing password-protected `/admin` (proxy.ts + `ADMIN_PASSWORD`). Tylor can:
-toggle `active`, set `tier`, mark `featured`, reorder, edit names/descriptions, and run an import.
+Lives in the Crafted CRM app (crafted-crm-topaz.vercel.app), not this repo —
+same pattern as portal/project management. Tylor can: toggle `active`, set
+`tier`, mark `featured`, reorder, edit names/descriptions, and run an import.
 No code changes needed to curate.
 
 ---
@@ -203,7 +204,7 @@ No code changes needed to curate.
 2. IWT importer (real data, 1,103 products, imported inactive)
 3. `/design-studio` with category tabs, filters, detail view
 4. Selections tray → lead submission via `/api/contact`
-5. `/admin/materials` curation UI
+5. Materials curation UI in the Crafted CRM
 6. Tier pricing display (needs Tylor's numbers)
 7. Curated cabinets + countertops from public pages as a starting set
 

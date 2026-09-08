@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/db";
 
 // Newsletter signup endpoint. Stores the subscriber in the same `leads` table
-// (tagged source "Newsletter") so it's visible in /admin/leads — the only admin
-// surface — without a separate schema or dashboard. Low-friction: email only.
+// (tagged source "Newsletter") so it's visible in the Crafted CRM without a
+// separate schema or dashboard. Low-friction: email only.
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 

@@ -74,15 +74,13 @@ export async function POST(req: NextRequest) {
   try {
     const threadId = await findOrCreateThread(projectId, category);
     const admin = getSupabase();
-    const insertPayload: {
-      thread_id: string;
-      author_type: "staff" | "client";
-      author_staff_name: string | null;
-      author_portal_user_id: string | null;
-      body: string;
-    } = access.isStaffPreview
-      ? { thread_id: threadId, author_type: "staff", author_staff_name: "Crafted Team", author_portal_user_id: null, body: text }
-      : { thread_id: threadId, author_type: "client", author_portal_user_id: access.portalUser!.id, author_staff_name: null, body: text };
+    const insertPayload = {
+      thread_id: threadId,
+      author_type: "client" as const,
+      author_portal_user_id: access.portalUser.id,
+      author_staff_name: null,
+      body: text,
+    };
 
     const { data, error } = await admin.from("portal_messages").insert(insertPayload).select().single();
     if (error) throw error;

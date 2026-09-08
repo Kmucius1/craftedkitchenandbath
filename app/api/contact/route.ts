@@ -7,7 +7,7 @@ import { resolveCampaignId } from "@/lib/campaign-match";
 
 // Lead-capture endpoint. Validates the contact form, blocks spam, stores the
 // lead in Postgres, and (optionally) emails a notification. Leads are viewable
-// in the in-site admin at /admin/leads.
+// in the Crafted CRM (leads table is shared with that app).
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 

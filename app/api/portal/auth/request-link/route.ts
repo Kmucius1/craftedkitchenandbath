@@ -2,9 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 
 // Sends a sign-in magic link to an EXISTING portal user only — no self-service
-// signup. A homeowner only gets an account when staff invite them from
-// /admin/projects/[id] (see app/api/admin/projects/[id]/invite/route.ts).
-// This route is for a returning homeowner whose session has expired.
+// signup. A homeowner only gets an account when staff invite them (via the
+// Crafted CRM, or Supabase's Auth admin API directly, using the same
+// portal_users/project_members tables in db/portal-schema.sql). This route
+// is for a returning homeowner whose session has expired.
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
