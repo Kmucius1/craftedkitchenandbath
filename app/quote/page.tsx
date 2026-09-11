@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   title:
     "Get a Free Remodeling Quote | Project Questionnaire | Crafted Kitchen & Bath",
   description:
-    "Answer a few quick questions about your kitchen, bathroom, or whole-home remodel and get a personalized consultation from Crafted Kitchen & Bath. Serving Tampa Bay. Licensed CRC1333143.",
+    "Answer a few quick questions about your kitchen, bathroom, or whole-home remodel and get a personalized consultation from Crafted Kitchen & Bath. Serving Tampa Bay. Licensed CGC1541816.",
   alternates: { canonical: "https://craftedkitchenandbath.com/quote" },
 };
 
 const trust = [
-  "Licensed Contractor · CRC1333143",
+  "Licensed Contractor · CGC1541816",
   "250+ Homes Transformed",
   "Free In-Home Consultation",
 ];

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Crafted Kitchen & Bath",
   },
   description:
-    "Tampa Bay's premier kitchen and bathroom remodeling contractor. Custom kitchens, spa-inspired bathrooms, luxury countertops, and complete interior renovations across Pinellas & Hillsborough County. Licensed CRC1333143. Free consultations.",
+    "Tampa Bay's premier kitchen and bathroom remodeling contractor. Custom kitchens, spa-inspired bathrooms, luxury countertops, and complete interior renovations across Pinellas & Hillsborough County. Licensed CGC1541816. Free consultations.",
   keywords: [
     "kitchen remodeling Tampa Bay",
     "bathroom remodeling Oldsmar FL",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     siteName: "Crafted Kitchen & Bath",
     title: "Crafted Kitchen & Bath | Kitchen & Bathroom Remodeling Tampa Bay",
     description:
-      "Tampa Bay's premier kitchen and bathroom remodeling contractor. Custom kitchens, spa-inspired bathrooms, luxury countertops, and complete interior renovations across Pinellas & Hillsborough County. Licensed CRC1333143.",
+      "Tampa Bay's premier kitchen and bathroom remodeling contractor. Custom kitchens, spa-inspired bathrooms, luxury countertops, and complete interior renovations across Pinellas & Hillsborough County. Licensed CGC1541816.",
     images: [
       {
         url: "/og-image.jpg",

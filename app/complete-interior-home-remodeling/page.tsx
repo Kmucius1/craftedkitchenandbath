@@ -337,7 +337,7 @@ export default function CompleteInteriorRemodelingPage() {
               fontWeight: 500,
             }}
           >
-            Licensed &middot; CRC1333143
+            Licensed &middot; CGC1541816
           </span>
         </div>
       </section>

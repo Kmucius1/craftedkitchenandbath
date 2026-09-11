@@ -11,11 +11,11 @@ import { getGoogleReviews } from "@/lib/reviews";
 export const metadata: Metadata = {
   title: "Kitchen & Bathroom Remodeling Tampa Bay | Crafted Kitchen & Bath | Oldsmar FL",
   description:
-    "Crafted Kitchen & Bath delivers luxury kitchen remodeling and spa-inspired bathroom renovations across Tampa Bay. Custom cabinetry, countertops, tile, and complete transformations. Licensed contractor CRC1333143. Serving Oldsmar, Clearwater, Palm Harbor, Tampa.",
+    "Crafted Kitchen & Bath delivers luxury kitchen remodeling and spa-inspired bathroom renovations across Tampa Bay. Custom cabinetry, countertops, tile, and complete transformations. Licensed contractor CGC1541816. Serving Oldsmar, Clearwater, Palm Harbor, Tampa.",
   openGraph: {
     title: "Kitchen & Bathroom Remodeling Tampa Bay | Crafted Kitchen & Bath | Oldsmar FL",
     description:
-      "Crafted Kitchen & Bath delivers luxury kitchen remodeling and spa-inspired bathroom renovations across Tampa Bay. Custom cabinetry, countertops, tile, and complete transformations. Licensed contractor CRC1333143. Serving Oldsmar, Clearwater, Palm Harbor, Tampa.",
+      "Crafted Kitchen & Bath delivers luxury kitchen remodeling and spa-inspired bathroom renovations across Tampa Bay. Custom cabinetry, countertops, tile, and complete transformations. Licensed contractor CGC1541816. Serving Oldsmar, Clearwater, Palm Harbor, Tampa.",
   },
 };
 
@@ -123,7 +123,7 @@ const steps = [
 ];
 
 const trustPoints = [
-  "Licensed Contractor (CRC1333143)",
+  "Licensed Contractor (CGC1541816)",
   "One-Stop Remodeling",
   "Quality Materials",
   "Clear Communication",
@@ -755,7 +755,7 @@ export default async function HomePage() {
               { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M4 9h16M8 5.5h2M8 12.5v5"/></svg>, title: 'Kitchen Specialists', body: 'From custom cabinetry to quartz islands — we have completed 150+ kitchen transformations across Tampa Bay.' },
               { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-3Z"/><path d="M6 12V6a2 2 0 0 1 2-2c1 0 1.5.5 1.8 1M9 6.5h2"/></svg>, title: 'Bath Renovation Experts', body: 'Spa-inspired bathroom design with precision tile work, luxury vanities, and frameless glass showers.' },
               { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l8 4-8 4-8-4 8-4Z"/><path d="M4 12l8 4 8-4M4 16.5l8 4 8-4"/></svg>, title: 'One-Stop Shop', body: 'Kitchen, bath, flooring, and paint — one licensed team, one seamless project, zero coordination headaches.' },
-              { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l8 3.5v5C20 17 16.4 21 12 22 7.6 21 4 17 4 11.5v-5L12 3Z"/><path d="M9 11.5l2 2 4-4.5"/></svg>, title: 'Licensed & Insured', body: 'Florida licensed contractor CRC1333143. Fully insured. Your home is protected every step of the way.' },
+              { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l8 3.5v5C20 17 16.4 21 12 22 7.6 21 4 17 4 11.5v-5L12 3Z"/><path d="M9 11.5l2 2 4-4.5"/></svg>, title: 'Licensed & Insured', body: 'Florida licensed contractor CGC1541816. Fully insured. Your home is protected every step of the way.' },
               { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 3h12l3 5-9 13L3 8l3-5Z"/><path d="M3 8h18M9 3l3 18M15 3l-3 18"/></svg>, title: 'Premium Materials', body: 'We source quartz, marble, custom cabinetry, and designer fixtures from trusted suppliers.' },
               { icon: <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.25 4.15 1 5.85L12 17.9 6.75 19.6l1-5.85L3.5 9.7l5.9-.9L12 3.5Z"/></svg>, title: '5-Star Track Record', body: '250+ homes transformed. Every project ends with a full walkthrough and your complete satisfaction.' },
             ] as Array<{ icon: React.ReactNode; title: string; body: string }>).map((f) => (

@@ -9,7 +9,7 @@ import MeetTheTeam from "@/components/MeetTheTeam";
 export const metadata: Metadata = {
   title: "About Crafted Kitchen & Bath | Kitchen & Bathroom Remodeling Experts | Oldsmar FL",
   description:
-    "Crafted Kitchen & Bath is Oldsmar's trusted kitchen and bathroom remodeling contractor. Licensed CRC1333143, serving Pinellas and Hillsborough County with 250+ completed home transformations.",
+    "Crafted Kitchen & Bath is Oldsmar's trusted kitchen and bathroom remodeling contractor. Licensed CGC1541816, serving Pinellas and Hillsborough County with 250+ completed home transformations.",
 };
 
 const jsonLd = {
@@ -37,7 +37,7 @@ const jsonLd = {
   hasCredential: {
     "@type": "EducationalOccupationalCredential",
     credentialCategory: "Contractor License",
-    identifier: "CRC1333143",
+    identifier: "CGC1541816",
     recognizedBy: {
       "@type": "Organization",
       name: "State of Florida",
@@ -234,7 +234,7 @@ export default function AboutUsPage() {
               backgroundColor: "transparent",
             }}
           >
-            Licensed &middot; CRC1333143
+            Licensed &middot; CGC1541816
           </span>
         </div>{/* end text column */}
 
@@ -759,7 +759,7 @@ export default function AboutUsPage() {
                 margin: 0,
               }}
             >
-              We hold contractor license CRC1333143, are fully insured, and are
+              We hold contractor license CGC1541816, are fully insured, and are
               proud members of the Oldsmar community. When you work with Crafted
               Kitchen and Bath, you work with a team that&rsquo;s accountable,
               local, and invested in the quality of work we leave behind.
@@ -895,7 +895,7 @@ export default function AboutUsPage() {
                   margin: "12px 0",
                 }}
               >
-                CRC1333143
+                CGC1541816
               </div>
 
               {/* Bottom rule */}

@@ -980,7 +980,7 @@ export default function AreasOfServicePage() {
               textAlign: "center",
             }}
           >
-            Crafted Kitchen and Bath is a licensed Florida contractor (CRC1333143) serving homeowners
+            Crafted Kitchen and Bath is a licensed Florida contractor (CGC1541816) serving homeowners
             throughout Pinellas, Hillsborough, and Pasco County. Our team specializes in kitchen
             remodeling, bathroom renovations, flooring, tile installation, and
             interior painting — all delivered with the craftsmanship and communication you deserve.

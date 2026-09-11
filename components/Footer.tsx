@@ -119,7 +119,7 @@ export default function Footer() {
 
             {/* License */}
             <p style={{ color: "#6B7280", fontSize: "11px" }}>
-              License: CRC1333143
+              License: CGC1541816
             </p>
 
             {/* Social icons */}
@@ -335,7 +335,7 @@ export default function Footer() {
 
           {/* Right: license note */}
           <p style={{ color: "#6B7280", fontSize: "11px" }}>
-            Licensed Contractor CRC1333143 &nbsp;|&nbsp; Serving Pinellas &amp; Hillsborough County
+            Licensed Contractor CGC1541816 &nbsp;|&nbsp; Serving Pinellas &amp; Hillsborough County
           </p>
         </div>
       </div>

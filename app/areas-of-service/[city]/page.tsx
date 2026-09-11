@@ -65,7 +65,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
       postalCode: "34677",
       addressCountry: "US",
     },
-    description: `Licensed kitchen and bath remodeling contractor (CRC1333143) serving ${area.name}, ${area.county}, and the greater Tampa Bay area.`,
+    description: `Licensed kitchen and bath remodeling contractor (CGC1541816) serving ${area.name}, ${area.county}, and the greater Tampa Bay area.`,
     areaServed: { "@type": "City", name: area.name, containedIn: { "@type": "State", name: "Florida" } },
     priceRange: "$$",
   };
@@ -176,7 +176,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
           <SectionLabel>Local Know-How</SectionLabel>
           <p style={{ fontSize: "16px", lineHeight: 1.85, color: "#4A5568", margin: 0 }}>{area.localNote}</p>
           <p style={{ fontSize: "13px", lineHeight: 1.8, color: "#6B7280", margin: 0 }}>
-            Crafted Kitchen and Bath is a licensed Florida contractor (CRC1333143) serving {area.name} and the greater Tampa Bay area.
+            Crafted Kitchen and Bath is a licensed Florida contractor (CGC1541816) serving {area.name} and the greater Tampa Bay area.
           </p>
         </div>
       </section>

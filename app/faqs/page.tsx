@@ -87,7 +87,7 @@ const faqs = [
     items: [
       {
         q: 'Are you licensed and insured?',
-        a: 'Yes. Crafted Kitchen and Bath holds Florida contractor license CRC1333143 and is fully insured.',
+        a: 'Yes. Crafted Kitchen and Bath holds Florida contractor license CGC1541816 and is fully insured.',
       },
       {
         q: 'Do you serve Pinellas County?',

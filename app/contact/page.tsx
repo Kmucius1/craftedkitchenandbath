@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title:
     "Free Kitchen & Bathroom Remodeling Quote | Crafted Kitchen & Bath | Oldsmar FL",
   description:
-    "Request a free kitchen or bathroom remodeling consultation in Tampa Bay. We serve Oldsmar, Clearwater, Palm Harbor, Tampa, and all of Pinellas County. Licensed CRC1333143.",
+    "Request a free kitchen or bathroom remodeling consultation in Tampa Bay. We serve Oldsmar, Clearwater, Palm Harbor, Tampa, and all of Pinellas County. Licensed CGC1541816.",
 };
 
 const contactPageJsonLd = {
@@ -285,7 +285,7 @@ export default function ContactPage() {
                   />
                 </svg>
                 <span style={{ color: "#4A5568", fontSize: "14px" }}>
-                  License: CRC1333143
+                  License: CGC1541816
                 </span>
               </div>
 
@@ -480,7 +480,7 @@ export default function ContactPage() {
           }}
         >
           {[
-            "Licensed Contractor · CRC1333143",
+            "Licensed Contractor · CGC1541816",
             "250+ Homes Transformed",
             "5-Star Rated · Tampa Bay",
           ].map((item) => (

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title:
     "Kitchen Remodeling Oldsmar FL | Custom Kitchens Tampa Bay | Crafted Kitchen & Bath",
   description:
-    "Expert kitchen remodeling in Oldsmar, Clearwater, Palm Harbor, and across Pinellas & Hillsborough County. Custom cabinetry, quartz countertops, kitchen islands, backsplash tile, and layout redesign. Licensed contractor CRC1333143. Free quote.",
+    "Expert kitchen remodeling in Oldsmar, Clearwater, Palm Harbor, and across Pinellas & Hillsborough County. Custom cabinetry, quartz countertops, kitchen islands, backsplash tile, and layout redesign. Licensed contractor CGC1541816. Free quote.",
   alternates: {
     canonical: "https://craftedkitchenandbath.com/kitchen-remodeling",
   },
@@ -35,7 +35,7 @@ const serviceJsonLd = {
     hasCredential: {
       "@type": "EducationalOccupationalCredential",
       credentialCategory: "Contractor License",
-      identifier: "CRC1333143",
+      identifier: "CGC1541816",
     },
   },
   areaServed: [
@@ -53,7 +53,7 @@ const serviceJsonLd = {
     { "@type": "AdministrativeArea", name: "Tampa Bay" },
   ],
   description:
-    "Expert kitchen remodeling in Oldsmar, Clearwater, Palm Harbor, and across Pinellas & Hillsborough County. Custom cabinetry, quartz countertops, kitchen islands, backsplash tile, and layout redesign. Licensed contractor CRC1333143.",
+    "Expert kitchen remodeling in Oldsmar, Clearwater, Palm Harbor, and across Pinellas & Hillsborough County. Custom cabinetry, quartz countertops, kitchen islands, backsplash tile, and layout redesign. Licensed contractor CGC1541816.",
 };
 
 const breadcrumbJsonLd = {

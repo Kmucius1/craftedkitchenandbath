@@ -5,7 +5,7 @@ Source: live WordPress site **https://craftedkitchenandbath.com** (mined 2026-06
 ## Business facts (confirmed on live site)
 - **Name:** Crafted Kitchen & Bath  
 - **Phone:** (727) 383-7550  
-- **License:** CRC1333143 (licensed FL contractor)  
+- **License:** CGC1541816 (licensed FL contractor)  
 - **Address:** 120 Commerce Blvd Suite 4, Oldsmar, FL 34677  
 - **Email:** info@craftedkitchenandbath.com  
 - **Service area:** Pinellas & Hillsborough County / Tampa Bay  

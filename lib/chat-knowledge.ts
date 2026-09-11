@@ -37,7 +37,7 @@ export const KNOWLEDGE = `
 Crafted Kitchen & Bath (also operating as Crafted Home Improvements) is a licensed, family-run remodeling company based in Oldsmar, Florida. They are a true one-stop shop: kitchens, bathrooms, full interior remodels, flooring, painting, countertops, cabinet refacing, ADA & accessible bathrooms, and outdoor kitchens. They manage the entire project — design, materials, and finish — so the homeowner has one accountable point of contact from start to finish.
 
 ## Trust & track record
-- Florida licensed contractor, license #CRC1333143. Fully insured.
+- Florida licensed contractor, license #CGC1541816. Fully insured.
 - 250+ homes remodeled. 100% customer satisfaction. 5.0★ from 100+ Google reviews.
 - In-home consultations: they bring samples and the design conversation to you, and homeowners are always welcome to visit the Oldsmar showroom to see materials in person.
 

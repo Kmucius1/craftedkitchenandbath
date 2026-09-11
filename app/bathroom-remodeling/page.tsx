@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title:
     "Bathroom Remodeling Oldsmar FL | Spa Bathrooms Tampa Bay | Crafted Kitchen & Bath",
   description:
-    "Luxury bathroom remodeling in Oldsmar, Clearwater, Palm Harbor, and across Pinellas County. Custom tile showers, vanities, freestanding tubs, and spa-inspired finishes. Licensed contractor CRC1333143. Free quote.",
+    "Luxury bathroom remodeling in Oldsmar, Clearwater, Palm Harbor, and across Pinellas County. Custom tile showers, vanities, freestanding tubs, and spa-inspired finishes. Licensed contractor CGC1541816. Free quote.",
   alternates: {
     canonical: "https://craftedkitchenandbath.com/bathroom-remodeling",
   },
@@ -48,7 +48,7 @@ const serviceJsonLd = {
     { "@type": "AdministrativeArea", name: "Tampa Bay" },
   ],
   description:
-    "Luxury bathroom remodeling in Oldsmar, Clearwater, Palm Harbor, and across Pinellas County. Custom tile showers, vanities, freestanding tubs, and spa-inspired finishes. Licensed contractor CRC1333143.",
+    "Luxury bathroom remodeling in Oldsmar, Clearwater, Palm Harbor, and across Pinellas County. Custom tile showers, vanities, freestanding tubs, and spa-inspired finishes. Licensed contractor CGC1541816.",
   serviceType: "Bathroom Remodeling",
   url: "https://craftedkitchenandbath.com/bathroom-remodeling",
 };
