@@ -322,3 +322,82 @@ main p { overflow-wrap: break-word; }
   .blog-card:hover { transform: none; }
   .blog-card:hover .blog-card-media img, .blog-featured:hover img { transform: none; }
 }
+
+/* ─── Remote blog body ───────────────────────────────────────────────────
+   Posts written in DRYP Hub arrive as markdown and are converted to plain
+   HTML, so they get no inline styles the way a locally-authored article
+   does. Without these rules Tailwind's reset wins: lists lose their markers
+   AND their indent, and headings sit flush against the paragraph above —
+   which is exactly how the first published post rendered.
+
+   Values mirror the local article renderer in app/blog/[slug]/page.tsx so a
+   post reads identically whichever side it was written on, including the
+   blue em-dash marker used instead of a round bullet. */
+
+.remote-blog-body { color: #374151; font-size: 16px; line-height: 1.85; }
+
+.remote-blog-body > *:first-child { margin-top: 0; }
+
+.remote-blog-body p { margin: 0 0 20px; }
+
+.remote-blog-body h2,
+.remote-blog-body h3,
+.remote-blog-body h4 { color: #1A202C; line-height: 1.25; }
+
+.remote-blog-body h2 { font-size: clamp(24px, 3vw, 32px); margin: 44px 0 16px; }
+.remote-blog-body h3 { font-size: clamp(19px, 2.2vw, 23px); margin: 34px 0 12px; }
+.remote-blog-body h4 { font-size: 17px; margin: 28px 0 10px; }
+
+.remote-blog-body ul,
+.remote-blog-body ol { margin: 0 0 22px; padding: 0; list-style: none; }
+
+.remote-blog-body li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+/* The same blue dash a hand-written article uses, rather than a round bullet. */
+.remote-blog-body ul > li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #2B7CC1;
+}
+
+.remote-blog-body ol { counter-reset: remote-item; }
+.remote-blog-body ol > li { counter-increment: remote-item; }
+.remote-blog-body ol > li::before {
+  content: counter(remote-item) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #2B7CC1;
+  font-weight: 700;
+}
+
+.remote-blog-body strong { font-weight: 700; color: #1A202C; }
+.remote-blog-body em { font-style: italic; }
+
+.remote-blog-body a {
+  color: #2B7CC1;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.remote-blog-body blockquote {
+  margin: 28px 0;
+  padding: 4px 0 4px 22px;
+  border-left: 3px solid #2B7CC1;
+  color: #4A5568;
+  font-style: italic;
+}
+
+.remote-blog-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 28px 0;
+}
