@@ -75,6 +75,13 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      {
+        // Blog post covers uploaded from DRYP Hub land in Vercel Blob storage.
+        // The store subdomain is random, so match any of them rather than
+        // pinning one that changes if the store is ever recreated.
+        protocol: 'https',
+        hostname: '**.public.blob.vercel-storage.com',
+      },
     ],
   },
 };

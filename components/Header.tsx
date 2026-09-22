@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { label: 'About', href: '/about-us' },
   { label: 'Our Work', href: '/our-work' },
   { label: 'Areas of Service', href: '/areas-of-service' },
+  { label: 'Blog', href: '/blog' },
   { label: 'FAQs', href: '/faqs' },
   { label: 'Contact', href: '/contact' },
   { label: 'Client Portal', href: '/portal/login' },
@@ -94,8 +95,11 @@ export default function Header() {
 
             {/* ── DESKTOP NAV ── */}
             <nav
-              className="hidden md:flex"
-              style={{ alignItems: 'center', gap: 'clamp(1.75rem, 3.2vw, 4rem)', marginLeft: '3.5rem', flex: 1 }}
+              className="hidden lg:flex"
+              // Nine links now sit between the logo and the phone number. The lower
+              // floor lets them compress instead of running into it; below ~1100px
+              // the mobile menu takes over (see the lg: breakpoint on this nav).
+              style={{ alignItems: 'center', gap: 'clamp(0.9rem, 2.1vw, 3.25rem)', marginLeft: 'clamp(1.25rem, 2.5vw, 3.5rem)', flex: 1 }}
             >
               {NAV_LINKS.map((link) => {
                 const active = isActive(link.href);
@@ -232,7 +236,10 @@ export default function Header() {
             </nav>
 
             {/* ── DESKTOP RIGHT: PHONE + CTA ── */}
-            <div className="hidden md:flex" style={{ alignItems: 'center', gap: '1.75rem', flexShrink: 0 }}>
+            {/* marginLeft, not just the nav's gap: the nav is flex:1, so its
+               last link ends flush against this block and "Client Portal" ran
+               into the phone number. */}
+            <div className="hidden md:flex" style={{ alignItems: 'center', gap: '1.75rem', flexShrink: 0, marginLeft: 'clamp(1rem, 2vw, 2.5rem)' }}>
               <a
                 href={PHONE_HREF}
                 style={{
@@ -292,7 +299,10 @@ export default function Header() {
             </button>
 
             <style>{`
-              @media (max-width: 767px) {
+              /* Must match the lg: breakpoint on the desktop nav above. If the
+                 nav hides at 1024 and this only appeared at 768, tablets would
+                 have no navigation at all. */
+              @media (max-width: 1023px) {
                 .md-hamburger { display: flex !important; }
               }
             `}</style>

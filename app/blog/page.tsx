@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import SectionLabel from "@/components/SectionLabel";
 import CTASection from "@/components/CTASection";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -20,36 +21,124 @@ interface ListPost {
   date: string;
   displayDate: string;
   readMinutes: number;
+  image: string | null;
+  imageAlt: string;
+}
+
+/** Categories arrive from two places and one of them is typed by hand. */
+const tidy = (value: string | null | undefined, fallback: string) =>
+  (value || "").trim() || fallback;
+
+/**
+ * A card-sized preview, whatever the publisher actually sent.
+ *
+ * DRYP Hub currently returns the FULL article in `excerpt` — 10,000+ characters
+ * of markdown — so a card that trusts the field renders the entire post. This
+ * is deliberately defensive rather than a fix upstream: the site should not
+ * break its own layout because a field on someone else's API changes meaning.
+ */
+function preview(raw: string, limit = 190): string {
+  const flat = raw
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, "")      // images
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")   // links → their text
+    .replace(/[#*_`>]/g, "")                    // emphasis, headings, code
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (flat.length <= limit) return flat;
+
+  // Cut on a word so the preview never ends mid-word.
+  const cut = flat.slice(0, limit);
+  const lastSpace = cut.lastIndexOf(" ");
+  return `${(lastSpace > 120 ? cut.slice(0, lastSpace) : cut).replace(/[,;:.\s]+$/, "")}…`;
 }
 
 async function getPosts(): Promise<ListPost[]> {
   const local: ListPost[] = blogArticles.map((a) => ({
     slug: a.slug,
     title: a.title,
-    category: a.category,
-    excerpt: a.excerpt,
+    category: tidy(a.category, "Insights"),
+    excerpt: preview(a.excerpt),
     date: articleDate(a.slug),
     displayDate: articleDisplayDate(a.slug),
     readMinutes: a.readMinutes,
+    image: a.image,
+    imageAlt: a.imageAlt,
   }));
-  const remote = (await getRemotePosts()).map((p) => ({
+
+  const remote: ListPost[] = (await getRemotePosts()).map((p) => ({
     slug: p.slug,
     title: p.title,
-    category: p.category || "Insights",
-    excerpt: p.excerpt || "",
+    category: tidy(p.category, "Insights"),
+    excerpt: preview(p.excerpt || p.content || ""),
     date: p.published_at,
     displayDate: remoteDisplayDate(p.published_at),
     readMinutes: remoteReadMinutes(p.content),
+    image: p.featured_image_url,
+    imageAlt: p.title,
   }));
+
   return [...local, ...remote].sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";
+const INK = "#111822";
+const BLUE = "#2B7CC1";
+
+/** A card with no photo still has to look deliberate rather than broken. */
+function Media({
+  image,
+  alt,
+  sizes,
+  priority,
+}: {
+  image: string | null;
+  alt: string;
+  sizes: string;
+  priority?: boolean;
+}) {
+  if (!image) {
+    return (
+      <div
+        aria-hidden
+        style={{ position: "absolute", inset: 0, background: `linear-gradient(135deg, ${INK} 0%, ${BLUE} 130%)` }}
+      />
+    );
+  }
+  return <Image src={image} alt={alt} fill sizes={sizes} priority={priority} style={{ objectFit: "cover" }} />;
+}
+
+function CategoryChip({ children, onDark }: { children: React.ReactNode; onDark?: boolean }) {
+  return (
+    <span
+      style={{
+        display: "inline-block",
+        alignSelf: "flex-start",
+        fontSize: "10px",
+        letterSpacing: "0.16em",
+        textTransform: "uppercase",
+        fontWeight: 700,
+        padding: "6px 11px",
+        color: onDark ? "#FFFFFF" : BLUE,
+        backgroundColor: onDark ? "rgba(43,124,193,0.92)" : "rgba(43,124,193,0.10)",
+      }}
+    >
+      {children}
+    </span>
+  );
+}
+
+function Meta({ post, muted }: { post: ListPost; muted: string }) {
+  return (
+    <p style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: muted, margin: 0, fontWeight: 600 }}>
+      {post.displayDate} · {post.readMinutes} min read
+    </p>
+  );
+}
 
 export default async function BlogPage() {
   const posts = await getPosts();
-  const featured = posts[0];
-  const rest = posts.slice(1);
+  const [featured, ...rest] = posts;
 
   const blogSchema = {
     "@context": "https://schema.org",
@@ -61,6 +150,7 @@ export default async function BlogPage() {
       headline: p.title,
       description: p.excerpt,
       datePublished: p.date,
+      image: p.image ?? undefined,
       url: `https://craftedkitchenandbath.com/blog/${p.slug}`,
     })),
   };
@@ -69,71 +159,139 @@ export default async function BlogPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }} />
 
-      <div style={{ backgroundColor: "#F7F8FA" }}>
-        {/* ─── HERO ─── */}
-        <section style={{ backgroundColor: "#F7F8FA", padding: "96px 24px 56px" }}>
-          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div style={{ marginBottom: "40px" }}>
-              <Breadcrumb items={[{ label: "Blog" }]} />
-            </div>
-            <SectionLabel>Crafted Insights</SectionLabel>
-            <h1 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "clamp(36px, 5.5vw, 64px)", color: "#1A202C", lineHeight: 1.1, letterSpacing: "-0.01em", margin: "24px 0 20px", maxWidth: "820px" }}>
-              Remodeling Insights from the Crafted Team
-            </h1>
-            <p style={{ fontSize: "clamp(15px, 1.6vw, 17px)", lineHeight: 1.8, color: "#4A5568", maxWidth: "600px", margin: 0 }}>
-              Cost guides, material comparisons, and practical advice on kitchen and bath remodeling — from the people who do this every day in Tampa Bay.
-            </p>
-          </div>
-        </section>
+      {/* ─── HERO ───
+          A photograph under a dark wash rather than the pale grey panel this
+          page used to open with — the same treatment every other page here
+          uses, and the reason the blog read as a different website. */}
+      <section style={{ position: "relative", backgroundColor: INK, padding: "128px 24px 88px", overflow: "hidden" }}>
+        <Image
+          src="/images/wp/IMG_6129-scaled.jpeg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: "cover", objectPosition: "center 60%" }}
+        />
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: `linear-gradient(100deg, rgba(17,24,34,0.94) 0%, rgba(17,24,34,0.86) 46%, rgba(17,24,34,0.6) 100%)`,
+          }}
+        />
 
-        {/* ─── FEATURED ─── */}
-        <section style={{ backgroundColor: "#FFFFFF", padding: "56px 24px" }}>
-          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <SectionLabel>Featured Article</SectionLabel>
-            <Link
-              href={`/blog/${featured.slug}`}
-              style={{ marginTop: "28px", backgroundColor: "#F7F8FA", border: "1px solid rgba(0,0,0,0.08)", display: "grid", gridTemplateColumns: "1fr", overflow: "hidden", textDecoration: "none" }}
-              className="lg:grid-cols-[1fr_1fr]"
-            >
-              <div style={{ background: "linear-gradient(135deg, #1A202C 0%, #2B7CC1 120%)", minHeight: "320px", position: "relative" }}>
-                <span style={{ position: "absolute", bottom: "28px", left: "32px", fontFamily: headingFont, fontWeight: 300, fontSize: "26px", color: "rgba(255,255,255,0.92)", maxWidth: "80%", lineHeight: 1.2 }}>
-                  {featured.category}
-                </span>
-              </div>
-              <div style={{ padding: "48px 40px", display: "flex", flexDirection: "column", justifyContent: "center", gap: "16px" }}>
-                <span style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#2B7CC1", fontWeight: 500 }}>{featured.category}</span>
-                <h2 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "clamp(22px, 3vw, 32px)", color: "#1A202C", lineHeight: 1.25, margin: 0 }}>{featured.title}</h2>
-                <p style={{ fontSize: "12px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#6B7280", margin: 0 }}>{featured.displayDate} · {featured.readMinutes} min read</p>
-                <p style={{ fontSize: "15px", lineHeight: 1.8, color: "#4A5568", margin: 0 }}>{featured.excerpt}</p>
-                <span style={{ color: "#2B7CC1", fontSize: "12px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", marginTop: "8px" }}>Read More →</span>
-              </div>
-            </Link>
+        <div style={{ position: "relative", maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ marginBottom: "36px" }}>
+            {/* Breadcrumb renders in cream — built for dark headers, and all
+                but invisible on the pale panel this hero replaced. */}
+            <Breadcrumb items={[{ label: "Blog" }]} />
           </div>
-        </section>
+
+          <span style={{ display: "block", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#7FB4E4", fontWeight: 700, marginBottom: "20px" }}>
+            Crafted Insights
+          </span>
+
+          <h1 style={{ fontFamily: headingFont, fontSize: "clamp(34px, 5.4vw, 62px)", color: "#FFFFFF", lineHeight: 1.06, letterSpacing: "-0.02em", margin: "0 0 22px", maxWidth: "880px" }}>
+            Remodeling Advice From the Crew Doing the Work
+          </h1>
+
+          <p style={{ fontSize: "clamp(15px, 1.6vw, 18px)", lineHeight: 1.75, color: "rgba(255,255,255,0.82)", maxWidth: "620px", margin: 0 }}>
+            Straight answers on what things cost, which materials hold up in Florida, and how a
+            remodel actually runs — from the team building them across Tampa Bay.
+          </p>
+
+          <div style={{ display: "flex", alignItems: "center", gap: "14px", marginTop: "34px" }}>
+            <span style={{ width: "44px", height: "3px", backgroundColor: BLUE }} />
+            <span style={{ fontSize: "12px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", fontWeight: 600 }}>
+              {posts.length} {posts.length === 1 ? "Article" : "Articles"}
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <div style={{ backgroundColor: "#F7F8FA" }}>
+        {/* ─── FEATURED ─── */}
+        {featured && (
+          <section style={{ padding: "72px 24px 20px" }}>
+            <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+              <SectionLabel>Latest Article</SectionLabel>
+
+              <Link
+                href={`/blog/${featured.slug}`}
+                className="blog-featured blog-card"
+                style={{ marginTop: "26px", borderColor: "rgba(17,24,34,0.1)" }}
+              >
+                <div className="blog-featured-media">
+                  <Media
+                    image={featured.image}
+                    alt={featured.imageAlt}
+                    sizes="(max-width: 900px) 100vw, 55vw"
+                    priority
+                  />
+                </div>
+
+                <div style={{ padding: "clamp(28px, 4vw, 52px)", display: "flex", flexDirection: "column", justifyContent: "center", gap: "18px" }}>
+                  <CategoryChip>{featured.category}</CategoryChip>
+
+                  <h2 style={{ fontFamily: headingFont, fontSize: "clamp(23px, 2.9vw, 36px)", color: INK, lineHeight: 1.18, letterSpacing: "-0.02em", margin: 0 }}>
+                    {featured.title}
+                  </h2>
+
+                  <Meta post={featured} muted="#6B7280" />
+
+                  <p style={{ fontSize: "15px", lineHeight: 1.8, color: "#4A5568", margin: 0 }}>{featured.excerpt}</p>
+
+                  <span style={{ color: BLUE, fontSize: "12px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginTop: "6px" }}>
+                    Read the Article <span className="blog-card-arrow">→</span>
+                  </span>
+                </div>
+              </Link>
+            </div>
+          </section>
+        )}
 
         {/* ─── GRID ─── */}
-        <section style={{ backgroundColor: "#F7F8FA", padding: "56px 24px 80px" }}>
-          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div style={{ marginBottom: "40px" }}><SectionLabel>All Articles</SectionLabel></div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 360px), 1fr))", gap: "1px", backgroundColor: "rgba(0,0,0,0.08)" }}>
-              {rest.map((post) => (
-                <Link key={post.slug} href={`/blog/${post.slug}`} style={{ backgroundColor: "#FFFFFF", display: "flex", flexDirection: "column", overflow: "hidden", textDecoration: "none" }}>
-                  <div style={{ background: "linear-gradient(135deg, #EEF0F4 0%, #cdd6e2 100%)", height: "160px", flexShrink: 0, position: "relative" }}>
-                    <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", backgroundColor: "#2B7CC1", opacity: 0.5 }} />
-                    <span style={{ position: "absolute", bottom: "16px", left: "24px", fontFamily: headingFont, fontWeight: 300, fontSize: "18px", color: "#1A202C" }}>{post.category}</span>
-                  </div>
-                  <div style={{ padding: "26px 28px 30px", display: "flex", flexDirection: "column", flexGrow: 1, gap: "10px" }}>
-                    <span style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#2B7CC1", fontWeight: 500 }}>{post.category}</span>
-                    <h3 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "19px", color: "#1A202C", lineHeight: 1.35, margin: 0 }}>{post.title}</h3>
-                    <p style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "#6B7280", margin: 0 }}>{post.displayDate} · {post.readMinutes} min</p>
-                    <p style={{ fontSize: "13px", lineHeight: 1.75, color: "#4A5568", margin: 0, flexGrow: 1 }}>{post.excerpt}</p>
-                    <span style={{ color: "#2B7CC1", fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", marginTop: "4px" }}>Read More →</span>
-                  </div>
-                </Link>
-              ))}
+        {rest.length > 0 && (
+          <section style={{ padding: "56px 24px 88px" }}>
+            <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+              <div style={{ marginBottom: "34px" }}>
+                <SectionLabel>More Reading</SectionLabel>
+              </div>
+
+              <div className="blog-grid">
+                {rest.map((post) => (
+                  <Link key={post.slug} href={`/blog/${post.slug}`} className="blog-card">
+                    <div className="blog-card-media">
+                      <Media
+                        image={post.image}
+                        alt={post.imageAlt}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 33vw"
+                      />
+                      <div style={{ position: "absolute", left: "16px", bottom: "16px" }}>
+                        <CategoryChip onDark>{post.category}</CategoryChip>
+                      </div>
+                    </div>
+
+                    <div style={{ padding: "24px 26px 28px", display: "flex", flexDirection: "column", flexGrow: 1, gap: "12px" }}>
+                      <Meta post={post} muted="#6B7280" />
+
+                      <h3 style={{ fontFamily: headingFont, fontSize: "19px", color: INK, lineHeight: 1.3, letterSpacing: "-0.01em", margin: 0 }}>
+                        {post.title}
+                      </h3>
+
+                      <p style={{ fontSize: "13.5px", lineHeight: 1.75, color: "#4A5568", margin: 0, flexGrow: 1 }}>{post.excerpt}</p>
+
+                      <span style={{ color: BLUE, fontSize: "11px", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", marginTop: "4px" }}>
+                        Read More <span className="blog-card-arrow">→</span>
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         <CTASection
           headline="Ready to Start Your Remodel?"

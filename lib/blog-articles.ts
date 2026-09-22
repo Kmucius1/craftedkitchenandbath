@@ -11,6 +11,9 @@ export type BlogArticle = {
   title: string;
   category: string;
   excerpt: string;
+  /** Real project photo for the card and the article header. */
+  image: string;
+  imageAlt: string;
   metaTitle: string;
   metaDescription: string;
   readMinutes: number;
@@ -25,6 +28,8 @@ export const blogArticles: BlogArticle[] = [
     category: "Cost Guides",
     excerpt:
       "A clear, honest look at what kitchen remodels cost in the Tampa Bay area in 2026 — what drives the price and how to budget with confidence.",
+    image: "/images/wp/IMG_2580-scaled.jpeg",
+    imageAlt: "Two-tone kitchen with brass pendants remodeled by Crafted Kitchen and Bath in Oldsmar, Florida",
     metaTitle: "Kitchen Remodel Cost in Tampa Bay (2026 Guide)",
     metaDescription:
       "What does a kitchen remodel cost in Tampa Bay in 2026? Realistic budget ranges, the factors that move the price, and how to plan. Free in-home estimates.",
@@ -72,6 +77,8 @@ export const blogArticles: BlogArticle[] = [
     category: "Cost Guides",
     excerpt:
       "From a simple guest bath to a full primary suite, here is what bathroom remodels realistically cost in Pinellas County and how to plan your budget.",
+    image: "/images/wp/IMG_6061-1-scaled.jpg",
+    imageAlt: "Modern master bathroom with vessel sink and marble shower by Crafted Kitchen and Bath",
     metaTitle: "Bathroom Remodel Cost in Pinellas County",
     metaDescription:
       "What should you budget for a bathroom remodel in Pinellas County? Realistic price ranges by project type, what drives cost, and how to plan. Free estimates.",
@@ -118,6 +125,8 @@ export const blogArticles: BlogArticle[] = [
     category: "Materials",
     excerpt:
       "Quartz, granite, and quartzite all make beautiful Florida countertops, but they behave very differently. Here is how to choose the right one.",
+    image: "/images/wp/countertops.jpg",
+    imageAlt: "Quartz countertop and island in a remodeled Tampa Bay kitchen",
     metaTitle: "Quartz vs. Granite vs. Quartzite Countertops",
     metaDescription:
       "Quartz, granite, or quartzite for your Florida kitchen? Compare durability, maintenance, looks, and cost so you can choose the right countertop with confidence.",
@@ -159,6 +168,8 @@ export const blogArticles: BlogArticle[] = [
     category: "Materials",
     excerpt:
       "Florida's humidity changes the flooring conversation. Here is an honest look at LVP, tile, and hardwood so you can pick the right floor for your home.",
+    image: "/images/wp/IMG_1419-scaled.jpg",
+    imageAlt: "White kitchen with wood-look plank flooring installed by Crafted Kitchen and Bath",
     metaTitle: "Best Flooring for Florida Homes: LVP, Tile, Wood",
     metaDescription:
       "LVP, tile, or hardwood for your Florida home? Compare durability, humidity resistance, comfort, and cost to choose the best flooring for Tampa Bay living.",
@@ -199,6 +210,8 @@ export const blogArticles: BlogArticle[] = [
     category: "Planning",
     excerpt:
       "Refacing keeps your cabinet boxes and refreshes the look for less; replacement starts fresh. Here is how to decide which fits your kitchen and budget.",
+    image: "/images/wp/cabinet-refacing.jpg",
+    imageAlt: "Refaced kitchen cabinets with new doors and hardware",
     metaTitle: "Cabinet Refacing vs. Replacement: Which to Choose",
     metaDescription:
       "Cabinet refacing vs. replacement? Compare cost, timeline, and results to decide which makes sense for your Tampa Bay kitchen. Free in-home consultations.",
@@ -246,6 +259,8 @@ export const blogArticles: BlogArticle[] = [
     category: "Accessible Design",
     excerpt:
       "Stay in the home you love, safely. A practical guide to aging-in-place bathroom upgrades that are both accessible and beautiful for Tampa Bay homeowners.",
+    image: "/images/wp/ada-bathroom.jpg",
+    imageAlt: "Accessible walk-in shower with grab bars and a bench seat",
     metaTitle: "Aging-in-Place Bathroom Remodeling Guide",
     metaDescription:
       "Plan a safer, accessible bathroom that still looks beautiful. Aging-in-place remodeling tips for Tampa Bay homeowners who want to stay in the home they love.",
