@@ -18,6 +18,7 @@ function renderInline(text: string) {
   out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
   out = out.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   out = out.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+  out = out.replace(/~~([^~]+)~~/g, "<del>$1</del>");
   return out;
 }
 
