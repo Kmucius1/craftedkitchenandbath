@@ -21,6 +21,8 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://craftedkitchenandbath.com"),
+  // Google Search Console ownership (URL-prefix property https://craftedkitchenandbath.com/)
+  verification: { google: "nKKIqgILPZe4Cokza2AI8j3Sxo1baLw_gTffoawgDQY" },
   title: {
     default: "Crafted Kitchen & Bath | Kitchen & Bathroom Remodeling Tampa Bay | Oldsmar FL",
     template: "%s | Crafted Kitchen & Bath",
@@ -92,7 +94,12 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+// DRYP-owned GA4 property; env var overrides. Only loads on production deploys so
+// preview/test traffic stays out of reports.
+const GA_MEASUREMENT_ID =
+  process.env.VERCEL_ENV === "production"
+    ? process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-3G9J9CY6R9"
+    : undefined;
 
 export default function RootLayout({
   children,
