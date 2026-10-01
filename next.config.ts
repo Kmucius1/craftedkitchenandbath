@@ -1,6 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // The signed-contract PDF embeds the logo, read from disk at runtime. Public
+  // files are not bundled into server functions unless listed here.
+  outputFileTracingIncludes: {
+    "/api/contract/*": ["./public/logo.png"],
+    "/api/contract/**/*": ["./public/logo.png"],
+    "/contract/*": ["./public/logo.png"],
+  },
   async redirects() {
     return [
       {
