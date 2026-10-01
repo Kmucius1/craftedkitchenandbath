@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 export const metadata: Metadata = {
-  title: "Review and sign your contract | Crafted Kitchen & Bath",
+  title: "Review and sign your contract",
   robots: { index: false, follow: false },
 };
 

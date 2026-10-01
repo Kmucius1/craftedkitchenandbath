@@ -65,7 +65,7 @@ export async function finalizeIfComplete(contract: ContractRow): Promise<"waitin
       project_id: contract.project_id,
       category: "contract",
       title: `${contract.terms.title} — signed (${contract.contract_number})`,
-      url: `${link}/pdf`,
+      url: `${siteOrigin()}/api/contract/${contract.sign_token}/pdf`,
       uploaded_by_staff_name: "Signed online",
     });
   }
