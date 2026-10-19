@@ -4,7 +4,7 @@ import Link from "next/link";
 import SectionLabel from "@/components/SectionLabel";
 import CTASection from "@/components/CTASection";
 import { blogArticles, getArticle, articleDate, articleDisplayDate } from "@/lib/blog-articles";
-import { getRemotePost, remoteReadMinutes, remoteDisplayDate, type RemotePost } from "@/lib/remote-blog";
+import { getRemotePost, remoteReadMinutes, remoteDisplayDate, extractRemoteFaqs, type RemotePost } from "@/lib/remote-blog";
 import { markdownToHtml } from "@/lib/markdown";
 
 const SITE = "https://craftedkitchenandbath.com";
@@ -192,7 +192,21 @@ function RemoteBlogPost({ post }: { post: RemotePost }) {
     publisher: { "@type": "Organization", name: "Crafted Kitchen and Bath", url: SITE },
     mainEntityOfPage: `${SITE}/blog/${post.slug}`,
     url: `${SITE}/blog/${post.slug}`,
+    ...(post.featured_image_url ? { image: post.featured_image_url } : {}),
   };
+
+  const faqs = extractRemoteFaqs(post.content);
+  const faqSchema = faqs.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      }
+    : null;
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -208,6 +222,7 @@ function RemoteBlogPost({ post }: { post: RemotePost }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
 
       <section style={{ backgroundColor: "#F7F8FA", padding: "120px 24px 64px" }}>
         <div style={{ maxWidth: "780px", margin: "0 auto" }}>

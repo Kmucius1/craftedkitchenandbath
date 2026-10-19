@@ -48,3 +48,48 @@ export function remoteReadMinutes(content: string | null): number {
 export function remoteDisplayDate(publishedAt: string): string {
   return new Date(publishedAt).toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" });
 }
+
+/** Pulls question/answer pairs out of a post's FAQ section so the page can
+ * emit FAQPage schema. DRYP Hub posts write it as an H2 containing "FAQ" or
+ * "Frequently Asked" followed by one `### Question` per answer. Lives here
+ * rather than lib/markdown.ts, which must stay byte-identical to DRYP Hub's. */
+export function extractRemoteFaqs(content: string | null): { question: string; answer: string }[] {
+  const faqs: { question: string; answer: string }[] = [];
+  let inFaq = false;
+  let current: { question: string; lines: string[] } | null = null;
+
+  const flush = () => {
+    if (current && current.lines.length) {
+      faqs.push({ question: current.question, answer: current.lines.join(" ") });
+    }
+    current = null;
+  };
+
+  for (const raw of (content || "").replace(/\r\n/g, "\n").split("\n")) {
+    const line = raw.trim();
+    const h2 = line.match(/^##\s+(.*)$/);
+    if (h2) {
+      flush();
+      inFaq = /faq|frequently asked/i.test(h2[1]);
+      continue;
+    }
+    if (!inFaq) continue;
+    const h3 = line.match(/^###\s+(.*)$/);
+    if (h3) {
+      flush();
+      current = { question: stripMarkdown(h3[1]), lines: [] };
+      continue;
+    }
+    if (current && line) current.lines.push(stripMarkdown(line.replace(/^([-*]|\d+\.)\s+/, "")));
+  }
+  flush();
+  return faqs;
+}
+
+function stripMarkdown(text: string): string {
+  return text
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/(\*\*|\*|~~)/g, "")
+    .trim();
+}
