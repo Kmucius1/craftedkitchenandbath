@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getStoredAttribution } from "@/lib/campaign";
+import ConsentCheckbox from "@/components/ConsentCheckbox";
 
 /* ── Questionnaire config ──────────────────────────────────────────────────
    Each step holds one or more questions. Questions are single- or multi-select
@@ -210,6 +211,7 @@ export default function QuoteWizard() {
     contactMethod: "Either",
     bestTime: "Anytime",
     notes: "",
+    contactConsent: false,
     company: "", // honeypot
   });
   const [error, setError] = useState<string | null>(null);
@@ -298,6 +300,7 @@ export default function QuoteWizard() {
           contactMethod: contact.contactMethod,
           bestTime: contact.bestTime,
           notes: contact.notes,
+          contactConsent: contact.contactConsent,
           responses,
           company: contact.company,
           attribution: getStoredAttribution(),
@@ -663,6 +666,7 @@ function ContactStep({
     contactMethod: string;
     bestTime: string;
     notes: string;
+    contactConsent: boolean;
     company: string;
   };
   setContact: React.Dispatch<React.SetStateAction<typeof contact>>;
@@ -671,7 +675,7 @@ function ContactStep({
   focus: (e: React.FocusEvent<HTMLElement>) => void;
   blur: (e: React.FocusEvent<HTMLElement>) => void;
 }) {
-  const set = (k: keyof typeof contact, v: string) => setContact((p) => ({ ...p, [k]: v }));
+  const set = (k: Exclude<keyof typeof contact, "contactConsent">, v: string) => setContact((p) => ({ ...p, [k]: v }));
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
       {/* Honeypot */}
@@ -726,6 +730,15 @@ function ContactStep({
         <label htmlFor="q-notes" style={labelStyle}>Anything else we should know?</label>
         <textarea id="q-notes" rows={4} placeholder="Tell us about your space, must-haves, or anything specific to your project…" value={contact.notes} onChange={(e) => set("notes", e.target.value)} style={{ ...inputStyle, resize: "vertical", lineHeight: 1.6 }} onFocus={focus} onBlur={blur} />
       </div>
+
+      {/* Optional permission to call/text (TCPA). Only meaningful with a phone number. */}
+      {contact.phone.trim() && (
+        <ConsentCheckbox
+          id="q-consent"
+          checked={contact.contactConsent}
+          onChange={(checked) => setContact((p) => ({ ...p, contactConsent: checked }))}
+        />
+      )}
     </div>
   );
 }

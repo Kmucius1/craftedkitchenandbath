@@ -4,6 +4,7 @@ import { notifyNewLead, notifyLeadConfirmation } from "@/lib/notify";
 import { crmFieldsFromQuote } from "@/lib/crm-fields";
 import { attributionColumns, type Attribution } from "@/lib/campaign";
 import { resolveCampaignId } from "@/lib/campaign-match";
+import { consentRecord } from "@/lib/contact-consent";
 
 // In-depth quote questionnaire endpoint. Captures the structured qualification
 // answers, folds them into a readable `description` block, and stores the result
@@ -23,6 +24,7 @@ type QuotePayload = {
   bestTime?: string;
   notes?: string;
   responses?: Response[];
+  contactConsent?: boolean;
   company?: string; // honeypot — real users leave this empty
   attribution?: Partial<Attribution>; // from lib/campaign.ts's getStoredAttribution()
 };
@@ -83,7 +85,12 @@ export async function POST(req: NextRequest) {
     // lands those answers in real columns instead of only inside the bulleted
     // `description` text above.
     ...crmFieldsFromQuote(responses, bestTime),
-    intake_payload: body as unknown as Record<string, unknown>,
+    // The checkbox state is replaced by a server-built evidence record (wording, version, time, IP).
+    intake_payload: {
+      ...(body as unknown as Record<string, unknown>),
+      contactConsent: undefined,
+      contact_consent: consentRecord(req, body.contactConsent, (body.phone || "").trim() || null),
+    },
     ...attribution,
     campaign_id,
   };

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { getStoredAttribution } from "@/lib/campaign";
+import ConsentCheckbox from "@/components/ConsentCheckbox";
 
 type FormState = {
   fullName: string;
@@ -11,6 +12,7 @@ type FormState = {
   city: string;
   description: string;
   contactMethod: string;
+  contactConsent: boolean;
   company: string; // honeypot — kept empty by real users, filled by bots
 };
 
@@ -22,6 +24,7 @@ const initialForm: FormState = {
   city: "",
   description: "",
   contactMethod: "Either",
+  contactConsent: false,
   company: "",
 };
 
@@ -441,6 +444,14 @@ export default function ContactForm() {
           ))}
         </div>
       </div>
+
+      {/* Optional permission to call/text (TCPA). Only meaningful with a phone number. */}
+      {form.phone.trim() && (
+        <ConsentCheckbox
+          checked={form.contactConsent}
+          onChange={(checked) => setForm((prev) => ({ ...prev, contactConsent: checked }))}
+        />
+      )}
 
       {/* Error message */}
       {error && (

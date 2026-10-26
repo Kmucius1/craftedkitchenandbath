@@ -93,7 +93,7 @@ export default function PrivacyPolicyPage() {
               margin: 0,
             }}
           >
-            Last Updated: January 1, 2024
+            Last Updated: October 26, 2026
           </p>
         </div>
       </section>
@@ -270,6 +270,16 @@ export default function PrivacyPolicyPage() {
               We do not use your contact information for mass marketing campaigns, advertising, or any
               purpose unrelated to a service you have initiated. You will only hear from us in
               connection with your inquiry or an active project.
+            </p>
+            <p style={{ ...bodyTextStyle, marginTop: '14px' }}>
+              <span style={{ color: '#1A202C', fontWeight: 500 }}>Calls and text messages.</span>{' '}
+              If you tick the box on one of our forms giving us permission to call and text you, we
+              may contact you about your project at the number you provided, including calls from an
+              AI assistant and other automated technology. Giving that permission is optional and is
+              never required to get a quote. We keep a record of when and how you gave it. You can
+              withdraw it anytime: reply STOP to a text, tell us on a call, or contact us using the
+              details below. Message and data rates may apply. We do not share your phone number or
+              your permission with third parties for their own marketing.
             </p>
           </div>
 

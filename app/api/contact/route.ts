@@ -4,6 +4,7 @@ import { notifyNewLead, notifyLeadConfirmation } from "@/lib/notify";
 import { crmFieldsFromContact } from "@/lib/crm-fields";
 import { attributionColumns, type Attribution } from "@/lib/campaign";
 import { resolveCampaignId } from "@/lib/campaign-match";
+import { consentRecord } from "@/lib/contact-consent";
 
 // Lead-capture endpoint. Validates the contact form, blocks spam, stores the
 // lead in Postgres, and (optionally) emails a notification. Leads are viewable
@@ -19,6 +20,7 @@ type LeadPayload = {
   city?: string;
   description?: string;
   contactMethod?: string;
+  contactConsent?: boolean;
   company?: string; // honeypot — real users leave this empty
   attribution?: Partial<Attribution>; // from lib/campaign.ts's getStoredAttribution()
 };
@@ -68,7 +70,12 @@ export async function POST(req: NextRequest) {
     // The raw payload is the safety net: a field added to this form later is
     // captured even before the CRM knows to read it.
     ...crmFieldsFromContact(service),
-    intake_payload: body as unknown as Record<string, unknown>,
+    // The checkbox state is replaced by a server-built evidence record (wording, version, time, IP).
+    intake_payload: {
+      ...(body as unknown as Record<string, unknown>),
+      contactConsent: undefined,
+      contact_consent: consentRecord(req, body.contactConsent, (body.phone || "").trim() || null),
+    },
     ...attribution,
     campaign_id,
   };
