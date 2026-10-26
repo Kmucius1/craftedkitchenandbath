@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabase } from "@/lib/db";
-import { notifyNewLead, notifyLeadConfirmation } from "@/lib/notify";
+import { notifyLeadConfirmation } from "@/lib/notify";
 import { crmFieldsFromContact } from "@/lib/crm-fields";
 import { attributionColumns, type Attribution } from "@/lib/campaign";
 import { resolveCampaignId } from "@/lib/campaign-match";
@@ -94,7 +94,10 @@ export async function POST(req: NextRequest) {
   }
 
   // Fire-and-forget notifications; failure here must not fail the request.
-  await Promise.all([notifyNewLead(lead), notifyLeadConfirmation(lead)]);
+  // The office alert is sent by the CRM once the submission passes its spam check
+  // (lib/lead-screening.ts there), so sales pitches don't page Tylor. Only the
+  // homeowner's confirmation goes from here.
+  await notifyLeadConfirmation(lead);
 
   return NextResponse.json({ ok: true });
 }
