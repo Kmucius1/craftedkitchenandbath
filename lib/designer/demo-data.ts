@@ -36,12 +36,83 @@
 import type { Product, StaffInventoryDetail } from "./types";
 import IWT_CATALOG from "./iwt-catalog.generated.json";
 
-function pendingPhotoSwatch(hex: string, label: string): string {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300">
-    <rect width="400" height="300" fill="${hex}"/>
-    <rect width="400" height="300" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="4"/>
-    <text x="20" y="264" font-family="sans-serif" font-size="15" fill="rgba(0,0,0,0.5)">${label}</text>
-    <text x="20" y="286" font-family="sans-serif" font-size="10" letter-spacing="1.5" fill="rgba(0,0,0,0.4)">REAL PRODUCT — PHOTO PENDING SUPPLIER PERMISSION</text>
+type SwatchOpts = { kind?: "cabinet" | "generic"; widthIn?: number; heightIn?: number; subcategory?: string };
+
+/**
+ * Clean stand-in visual for products with no licensed photo yet. Cabinets get
+ * a proportional line drawing (door/drawer layout read from the product name),
+ * everything else a tinted tile with the name centered. Always captioned
+ * "Illustration" so it is never mistaken for a product photo.
+ */
+function pendingPhotoSwatch(hex: string, label: string, opts: SwatchOpts = {}): string {
+  const esc = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+  let art = "";
+  if (opts.kind === "cabinet" && opts.widthIn && opts.heightIn) {
+    const sub = opts.subcategory ?? "";
+    const wall = sub === "Wall Cabinets";
+    const tall = sub === "Pantry Cabinets" || sub === "Oven Cabinets";
+    const scale = Math.min(400 / opts.widthIn, 430 / opts.heightIn, tall ? 4.8 : 11);
+    const w = Math.max(70, opts.widthIn * scale);
+    const h = opts.heightIn * scale;
+    const x = 300 - w / 2;
+    const y = 300 - h / 2 - 8;
+    const inset = 7;
+    const door = (dx: number, dy: number, dw: number, dh: number, pullSide: "l" | "r" | "c" = "c", pullV = false) => {
+      const px = pullSide === "l" ? dx + 10 : pullSide === "r" ? dx + dw - 10 : dx + dw / 2;
+      return `<rect x="${dx}" y="${dy}" width="${dw}" height="${dh}" fill="#fdfdfb" stroke="#c9c6bf" stroke-width="2" rx="2"/>
+        <rect x="${dx + 9}" y="${dy + 9}" width="${dw - 18}" height="${dh - 18}" fill="#f6f5f1" stroke="#dcd9d2" stroke-width="1.5"/>
+        ${pullV ? `<rect x="${px - 2}" y="${dy + dh / 2 - 14}" width="4" height="28" rx="2" fill="#a8abb0"/>` : `<rect x="${px - 14}" y="${dy + dh - 20}" width="28" height="4" rx="2" fill="#a8abb0"/>`}`;
+    };
+    const n = label.toLowerCase();
+    const doors = /double door/.test(n) || wall && opts.widthIn >= 24 || sub === "Pantry Cabinets" || sub === "Sink Bases" && opts.widthIn >= 30 ? 2 : 1;
+    let body = `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#e9e6df" stroke="#bdb9b0" stroke-width="2" rx="2"/>`;
+    const ix = x + inset, iw = w - inset * 2;
+    if (wall) {
+      const dw = iw / doors;
+      for (let i = 0; i < doors; i++) body += door(ix + i * dw + 1, y + inset, dw - 2, h - inset * 2, doors === 1 ? "r" : i === 0 ? "r" : "l", true);
+    } else if (tall) {
+      const half = (h - inset * 2) / 2;
+      if (sub === "Oven Cabinets") {
+        body += door(ix, y + inset, iw, half * 0.55, "c");
+        body += `<rect x="${ix + 8}" y="${y + inset + half * 0.55 + 8}" width="${iw - 16}" height="${half * 0.9}" fill="#2b2f36" rx="3"/>`;
+        body += door(ix, y + inset + half * 1.5, iw, half * 0.5 - 1, "c");
+      } else {
+        const dw = iw / 2;
+        for (const row of [0, 1]) for (let i = 0; i < 2; i++) body += door(ix + i * dw + 1, y + inset + row * half + 1, dw - 2, half - 2, i === 0 ? "r" : "l", true);
+      }
+    } else {
+      // base / sink / vanity: counter slab, then drawer row(s), then doors
+      body += `<rect x="${x - 6}" y="${y - 12}" width="${w + 12}" height="14" fill="#f2f1ed" stroke="#bdb9b0" stroke-width="2" rx="2"/>`;
+      const inner = h - inset * 2;
+      const drawerH = sub === "Sink Bases" ? inner * 0.16 : inner * 0.2;
+      const hasDrawers = !/full height/.test(n);
+      let cy = y + inset;
+      if (hasDrawers) {
+        const dcount = /double drawer|vanity combo/.test(n) && opts.widthIn >= 30 ? 2 : 1;
+        const dw = iw / dcount;
+        for (let i = 0; i < dcount; i++) body += door(ix + i * dw + 1, cy, dw - 2, drawerH, "c");
+        cy += drawerH + 3;
+      }
+      const dh = y + h - inset - cy;
+      const dw = iw / doors;
+      for (let i = 0; i < doors; i++) body += door(ix + i * dw + 1, cy, dw - 2, dh, doors === 1 ? "r" : i === 0 ? "r" : "l", true);
+    }
+    art = body;
+  } else {
+    const words = label.split(/\s+/);
+    const lines: string[] = [];
+    let cur = "";
+    for (const wd of words) {
+      if ((cur + " " + wd).trim().length > 22) { lines.push(cur); cur = wd; } else cur = (cur + " " + wd).trim();
+    }
+    if (cur) lines.push(cur);
+    art = lines.slice(0, 4).map((l, i, arr) => `<text x="300" y="${300 + (i - (arr.length - 1) / 2) * 38}" text-anchor="middle" font-family="sans-serif" font-size="30" font-weight="600" fill="rgba(0,0,0,0.55)">${esc(l)}</text>`).join("");
+  }
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${hex}"/><stop offset="1" stop-color="#e3e0d9"/></linearGradient></defs>
+    <rect width="600" height="600" fill="url(#g)"/>
+    ${art}
+    <text x="300" y="572" text-anchor="middle" font-family="sans-serif" font-size="13" letter-spacing="2.5" fill="rgba(0,0,0,0.38)">ILLUSTRATION · PHOTO COMING SOON</text>
   </svg>`;
   // encodeURIComponent (not Buffer) so this module is safe to import from
   // client components — Buffer isn't polyfilled in the browser bundle.
@@ -98,7 +169,7 @@ export const DEMO_CABINETS: Product[] = UCD_ROWS.map((row) => ({
   material: "Birch hardwood frame + plywood box, 5-piece HDF door",
   color: "White",
   finish: "White (SW)",
-  imageUrl: pendingPhotoSwatch("#f4f2ee", `${row.name} — ${row.widthIn}"`),
+  imageUrl: pendingPhotoSwatch("#f1efea", row.name, { kind: "cabinet", widthIn: row.widthIn, heightIn: row.heightIn, subcategory: row.subcategory }),
   model3dStatus: "none",
   availability: "confirmation-required",
   sourceUrl: UCD_SPEC_SHEET,
