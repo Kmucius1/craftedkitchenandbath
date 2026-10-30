@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: 'Services', href: '/services', hasDropdown: true },
   { label: 'About', href: '/about-us' },
   { label: 'Our Work', href: '/our-work' },
+  { label: 'Catalog', href: '/catalog' },
   { label: 'Areas of Service', href: '/areas-of-service' },
   { label: 'Blog', href: '/blog' },
   { label: 'FAQs', href: '/faqs' },
