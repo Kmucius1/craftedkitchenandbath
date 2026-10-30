@@ -26,10 +26,7 @@ const CATALOG_MENU = [
   { label: 'Backsplash', href: '/catalog?cat=backsplash' },
   { label: 'Flooring', href: '/catalog?cat=flooring' },
   { label: 'Sinks', href: '/catalog?cat=sinks' },
-  { label: 'Plumbing', href: '/catalog?cat=plumbing' },
   { label: 'Hardware', href: '/catalog?cat=hardware' },
-  { label: 'Paint', href: '/catalog?cat=paint' },
-  { label: 'Doors & Windows', href: '/catalog?cat=doors-windows' },
 ];
 
 const SERVICES = [

@@ -1012,9 +1012,40 @@ const RAW_PRODUCTS: Product[] = [
 const IWT_BEST_IMAGE = new Map(
   (IWT_CATALOG as Array<{ url: string; image: string | null }>).filter((r) => r.image).map((r) => [r.url, r.image as string]),
 );
-export const DEMO_PRODUCTS: Product[] = RAW_PRODUCTS.map((p) =>
-  p.sourceUrl && IWT_BEST_IMAGE.has(p.sourceUrl) ? { ...p, imageUrl: IWT_BEST_IMAGE.get(p.sourceUrl)! } : p,
-);
+// Real product photos straight from each supplier's own public product page,
+// keyed by SKU. Amazon is deliberately not used — neither its listings nor its
+// photos — and the paint category is not offered.
+const MSI_CDN = "https://cdn.msisurfaces.com/images";
+const TK_IMG = "https://static.homebydecor.com/images/products/59";
+const SUPPLIER_PHOTOS: Record<string, string> = {
+  "Calacatta-Elysio": `${MSI_CDN}/quartz-countertops/products/slab/medium/calacatta-elysio-quartz.jpg`,
+  "Arctic-White": `${MSI_CDN}/quartz-countertops/products/slab/medium/arctic-white-quartz.jpg`,
+  "Montclair-White": `${MSI_CDN}/quartz-countertops/products/slab/medium/montclair-white-quartz.jpg`,
+  "Fossil-Gray": `${MSI_CDN}/quartz-countertops/products/slab/medium/fossil-gray-quartz.jpg`,
+  "Calacatta-Laza": `${MSI_CDN}/quartz-countertops/products/slab/medium/calacatta-laza-quartz.jpg`,
+  "Aruca-White": `${MSI_CDN}/quartz-countertops/products/slab/medium/aruca-white-quartz.jpg`,
+  "SIN-POR-UNDRECWHT-1813": `${MSI_CDN}/roomscenes/medium/sin000040tn-scene.jpg`,
+  "SIN-POR-UNDOVLWHT-1512": `${MSI_CDN}/roomscenes/medium/sin000039tn-scene.jpg`,
+  "SIN-POR-UNDOVLWHT-1714": `${MSI_CDN}/roomscenes/medium/sin000033tn-scene.jpg`,
+  "TK1013-BSN": `${TK_IMG}/tk1013bsn.jpg`,
+  "TK1052-BSN": `${TK_IMG}/tk1052bsn.jpg`,
+  "TK3092-BLK": `${TK_IMG}/tk3092blk.webp`,
+  "TK3152-PC": `${TK_IMG}/tk3152pc.webp`,
+  "TK745-HB": `${TK_IMG}/tk745hb.jpg`,
+  "TK1024-PN": `${TK_IMG}/tk1024pn.jpg`,
+  "TK3204-HB": `${TK_IMG}/tk3204hb.webp`,
+  "TK705-BLK": `${TK_IMG}/tk705blk.jpg`,
+  "TK1020-BSN": `${TK_IMG}/tk1020bsn.jpg`,
+  "TK3020-BSN": `${TK_IMG}/tk3020bsn.webp`,
+  "TK3000-PC": `${TK_IMG}/tk3000pc.jpg`,
+  "TK1000-HB": `${TK_IMG}/tk1000hb.jpg`,
+  "TK880-AG": `${TK_IMG}/tk880ag.jpg`,
+};
+export const DEMO_PRODUCTS: Product[] = RAW_PRODUCTS.filter((p) => p.supplier !== "Amazon" && p.category !== "paint").map((p) => {
+  const photo = SUPPLIER_PHOTOS[p.supplierSku];
+  if (photo) return { ...p, imageUrl: photo };
+  return p.sourceUrl && IWT_BEST_IMAGE.has(p.sourceUrl) ? { ...p, imageUrl: IWT_BEST_IMAGE.get(p.sourceUrl)! } : p;
+});
 
 export function getDemoProductsByCategory(category: string): Product[] {
   return DEMO_PRODUCTS.filter((p) => p.category === category);

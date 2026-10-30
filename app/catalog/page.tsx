@@ -156,14 +156,14 @@ export default async function CatalogPage({
                 style={{ border: '1px solid rgba(0,0,0,0.08)' }}
               >
                 <ProductLink product={p}>
-                  <div className="relative aspect-square w-full overflow-hidden bg-gray-100">
+                  <div className={`relative aspect-square w-full overflow-hidden ${p.category === 'hardware' ? 'bg-white' : 'bg-gray-100'}`}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={p.imageUrl}
                       alt={`${p.name} — ${p.supplier}`}
                       loading="lazy"
                       decoding="async"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className={`absolute inset-0 h-full w-full transition-transform duration-500 group-hover:scale-105 ${p.category === 'hardware' ? 'object-contain p-6' : 'object-cover'}`}
                     />
                     <span style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(17,24,34,0.82)', color: '#fff', fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, padding: '5px 9px', borderRadius: '3px' }}>
                       {CATEGORY_LABELS[p.category] ?? p.category}
