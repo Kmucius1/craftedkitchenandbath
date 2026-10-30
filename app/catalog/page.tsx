@@ -29,6 +29,15 @@ const CATEGORY_LABELS: Record<string, string> = {
   'doors-windows': 'Doors & Windows',
 }
 
+function ProductLink({ product, children }: { product: { sourceUrl?: string; name: string; supplier: string }; children: React.ReactNode }) {
+  if (!product.sourceUrl) return <>{children}</>
+  return (
+    <a href={product.sourceUrl} target="_blank" rel="noopener noreferrer" aria-label={`${product.name} at ${product.supplier}`} style={{ display: 'block' }}>
+      {children}
+    </a>
+  )
+}
+
 export default async function CatalogPage({
   searchParams,
 }: {
@@ -146,19 +155,21 @@ export default async function CatalogPage({
                 className="group overflow-hidden rounded-lg bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                 style={{ border: '1px solid rgba(0,0,0,0.08)' }}
               >
-                <div className="relative aspect-square w-full overflow-hidden bg-gray-100">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={p.imageUrl}
-                    alt={`${p.name} — ${p.supplier}`}
-                    loading="lazy"
-                    decoding="async"
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <span style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(17,24,34,0.82)', color: '#fff', fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, padding: '5px 9px', borderRadius: '3px' }}>
-                    {CATEGORY_LABELS[p.category] ?? p.category}
-                  </span>
-                </div>
+                <ProductLink product={p}>
+                  <div className="relative aspect-square w-full overflow-hidden bg-gray-100">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={p.imageUrl}
+                      alt={`${p.name} — ${p.supplier}`}
+                      loading="lazy"
+                      decoding="async"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <span style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(17,24,34,0.82)', color: '#fff', fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, padding: '5px 9px', borderRadius: '3px' }}>
+                      {CATEGORY_LABELS[p.category] ?? p.category}
+                    </span>
+                  </div>
+                </ProductLink>
                 <div style={{ padding: '16px 18px 18px' }}>
                   <h3 style={{ fontSize: '16px', lineHeight: 1.3, margin: '0 0 6px', color: INK, fontWeight: 700 }}>{p.name}</h3>
                   <p style={{ fontSize: '13px', color: '#4A5568', margin: '0 0 2px' }}>{p.supplier}</p>
@@ -166,8 +177,13 @@ export default async function CatalogPage({
                     SKU {p.supplierSku}
                     {p.dimensions ? ` · ${p.dimensions.widthIn}″ × ${p.dimensions.heightIn}″` : ''}
                   </p>
-                  <div style={{ marginTop: '12px' }}>
+                  <div style={{ marginTop: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap' }}>
                     <DemoBadge product={p} compact />
+                    {p.sourceUrl && (
+                      <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer" style={{ fontSize: '12px', fontWeight: 600, color: BLUE }}>
+                        View at {p.supplier.split(' ')[0]} ↗
+                      </a>
+                    )}
                   </div>
                 </div>
               </article>

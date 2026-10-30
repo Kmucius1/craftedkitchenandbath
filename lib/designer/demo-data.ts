@@ -918,7 +918,7 @@ export const IWT_FULL_CATALOG: Product[] = (IWT_CATALOG as Array<{
     isDemo: false,
   }));
 
-export const DEMO_PRODUCTS: Product[] = [
+const RAW_PRODUCTS: Product[] = [
   ...DEMO_CABINETS,
   ...DEMO_COUNTERTOPS,
   ...DEMO_SINKS,
@@ -934,6 +934,16 @@ export const DEMO_PRODUCTS: Product[] = [
   ...DEMO_WINDOW_SILLS,
   ...IWT_FULL_CATALOG,
 ];
+
+// Curated International Wholesale Tile items get the same best-photo pick as
+// the bulk import (a clean tile shot rather than a room scene), matched by the
+// exact product page they came from.
+const IWT_BEST_IMAGE = new Map(
+  (IWT_CATALOG as Array<{ url: string; image: string | null }>).filter((r) => r.image).map((r) => [r.url, r.image as string]),
+);
+export const DEMO_PRODUCTS: Product[] = RAW_PRODUCTS.map((p) =>
+  p.sourceUrl && IWT_BEST_IMAGE.has(p.sourceUrl) ? { ...p, imageUrl: IWT_BEST_IMAGE.get(p.sourceUrl)! } : p,
+);
 
 export function getDemoProductsByCategory(category: string): Product[] {
   return DEMO_PRODUCTS.filter((p) => p.category === category);

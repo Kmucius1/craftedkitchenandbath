@@ -10,12 +10,26 @@ const NAV_LINKS = [
   { label: 'Services', href: '/services', hasDropdown: true },
   { label: 'About', href: '/about-us' },
   { label: 'Our Work', href: '/our-work' },
-  { label: 'Catalog', href: '/catalog' },
+  { label: 'Catalog', href: '/catalog', hasDropdown: true },
   { label: 'Areas of Service', href: '/areas-of-service' },
   { label: 'Blog', href: '/blog' },
   { label: 'FAQs', href: '/faqs' },
   { label: 'Contact', href: '/contact' },
   { label: 'Client Portal', href: '/portal/login' },
+];
+
+const CATALOG_MENU = [
+  { label: 'All Materials', href: '/catalog' },
+  { label: 'Cabinets', href: '/catalog?cat=cabinets' },
+  { label: 'Countertops', href: '/catalog?cat=countertops' },
+  { label: 'Tile', href: '/catalog?cat=tile' },
+  { label: 'Backsplash', href: '/catalog?cat=backsplash' },
+  { label: 'Flooring', href: '/catalog?cat=flooring' },
+  { label: 'Sinks', href: '/catalog?cat=sinks' },
+  { label: 'Plumbing', href: '/catalog?cat=plumbing' },
+  { label: 'Hardware', href: '/catalog?cat=hardware' },
+  { label: 'Paint', href: '/catalog?cat=paint' },
+  { label: 'Doors & Windows', href: '/catalog?cat=doors-windows' },
 ];
 
 const SERVICES = [
@@ -36,18 +50,19 @@ const PHONE_HREF = 'tel:+17273837550';
 export default function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [servicesHovered, setServicesHovered] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [mobileOpenMenu, setMobileOpenMenu] = useState<string | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const openServices = () => {
+  const openMenuFor = (href: string) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
-    setServicesHovered(true);
+    setOpenMenu(href);
   };
-  const closeServices = () => {
+  const closeMenu = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => setServicesHovered(false), 180);
+    closeTimer.current = setTimeout(() => setOpenMenu(null), 180);
   };
+  const menuFor = (href: string) => (href === '/catalog' ? CATALOG_MENU : SERVICES);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
@@ -56,8 +71,8 @@ export default function Header() {
 
   useEffect(() => {
     setMobileOpen(false);
-    setServicesHovered(false);
-    setMobileServicesOpen(false);
+    setOpenMenu(null);
+    setMobileOpenMenu(null);
   }, [pathname]);
 
   const isActive = (href: string) => {
@@ -110,14 +125,14 @@ export default function Header() {
                     <div
                       key={link.href}
                       style={{ position: 'relative' }}
-                      onMouseEnter={openServices}
-                      onMouseLeave={closeServices}
-                      onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setServicesHovered(false) }}
-                      onKeyDown={e => { if (e.key === 'Escape') setServicesHovered(false) }}
+                      onMouseEnter={() => openMenuFor(link.href)}
+                      onMouseLeave={closeMenu}
+                      onBlur={e => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setOpenMenu(null) }}
+                      onKeyDown={e => { if (e.key === 'Escape') setOpenMenu(null) }}
                     >
                       <button
-                        onClick={() => setServicesHovered(v => !v)}
-                        onFocus={() => setServicesHovered(true)}
+                        onClick={() => setOpenMenu(v => (v === link.href ? null : link.href))}
+                        onFocus={() => setOpenMenu(link.href)}
                         style={{
                           fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif",
                           color: active ? '#FFFFFF' : 'rgba(255,255,255,0.85)',
@@ -140,12 +155,12 @@ export default function Header() {
                         onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#FFFFFF'}
                         onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = active ? '#FFFFFF' : 'rgba(255,255,255,0.85)'}
                         aria-haspopup="true"
-                        aria-expanded={servicesHovered}
+                        aria-expanded={openMenu === link.href}
                       >
                         {link.label}
                         <svg
                           width="9" height="9" viewBox="0 0 10 10" fill="none"
-                          style={{ transform: servicesHovered ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease', opacity: 0.55 }}
+                          style={{ transform: openMenu === link.href ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease', opacity: 0.55 }}
                         >
                           <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
@@ -163,8 +178,8 @@ export default function Header() {
                           transform: 'translateX(-50%)',
                           paddingTop: '14px',
                           minWidth: '220px',
-                          opacity: servicesHovered ? 1 : 0,
-                          pointerEvents: servicesHovered ? 'auto' : 'none',
+                          opacity: openMenu === link.href ? 1 : 0,
+                          pointerEvents: openMenu === link.href ? 'auto' : 'none',
                           transition: 'opacity 0.2s ease',
                           zIndex: 60,
                         }}
@@ -177,7 +192,7 @@ export default function Header() {
                          }}
                        >
                         <div style={{ height: '2px', backgroundColor: '#2B7CC1', width: '100%' }} />
-                        {SERVICES.map(service => (
+                        {menuFor(link.href).map(service => (
                           <Link
                             key={service.href}
                             href={service.href}
@@ -350,15 +365,15 @@ export default function Header() {
               if (link.hasDropdown) {
                 return (
                   <li key={link.href} style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
-                    <button onClick={() => setMobileServicesOpen(prev => !prev)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '20px 0', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontStyle: 'italic', color: '#111822', fontSize: '24px', letterSpacing: '0em', textAlign: 'left', transition: 'color 0.2s ease' }}>
+                    <button onClick={() => setMobileOpenMenu(prev => (prev === link.href ? null : link.href))} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', padding: '20px 0', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontStyle: 'italic', color: '#111822', fontSize: '24px', letterSpacing: '0em', textAlign: 'left', transition: 'color 0.2s ease' }}>
                       {link.label}
-                      <svg width="14" height="14" viewBox="0 0 10 10" fill="none" style={{ transform: mobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.25s ease', color: '#6B7280', flexShrink: 0 }}>
+                      <svg width="14" height="14" viewBox="0 0 10 10" fill="none" style={{ transform: mobileOpenMenu === link.href ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.25s ease', color: '#6B7280', flexShrink: 0 }}>
                         <path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </button>
-                    <div style={{ maxHeight: mobileServicesOpen ? '500px' : '0', overflow: 'hidden', transition: 'max-height 0.3s ease' }}>
+                    <div style={{ maxHeight: mobileOpenMenu === link.href ? '600px' : '0', overflow: 'hidden', transition: 'max-height 0.3s ease' }}>
                       <ul style={{ listStyle: 'none', margin: 0, padding: '0 0 16px 16px', display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                        {SERVICES.map(service => (
+                        {menuFor(link.href).map(service => (
                           <li key={service.href}>
                             <Link href={service.href} onClick={() => setMobileOpen(false)} style={{ display: 'block', fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif", color: pathname === service.href ? '#111822' : '#4A5568', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.14em', padding: '8px 0', textDecoration: 'none', transition: 'color 0.15s ease' }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#111822'} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = pathname === service.href ? '#111822' : '#4A5568'}>
                               {service.label}
