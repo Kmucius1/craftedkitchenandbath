@@ -42,6 +42,7 @@ def best_image(p):
         name = m["source_url"].rsplit("/", 1)[-1]
         sc = 0
         if LIFESTYLE.search(name): sc -= 100
+        if re.search(r'(?:^|[_-])(?:RS|IP|MO|Face|Swatch|Sheet|Polished|Honed|Matte|Glossy|Tile)(?:[_.-]|\d|$)', name): sc += 25
         if 0.85 <= w / h <= 1.15: sc += 20
         if w >= 900: sc += 10
         if w < 400: sc -= 50
