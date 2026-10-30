@@ -17,7 +17,7 @@ ids = sorted({p["featured_media"] for p in prods if p["featured_media"]})
 for i in range(0, len(ids), 100):
     for m in get(f"{B}/media?per_page=100&include={','.join(map(str, ids[i:i+100]))}&_fields=id,source_url,media_details"):
         sizes = (m.get("media_details") or {}).get("sizes") or {}
-        media[m["id"]] = (sizes.get("medium") or sizes.get("thumbnail") or {}).get("source_url") or m["source_url"]
+        media[m["id"]] = (sizes.get("large") or sizes.get("medium_large") or {}).get("source_url") or m["source_url"]
 SKIP = {1596, 104, 1613}  # discontinued, pool & spa, swatch card
 FLOOR = {1753, 1598, 1600, 119}
 WALL = {26, 1587, 1611, 1588}

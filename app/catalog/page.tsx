@@ -94,11 +94,13 @@ export default async function CatalogPage({
           {filtered.length} product{filtered.length === 1 ? '' : 's'}
         </p>
 
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {items.map((p) => (
             <article key={p.id} className="overflow-hidden rounded border border-gray-200 bg-white">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={p.imageUrl} alt={`${p.name} — ${p.supplier}`} loading="lazy" className="aspect-square w-full object-cover" />
+              <div className="relative aspect-square w-full bg-gray-100">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={p.imageUrl} alt={`${p.name} — ${p.supplier}`} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+              </div>
               <div className="p-3">
                 <h2 className="text-sm font-semibold leading-tight">{p.name}</h2>
                 <p className="mt-1 text-xs text-gray-500">
