@@ -312,11 +312,11 @@ export default async function HomePage() {
         {/* Bathroom side */}
         <div style={{ position: 'relative', height: 'clamp(380px, 74vw, 560px)', overflow: 'hidden' }} className="group">
           <Image
-            src="/images/wp/IMG_6465-scaled.jpeg"
+            src="/images/wp/bathroom-home-hero.jpg"
             alt="Luxury bathroom remodeling Tampa Bay"
             fill
           sizes="(max-width: 768px) 100vw, 50vw"
-            style={{ objectFit: 'cover', objectPosition: 'center', transition: 'transform 0.7s ease' }}
+            style={{ objectFit: 'cover', objectPosition: 'center 58%', transition: 'transform 0.7s ease' }}
             className="group-hover:scale-105"
           />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)' }} />
