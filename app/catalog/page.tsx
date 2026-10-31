@@ -3,8 +3,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
 import CTASection from '@/components/CTASection'
-import DemoBadge from '@/components/designer/DemoBadge'
+import ProductCard, { isPlaceholderImage } from '@/components/catalog/ProductCard'
 import { DEMO_PRODUCTS } from '@/lib/designer/demo-data'
+import type { Product } from '@/lib/designer/types'
 
 export const metadata: Metadata = {
   title: 'Product Catalog — Cabinets, Tile, Countertops & More | Crafted Kitchen & Bath',
@@ -29,183 +30,342 @@ const CATEGORY_LABELS: Record<string, string> = {
   'doors-windows': 'Doors & Windows',
 }
 
-function ProductLink({ product, children }: { product: { sourceUrl?: string; name: string; supplier: string }; children: React.ReactNode }) {
-  if (!product.sourceUrl) return <>{children}</>
-  return (
-    <a href={product.sourceUrl} target="_blank" rel="noopener noreferrer" aria-label={`${product.name} at ${product.supplier}`} style={{ display: 'block' }}>
-      {children}
-    </a>
-  )
+/** The order categories lead with when everything is shown together. */
+const FEATURED_ORDER = ['countertops', 'sinks', 'tile', 'flooring', 'hardware', 'backsplash', 'cabinets']
+
+type Sort = 'featured' | 'name' | 'supplier'
+const SORTS: { key: Sort; label: string }[] = [
+  { key: 'featured', label: 'Featured' },
+  { key: 'name', label: 'A to Z' },
+  { key: 'supplier', label: 'Supplier' },
+]
+
+/**
+ * "Featured": products with a real photo first, one category at a time in
+ * turn so the first page shows the range (a countertop, a sink, a tile, a
+ * faucet) instead of one category's long run. Stand-in drawings go last.
+ */
+function featured(products: Product[]): Product[] {
+  const real = products.filter((p) => !isPlaceholderImage(p))
+  const stand = products.filter(isPlaceholderImage)
+  const lanes = new Map<string, Product[]>()
+  for (const p of real) lanes.set(p.category, [...(lanes.get(p.category) ?? []), p])
+  const order = [...FEATURED_ORDER.filter((c) => lanes.has(c)), ...[...lanes.keys()].filter((c) => !FEATURED_ORDER.includes(c))]
+  const mixed: Product[] = []
+  for (let i = 0; mixed.length < real.length; i++) {
+    for (const c of order) {
+      const item = lanes.get(c)?.[i]
+      if (item) mixed.push(item)
+    }
+  }
+  return [...mixed, ...stand]
+}
+
+/** 1 … 4 5 6 … 25: the first, the last, and the neighbours of the current page. */
+function pageList(current: number, total: number): (number | 'gap')[] {
+  const wanted = new Set([1, total, current - 1, current, current + 1].filter((n) => n >= 1 && n <= total))
+  const out: (number | 'gap')[] = []
+  let previous = 0
+  for (const n of [...wanted].sort((a, b) => a - b)) {
+    if (n - previous > 1) out.push('gap')
+    out.push(n)
+    previous = n
+  }
+  return out
 }
 
 export default async function CatalogPage({
   searchParams,
 }: {
-  searchParams: Promise<{ cat?: string; q?: string; page?: string }>
+  searchParams: Promise<{ cat?: string; q?: string; page?: string; supplier?: string; sort?: string }>
 }) {
-  const { cat, q, page } = await searchParams
+  const { cat, q, page, supplier, sort: sortParam } = await searchParams
   const query = (q ?? '').trim().toLowerCase()
+  const sort: Sort = SORTS.some((s) => s.key === sortParam) ? (sortParam as Sort) : 'featured'
 
   const counts = new Map<string, number>()
   for (const p of DEMO_PRODUCTS) counts.set(p.category, (counts.get(p.category) ?? 0) + 1)
   const categories = [...counts.keys()].sort((a, b) => (CATEGORY_LABELS[a] ?? a).localeCompare(CATEGORY_LABELS[b] ?? b))
 
+  const supplierCounts = new Map<string, number>()
+  for (const p of DEMO_PRODUCTS) supplierCounts.set(p.supplier, (supplierCounts.get(p.supplier) ?? 0) + 1)
+  const suppliers = [...supplierCounts.keys()].sort((a, b) => a.localeCompare(b))
+
   const filtered = DEMO_PRODUCTS.filter(
     (p) =>
       (!cat || p.category === cat) &&
+      (!supplier || p.supplier === supplier) &&
       (!query || `${p.name} ${p.supplierSku} ${p.collection} ${p.supplier}`.toLowerCase().includes(query)),
   )
-  const pages = Math.max(1, Math.ceil(filtered.length / PER_PAGE))
-  const current = Math.min(Math.max(1, Number(page) || 1), pages)
-  const items = filtered.slice((current - 1) * PER_PAGE, current * PER_PAGE)
+  const sorted =
+    sort === 'name'
+      ? [...filtered].sort((a, b) => a.name.localeCompare(b.name))
+      : sort === 'supplier'
+        ? [...filtered].sort((a, b) => a.supplier.localeCompare(b.supplier) || a.name.localeCompare(b.name))
+        : cat || supplier || query
+          ? [...filtered.filter((p) => !isPlaceholderImage(p)), ...filtered.filter(isPlaceholderImage)]
+          : featured(filtered)
 
-  const href = (over: { cat?: string | null; page?: number }) => {
+  const pages = Math.max(1, Math.ceil(sorted.length / PER_PAGE))
+  const current = Math.min(Math.max(1, Number(page) || 1), pages)
+  const items = sorted.slice((current - 1) * PER_PAGE, current * PER_PAGE)
+  const first = sorted.length ? (current - 1) * PER_PAGE + 1 : 0
+  const last = Math.min(current * PER_PAGE, sorted.length)
+
+  const href = (over: { cat?: string | null; supplier?: string | null; q?: null; sort?: Sort; page?: number }) => {
     const sp = new URLSearchParams()
     const c = over.cat === undefined ? cat : over.cat
+    const s = over.supplier === undefined ? supplier : over.supplier
+    const o = over.sort ?? sort
     if (c) sp.set('cat', c)
-    if (query) sp.set('q', q!.trim())
+    if (s) sp.set('supplier', s)
+    if (query && over.q !== null) sp.set('q', q!.trim())
+    if (o !== 'featured') sp.set('sort', o)
     if (over.page && over.page > 1) sp.set('page', String(over.page))
-    const s = sp.toString()
-    return `/catalog${s ? `?${s}` : ''}`
+    const text = sp.toString()
+    return `/catalog${text ? `?${text}` : ''}`
   }
 
   const heading = cat ? CATEGORY_LABELS[cat] ?? cat : 'All Materials'
+  const filtersOn = !!(cat || supplier || query)
 
   return (
     <main style={{ background: '#F7F8FA' }}>
-      {/* Hero — photo under a dark wash, same treatment as every other page */}
-      <section style={{ position: 'relative', backgroundColor: INK, padding: '128px 24px 72px', overflow: 'hidden' }}>
+      {/* Hero: photo under a dark wash, same treatment as every other page */}
+      <section style={{ position: 'relative', backgroundColor: INK, padding: '120px 24px 0', overflow: 'hidden' }}>
         <Image src="/images/hero-kitchen.jpg" alt="" fill priority sizes="100vw" style={{ objectFit: 'cover', objectPosition: 'center 55%' }} />
         <div
           aria-hidden
-          style={{ position: 'absolute', inset: 0, background: 'linear-gradient(100deg, rgba(17,24,34,0.94) 0%, rgba(17,24,34,0.84) 50%, rgba(17,24,34,0.55) 100%)' }}
+          style={{ position: 'absolute', inset: 0, background: 'linear-gradient(100deg, rgba(17,24,34,0.95) 0%, rgba(17,24,34,0.86) 50%, rgba(17,24,34,0.6) 100%)' }}
         />
         <div style={{ position: 'relative', maxWidth: '1240px', margin: '0 auto' }}>
-          <div style={{ marginBottom: '28px' }}>
+          <div style={{ marginBottom: '24px' }}>
             <Breadcrumb items={[{ label: 'Catalog' }]} />
           </div>
-          <span style={{ display: 'block', fontSize: '11px', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7FB4E4', fontWeight: 700, marginBottom: '18px' }}>
+          <span style={{ display: 'block', fontSize: '11px', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7FB4E4', fontWeight: 700, marginBottom: '14px' }}>
             Product Catalog
           </span>
-          <h1 style={{ fontSize: 'clamp(34px, 5vw, 58px)', color: '#fff', lineHeight: 1.06, letterSpacing: '-0.02em', margin: '0 0 18px', maxWidth: '760px' }}>
+          <h1 style={{ fontSize: 'clamp(32px, 4.6vw, 52px)', color: '#fff', lineHeight: 1.08, letterSpacing: '-0.02em', margin: '0 0 16px', maxWidth: '780px' }}>
             Browse the Materials We Install
           </h1>
-          <p style={{ fontSize: 'clamp(15px, 1.5vw, 18px)', lineHeight: 1.7, color: 'rgba(255,255,255,0.82)', maxWidth: '600px', margin: '0 0 30px' }}>
-            {DEMO_PRODUCTS.length} cabinets, tiles, countertops, fixtures and more from our supplier partners. Pricing is confirmed in your free in-home quote.
+          <p style={{ fontSize: 'clamp(15px, 1.4vw, 17px)', lineHeight: 1.7, color: 'rgba(255,255,255,0.82)', maxWidth: '620px', margin: '0 0 28px' }}>
+            Cabinets, tile, countertops, fixtures and more from our supplier partners. Pricing is confirmed in your free in-home quote.
           </p>
-          <form action="/catalog" style={{ display: 'flex', maxWidth: '560px', background: '#fff', borderRadius: '6px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.25)' }}>
+          <form action="/catalog" style={{ display: 'flex', maxWidth: '580px', background: '#fff', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 12px 32px rgba(0,0,0,0.28)' }}>
             {cat && <input type="hidden" name="cat" value={cat} />}
+            {supplier && <input type="hidden" name="supplier" value={supplier} />}
             <input
               name="q"
               defaultValue={q ?? ''}
-              placeholder="Search by name, SKU or collection"
+              placeholder="Search products or SKU"
               aria-label="Search the catalog"
               style={{ flex: 1, padding: '16px 18px', border: 0, outline: 0, fontSize: '15px', minWidth: 0 }}
             />
-            <button style={{ background: BLUE, color: '#fff', border: 0, padding: '0 26px', fontWeight: 700, letterSpacing: '0.08em', fontSize: '12px', textTransform: 'uppercase', cursor: 'pointer' }}>
+            <button style={{ background: BLUE, color: '#fff', border: 0, padding: '0 28px', fontWeight: 700, letterSpacing: '0.08em', fontSize: '12px', textTransform: 'uppercase', cursor: 'pointer' }}>
               Search
             </button>
           </form>
+
+          {/* The facts that earn trust, straight from the data, under the search */}
+          <dl className="mt-10 grid grid-cols-3 gap-px overflow-hidden rounded-t-xl border border-b-0 border-white/15 bg-white/15 text-white sm:max-w-[640px]">
+            {[
+              [String(DEMO_PRODUCTS.length), 'products'],
+              [String(suppliers.length), 'supplier partners'],
+              ['Free', 'in-home quote'],
+            ].map(([value, label]) => (
+              <div key={label} className="bg-[rgba(17,24,34,0.55)] px-4 py-4 backdrop-blur-sm">
+                <dt className="sr-only">{label}</dt>
+                <dd className="m-0">
+                  <span className="block text-[22px] font-extrabold leading-none">{value}</span>
+                  <span className="mt-1 block text-[12px] uppercase tracking-[0.1em] text-white/70">{label}</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
-      <section style={{ maxWidth: '1240px', margin: '0 auto', padding: '40px 24px 72px', display: 'grid', gap: '36px', gridTemplateColumns: 'minmax(0,1fr)' }} className="lg:!grid-cols-[230px_minmax(0,1fr)]">
-        {/* Category filters */}
+      <section style={{ maxWidth: '1240px', margin: '0 auto', padding: '40px 24px 80px', display: 'grid', gap: '40px', gridTemplateColumns: 'minmax(0,1fr)' }} className="lg:!grid-cols-[240px_minmax(0,1fr)]">
+        {/* Filters: always open beside the results on a wide screen, behind a button on a phone so the products come first */}
         <aside>
-          <h2 style={{ fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#6B7280', fontWeight: 700, margin: '0 0 14px' }}>Categories</h2>
-          <nav className="flex flex-wrap gap-2 lg:flex-col lg:gap-1">
-            {[{ key: null as string | null, label: 'All Materials', n: DEMO_PRODUCTS.length }, ...categories.map((c) => ({ key: c as string | null, label: CATEGORY_LABELS[c] ?? c, n: counts.get(c)! }))].map((c) => {
-              const active = (cat ?? null) === c.key
-              return (
-                <Link
-                  key={c.label}
-                  href={href({ cat: c.key })}
-                  className="flex items-center justify-between gap-3 rounded-md px-3.5 py-2.5 text-sm transition-colors"
-                  style={active ? { background: INK, color: '#fff', fontWeight: 600 } : { background: '#fff', color: '#1A202C', border: '1px solid rgba(0,0,0,0.08)' }}
-                >
-                  <span>{c.label}</span>
-                  <span style={{ fontSize: '12px', opacity: 0.65 }}>{c.n}</span>
-                </Link>
-              )
-            })}
-          </nav>
-          <div style={{ marginTop: '28px', padding: '20px', background: '#fff', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '8px' }} className="hidden lg:block">
-            <p style={{ fontSize: '14px', fontWeight: 700, margin: '0 0 6px', color: INK }}>Found something you like?</p>
-            <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4A5568', margin: '0 0 14px' }}>Tell us the SKU and we&apos;ll price it in your free quote.</p>
-            <Link href="/quote" style={{ display: 'block', textAlign: 'center', background: BLUE, color: '#fff', padding: '11px', borderRadius: '5px', fontSize: '12px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+          <details className="group rounded-xl border border-black/[0.08] bg-white lg:hidden">
+            <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-[14px] font-bold" style={{ color: INK }}>
+              <span>Filter by category or supplier{filtersOn ? ' · on' : ''}</span>
+              <span aria-hidden className="text-[#6B7280] transition-transform group-open:rotate-180">⌄</span>
+            </summary>
+            <div className="space-y-6 border-t border-black/[0.08] p-4">
+              <div>
+            <h2 className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#6B7280]">Category</h2>
+            <nav aria-label="Categories" className="flex flex-wrap gap-2 lg:flex-col lg:gap-1">
+              {[{ key: null as string | null, label: 'All Materials', n: DEMO_PRODUCTS.length }, ...categories.map((c) => ({ key: c as string | null, label: CATEGORY_LABELS[c] ?? c, n: counts.get(c)! }))].map((c) => {
+                const active = (cat ?? null) === c.key
+                return (
+                  <Link
+                    key={c.label}
+                    href={href({ cat: c.key, page: 1 })}
+                    aria-current={active ? 'page' : undefined}
+                    className={`flex items-center justify-between gap-3 rounded-lg px-3.5 py-2.5 text-sm transition-colors ${active ? 'font-semibold text-white' : 'border border-black/[0.08] bg-white text-[#1A202C] hover:border-[#2B7CC1] hover:text-[#2B7CC1]'}`}
+                    style={active ? { background: INK } : undefined}
+                  >
+                    <span>{c.label}</span>
+                    <span className="text-[12px] opacity-60">{c.n}</span>
+                  </Link>
+                )
+              })}
+            </nav>
+          </div>
+
+          <div>
+            <h2 className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#6B7280]">Supplier</h2>
+            <nav aria-label="Suppliers" className="flex flex-wrap gap-2 lg:flex-col lg:gap-1">
+              {suppliers.map((name) => {
+                const active = supplier === name
+                return (
+                  <Link
+                    key={name}
+                    href={href({ supplier: active ? null : name, page: 1 })}
+                    aria-current={active ? 'true' : undefined}
+                    className={`flex items-center justify-between gap-3 rounded-lg px-3.5 py-2 text-[13px] transition-colors ${active ? 'border border-[#2B7CC1] bg-[#EBF4FF] font-semibold text-[#1E5C96]' : 'border border-transparent text-[#4A5568] hover:bg-white hover:text-[#2B7CC1]'}`}
+                  >
+                    <span>{name}</span>
+                    <span className="text-[12px] opacity-60">{supplierCounts.get(name)}</span>
+                  </Link>
+                )
+              })}
+            </nav>
+          </div>
+            </div>
+          </details>
+          <div className="hidden space-y-8 lg:block">
+            <div>
+            <h2 className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#6B7280]">Category</h2>
+            <nav aria-label="Categories" className="flex flex-wrap gap-2 lg:flex-col lg:gap-1">
+              {[{ key: null as string | null, label: 'All Materials', n: DEMO_PRODUCTS.length }, ...categories.map((c) => ({ key: c as string | null, label: CATEGORY_LABELS[c] ?? c, n: counts.get(c)! }))].map((c) => {
+                const active = (cat ?? null) === c.key
+                return (
+                  <Link
+                    key={c.label}
+                    href={href({ cat: c.key, page: 1 })}
+                    aria-current={active ? 'page' : undefined}
+                    className={`flex items-center justify-between gap-3 rounded-lg px-3.5 py-2.5 text-sm transition-colors ${active ? 'font-semibold text-white' : 'border border-black/[0.08] bg-white text-[#1A202C] hover:border-[#2B7CC1] hover:text-[#2B7CC1]'}`}
+                    style={active ? { background: INK } : undefined}
+                  >
+                    <span>{c.label}</span>
+                    <span className="text-[12px] opacity-60">{c.n}</span>
+                  </Link>
+                )
+              })}
+            </nav>
+          </div>
+
+          <div>
+            <h2 className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#6B7280]">Supplier</h2>
+            <nav aria-label="Suppliers" className="flex flex-wrap gap-2 lg:flex-col lg:gap-1">
+              {suppliers.map((name) => {
+                const active = supplier === name
+                return (
+                  <Link
+                    key={name}
+                    href={href({ supplier: active ? null : name, page: 1 })}
+                    aria-current={active ? 'true' : undefined}
+                    className={`flex items-center justify-between gap-3 rounded-lg px-3.5 py-2 text-[13px] transition-colors ${active ? 'border border-[#2B7CC1] bg-[#EBF4FF] font-semibold text-[#1E5C96]' : 'border border-transparent text-[#4A5568] hover:bg-white hover:text-[#2B7CC1]'}`}
+                  >
+                    <span>{name}</span>
+                    <span className="text-[12px] opacity-60">{supplierCounts.get(name)}</span>
+                  </Link>
+                )
+              })}
+            </nav>
+          </div>
+          <div className="hidden rounded-xl border border-black/[0.08] bg-white p-5 lg:block">
+            <p className="mb-1.5 text-[15px] font-bold" style={{ color: INK }}>See something you like?</p>
+            <p className="mb-4 text-[13px] leading-relaxed text-[#4A5568]">Tell us the SKU and we&apos;ll price it in your free in-home quote.</p>
+            <Link href="/quote" className="block rounded-md py-2.5 text-center text-[12px] font-bold uppercase tracking-[0.08em] text-white transition-colors hover:brightness-110" style={{ background: BLUE }}>
               Get a Free Quote
             </Link>
+          </div>
           </div>
         </aside>
 
         {/* Results */}
-        <div>
-          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '12px', marginBottom: '22px', flexWrap: 'wrap' }}>
-            <h2 style={{ fontSize: '26px', margin: 0, color: INK }}>{heading}</h2>
-            <p style={{ fontSize: '14px', color: '#6B7280', margin: 0 }}>
-              {filtered.length} product{filtered.length === 1 ? '' : 's'}
-              {query ? ` for “${q!.trim()}”` : ''}
-            </p>
+        <div className="min-w-0">
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-x-6 gap-y-4 border-b border-black/[0.08] pb-5">
+            <div>
+              <h2 className="m-0 text-[28px]" style={{ color: INK }}>{heading}</h2>
+              <p className="mt-1 text-[14px] text-[#6B7280]">
+                {sorted.length === 0 ? 'No products' : `Showing ${first}–${last} of ${sorted.length} products`}
+                {query ? ` for “${q!.trim()}”` : ''}
+              </p>
+            </div>
+            <div className="flex items-center gap-2" role="group" aria-label="Sort products">
+              <span className="text-[12px] font-bold uppercase tracking-[0.12em] text-[#6B7280]">Sort</span>
+              <div className="flex overflow-hidden rounded-lg border border-black/[0.12] bg-white text-[13px] font-semibold">
+                {SORTS.map((s) => (
+                  <Link
+                    key={s.key}
+                    href={href({ sort: s.key, page: 1 })}
+                    aria-current={sort === s.key ? 'true' : undefined}
+                    className={`px-3.5 py-2 transition-colors ${sort === s.key ? 'text-white' : 'text-[#4A5568] hover:bg-[#F1F3F6]'}`}
+                    style={sort === s.key ? { background: INK } : undefined}
+                  >
+                    {s.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          {filtersOn && (
+            <div className="mb-6 flex flex-wrap items-center gap-2 text-[13px]">
+              <span className="text-[#6B7280]">Filtered by</span>
+              {cat && <Chip label={CATEGORY_LABELS[cat] ?? cat} clear={href({ cat: null, page: 1 })} />}
+              {supplier && <Chip label={supplier} clear={href({ supplier: null, page: 1 })} />}
+              {query && <Chip label={`“${q!.trim()}”`} clear={href({ q: null, page: 1 })} />}
+              <Link href="/catalog" className="ml-1 font-semibold text-[#2B7CC1] hover:underline">Clear all</Link>
+            </div>
+          )}
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
             {items.map((p) => (
-              <article
-                key={p.id}
-                className="group overflow-hidden rounded-lg bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-                style={{ border: '1px solid rgba(0,0,0,0.08)' }}
-              >
-                <ProductLink product={p}>
-                  <div className={`relative aspect-square w-full overflow-hidden ${p.category === 'hardware' ? 'bg-white' : 'bg-gray-100'}`}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={p.imageUrl}
-                      alt={`${p.name} — ${p.supplier}`}
-                      loading="lazy"
-                      decoding="async"
-                      className={`absolute inset-0 h-full w-full transition-transform duration-500 group-hover:scale-105 ${p.category === 'hardware' ? 'object-contain p-6' : 'object-cover'}`}
-                    />
-                    <span style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(17,24,34,0.82)', color: '#fff', fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, padding: '5px 9px', borderRadius: '3px' }}>
-                      {CATEGORY_LABELS[p.category] ?? p.category}
-                    </span>
-                  </div>
-                </ProductLink>
-                <div style={{ padding: '16px 18px 18px' }}>
-                  <h3 style={{ fontSize: '16px', lineHeight: 1.3, margin: '0 0 6px', color: INK, fontWeight: 700 }}>{p.name}</h3>
-                  <p style={{ fontSize: '13px', color: '#4A5568', margin: '0 0 2px' }}>{p.supplier}</p>
-                  <p style={{ fontSize: '12px', color: '#6B7280', margin: 0, wordBreak: 'break-all' }}>
-                    SKU {p.supplierSku}
-                    {p.dimensions ? ` · ${p.dimensions.widthIn}″ × ${p.dimensions.heightIn}″` : ''}
-                  </p>
-                  <div style={{ marginTop: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap' }}>
-                    <DemoBadge product={p} compact />
-                    {p.sourceUrl && (
-                      <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer" style={{ fontSize: '12px', fontWeight: 600, color: BLUE }}>
-                        View at {p.supplier.split(' ')[0]} ↗
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </article>
+              <ProductCard key={p.id} product={p} />
             ))}
           </div>
 
           {items.length === 0 && (
-            <div style={{ padding: '72px 0', textAlign: 'center', color: '#6B7280' }}>
-              <p style={{ fontSize: '18px', margin: '0 0 8px', color: INK }}>No products match that search.</p>
-              <Link href="/catalog" style={{ color: BLUE, fontWeight: 600 }}>Clear filters</Link>
+            <div className="rounded-xl border border-dashed border-black/20 bg-white px-6 py-16 text-center">
+              <p className="m-0 text-[18px] font-bold" style={{ color: INK }}>No products match those filters.</p>
+              <p className="mt-2 text-[14px] text-[#6B7280]">Try a different search, or tell us what you need and we&apos;ll find it.</p>
+              <div className="mt-5 flex flex-wrap justify-center gap-3">
+                <Link href="/catalog" className="rounded-md border border-black/15 bg-white px-5 py-2.5 text-[13px] font-semibold hover:border-[#2B7CC1] hover:text-[#2B7CC1]">Clear filters</Link>
+                <Link href="/quote" className="rounded-md px-5 py-2.5 text-[13px] font-bold text-white" style={{ background: BLUE }}>Ask for a quote</Link>
+              </div>
             </div>
           )}
 
           {pages > 1 && (
-            <nav style={{ marginTop: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', fontSize: '14px' }} aria-label="Pagination">
+            <nav className="mt-12 flex flex-wrap items-center justify-center gap-2 text-[14px]" aria-label="Pagination">
               {current > 1 ? (
-                <Link href={href({ page: current - 1 })} style={{ padding: '10px 18px', background: '#fff', border: '1px solid rgba(0,0,0,0.14)', borderRadius: '5px', fontWeight: 600 }}>← Previous</Link>
-              ) : <span />}
-              <span style={{ color: '#6B7280', padding: '0 8px' }}>Page {current} of {pages}</span>
+                <Link href={href({ page: current - 1 })} rel="prev" className="rounded-lg border border-black/[0.14] bg-white px-4 py-2.5 font-semibold transition-colors hover:border-[#2B7CC1] hover:text-[#2B7CC1]">← Previous</Link>
+              ) : null}
+              {pageList(current, pages).map((n, i) =>
+                n === 'gap' ? (
+                  <span key={`gap-${i}`} className="px-1.5 text-[#6B7280]" aria-hidden>…</span>
+                ) : (
+                  <Link
+                    key={n}
+                    href={href({ page: n })}
+                    aria-current={n === current ? 'page' : undefined}
+                    aria-label={`Page ${n}`}
+                    className={`min-w-[42px] rounded-lg border px-3 py-2.5 text-center font-semibold transition-colors ${n === current ? 'border-transparent text-white' : 'border-black/[0.14] bg-white hover:border-[#2B7CC1] hover:text-[#2B7CC1]'}`}
+                    style={n === current ? { background: INK } : undefined}
+                  >
+                    {n}
+                  </Link>
+                ),
+              )}
               {current < pages ? (
-                <Link href={href({ page: current + 1 })} style={{ padding: '10px 18px', background: INK, color: '#fff', borderRadius: '5px', fontWeight: 600 }}>Next →</Link>
-              ) : <span />}
+                <Link href={href({ page: current + 1 })} rel="next" className="rounded-lg px-4 py-2.5 font-semibold text-white transition-colors hover:brightness-125" style={{ background: INK }}>Next →</Link>
+              ) : null}
             </nav>
           )}
         </div>
@@ -213,5 +373,18 @@ export default async function CatalogPage({
 
       <CTASection />
     </main>
+  )
+}
+
+function Chip({ label, clear }: { label: string; clear: string }) {
+  return (
+    <Link
+      href={clear}
+      aria-label={`Remove filter ${label}`}
+      className="inline-flex items-center gap-1.5 rounded-full border border-[#2B7CC1]/30 bg-[#EBF4FF] px-3 py-1 font-semibold text-[#1E5C96] transition-colors hover:bg-[#dcebfb]"
+    >
+      {label}
+      <span aria-hidden className="text-[15px] leading-none">×</span>
+    </Link>
   )
 }

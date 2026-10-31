@@ -112,7 +112,6 @@ function pendingPhotoSwatch(hex: string, label: string, opts: SwatchOpts = {}): 
     <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${hex}"/><stop offset="1" stop-color="#e3e0d9"/></linearGradient></defs>
     <rect width="600" height="600" fill="url(#g)"/>
     ${art}
-    <text x="300" y="572" text-anchor="middle" font-family="sans-serif" font-size="13" letter-spacing="2.5" fill="rgba(0,0,0,0.38)">ILLUSTRATION · PHOTO COMING SOON</text>
   </svg>`;
   // encodeURIComponent (not Buffer) so this module is safe to import from
   // client components — Buffer isn't polyfilled in the browser bundle.
@@ -1024,6 +1023,15 @@ const SUPPLIER_PHOTOS: Record<string, string> = {
   "Fossil-Gray": `${MSI_CDN}/quartz-countertops/products/slab/medium/fossil-gray-quartz.jpg`,
   "Calacatta-Laza": `${MSI_CDN}/quartz-countertops/products/slab/medium/calacatta-laza-quartz.jpg`,
   "Aruca-White": `${MSI_CDN}/quartz-countertops/products/slab/medium/aruca-white-quartz.jpg`,
+  // MSI kitchen sinks, matched to the exact product on msisurfaces.com/sinks/kitchen-sinks/
+  // (sinkid 77 / 56 / 76). 50/50-3219 is sold in black, grey and white; the white one is shown.
+  "3319": `${MSI_CDN}/roomscenes/medium/sin000077tn-scene.jpg`,
+  "50/50-3219": `${MSI_CDN}/roomscenes/medium/sin000056tn-scene.jpg`,
+  "3318": `${MSI_CDN}/roomscenes/medium/sin000076tn-scene.jpg`,
+  // A real Cyrus plank (Akadia colorway) from the Cyrus collection page.
+  Cyrus: `${MSI_CDN}/lvt/thumbnails/cyrus-akadia-vinyl-flooring.jpg`,
+  // Tesoro Nuvoloso Herringbone: the product page's own image.
+  "nuvoloso-15": "https://internationalwholesaletile.com/wp-content/uploads/2021/08/WEB_Nuvoloso-Herringbone.jpg",
   "SIN-POR-UNDRECWHT-1813": `${MSI_CDN}/roomscenes/medium/sin000040tn-scene.jpg`,
   "SIN-POR-UNDOVLWHT-1512": `${MSI_CDN}/roomscenes/medium/sin000039tn-scene.jpg`,
   "SIN-POR-UNDOVLWHT-1714": `${MSI_CDN}/roomscenes/medium/sin000033tn-scene.jpg`,
