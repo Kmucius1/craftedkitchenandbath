@@ -131,6 +131,50 @@ export default async function CatalogPage({
   const heading = cat ? CATEGORY_LABELS[cat] ?? cat : 'All Materials'
   const filtersOn = !!(cat || supplier || query)
 
+  const filterGroups = (
+    <>
+<div>
+            <h2 className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9AA3B2]">Category</h2>
+            <nav aria-label="Categories" className="flex flex-wrap gap-1.5 lg:flex-col lg:gap-0.5">
+              {[{ key: null as string | null, label: 'All Materials', n: DEMO_PRODUCTS.length }, ...categories.map((c) => ({ key: c as string | null, label: CATEGORY_LABELS[c] ?? c, n: counts.get(c)! }))].map((c) => {
+                const active = (cat ?? null) === c.key
+                return (
+                  <Link
+                    key={c.label}
+                    href={href({ cat: c.key, page: 1 })}
+                    aria-current={active ? 'page' : undefined}
+                    className={`flex items-center justify-between gap-3 rounded-md px-3 py-2 text-[14px] transition-colors ${active ? 'bg-[#EBF4FF] font-semibold text-[#1E5C96]' : 'text-[#4A5568] hover:bg-black/[0.04] hover:text-[#111822]'}`}
+                  >
+                    <span>{c.label}</span>
+                    <span className="text-[12px] text-[#9AA3B2]">{c.n}</span>
+                  </Link>
+                )
+              })}
+            </nav>
+          </div>
+
+          <div>
+            <h2 className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9AA3B2]">Supplier</h2>
+            <nav aria-label="Suppliers" className="flex flex-wrap gap-1.5 lg:flex-col lg:gap-0.5">
+              {suppliers.map((name) => {
+                const active = supplier === name
+                return (
+                  <Link
+                    key={name}
+                    href={href({ supplier: active ? null : name, page: 1 })}
+                    aria-current={active ? 'true' : undefined}
+                    className={`flex items-center justify-between gap-3 rounded-md px-3 py-1.5 text-[13px] transition-colors ${active ? 'bg-[#EBF4FF] font-semibold text-[#1E5C96]' : 'text-[#4A5568] hover:bg-black/[0.04] hover:text-[#111822]'}`}
+                  >
+                    <span>{name}</span>
+                    <span className="text-[12px] text-[#9AA3B2]">{supplierCounts.get(name)}</span>
+                  </Link>
+                )
+              })}
+            </nav>
+          </div>
+    </>
+  )
+
   return (
     <main style={{ background: '#F7F8FA' }}>
       {/* Hero: photo under a dark wash, same treatment as every other page */}
@@ -196,89 +240,11 @@ export default async function CatalogPage({
               <span aria-hidden className="text-[#6B7280] transition-transform group-open:rotate-180">⌄</span>
             </summary>
             <div className="space-y-6 border-t border-black/[0.08] p-4">
-              <div>
-            <h2 className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#6B7280]">Category</h2>
-            <nav aria-label="Categories" className="flex flex-wrap gap-2 lg:flex-col lg:gap-1">
-              {[{ key: null as string | null, label: 'All Materials', n: DEMO_PRODUCTS.length }, ...categories.map((c) => ({ key: c as string | null, label: CATEGORY_LABELS[c] ?? c, n: counts.get(c)! }))].map((c) => {
-                const active = (cat ?? null) === c.key
-                return (
-                  <Link
-                    key={c.label}
-                    href={href({ cat: c.key, page: 1 })}
-                    aria-current={active ? 'page' : undefined}
-                    className={`flex items-center justify-between gap-3 rounded-lg px-3.5 py-2.5 text-sm transition-colors ${active ? 'font-semibold text-white' : 'border border-black/[0.08] bg-white text-[#1A202C] hover:border-[#2B7CC1] hover:text-[#2B7CC1]'}`}
-                    style={active ? { background: INK } : undefined}
-                  >
-                    <span>{c.label}</span>
-                    <span className="text-[12px] opacity-60">{c.n}</span>
-                  </Link>
-                )
-              })}
-            </nav>
-          </div>
-
-          <div>
-            <h2 className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#6B7280]">Supplier</h2>
-            <nav aria-label="Suppliers" className="flex flex-wrap gap-2 lg:flex-col lg:gap-1">
-              {suppliers.map((name) => {
-                const active = supplier === name
-                return (
-                  <Link
-                    key={name}
-                    href={href({ supplier: active ? null : name, page: 1 })}
-                    aria-current={active ? 'true' : undefined}
-                    className={`flex items-center justify-between gap-3 rounded-lg px-3.5 py-2 text-[13px] transition-colors ${active ? 'border border-[#2B7CC1] bg-[#EBF4FF] font-semibold text-[#1E5C96]' : 'border border-transparent text-[#4A5568] hover:bg-white hover:text-[#2B7CC1]'}`}
-                  >
-                    <span>{name}</span>
-                    <span className="text-[12px] opacity-60">{supplierCounts.get(name)}</span>
-                  </Link>
-                )
-              })}
-            </nav>
-          </div>
+              {filterGroups}
             </div>
           </details>
           <div className="hidden space-y-8 lg:block">
-            <div>
-            <h2 className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#6B7280]">Category</h2>
-            <nav aria-label="Categories" className="flex flex-wrap gap-2 lg:flex-col lg:gap-1">
-              {[{ key: null as string | null, label: 'All Materials', n: DEMO_PRODUCTS.length }, ...categories.map((c) => ({ key: c as string | null, label: CATEGORY_LABELS[c] ?? c, n: counts.get(c)! }))].map((c) => {
-                const active = (cat ?? null) === c.key
-                return (
-                  <Link
-                    key={c.label}
-                    href={href({ cat: c.key, page: 1 })}
-                    aria-current={active ? 'page' : undefined}
-                    className={`flex items-center justify-between gap-3 rounded-lg px-3.5 py-2.5 text-sm transition-colors ${active ? 'font-semibold text-white' : 'border border-black/[0.08] bg-white text-[#1A202C] hover:border-[#2B7CC1] hover:text-[#2B7CC1]'}`}
-                    style={active ? { background: INK } : undefined}
-                  >
-                    <span>{c.label}</span>
-                    <span className="text-[12px] opacity-60">{c.n}</span>
-                  </Link>
-                )
-              })}
-            </nav>
-          </div>
-
-          <div>
-            <h2 className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-[#6B7280]">Supplier</h2>
-            <nav aria-label="Suppliers" className="flex flex-wrap gap-2 lg:flex-col lg:gap-1">
-              {suppliers.map((name) => {
-                const active = supplier === name
-                return (
-                  <Link
-                    key={name}
-                    href={href({ supplier: active ? null : name, page: 1 })}
-                    aria-current={active ? 'true' : undefined}
-                    className={`flex items-center justify-between gap-3 rounded-lg px-3.5 py-2 text-[13px] transition-colors ${active ? 'border border-[#2B7CC1] bg-[#EBF4FF] font-semibold text-[#1E5C96]' : 'border border-transparent text-[#4A5568] hover:bg-white hover:text-[#2B7CC1]'}`}
-                  >
-                    <span>{name}</span>
-                    <span className="text-[12px] opacity-60">{supplierCounts.get(name)}</span>
-                  </Link>
-                )
-              })}
-            </nav>
-          </div>
+            {filterGroups}
           <div className="hidden rounded-xl border border-black/[0.08] bg-white p-5 lg:block">
             <p className="mb-1.5 text-[15px] font-bold" style={{ color: INK }}>See something you like?</p>
             <p className="mb-4 text-[13px] leading-relaxed text-[#4A5568]">Tell us the SKU and we&apos;ll price it in your free in-home quote.</p>
@@ -300,15 +266,14 @@ export default async function CatalogPage({
               </p>
             </div>
             <div className="flex items-center gap-2" role="group" aria-label="Sort products">
-              <span className="text-[12px] font-bold uppercase tracking-[0.12em] text-[#6B7280]">Sort</span>
-              <div className="flex overflow-hidden rounded-lg border border-black/[0.12] bg-white text-[13px] font-semibold">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#9AA3B2]">Sort</span>
+              <div className="flex overflow-hidden rounded-lg border border-black/10 bg-white text-[13px] font-semibold">
                 {SORTS.map((s) => (
                   <Link
                     key={s.key}
                     href={href({ sort: s.key, page: 1 })}
                     aria-current={sort === s.key ? 'true' : undefined}
-                    className={`px-3.5 py-2 transition-colors ${sort === s.key ? 'text-white' : 'text-[#4A5568] hover:bg-[#F1F3F6]'}`}
-                    style={sort === s.key ? { background: INK } : undefined}
+                    className={`px-3.5 py-2 transition-colors ${sort === s.key ? 'bg-[#EBF4FF] text-[#1E5C96]' : 'text-[#4A5568] hover:bg-[#F1F3F6]'}`}
                   >
                     {s.label}
                   </Link>

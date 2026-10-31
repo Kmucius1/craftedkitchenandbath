@@ -98,7 +98,7 @@ export default function ProductCard({ product }: { product: Product }) {
                 type="button"
                 onClick={() => setPickedId(null)}
                 aria-pressed={!picked}
-                className={`rounded-full border px-2.5 py-1 text-[12px] font-semibold transition-colors ${!picked ? 'border-[#111822] bg-[#111822] text-white' : 'border-black/15 bg-white text-[#4A5568] hover:border-[#2B7CC1] hover:text-[#2B7CC1]'}`}
+                className={`rounded-full border px-2.5 py-1 text-[12px] font-semibold transition-colors ${!picked ? 'border-[#2B7CC1] bg-[#EBF4FF] text-[#1E5C96]' : 'border-black/15 bg-white text-[#4A5568] hover:border-[#2B7CC1] hover:text-[#2B7CC1]'}`}
               >
                 Overview
               </button>
@@ -108,7 +108,7 @@ export default function ProductCard({ product }: { product: Product }) {
                   type="button"
                   onClick={() => setPickedId(variant.id === pickedId ? null : variant.id)}
                   aria-pressed={variant.id === pickedId}
-                  className={`rounded-full border px-2.5 py-1 text-[12px] font-semibold transition-colors ${variant.id === pickedId ? 'border-[#111822] bg-[#111822] text-white' : 'border-black/15 bg-white text-[#4A5568] hover:border-[#2B7CC1] hover:text-[#2B7CC1]'}`}
+                  className={`rounded-full border px-2.5 py-1 text-[12px] font-semibold transition-colors ${variant.id === pickedId ? 'border-[#2B7CC1] bg-[#EBF4FF] text-[#1E5C96]' : 'border-black/15 bg-white text-[#4A5568] hover:border-[#2B7CC1] hover:text-[#2B7CC1]'}`}
                 >
                   {variant.label}
                 </button>
