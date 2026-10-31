@@ -34,6 +34,7 @@
  */
 
 import type { Product, StaffInventoryDetail } from "./types";
+import { CABINET_KIND_BY_SKU, cabinetArt } from "./cabinet-art";
 import IWT_CATALOG from "./iwt-catalog.generated.json";
 
 type SwatchOpts = { kind?: "cabinet" | "generic"; widthIn?: number; heightIn?: number; subcategory?: string };
@@ -168,7 +169,10 @@ export const DEMO_CABINETS: Product[] = UCD_ROWS.map((row) => ({
   material: "Birch hardwood frame + plywood box, 5-piece HDF door",
   color: "White",
   finish: "White (SW)",
-  imageUrl: pendingPhotoSwatch("#f1efea", row.name, { kind: "cabinet", widthIn: row.widthIn, heightIn: row.heightIn, subcategory: row.subcategory }),
+  // Drawn render of the model until US Cabinet Depot's dealer photos are available.
+  imageUrl: CABINET_KIND_BY_SKU[row.sku]
+    ? cabinetArt({ kind: CABINET_KIND_BY_SKU[row.sku], widthIn: row.widthIn, heightIn: row.heightIn, depthIn: row.depthIn })
+    : pendingPhotoSwatch("#f1efea", row.name, { kind: "cabinet", widthIn: row.widthIn, heightIn: row.heightIn, subcategory: row.subcategory }),
   model3dStatus: "none",
   availability: "confirmation-required",
   sourceUrl: UCD_SPEC_SHEET,

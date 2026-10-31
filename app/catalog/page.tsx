@@ -6,6 +6,7 @@ import CTASection from '@/components/CTASection'
 import ProductCard, { isPlaceholderImage } from '@/components/catalog/ProductCard'
 import { DEMO_PRODUCTS } from '@/lib/designer/demo-data'
 import type { Product } from '@/lib/designer/types'
+import { byLead } from '@/lib/catalog/featured'
 
 export const metadata: Metadata = {
   title: 'Product Catalog — Cabinets, Tile, Countertops & More | Crafted Kitchen & Bath',
@@ -46,7 +47,7 @@ const SORTS: { key: Sort; label: string }[] = [
  * faucet) instead of one category's long run. Stand-in drawings go last.
  */
 function featured(products: Product[]): Product[] {
-  const real = products.filter((p) => !isPlaceholderImage(p))
+  const real = byLead(products.filter((p) => !isPlaceholderImage(p)))
   const stand = products.filter(isPlaceholderImage)
   const lanes = new Map<string, Product[]>()
   for (const p of real) lanes.set(p.category, [...(lanes.get(p.category) ?? []), p])
@@ -103,7 +104,7 @@ export default async function CatalogPage({
       : sort === 'supplier'
         ? [...filtered].sort((a, b) => a.supplier.localeCompare(b.supplier) || a.name.localeCompare(b.name))
         : cat || supplier || query
-          ? [...filtered.filter((p) => !isPlaceholderImage(p)), ...filtered.filter(isPlaceholderImage)]
+          ? [...byLead(filtered.filter((p) => !isPlaceholderImage(p))), ...filtered.filter(isPlaceholderImage)]
           : featured(filtered)
 
   const pages = Math.max(1, Math.ceil(sorted.length / PER_PAGE))
