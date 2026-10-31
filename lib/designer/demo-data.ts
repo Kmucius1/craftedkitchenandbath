@@ -408,6 +408,8 @@ export const DEMO_FLOORING: Product[] = [
 // International Wholesale Tile — backsplash / wall tile
 // ---------------------------------------------------------------------------
 
+const IWT_UPLOADS = "https://internationalwholesaletile.com/wp-content/uploads/2023/04";
+
 export const DEMO_BACKSPLASH: Product[] = [
   {
     id: "iwt-classic-subway",
@@ -418,10 +420,23 @@ export const DEMO_BACKSPLASH: Product[] = [
     category: "backsplash",
     dimensions: { widthIn: 3, heightIn: 6, depthIn: 0.31 },
     material: "Ceramic",
+    color: "White",
     finish: "Glossy or Matte (varies)",
     piecesPerBox: 44,
     sqftPerBox: 5.5,
     imageUrl: "https://internationalwholesaletile.com/wp-content/uploads/2023/04/Classic_Wall_Room_Scene-scaled.jpg",
+    // Sizes and shapes the supplier lists on the product page, each in White (the
+    // only color it lists), with the supplier's photo of that tile where it has one.
+    variants: [
+      { id: "classic-3x6", label: "3×6", color: "White", imageUrl: `${IWT_UPLOADS}/WEB_Classic_Wall_3x6-1.jpg` },
+      { id: "classic-3x6-beveled", label: "3×6 Beveled", color: "White", imageUrl: `${IWT_UPLOADS}/WEB_Classic_Wall_Beveled3x6-1024x487.png` },
+      { id: "classic-2x8", label: "2×8", color: "White", imageUrl: `${IWT_UPLOADS}/WEB_Classic_Wall_2x8_IMG_4724-1.jpg` },
+      { id: "classic-4x12", label: "4×12", color: "White", imageUrl: `${IWT_UPLOADS}/WEB_Classic_Wall_4x12_IMG_4720-3.jpg` },
+      { id: "classic-4x16", label: "4×16", color: "White", imageUrl: `${IWT_UPLOADS}/WEB_Classic_Wall_4x16_IMG_4717-3-scaled.jpg` },
+      { id: "classic-8x16", label: "8×16", color: "White", imageUrl: `${IWT_UPLOADS}/WEB_Classic_Wall_8x16_IMG_4717-scaled.jpg` },
+      { id: "classic-3x12-picket", label: "3×12 Undulated Picket", color: "White", imageUrl: `${IWT_UPLOADS}/WEB_Classic_Wall_3x12_Picket_IMG_4722-1.jpg` },
+      { id: "classic-quarter-round", label: "½×8 Quarter Round trim", color: "White" },
+    ],
     model3dStatus: "none",
     availability: "confirmation-required",
     approvedSurfaceTypes: ["backsplash", "wall"],
@@ -1034,6 +1049,8 @@ const SUPPLIER_PHOTOS: Record<string, string> = {
   "3318": `${MSI_CDN}/roomscenes/medium/sin000076tn-scene.jpg`,
   // A real Cyrus plank (Akadia colorway) from the Cyrus collection page.
   Cyrus: `${MSI_CDN}/lvt/thumbnails/cyrus-akadia-vinyl-flooring.jpg`,
+  // Classic Subway 3x6: the Classic wall room scene supplied by Crafted.
+  "Classic-3x6": "/images/catalog/classic-subway.jpg",
   // Tesoro Nuvoloso Herringbone: the product page's own image.
   "nuvoloso-15": "https://internationalwholesaletile.com/wp-content/uploads/2021/08/WEB_Nuvoloso-Herringbone.jpg",
   "SIN-POR-UNDRECWHT-1813": `${MSI_CDN}/roomscenes/medium/sin000040tn-scene.jpg`,

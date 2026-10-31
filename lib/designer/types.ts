@@ -89,11 +89,14 @@ export interface ProductDimensions {
 
 export interface ProductVariant {
   id: string;
-  /** Human label for this variant, e.g. finish or size name. */
+  /** Human label for this variant, e.g. a size, shape, finish or color name. */
   label: string;
   finish?: string;
   color?: string;
-  sku: string;
+  /** The supplier's own SKU for this variant, when the supplier publishes one. */
+  sku?: string;
+  /** A photo of this variant, when the supplier has one. */
+  imageUrl?: string;
 }
 
 /**
