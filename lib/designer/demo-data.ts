@@ -33,7 +33,7 @@
  * decorative hardware, not faucets, so Plumbing has nothing in it.
  */
 
-import type { Product, StaffInventoryDetail } from "./types";
+import type { Product, ProductVariant, StaffInventoryDetail } from "./types";
 import { CABINET_KIND_BY_SKU, cabinetArt } from "./cabinet-art";
 import IWT_CATALOG from "./iwt-catalog.generated.json";
 
@@ -157,6 +157,12 @@ const UCD_ROWS: UcdRow[] = [
   { sku: "BER33", name: "Base Easy Reach (corner cabinet)", subcategory: "Corner Cabinets", widthIn: 33, heightIn: 34.5, depthIn: 24 },
 ];
 
+const UCD_PHOTOS = "/images/catalog/uscd";
+const UCD_CAPTION = "Highland Shaker White, shown in a";
+const UCD_VIEW_KITCHEN: ProductVariant = { id: "kitchen", label: "In a kitchen", imageUrl: `${UCD_PHOTOS}/shaker-white-kitchen.jpg`, fit: "cover", caption: `${UCD_CAPTION} kitchen` };
+const UCD_VIEW_KITCHEN_U: ProductVariant = { id: "kitchen-u", label: "Another kitchen", imageUrl: `${UCD_PHOTOS}/shaker-white-kitchen-u-shape.jpg`, fit: "cover", caption: `${UCD_CAPTION} kitchen` };
+const UCD_VIEW_BATH: ProductVariant = { id: "bathroom", label: "In a bathroom", imageUrl: `${UCD_PHOTOS}/shaker-white-bathroom.jpg`, fit: "cover", caption: `${UCD_CAPTION} bathroom` };
+
 export const DEMO_CABINETS: Product[] = UCD_ROWS.map((row) => ({
   id: `ucd-${row.sku.toLowerCase()}`,
   supplier: "US Cabinet Depot",
@@ -176,6 +182,12 @@ export const DEMO_CABINETS: Product[] = UCD_ROWS.map((row) => ({
   model3dStatus: "none",
   availability: "confirmation-required",
   sourceUrl: UCD_SPEC_SHEET,
+  // US Cabinet Depot publishes no photo of each model outside its dealer login. It
+  // does publish photography of the Highland Shaker White line in a kitchen and a
+  // bathroom, offered here as views, and said to be the line, not this model.
+  variantsLabel: "Views",
+  overviewLabel: "This model",
+  variants: (row.subcategory === "Vanity Cabinets" ? [UCD_VIEW_BATH, UCD_VIEW_KITCHEN] : [UCD_VIEW_KITCHEN, UCD_VIEW_KITCHEN_U]),
   isDemo: false,
 }));
 

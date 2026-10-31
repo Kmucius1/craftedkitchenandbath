@@ -38,15 +38,17 @@ export default function ProductCard({ product }: { product: Product }) {
   // A variant's own photo when it has one, else the product's main photo.
   const imageUrl = picked?.imageUrl ?? product.imageUrl
   const showingVariantPhoto = !!picked?.imageUrl
+  const roomScene = showingVariantPhoto && picked?.fit === 'cover'
 
   const placeholder = isPlaceholderImage(product)
-  const contain = CONTAIN.has(product.category) || showingVariantPhoto
-  const size = picked ? picked.label : product.dimensions ? `${product.dimensions.widthIn}″ × ${product.dimensions.heightIn}″` : null
+  const contain = (CONTAIN.has(product.category) || showingVariantPhoto) && !roomScene
+  // A size or shape variant says its own size; a room view keeps the product's dimensions.
+  const size = picked && !picked.caption ? picked.label : product.dimensions ? `${product.dimensions.widthIn}″ × ${product.dimensions.heightIn}″` : null
   const colors = [...new Set(variants.map((v) => v.color).filter((c): c is string => !!c))]
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-black/[0.08] bg-white transition duration-300 hover:-translate-y-1 hover:border-black/15 hover:shadow-[0_18px_40px_-18px_rgba(17,24,34,0.35)] focus-within:ring-2 focus-within:ring-[#2B7CC1]">
-      <div className={`relative aspect-[4/3] w-full overflow-hidden ${showingVariantPhoto ? 'bg-[#E9ECF1]' : contain ? 'bg-white' : 'bg-[#EEF0F4]'}`}>
+      <div className={`relative aspect-[4/3] w-full overflow-hidden ${roomScene ? 'bg-[#E9ECF1]' : showingVariantPhoto ? 'bg-[#E9ECF1]' : contain ? 'bg-white' : 'bg-[#EEF0F4]'}`}>
         <span aria-hidden className="pointer-events-none absolute inset-0 z-[1] ring-1 ring-inset ring-black/[0.06]" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -54,12 +56,19 @@ export default function ProductCard({ product }: { product: Product }) {
           alt={picked ? `${product.name}, ${picked.label}, ${product.supplier}` : `${product.name}, ${product.supplier}`}
           loading="lazy"
           decoding="async"
-          className={`absolute inset-0 h-full w-full transition-transform duration-500 group-hover:scale-[1.04] ${showingVariantPhoto ? 'object-contain p-8' : contain ? 'object-contain p-5' : 'object-cover'}`}
+          className={`absolute inset-0 h-full w-full transition-transform duration-500 group-hover:scale-[1.04] ${roomScene ? 'object-cover' : showingVariantPhoto ? 'object-contain p-8' : contain ? 'object-contain p-5' : 'object-cover'}`}
         />
-        {placeholder && (
-          <span className="absolute bottom-3 left-3 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-[#4A5568] shadow-sm backdrop-blur">
-            Photo coming soon
+        {picked?.caption ? (
+          <span className="absolute bottom-3 left-3 right-3 rounded-full bg-white/90 px-3 py-1 text-center text-[11px] font-semibold tracking-wide text-[#4A5568] shadow-sm backdrop-blur">
+            {picked.caption}
           </span>
+        ) : (
+          placeholder &&
+          !showingVariantPhoto && (
+            <span className="absolute bottom-3 left-3 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-[#4A5568] shadow-sm backdrop-blur">
+              Photo coming soon
+            </span>
+          )
         )}
       </div>
 
@@ -92,15 +101,15 @@ export default function ProductCard({ product }: { product: Product }) {
 
         {variants.length > 0 && (
           <div className="mt-3">
-            <p className="mb-1.5 text-[12px] font-semibold text-[#6B7280]">Sizes and shapes</p>
-            <div className="flex flex-wrap gap-1.5" role="group" aria-label={`Sizes and shapes for ${product.name}`}>
+            <p className="mb-1.5 text-[12px] font-semibold text-[#6B7280]">{product.variantsLabel ?? 'Sizes and shapes'}</p>
+            <div className="flex flex-wrap gap-1.5" role="group" aria-label={`${product.variantsLabel ?? 'Sizes and shapes'} for ${product.name}`}>
               <button
                 type="button"
                 onClick={() => setPickedId(null)}
                 aria-pressed={!picked}
                 className={`rounded-full border px-2.5 py-1 text-[12px] font-semibold transition-colors ${!picked ? 'border-[#2B7CC1] bg-[#EBF4FF] text-[#1E5C96]' : 'border-black/15 bg-white text-[#4A5568] hover:border-[#2B7CC1] hover:text-[#2B7CC1]'}`}
               >
-                Overview
+                {product.overviewLabel ?? 'Overview'}
               </button>
               {variants.map((variant) => (
                 <button

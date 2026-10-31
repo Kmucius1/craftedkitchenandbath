@@ -97,6 +97,10 @@ export interface ProductVariant {
   sku?: string;
   /** A photo of this variant, when the supplier has one. */
   imageUrl?: string;
+  /** How the photo fills the card: a room scene fills it, a single tile or fixture sits inside it. */
+  fit?: "cover" | "contain";
+  /** Said on the photo when it shows the product line or a room rather than this exact product. */
+  caption?: string;
 }
 
 /**
@@ -120,6 +124,10 @@ export interface Product {
   piecesPerBox?: number;
   sqftPerBox?: number;
   variants?: ProductVariant[];
+  /** Heading over the variant chips. Defaults to "Sizes and shapes". */
+  variantsLabel?: string;
+  /** Label of the chip that returns to the product's own image. Defaults to "Overview". */
+  overviewLabel?: string;
   imageUrl: string;
   specSheetUrl?: string;
   /**
