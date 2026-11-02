@@ -140,7 +140,7 @@ export default function ProductCard({ product }: { product: Product }) {
                       aria-label={color}
                       aria-pressed={on}
                       onClick={() => (v ? setPickedId(on ? null : v.id) : setQuick(true))}
-                      className={`size-6 rounded-full border transition ${on ? 'border-[#2B7CC1] ring-2 ring-[#2B7CC1] ring-offset-1' : 'border-black/25 hover:ring-2 hover:ring-[#2B7CC1]/50'}`}
+                      className={`size-7 rounded-full border transition ${on ? 'border-[#2B7CC1] ring-2 ring-[#2B7CC1] ring-offset-1' : 'border-black/25 hover:ring-2 hover:ring-[#2B7CC1]/50'}`}
                       style={{ background: swatchOf(color) }}
                     />
                   </li>

@@ -72,14 +72,16 @@ export default function QuickView({ product, onClose }: { product: Product; onCl
       onClick={(e) => { if (e.target === dialogRef.current) onClose() }}
       className="m-auto w-[min(96vw,980px)] max-h-[92vh] overflow-y-auto rounded-2xl border-0 bg-white p-0 shadow-2xl backdrop:bg-black/55"
     >
-      <button
-        type="button"
-        onClick={onClose}
-        aria-label="Close quick view"
-        className="sticky top-3 z-10 float-right mr-3 mt-3 grid size-9 place-items-center rounded-full bg-white/95 text-xl leading-none text-[#111822] shadow ring-1 ring-black/10 hover:bg-[#EBF4FF]"
-      >
-        ×
-      </button>
+      <div className="sticky top-0 z-10 h-0">
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close quick view"
+          className="absolute right-3 top-3 grid size-11 place-items-center rounded-full bg-white/95 text-2xl leading-none text-[#111822] shadow ring-1 ring-black/10 hover:bg-[#EBF4FF]"
+        >
+          ×
+        </button>
+      </div>
       <div className="grid gap-6 p-5 sm:p-7 md:grid-cols-2">
         <div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-black/[0.08] bg-[#EEF0F4]">
@@ -149,7 +151,7 @@ export default function QuickView({ product, onClose }: { product: Product; onCl
                       type="button"
                       aria-pressed={on}
                       onClick={() => pickColor(c)}
-                      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[13px] font-semibold ${on ? 'border-[#2B7CC1] bg-[#EBF4FF] text-[#1E5C96]' : 'border-black/15 bg-white text-[#4A5568] hover:border-[#2B7CC1]'}`}
+                      className={`inline-flex min-h-10 items-center gap-2 rounded-full border px-3 py-1.5 text-[13px] font-semibold ${on ? 'border-[#2B7CC1] bg-[#EBF4FF] text-[#1E5C96]' : 'border-black/15 bg-white text-[#4A5568] hover:border-[#2B7CC1]'}`}
                     >
                       <span aria-hidden className="size-4 rounded-full border border-black/25" style={{ background: swatchOf(c) }} />
                       {c}
@@ -162,7 +164,7 @@ export default function QuickView({ product, onClose }: { product: Product; onCl
           )}
           {sizes.length > 0 && <p className="mt-1.5 text-[13px] text-[#4A5568]"><span className="font-semibold text-[#6B7280]">{product.variantsLabel ?? 'Sizes and shapes'}:</span> {sizes.map((s) => s.label).join(', ')}</p>}
 
-          <div className="mt-6 flex flex-wrap items-center gap-4">
+          <div className="mt-6 flex flex-wrap items-center gap-3 max-md:sticky max-md:bottom-0 max-md:z-10 max-md:-mx-5 max-md:border-t max-md:border-black/10 max-md:bg-white max-md:px-5 max-md:py-3 max-md:[&>a]:flex-1 max-md:[&>a]:justify-center max-md:[&>a]:text-center">
             <Link href={quote} className="inline-flex rounded-lg px-5 py-3 text-[14px] font-bold text-white hover:brightness-110" style={{ background: BLUE }}>
               Request pricing
             </Link>
