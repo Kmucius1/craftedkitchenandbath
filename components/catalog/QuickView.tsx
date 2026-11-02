@@ -56,19 +56,12 @@ export default function QuickView({ product, onClose }: { product: Product; onCl
   const colors = [...new Set(variants.map((v) => v.color).filter((c): c is string => !!c))]
   const sizes = variants.filter((v) => !v.imageUrl && !v.color)
   const dims = product.dimensions ? `${product.dimensions.widthIn}″ W × ${product.dimensions.heightIn}″ H × ${product.dimensions.depthIn}″ D` : null
-  const colorVariant = color ? variants.find((v) => v.color === color) ?? null : null
-  const pickColor = (c: string) => {
-    const next = color === c ? null : c
-    setColor(next)
-    const v = next ? variants.find((x) => x.color === next && x.imageUrl) : null
-    if (v) setMediaId(v.id)
-    else if (!next) setMediaId(media[0]?.id ?? '')
-  }
+  const pickColor = (c: string) => setColor(color === c ? null : c)
   const quote = `/quote?item=${encodeURIComponent(`${product.name} (${product.supplier} ${product.supplierSku})${color ? ` in ${color}` : ''}`)}`
 
   const facts: [string, string | null | undefined][] = [
     ['Supplier', product.supplier], ['Item number', product.supplierSku], ['Size', dims],
-    ['Material', product.material], ['Finish', product.finish], ['Color', product.color],
+    ['Material', product.material], ['Finish', color ?? product.finish], ['Color', color ? null : product.color],
   ]
 
   return (
@@ -91,7 +84,7 @@ export default function QuickView({ product, onClose }: { product: Product; onCl
         <div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-black/[0.08] bg-[#EEF0F4]">
             {active?.kind === 'model' && spec ? (
-              <CabinetViewer spec={spec} label={`${product.name}, ${product.supplier}`} fallbackSrc={product.imageUrl} />
+              <CabinetViewer spec={spec} label={`${product.name}, ${product.supplier}`} fallbackSrc={product.imageUrl} color={color ? swatchOf(color) : undefined} />
             ) : active?.kind === 'image' ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={active.url} alt={active.caption} className={`absolute inset-0 h-full w-full ${active.fit === 'cover' ? 'object-cover' : 'object-contain p-5'}`} />
@@ -102,10 +95,10 @@ export default function QuickView({ product, onClose }: { product: Product; onCl
           </div>
           {active && (
             <p className="mt-2 text-[12px] text-[#4A5568]">
-              {active.kind === 'model' ? 'A 3D rendering built from the published size. Drag to turn it. Not a photograph.' : active.caption}
+              {active.kind === 'model' ? `A 3D rendering built from the published size${color ? `, shown in ${color}` : ''}. Drag to turn it. Not a photograph.` : active.caption}
             </p>
           )}
-          {media.length > 1 && (
+          {media.some((m) => m.id !== 'model' && m.id !== 'main' && !variants.some((v) => v.id === m.id && v.color)) && media.length > 1 && (
             <div role="group" aria-label="Views" className="mt-3 flex flex-wrap gap-2">
               {media.map((m) => {
                 const on = active?.id === m.id
@@ -164,7 +157,7 @@ export default function QuickView({ product, onClose }: { product: Product; onCl
                   )
                 })}
               </div>
-              {color && colorVariant && !colorVariant.imageUrl && <p className="mt-2 text-[12px] text-[#6B7280]">No room photo for this color yet. Swatch is close, not exact; we confirm the finish in person.</p>}
+              {color && spec && <p className="mt-2 text-[12px] text-[#6B7280]">The 3D rendering is painted in {color}. The color is close, not exact; we confirm the finish with you in person.</p>}
             </div>
           )}
           {sizes.length > 0 && <p className="mt-1.5 text-[13px] text-[#4A5568]"><span className="font-semibold text-[#6B7280]">{product.variantsLabel ?? 'Sizes and shapes'}:</span> {sizes.map((s) => s.label).join(', ')}</p>}

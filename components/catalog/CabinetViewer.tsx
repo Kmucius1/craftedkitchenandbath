@@ -11,10 +11,17 @@ import type { Cabinet3DSpec } from '@/lib/designer/cabinet-spec'
  * WebGL contexts, so the 3D scene exists only while its card is on screen. Until it
  * is ready (and if WebGL is unavailable) the card's drawn picture shows instead.
  */
-export default function CabinetViewer({ spec, label, fallbackSrc }: { spec: Cabinet3DSpec; label: string; fallbackSrc: string }) {
+export default function CabinetViewer({ spec, label, fallbackSrc, color }: { spec: Cabinet3DSpec; label: string; fallbackSrc: string; color?: string }) {
   const hostRef = useRef<HTMLDivElement>(null)
   const [ready, setReady] = useState(false)
   const [interacted, setInteracted] = useState(false)
+  // The finish to paint the cabinet in. Changing it repaints the live model without rebuilding it.
+  const colorRef = useRef(color)
+  const applyRef = useRef<((hex?: string) => void) | null>(null)
+  useEffect(() => {
+    colorRef.current = color
+    applyRef.current?.(color)
+  }, [color])
 
   useEffect(() => {
     const host = hostRef.current
@@ -64,6 +71,23 @@ export default function CabinetViewer({ spec, label, fallbackSrc }: { spec: Cabi
 
         const cabinet = buildCabinet(spec)
         scene.add(cabinet)
+        const mats = cabinet.userData.materials as { paint: import('three').MeshStandardMaterial; panel: import('three').MeshStandardMaterial; carcass: import('three').MeshStandardMaterial }
+        const apply = (hex?: string) => {
+          if (hex) {
+            mats.paint.color.set(hex)
+            mats.panel.color.copy(mats.paint.color).multiplyScalar(0.96)
+            mats.carcass.color.copy(mats.paint.color).multiplyScalar(0.9)
+          } else {
+            mats.paint.color.set(0xf6f4ef)
+            mats.panel.color.set(0xefece5)
+            mats.carcass.color.set(0xe4e0d6)
+          }
+        }
+        apply(colorRef.current)
+        applyRef.current = (hex) => {
+          apply(hex)
+          renderer.render(scene, camera)
+        }
 
         // A soft contact shadow under the cabinet, so it sits on something rather than floating.
         const shadowTex = (() => {
@@ -161,6 +185,7 @@ export default function CabinetViewer({ spec, label, fallbackSrc }: { spec: Cabi
         setReady(true)
 
         teardown = () => {
+          applyRef.current = null
           if (raf) cancelAnimationFrame(raf)
           ro.disconnect()
           host.removeEventListener('keydown', onKey)

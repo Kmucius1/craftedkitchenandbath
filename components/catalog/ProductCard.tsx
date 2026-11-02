@@ -54,7 +54,7 @@ export default function ProductCard({ product }: { product: Product }) {
   )
   const contain = (CONTAIN.has(product.category) || showingVariantPhoto) && !roomScene
   // A size or shape variant says its own size; a room view keeps the product's dimensions.
-  const size = picked && !picked.caption ? picked.label : product.dimensions ? `${product.dimensions.widthIn}″ × ${product.dimensions.heightIn}″` : null
+  const size = picked && !picked.caption && !picked.color ? picked.label : product.dimensions ? `${product.dimensions.widthIn}″ × ${product.dimensions.heightIn}″` : null
   const colors = [...new Set(variants.map((v) => v.color).filter((c): c is string => !!c))]
 
   return (
@@ -65,7 +65,7 @@ export default function ProductCard({ product }: { product: Product }) {
           <button type="button" onClick={() => setQuick(true)} aria-label={`Quick view: ${product.name}`} className="absolute inset-0 z-[2] cursor-zoom-in focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#2B7CC1]" />
         )}
         {viewer3D ? (
-          <CabinetViewer spec={viewer3D} label={`${product.name}, ${product.supplier}`} fallbackSrc={imageUrl} />
+          <CabinetViewer spec={viewer3D} label={`${product.name}, ${product.supplier}`} fallbackSrc={imageUrl} color={picked?.color ? swatchOf(picked.color) : undefined} />
         ) : (
           // eslint-disable-next-line @next/next/no-img-element
           <img
@@ -123,23 +123,26 @@ export default function ProductCard({ product }: { product: Product }) {
         )}
 
         {colors.length > 0 && (
-          <div className="mt-3 flex items-center gap-2 text-[12px] text-[#4A5568]">
-            <span className="font-semibold text-[#6B7280]">{colors.length > 1 ? 'Colors' : 'Color'}</span>
-            <ul className="flex flex-wrap items-center gap-2">
+          <div className="mt-3 text-[12px] text-[#4A5568]">
+            <p className="mb-1.5 font-semibold text-[#6B7280]">
+              {colors.length > 1 ? 'Colors' : 'Color'}
+              {picked?.color ? <span className="font-bold text-[#111822]">: {picked.color}</span> : ''}
+            </p>
+            <ul className="flex flex-wrap items-center gap-1.5" role="group" aria-label={`Colors for ${product.name}`}>
               {colors.map((color) => {
-                const v = variants.find((x) => x.color === color && x.imageUrl)
+                const v = variants.find((x) => x.color === color)
                 const on = !!v && v.id === pickedId
                 return (
                   <li key={color}>
                     <button
                       type="button"
+                      title={color}
+                      aria-label={color}
                       aria-pressed={on}
                       onClick={() => (v ? setPickedId(on ? null : v.id) : setQuick(true))}
-                      className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 ${on ? 'border-[#2B7CC1] bg-[#EBF4FF] text-[#1E5C96]' : 'border-transparent hover:border-[#2B7CC1]'}`}
-                    >
-                      <span aria-hidden className="size-4 rounded-full border border-black/20" style={{ background: swatchOf(color) }} />
-                      {color}
-                    </button>
+                      className={`size-6 rounded-full border transition ${on ? 'border-[#2B7CC1] ring-2 ring-[#2B7CC1] ring-offset-1' : 'border-black/25 hover:ring-2 hover:ring-[#2B7CC1]/50'}`}
+                      style={{ background: swatchOf(color) }}
+                    />
                   </li>
                 )
               })}
@@ -147,7 +150,7 @@ export default function ProductCard({ product }: { product: Product }) {
           </div>
         )}
 
-        {variants.length > 0 && (
+        {variants.some((v) => !v.color) && (
           <div className="mt-3">
             <p className="mb-1.5 text-[12px] font-semibold text-[#6B7280]">{product.variantsLabel ?? 'Sizes and shapes'}</p>
             <div className="flex flex-wrap gap-1.5" role="group" aria-label={`${product.variantsLabel ?? 'Sizes and shapes'} for ${product.name}`}>

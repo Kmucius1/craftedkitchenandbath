@@ -221,6 +221,7 @@ export function buildCabinet(spec: Cabinet3DSpec): THREE.Group {
   // Keep the model where the viewer expects it: centered by height so it orbits about its middle.
   group.position.y = -h / 2
   group.userData.bounds = { w, h, d, bodyBottom }
+  group.userData.materials = m
   return group
 }
 

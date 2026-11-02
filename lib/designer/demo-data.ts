@@ -35,7 +35,7 @@
 
 import type { Product, ProductVariant, StaffInventoryDetail } from "./types";
 import { CABINET_KIND_BY_SKU, cabinetArt } from "./cabinet-art";
-import { finishByCode } from "./uscd-finishes";
+import { USCD_FINISHES } from "./uscd-finishes";
 import IWT_CATALOG from "./iwt-catalog.generated.json";
 
 type SwatchOpts = { kind?: "cabinet" | "generic"; widthIn?: number; heightIn?: number; subcategory?: string };
@@ -158,16 +158,13 @@ const UCD_ROWS: UcdRow[] = [
   { sku: "BER33", name: "Base Easy Reach (corner cabinet)", subcategory: "Corner Cabinets", widthIn: 33, heightIn: 34.5, depthIn: 24 },
 ];
 
-// Reference photos: the supplier's own room photography for OTHER finishes in the same collection, always captioned
-// with the finish's real name (never passed off as this exact cabinet). Every finish is on the product page.
-const photoOf = (code: string, id: string, label: string): ProductVariant => {
-  const f = finishByCode(code);
-  return { id, label, color: f.name, imageUrl: f.room ?? undefined, fit: "cover", caption: `${f.name} · US Cabinet Depot` };
-};
-const UCD_VIEW_KITCHEN = photoOf("SA", "kitchen", "In a kitchen");
-const UCD_VIEW_KITCHEN_U = photoOf("HD", "kitchen-2", "Another kitchen");
-const UCD_VIEW_BATH = photoOf("EW", "bathroom", "In a bathroom");
-const UCD_VIEW_BATH_2 = photoOf("OT", "bathroom-2", "Another bathroom");
+// Every finish US Cabinet Depot lists in this collection, as a color you can pick. Picking one repaints the 3D rendering
+// (swatch colors are sampled from the supplier's door samples, so they are close, not exact).
+const UCD_COLOR_VARIANTS: ProductVariant[] = USCD_FINISHES.map((f) => ({
+  id: `color-${f.code.toLowerCase()}`,
+  label: f.name,
+  color: f.name,
+}));
 
 export const DEMO_CABINETS: Product[] = UCD_ROWS.map((row) => ({
   id: `ucd-${row.sku.toLowerCase()}`,
@@ -191,9 +188,9 @@ export const DEMO_CABINETS: Product[] = UCD_ROWS.map((row) => ({
   // US Cabinet Depot publishes no photo of each model outside its dealer login. It
   // does publish photography of the Highland Shaker White line in a kitchen and a
   // bathroom, offered here as views, and said to be the line, not this model.
-  variantsLabel: "Views",
+  variantsLabel: "Colors",
   overviewLabel: "This model",
-  variants: (row.subcategory === "Vanity Cabinets" ? [UCD_VIEW_BATH, UCD_VIEW_BATH_2, UCD_VIEW_KITCHEN] : [UCD_VIEW_KITCHEN, UCD_VIEW_KITCHEN_U, UCD_VIEW_BATH]),
+  variants: UCD_COLOR_VARIANTS,
   isDemo: false,
 }));
 

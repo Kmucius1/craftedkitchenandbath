@@ -25,20 +25,18 @@ export default function ProductDetail({ product }: { product: Product }) {
     const list: Media[] = []
     if (spec) list.push({ id: 'model', kind: 'model', label: '3D rendering' })
     else if (!isPlaceholderImage(product)) list.push({ id: 'main', kind: 'image', label: product.overviewLabel ?? 'Overview', url: product.imageUrl, fit: 'contain', caption: `${product.name}, ${product.supplier}` })
-    for (const v of product.variants ?? []) {
+    for (const v of isCabinet ? [] : product.variants ?? []) {
       if (v.imageUrl) list.push({ id: v.id, kind: 'image', label: v.label, url: v.imageUrl, fit: v.fit ?? 'contain', caption: v.caption ?? `${product.name}, ${v.label}` })
     }
     return list
-  }, [product, spec])
+  }, [product, spec, isCabinet])
 
   const [mediaId, setMediaId] = useState<string>(media[0]?.id ?? '')
   const [finishCode, setFinishCode] = useState<string | null>(null)
   const [variantId, setVariantId] = useState<string | null>(null)
 
   const finish = USCD_FINISHES.find((f) => f.code === finishCode) ?? null
-  const active: Media | null = finish?.room
-    ? { id: `finish-${finish.code}`, kind: 'image', label: finish.name, url: finish.room, fit: 'cover', caption: `${finish.name} · ${finish.roomKind === 'bathroom' ? 'in a bathroom' : 'in a kitchen'} · photo from US Cabinet Depot` }
-    : finish && spec ? media.find((m) => m.kind === 'model') ?? null : media.find((m) => m.id === mediaId) ?? media[0] ?? null
+  const active: Media | null = media.find((m) => m.id === mediaId) ?? media[0] ?? null
 
   const variants = product.variants ?? []
   const colors = [...new Set(variants.map((v) => v.color).filter((c): c is string => !!c))]
@@ -60,7 +58,7 @@ export default function ProductDetail({ product }: { product: Product }) {
       <div>
         <div style={{ position: 'relative', aspectRatio: '4 / 3', background: '#EEF0F4', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.08)' }}>
           {active?.kind === 'model' && spec ? (
-            <CabinetViewer spec={spec} label={`${product.name}, ${product.supplier}`} fallbackSrc={product.imageUrl} />
+            <CabinetViewer spec={spec} label={`${product.name}, ${product.supplier}`} fallbackSrc={product.imageUrl} color={finish?.hex} />
           ) : active?.kind === 'image' ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={active.url} alt={active.caption} className="absolute inset-0 h-full w-full" style={{ objectFit: active.fit, padding: active.fit === 'contain' ? '24px' : 0 }} />
@@ -70,7 +68,7 @@ export default function ProductDetail({ product }: { product: Product }) {
           )}
         </div>
         <p style={{ margin: '10px 2px 0', fontSize: '12px', color: '#4A5568' }}>
-          {active?.kind === 'model' ? 'A 3D rendering built from the published size. Drag to turn it. This is not a photograph.' : active?.kind === 'image' ? active.caption : ''}
+          {active?.kind === 'model' ? `A 3D rendering built from the published size${finish ? `, painted in ${finish.name}` : ''}. Drag to turn it. This is not a photograph.` : active?.kind === 'image' ? active.caption : ''}
         </p>
         {media.length > 1 && (
           <div role="group" aria-label="Photos" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '12px' }}>
@@ -127,7 +125,7 @@ export default function ProductDetail({ product }: { product: Product }) {
         <section style={{ gridColumn: '1 / -1' }} aria-labelledby="finishes-h">
           <h2 id="finishes-h" style={{ margin: '8px 0 4px', fontSize: '22px', color: INK }}>All colors and finishes</h2>
           <p style={{ margin: '0 0 16px', color: '#4A5568', fontSize: '14px' }}>
-            Every door style and finish US Cabinet Depot lists in this collection. Tap one to see it in a real room. Swatch colors are close but not exact; we confirm the finish with you in person.
+            Every door style and finish US Cabinet Depot lists in this collection. Tap one to see the 3D model in that color. Swatch colors are close but not exact; we confirm the finish with you in person.
           </p>
           {families.map(({ family, items }) => (
             <div key={family} style={{ marginBottom: '20px' }}>
@@ -138,13 +136,13 @@ export default function ProductDetail({ product }: { product: Product }) {
                   const on = finishCode === f.code
                   return (
                     <button key={f.code} type="button" aria-pressed={on}
-                      onClick={() => { setFinishCode(on ? null : f.code); if (!on) window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+                      onClick={() => { setFinishCode(on ? null : f.code); if (!on) { setMediaId('model'); window.scrollTo({ top: 0, behavior: 'smooth' }) } }}
                       style={{ display: 'flex', alignItems: 'center', gap: '10px', textAlign: 'left', padding: '10px 12px', borderRadius: '10px', border: `1px solid ${on ? BLUE : 'rgba(0,0,0,0.12)'}`, background: on ? '#EBF4FF' : '#fff', cursor: 'pointer' }}>
                       <span aria-hidden style={{ width: '28px', height: '28px', borderRadius: '50%', flexShrink: 0, background: f.hex, border: '1px solid rgba(0,0,0,0.25)' }} />
                       <span style={{ fontSize: '13px', fontWeight: 600, color: INK, lineHeight: 1.25 }}>
                         {f.name}
-                        {f.code === 'SW' && <span style={{ display: 'block', fontSize: '11px', fontWeight: 500, color: '#6B7280' }}>This product, shown in 3D</span>}
-                        {!f.room && f.code !== 'SW' && <span style={{ display: 'block', fontSize: '11px', fontWeight: 500, color: '#6B7280' }}>No room photo</span>}
+                        
+                        
                       </span>
                     </button>
                   )
