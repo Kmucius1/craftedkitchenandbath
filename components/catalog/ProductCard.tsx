@@ -6,6 +6,8 @@ import type { Product } from '@/lib/designer/types'
 import { isPlaceholderImage } from '@/lib/catalog/placeholder'
 import { cabinet3DSpec } from '@/lib/designer/cabinet-spec'
 import CabinetViewer from './CabinetViewer'
+import QuickView from './QuickView'
+import { USCD_FINISHES } from '@/lib/designer/uscd-finishes'
 import { getVerification, isVerified, statusLabel } from '@/lib/catalog/verification'
 
 const BLUE = '#2B7CC1'
@@ -31,12 +33,13 @@ const SWATCH: Record<string, string> = {
   gray: '#9CA3AF', grey: '#9CA3AF', 'light gray': '#D1D5DB', 'light grey': '#D1D5DB', charcoal: '#4B5563',
   black: '#16191F', brown: '#7B5B3E', tan: '#C9AE87', blue: '#4A7FB5', green: '#6B8F71', red: '#B2453C',
 }
-const swatchOf = (name: string) => SWATCH[name.trim().toLowerCase()] ?? '#E5E7EB'
+const swatchOf = (name: string) => USCD_FINISHES.find((f) => f.name.toLowerCase() === name.trim().toLowerCase())?.hex ?? SWATCH[name.trim().toLowerCase()] ?? '#E5E7EB'
 
 
 export default function ProductCard({ product }: { product: Product }) {
   const variants = product.variants ?? []
   const [pickedId, setPickedId] = useState<string | null>(null)
+  const [quick, setQuick] = useState(false)
   const picked = variants.find((v) => v.id === pickedId) ?? null
   // A variant's own photo when it has one, else the product's main photo.
   const imageUrl = picked?.imageUrl ?? product.imageUrl
@@ -59,7 +62,7 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className={`relative aspect-[4/3] w-full overflow-hidden ${roomScene ? 'bg-[#E9ECF1]' : showingVariantPhoto ? 'bg-[#E9ECF1]' : contain ? 'bg-white' : 'bg-[#EEF0F4]'}`}>
         <span aria-hidden className="pointer-events-none absolute inset-0 z-[1] ring-1 ring-inset ring-black/[0.06]" />
         {!viewer3D && (
-          <Link href={`/catalog/${product.id}`} aria-label={`View ${product.name}: all colors, sizes and photos`} className="absolute inset-0 z-[2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#2B7CC1]" />
+          <button type="button" onClick={() => setQuick(true)} aria-label={`Quick view: ${product.name}`} className="absolute inset-0 z-[2] cursor-zoom-in focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#2B7CC1]" />
         )}
         {viewer3D ? (
           <CabinetViewer spec={viewer3D} label={`${product.name}, ${product.supplier}`} fallbackSrc={imageUrl} />
@@ -73,6 +76,13 @@ export default function ProductCard({ product }: { product: Product }) {
             className={`absolute inset-0 h-full w-full transition-transform duration-500 group-hover:scale-[1.04] ${roomScene ? 'object-cover' : showingVariantPhoto ? 'object-contain p-8' : contain ? 'object-contain p-5' : 'object-cover'}`}
           />
         )}
+        <button
+          type="button"
+          onClick={() => setQuick(true)}
+          className="absolute right-3 top-3 z-[3] rounded-full bg-white/95 px-3 py-1.5 text-[12px] font-bold text-[#1E5C96] shadow ring-1 ring-black/10 transition hover:bg-[#EBF4FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#2B7CC1]"
+        >
+          Quick view
+        </button>
         {picked?.caption ? (
           <span className="absolute bottom-3 left-3 right-3 rounded-full bg-white/90 px-3 py-1 text-center text-[11px] font-semibold tracking-wide text-[#4A5568] shadow-sm backdrop-blur">
             {picked.caption}
@@ -93,7 +103,7 @@ export default function ProductCard({ product }: { product: Product }) {
           {CATEGORY_LABELS[product.category] ?? product.category}
         </p>
         <h3 className="mt-1.5 line-clamp-2 text-[17px] font-bold leading-[1.3]" style={{ color: INK }}>
-          <Link href={`/catalog/${product.id}`} className="hover:underline focus-visible:underline">{product.name}</Link>
+          <button type="button" onClick={() => setQuick(true)} className="text-left hover:underline focus-visible:underline">{product.name}</button>
         </h3>
         <p className="mt-1 text-[13px] text-[#4A5568]">{product.supplier}</p>
         <p className="mt-0.5 break-all text-[12px] text-[#6B7280]">
@@ -116,12 +126,23 @@ export default function ProductCard({ product }: { product: Product }) {
           <div className="mt-3 flex items-center gap-2 text-[12px] text-[#4A5568]">
             <span className="font-semibold text-[#6B7280]">{colors.length > 1 ? 'Colors' : 'Color'}</span>
             <ul className="flex flex-wrap items-center gap-2">
-              {colors.map((color) => (
-                <li key={color} className="inline-flex items-center gap-1.5">
-                  <span aria-hidden className="size-4 rounded-full border border-black/20" style={{ background: swatchOf(color) }} />
-                  {color}
-                </li>
-              ))}
+              {colors.map((color) => {
+                const v = variants.find((x) => x.color === color && x.imageUrl)
+                const on = !!v && v.id === pickedId
+                return (
+                  <li key={color}>
+                    <button
+                      type="button"
+                      aria-pressed={on}
+                      onClick={() => (v ? setPickedId(on ? null : v.id) : setQuick(true))}
+                      className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 ${on ? 'border-[#2B7CC1] bg-[#EBF4FF] text-[#1E5C96]' : 'border-transparent hover:border-[#2B7CC1]'}`}
+                    >
+                      <span aria-hidden className="size-4 rounded-full border border-black/20" style={{ background: swatchOf(color) }} />
+                      {color}
+                    </button>
+                  </li>
+                )
+              })}
             </ul>
           </div>
         )}
@@ -177,6 +198,7 @@ export default function ProductCard({ product }: { product: Product }) {
           )}
         </div>
       </div>
+      {quick && <QuickView product={product} onClose={() => setQuick(false)} />}
     </article>
   )
 }
