@@ -12,6 +12,7 @@
  */
 
 import * as THREE from 'three'
+import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js'
 import type { CabinetKind } from './cabinet-art'
 import type { Cabinet3DSpec } from './cabinet-spec'
 
@@ -140,20 +141,76 @@ function layout(spec: Cabinet3DSpec): { fronts: Front[]; bodyBottom: number } {
 }
 
 export interface CabinetMaterials {
-  paint: THREE.MeshStandardMaterial
-  panel: THREE.MeshStandardMaterial
+  paint: THREE.MeshPhysicalMaterial
+  panel: THREE.MeshPhysicalMaterial
   carcass: THREE.MeshStandardMaterial
   toe: THREE.MeshStandardMaterial
   cavity: THREE.MeshStandardMaterial
 }
 
+/** Every edge in a real cabinet is eased, never razor sharp. That catches light and is most of what reads as "real". */
+function rbox(w: number, h: number, d: number, radius = 0.1): THREE.BufferGeometry {
+  const r = Math.max(0.01, Math.min(radius, w / 2 - 0.005, h / 2 - 0.005, d / 2 - 0.005))
+  return new RoundedBoxGeometry(w, h, d, 3, r)
+}
+
+/** Soft vertical wood grain, light enough to tint with the finish color. */
+function grainTexture(): THREE.CanvasTexture {
+  const size = 512
+  const c = document.createElement('canvas')
+  c.width = c.height = size
+  const g = c.getContext('2d')!
+  g.fillStyle = '#e9e9e9'
+  g.fillRect(0, 0, size, size)
+  let seed = 7
+  const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647)
+  for (let i = 0; i < 520; i++) {
+    const x = rnd() * size
+    const w = 0.6 + rnd() * 2.2
+    const shade = 150 + Math.floor(rnd() * 80)
+    g.strokeStyle = `rgba(${shade},${shade},${shade},${0.12 + rnd() * 0.3})`
+    g.lineWidth = w
+    g.beginPath()
+    g.moveTo(x, 0)
+    const wobble = (rnd() - 0.5) * 18
+    g.bezierCurveTo(x + wobble, size * 0.33, x - wobble, size * 0.66, x + wobble * 0.4, size)
+    g.stroke()
+  }
+  const tex = new THREE.CanvasTexture(c)
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping
+  tex.repeat.set(1.4, 1)
+  tex.colorSpace = THREE.SRGBColorSpace
+  tex.anisotropy = 4
+  return tex
+}
+
 function makeMaterials(): CabinetMaterials {
   return {
-    paint: new THREE.MeshStandardMaterial({ color: 0xf6f4ef, roughness: 0.55, metalness: 0 }),
-    panel: new THREE.MeshStandardMaterial({ color: 0xefece5, roughness: 0.6, metalness: 0 }),
-    carcass: new THREE.MeshStandardMaterial({ color: 0xe4e0d6, roughness: 0.7, metalness: 0 }),
-    toe: new THREE.MeshStandardMaterial({ color: 0x8e897e, roughness: 0.85, metalness: 0 }),
-    cavity: new THREE.MeshStandardMaterial({ color: 0x23252a, roughness: 0.35, metalness: 0.2 }),
+    // A painted door has a satin sheen with a thin clear topcoat, so it catches reflections the way real lacquer does.
+    paint: new THREE.MeshPhysicalMaterial({ color: 0xf6f4ef, roughness: 0.42, metalness: 0, clearcoat: 0.28, clearcoatRoughness: 0.4 }),
+    panel: new THREE.MeshPhysicalMaterial({ color: 0xefece5, roughness: 0.46, metalness: 0, clearcoat: 0.22, clearcoatRoughness: 0.45 }),
+    carcass: new THREE.MeshStandardMaterial({ color: 0xe4e0d6, roughness: 0.62, metalness: 0 }),
+    toe: new THREE.MeshStandardMaterial({ color: 0x6f6a61, roughness: 0.85, metalness: 0 }),
+    cavity: new THREE.MeshStandardMaterial({ color: 0x1b1d21, roughness: 0.3, metalness: 0.25 }),
+  }
+}
+
+/** Paints a built cabinet. No color restores the default white. Stained woods get grain. */
+export function paintCabinet(root: THREE.Object3D, hex?: string, grain = false) {
+  const m = root.userData.materials as CabinetMaterials | undefined
+  if (!m) return
+  const base = new THREE.Color(hex ?? 0xf6f4ef)
+  m.paint.color.copy(base)
+  m.panel.color.copy(base).multiplyScalar(hex ? 0.96 : 0.97)
+  m.carcass.color.copy(base).multiplyScalar(hex ? 0.9 : 0.93)
+  if (grain) {
+    const tex = (root.userData.grain as THREE.CanvasTexture | undefined) ?? grainTexture()
+    root.userData.grain = tex
+    for (const mat of [m.paint, m.panel, m.carcass]) { mat.map = tex; mat.needsUpdate = true }
+    m.paint.roughness = 0.5; m.panel.roughness = 0.55
+  } else {
+    for (const mat of [m.paint, m.panel, m.carcass]) { if (mat.map) { mat.map = null; mat.needsUpdate = true } }
+    m.paint.roughness = 0.42; m.panel.roughness = 0.46
   }
 }
 
@@ -178,11 +235,11 @@ export function buildCabinet(spec: Cabinet3DSpec): THREE.Group {
   const carcassBottom = wall ? 0 : TOE
   const carcassH = h - carcassBottom
   const carcassD = d - FRONT
-  add(new THREE.BoxGeometry(w, carcassH, carcassD), m.carcass, 0, carcassBottom + carcassH / 2, -FRONT / 2)
+  add(rbox(w, carcassH, carcassD), m.carcass, 0, carcassBottom + carcassH / 2, -FRONT / 2)
 
   // Toe kick: the recessed strip along the floor, set back from the doors.
   if (!wall) {
-    add(new THREE.BoxGeometry(w - 0.8, TOE, d - TOE_SETBACK - FRONT), m.toe, 0, TOE / 2, -(TOE_SETBACK + FRONT) / 2 + 0.0)
+    add(rbox(w - 0.8, TOE, d - TOE_SETBACK - FRONT), m.toe, 0, TOE / 2, -(TOE_SETBACK + FRONT) / 2 + 0.0)
   }
 
   // Face coordinates: `x` runs left to right from the cabinet's left edge, `y` runs top to bottom from its top.
@@ -191,7 +248,7 @@ export function buildCabinet(spec: Cabinet3DSpec): THREE.Group {
   const frontZ = d / 2
 
   const flatPanel = (b: Box, material: THREE.Material, depth: number, zBack: number) => {
-    add(new THREE.BoxGeometry(b.w, b.h, depth), material, faceX(b.x, b.w), faceY(b.y, b.h), zBack + depth / 2)
+    add(rbox(b.w, b.h, depth), material, faceX(b.x, b.w), faceY(b.y, b.h), zBack + depth / 2)
   }
 
   for (const front of fronts) {
@@ -199,7 +256,7 @@ export function buildCabinet(spec: Cabinet3DSpec): THREE.Group {
     if (front.type === 'cavity') {
       // The oven opening: a dark recess with a lip across the top.
       flatPanel(b, m.cavity, 0.4, frontZ - FRONT - 0.2)
-      add(new THREE.BoxGeometry(b.w, 1, 0.6), m.panel, faceX(b.x, b.w), faceY(b.y, 1), frontZ - FRONT + 0.1)
+      add(rbox(b.w, 1, 0.6), m.panel, faceX(b.x, b.w), faceY(b.y, 1), frontZ - FRONT + 0.1)
       continue
     }
     if (front.type === 'flat') {
@@ -211,7 +268,7 @@ export function buildCabinet(spec: Cabinet3DSpec): THREE.Group {
     const zBack = frontZ - FRONT
     flatPanel(b, m.panel, FRONT - PANEL_RECESS, zBack)
     const bar = (bx: number, by: number, bw: number, bh: number) =>
-      add(new THREE.BoxGeometry(bw, bh, FRONT), m.paint, faceX(bx, bw), faceY(by, bh), zBack + FRONT / 2)
+      add(rbox(bw, bh, FRONT), m.paint, faceX(bx, bw), faceY(by, bh), zBack + FRONT / 2)
     bar(b.x, b.y, b.w, fw) // top rail
     bar(b.x, b.y + b.h - fw, b.w, fw) // bottom rail
     bar(b.x, b.y + fw, fw, b.h - 2 * fw) // left stile
@@ -234,5 +291,8 @@ export function disposeObject(root: THREE.Object3D) {
     const mat = mesh.material
     if (mat) (Array.isArray(mat) ? mat : [mat]).forEach((x) => materials.add(x))
   })
-  materials.forEach((x) => x.dispose())
+  materials.forEach((x) => {
+    ;(x as THREE.MeshStandardMaterial).map?.dispose()
+    x.dispose()
+  })
 }

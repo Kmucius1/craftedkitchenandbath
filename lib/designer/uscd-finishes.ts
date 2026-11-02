@@ -59,3 +59,7 @@ export const FAMILY_BLURB: Record<FinishFamily, string> = {
   Edgeline: 'Slab-front style for a clean, modern look.',
   Casselberry: 'Traditional raised-panel with a detailed profile.',
 }
+
+/** Stained or natural wood finishes show grain; painted ones do not. Used only to make the 3D rendering look right. */
+const GRAIN = new Set(['shaker honey', 'shaker essence oak', 'shaker unfinished', 'oxford toffee', 'casselberry saddle'])
+export const finishGrain = (name: string): boolean => GRAIN.has(name.trim().toLowerCase())

@@ -5,7 +5,7 @@ import Link from 'next/link'
 import type { Product } from '@/lib/designer/types'
 import { isPlaceholderImage } from '@/lib/catalog/placeholder'
 import { cabinet3DSpec } from '@/lib/designer/cabinet-spec'
-import { FAMILY_BLURB, USCD_FINISHES, type FinishFamily } from '@/lib/designer/uscd-finishes'
+import { FAMILY_BLURB, USCD_FINISHES, finishGrain, type FinishFamily } from '@/lib/designer/uscd-finishes'
 import { getVerification, isVerified, statusLabel } from '@/lib/catalog/verification'
 import CabinetViewer from './CabinetViewer'
 
@@ -58,7 +58,7 @@ export default function ProductDetail({ product }: { product: Product }) {
       <div>
         <div style={{ position: 'relative', aspectRatio: '4 / 3', background: '#EEF0F4', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.08)' }}>
           {active?.kind === 'model' && spec ? (
-            <CabinetViewer spec={spec} label={`${product.name}, ${product.supplier}`} fallbackSrc={product.imageUrl} color={finish?.hex} />
+            <CabinetViewer spec={spec} label={`${product.name}, ${product.supplier}`} fallbackSrc={product.imageUrl} color={finish?.hex} grain={finish ? finishGrain(finish.name) : false} />
           ) : active?.kind === 'image' ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={active.url} alt={active.caption} className="absolute inset-0 h-full w-full" style={{ objectFit: active.fit, padding: active.fit === 'contain' ? '24px' : 0 }} />

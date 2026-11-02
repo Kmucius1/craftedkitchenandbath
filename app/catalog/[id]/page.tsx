@@ -4,6 +4,8 @@ import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
 import CTASection from '@/components/CTASection'
 import ProductDetail from '@/components/catalog/ProductDetail'
+import RelatedProducts from '@/components/catalog/RelatedProducts'
+import { pairedProducts, relatedProducts } from '@/lib/catalog/related'
 import { DEMO_PRODUCTS } from '@/lib/designer/demo-data'
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -42,6 +44,18 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
           <Link href="/catalog" style={{ display: 'inline-block', marginBottom: '20px', color: '#2B7CC1', fontWeight: 600, fontSize: '14px', textDecoration: 'none' }}>← Back to the catalog</Link>
           <ProductDetail product={product} />
+          <RelatedProducts
+            id="pairs-h"
+            title="Pairs with this"
+            note="Other things this kind of project usually needs. Fit and finish are confirmed together in your free in-home quote."
+            products={pairedProducts(product, DEMO_PRODUCTS)}
+          />
+          <RelatedProducts
+            id="related-h"
+            title={`More ${(CATEGORY_LABELS[product.category] ?? product.category).toLowerCase()}`}
+            note="Similar products from the catalog."
+            products={relatedProducts(product, DEMO_PRODUCTS)}
+          />
         </div>
       </section>
       <CTASection />

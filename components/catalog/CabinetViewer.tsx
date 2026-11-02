@@ -11,17 +11,17 @@ import type { Cabinet3DSpec } from '@/lib/designer/cabinet-spec'
  * WebGL contexts, so the 3D scene exists only while its card is on screen. Until it
  * is ready (and if WebGL is unavailable) the card's drawn picture shows instead.
  */
-export default function CabinetViewer({ spec, label, fallbackSrc, color }: { spec: Cabinet3DSpec; label: string; fallbackSrc: string; color?: string }) {
+export default function CabinetViewer({ spec, label, fallbackSrc, color, grain = false }: { spec: Cabinet3DSpec; label: string; fallbackSrc: string; color?: string; grain?: boolean }) {
   const hostRef = useRef<HTMLDivElement>(null)
   const [ready, setReady] = useState(false)
   const [interacted, setInteracted] = useState(false)
   // The finish to paint the cabinet in. Changing it repaints the live model without rebuilding it.
-  const colorRef = useRef(color)
-  const applyRef = useRef<((hex?: string) => void) | null>(null)
+  const colorRef = useRef({ color, grain })
+  const applyRef = useRef<((hex?: string, grain?: boolean) => void) | null>(null)
   useEffect(() => {
-    colorRef.current = color
-    applyRef.current?.(color)
-  }, [color])
+    colorRef.current = { color, grain }
+    applyRef.current?.(color, grain)
+  }, [color, grain])
 
   useEffect(() => {
     const host = hostRef.current
@@ -35,9 +35,10 @@ export default function CabinetViewer({ spec, label, fallbackSrc, color }: { spe
       if (teardown || starting) return
       starting = true
       try {
-        const [THREE, { OrbitControls }, { buildCabinet, disposeObject }] = await Promise.all([
+        const [THREE, { OrbitControls }, { RoomEnvironment }, { buildCabinet, disposeObject, paintCabinet }] = await Promise.all([
           import('three'),
           import('three/examples/jsm/controls/OrbitControls.js'),
+          import('three/examples/jsm/environments/RoomEnvironment.js'),
           import('@/lib/designer/cabinet-3d'),
         ])
         if (!alive) return
@@ -47,6 +48,8 @@ export default function CabinetViewer({ spec, label, fallbackSrc, color }: { spe
         renderer.setClearColor(0x000000, 0)
         renderer.shadowMap.enabled = true
         renderer.shadowMap.type = THREE.PCFSoftShadowMap
+        renderer.toneMapping = THREE.ACESFilmicToneMapping
+        renderer.toneMappingExposure = 1.05
         const canvas = renderer.domElement
         canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;cursor:grab;'
         host.appendChild(canvas)
@@ -54,38 +57,33 @@ export default function CabinetViewer({ spec, label, fallbackSrc, color }: { spe
         const scene = new THREE.Scene()
         const camera = new THREE.PerspectiveCamera(30, 4 / 3, 1, 1000)
 
-        scene.add(new THREE.HemisphereLight(0xffffff, 0xc9c4b8, 1.55))
-        const key = new THREE.DirectionalLight(0xffffff, 2.1)
+        // A neutral studio environment lights and reflects off the finish; two lights add the shadows.
+        const pmrem = new THREE.PMREMGenerator(renderer)
+        const envTex = pmrem.fromScene(new RoomEnvironment(), 0.04).texture
+        scene.environment = envTex
+        scene.environmentIntensity = 0.65
+        scene.add(new THREE.HemisphereLight(0xffffff, 0xcfc9bd, 0.35))
+        const key = new THREE.DirectionalLight(0xfff6ea, 2.9)
         key.position.set(60, 90, 80)
         key.castShadow = true
-        key.shadow.mapSize.set(1024, 1024)
+        key.shadow.mapSize.set(2048, 2048)
+        key.shadow.radius = 4
         key.shadow.camera.left = -80
         key.shadow.camera.right = 80
         key.shadow.camera.top = 80
         key.shadow.camera.bottom = -80
-        key.shadow.bias = -0.0005
+        key.shadow.bias = -0.0004
+        key.shadow.normalBias = 0.02
         scene.add(key)
-        const fill = new THREE.DirectionalLight(0xdfe8ff, 0.7)
+        const fill = new THREE.DirectionalLight(0xdfe8ff, 0.5)
         fill.position.set(-70, 30, 50)
         scene.add(fill)
 
         const cabinet = buildCabinet(spec)
         scene.add(cabinet)
-        const mats = cabinet.userData.materials as { paint: import('three').MeshStandardMaterial; panel: import('three').MeshStandardMaterial; carcass: import('three').MeshStandardMaterial }
-        const apply = (hex?: string) => {
-          if (hex) {
-            mats.paint.color.set(hex)
-            mats.panel.color.copy(mats.paint.color).multiplyScalar(0.96)
-            mats.carcass.color.copy(mats.paint.color).multiplyScalar(0.9)
-          } else {
-            mats.paint.color.set(0xf6f4ef)
-            mats.panel.color.set(0xefece5)
-            mats.carcass.color.set(0xe4e0d6)
-          }
-        }
-        apply(colorRef.current)
-        applyRef.current = (hex) => {
-          apply(hex)
+        paintCabinet(cabinet, colorRef.current.color, colorRef.current.grain)
+        applyRef.current = (hex, g) => {
+          paintCabinet(cabinet, hex, g)
           renderer.render(scene, camera)
         }
 
@@ -192,6 +190,8 @@ export default function CabinetViewer({ spec, label, fallbackSrc, color }: { spe
           controls.dispose()
           disposeObject(scene)
           shadowTex.dispose()
+          envTex.dispose()
+          pmrem.dispose()
           renderer.dispose()
           renderer.forceContextLoss()
           canvas.remove()

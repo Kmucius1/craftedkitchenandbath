@@ -5,7 +5,7 @@ import Link from 'next/link'
 import type { Product } from '@/lib/designer/types'
 import { isPlaceholderImage } from '@/lib/catalog/placeholder'
 import { cabinet3DSpec } from '@/lib/designer/cabinet-spec'
-import { USCD_FINISHES } from '@/lib/designer/uscd-finishes'
+import { USCD_FINISHES, finishGrain } from '@/lib/designer/uscd-finishes'
 import { getVerification, isVerified, statusLabel } from '@/lib/catalog/verification'
 import CabinetViewer from './CabinetViewer'
 
@@ -84,7 +84,7 @@ export default function QuickView({ product, onClose }: { product: Product; onCl
         <div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-black/[0.08] bg-[#EEF0F4]">
             {active?.kind === 'model' && spec ? (
-              <CabinetViewer spec={spec} label={`${product.name}, ${product.supplier}`} fallbackSrc={product.imageUrl} color={color ? swatchOf(color) : undefined} />
+              <CabinetViewer spec={spec} label={`${product.name}, ${product.supplier}`} fallbackSrc={product.imageUrl} color={color ? swatchOf(color) : undefined} grain={color ? finishGrain(color) : false} />
             ) : active?.kind === 'image' ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={active.url} alt={active.caption} className={`absolute inset-0 h-full w-full ${active.fit === 'cover' ? 'object-cover' : 'object-contain p-5'}`} />
@@ -166,11 +166,11 @@ export default function QuickView({ product, onClose }: { product: Product; onCl
             <Link href={quote} className="inline-flex rounded-lg px-5 py-3 text-[14px] font-bold text-white hover:brightness-110" style={{ background: BLUE }}>
               Request pricing
             </Link>
-            <Link href={`/catalog/${product.id}`} className="text-[14px] font-semibold text-[#2B7CC1] underline-offset-4 hover:underline">
-              {product.category === 'cabinets' ? 'All colors & details →' : 'Full details →'}
+            <Link href={`/catalog/${product.id}`} className="inline-flex rounded-lg border border-[#2B7CC1] px-5 py-3 text-[14px] font-bold text-[#2B7CC1] hover:bg-[#EBF4FF]">
+              View product page
             </Link>
           </div>
-          <p className="mt-3 text-[12px] text-[#6B7280]">Pricing and availability are confirmed in your free in-home quote.</p>
+          <p className="mt-3 text-[12px] text-[#6B7280]">Pricing and availability are confirmed in your free in-home quote. The product page also shows what pairs with it.</p>
         </div>
       </div>
     </dialog>

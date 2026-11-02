@@ -7,7 +7,7 @@ import { isPlaceholderImage } from '@/lib/catalog/placeholder'
 import { cabinet3DSpec } from '@/lib/designer/cabinet-spec'
 import CabinetViewer from './CabinetViewer'
 import QuickView from './QuickView'
-import { USCD_FINISHES } from '@/lib/designer/uscd-finishes'
+import { USCD_FINISHES, finishGrain } from '@/lib/designer/uscd-finishes'
 import { getVerification, isVerified, statusLabel } from '@/lib/catalog/verification'
 
 const BLUE = '#2B7CC1'
@@ -65,7 +65,7 @@ export default function ProductCard({ product }: { product: Product }) {
           <button type="button" onClick={() => setQuick(true)} aria-label={`Quick view: ${product.name}`} className="absolute inset-0 z-[2] cursor-zoom-in focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#2B7CC1]" />
         )}
         {viewer3D ? (
-          <CabinetViewer spec={viewer3D} label={`${product.name}, ${product.supplier}`} fallbackSrc={imageUrl} color={picked?.color ? swatchOf(picked.color) : undefined} />
+          <CabinetViewer spec={viewer3D} label={`${product.name}, ${product.supplier}`} fallbackSrc={imageUrl} color={picked?.color ? swatchOf(picked.color) : undefined} grain={picked?.color ? finishGrain(picked.color) : false} />
         ) : (
           // eslint-disable-next-line @next/next/no-img-element
           <img
