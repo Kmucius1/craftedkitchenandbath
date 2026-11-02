@@ -70,6 +70,18 @@ const nextConfig: NextConfig = {
         destination: '/contact',
         permanent: true,
       },
+      // Old craftedhomeimprovements.com (WordPress) pages. That domain
+      // forwards here, so keep its team and careers URLs from 404ing.
+      {
+        source: '/_team-members/:path*',
+        destination: '/about-us',
+        permanent: true,
+      },
+      {
+        source: '/job-position/:path*',
+        destination: '/contact',
+        permanent: true,
+      },
     ]
   },
   images: {
