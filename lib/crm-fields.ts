@@ -12,16 +12,19 @@
 export type QuoteResponse = { question?: string; answer?: string };
 
 /** CRM `budget_range` option values. Deliberately identical to the wizard's own
- *  brackets so no answer has to be squeezed into a neighbouring bucket. */
+ *  brackets so no answer has to be squeezed into a neighbouring bucket.
+ *  Bounded ranges are matched on both ends before the open-ended ones: a bare
+ *  "60,000" or "100,000" check would also catch "$30,000 – $60,000" and
+ *  "$60,000 – $100,000" and file them one bracket too high. */
 export function mapBudget(answer: string | null | undefined): string | null {
   if (!answer) return null;
   const a = answer.toLowerCase();
-  if (a.includes("100,000") || a.includes("100k")) return "100k_plus";
-  if (a.includes("60,000")) return "60k_100k";
-  if (a.includes("30,000") && a.includes("60,000")) return "30k_60k";
-  if (a.includes("30,000")) return "15k_30k";
-  if (a.includes("15,000")) return "under_15k";
   if (a.includes("not sure")) return "unsure";
+  if (a.includes("under") && a.includes("15,000")) return "under_15k";
+  if (a.includes("15,000") && a.includes("30,000")) return "15k_30k";
+  if (a.includes("30,000") && a.includes("60,000")) return "30k_60k";
+  if (a.includes("60,000") && a.includes("100,000")) return "60k_100k";
+  if (a.includes("100,000") || a.includes("100k")) return "100k_plus";
   return null;
 }
 
@@ -50,13 +53,14 @@ export function mapProjectType(answer: string | null | undefined): string | null
     .map((s) => s.trim())
     .filter(Boolean);
   const rooms = picks.filter((p) => /kitchen|bathroom|whole-home/.test(p));
-  if (a.includes("whole-home") || rooms.length > 1) return "whole_home";
+  if (a.includes("whole-home") || a.includes("complete interior") || rooms.length > 1) return "whole_home";
 
   if (a.includes("kitchen")) return "kitchen";
   if (a.includes("bathroom")) return "bathroom";
   if (a.includes("cabinets & countertops") || a.includes("countertop")) return "countertops";
   if (a.includes("flooring")) return "flooring";
   if (a.includes("painting")) return "painting";
+  if (a === "other") return "other";
   return null;
 }
 
