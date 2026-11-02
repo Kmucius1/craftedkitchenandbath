@@ -58,6 +58,9 @@ export default function ProductCard({ product }: { product: Product }) {
     <article className="group flex flex-col overflow-hidden rounded-xl border border-black/[0.08] bg-white transition duration-300 hover:-translate-y-1 hover:border-black/15 hover:shadow-[0_18px_40px_-18px_rgba(17,24,34,0.35)] focus-within:ring-2 focus-within:ring-[#2B7CC1]">
       <div className={`relative aspect-[4/3] w-full overflow-hidden ${roomScene ? 'bg-[#E9ECF1]' : showingVariantPhoto ? 'bg-[#E9ECF1]' : contain ? 'bg-white' : 'bg-[#EEF0F4]'}`}>
         <span aria-hidden className="pointer-events-none absolute inset-0 z-[1] ring-1 ring-inset ring-black/[0.06]" />
+        {!viewer3D && (
+          <Link href={`/catalog/${product.id}`} aria-label={`View ${product.name}: all colors, sizes and photos`} className="absolute inset-0 z-[2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#2B7CC1]" />
+        )}
         {viewer3D ? (
           <CabinetViewer spec={viewer3D} label={`${product.name}, ${product.supplier}`} fallbackSrc={imageUrl} />
         ) : (
@@ -90,7 +93,7 @@ export default function ProductCard({ product }: { product: Product }) {
           {CATEGORY_LABELS[product.category] ?? product.category}
         </p>
         <h3 className="mt-1.5 line-clamp-2 text-[17px] font-bold leading-[1.3]" style={{ color: INK }}>
-          {product.name}
+          <Link href={`/catalog/${product.id}`} className="hover:underline focus-visible:underline">{product.name}</Link>
         </h3>
         <p className="mt-1 text-[13px] text-[#4A5568]">{product.supplier}</p>
         <p className="mt-0.5 break-all text-[12px] text-[#6B7280]">
@@ -157,6 +160,9 @@ export default function ProductCard({ product }: { product: Product }) {
             style={{ background: BLUE }}
           >
             Request pricing
+          </Link>
+          <Link href={`/catalog/${product.id}`} className="whitespace-nowrap text-[13px] font-semibold text-[#2B7CC1] underline-offset-4 hover:underline">
+            {product.category === 'cabinets' ? 'All colors & details →' : 'Details & options →'}
           </Link>
           {product.sourceUrl && (
             <a

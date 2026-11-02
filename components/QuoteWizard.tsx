@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getStoredAttribution } from "@/lib/campaign";
 
 /* ── Questionnaire config ──────────────────────────────────────────────────
@@ -214,6 +214,13 @@ export default function QuoteWizard() {
   });
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+
+  // A "Request pricing" link from a catalog product page arrives as ?item=..., which pre-fills the notes box so the
+  // exact product and finish travel with the request. Read on the client so this page can stay statically built.
+  useEffect(() => {
+    const item = new URLSearchParams(window.location.search).get("item")?.slice(0, 300);
+    if (item) setContact((c) => (c.notes ? c : { ...c, notes: `I'd like pricing on: ${item}` }));
+  }, []);
   const [submitted, setSubmitted] = useState(false);
 
   const totalSteps = STEPS.length + 1; // + contact step
