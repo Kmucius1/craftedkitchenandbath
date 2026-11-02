@@ -6,7 +6,7 @@ import type { Product } from '@/lib/designer/types'
 import { isPlaceholderImage } from '@/lib/catalog/placeholder'
 import { cabinet3DSpec } from '@/lib/designer/cabinet-spec'
 import CabinetViewer from './CabinetViewer'
-import { isVerified, statusLabel } from '@/lib/catalog/verification'
+import { getVerification, isVerified, statusLabel } from '@/lib/catalog/verification'
 
 const BLUE = '#2B7CC1'
 const INK = '#111822'
@@ -98,12 +98,16 @@ export default function ProductCard({ product }: { product: Product }) {
           {size ? ` · ${size}` : ''}
         </p>
 
-        <p
-          className={`mt-1.5 text-[11px] font-semibold ${isVerified(product) ? 'text-[#1E6B3A]' : 'text-[#6B7280]'}`}
-          data-verification={isVerified(product) ? 'verified' : 'unverified'}
-        >
-          {statusLabel(product)}
-        </p>
+        {/* Customers only ever see a status when it is a positive, confirmed one (or a discontinued warning). The
+            in-between internal states ("in the supplier's catalog, Crafted availability pending") stay off the public site. */}
+        {(isVerified(product) || getVerification(product).discontinued) && (
+          <p
+            className={`mt-1.5 text-[11px] font-semibold ${isVerified(product) ? 'text-[#1E6B3A]' : 'text-[#9A3412]'}`}
+            data-verification={isVerified(product) ? 'verified' : 'discontinued'}
+          >
+            {statusLabel(product)}
+          </p>
+        )}
 
         {colors.length > 0 && (
           <div className="mt-3 flex items-center gap-2 text-[12px] text-[#4A5568]">
