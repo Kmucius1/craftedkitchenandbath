@@ -1,9 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import type { Product } from '@/lib/designer/types'
 import { isPlaceholderImage } from '@/lib/catalog/placeholder'
+import { cabinet3DSpec } from '@/lib/designer/cabinet-spec'
+import CabinetViewer from './CabinetViewer'
+import { isVerified, statusLabel } from '@/lib/catalog/verification'
 
 const BLUE = '#2B7CC1'
 const INK = '#111822'
@@ -41,6 +44,11 @@ export default function ProductCard({ product }: { product: Product }) {
   const roomScene = showingVariantPhoto && picked?.fit === 'cover'
 
   const placeholder = isPlaceholderImage(product)
+  // A cabinet with a modelled layout is shown as a 3D model you can turn, until a view of the line is picked.
+  const viewer3D = useMemo(
+    () => (product.category === 'cabinets' && !showingVariantPhoto ? cabinet3DSpec(product.supplierSku, product.dimensions) : null),
+    [product.category, product.supplierSku, product.dimensions, showingVariantPhoto],
+  )
   const contain = (CONTAIN.has(product.category) || showingVariantPhoto) && !roomScene
   // A size or shape variant says its own size; a room view keeps the product's dimensions.
   const size = picked && !picked.caption ? picked.label : product.dimensions ? `${product.dimensions.widthIn}″ × ${product.dimensions.heightIn}″` : null
@@ -50,20 +58,25 @@ export default function ProductCard({ product }: { product: Product }) {
     <article className="group flex flex-col overflow-hidden rounded-xl border border-black/[0.08] bg-white transition duration-300 hover:-translate-y-1 hover:border-black/15 hover:shadow-[0_18px_40px_-18px_rgba(17,24,34,0.35)] focus-within:ring-2 focus-within:ring-[#2B7CC1]">
       <div className={`relative aspect-[4/3] w-full overflow-hidden ${roomScene ? 'bg-[#E9ECF1]' : showingVariantPhoto ? 'bg-[#E9ECF1]' : contain ? 'bg-white' : 'bg-[#EEF0F4]'}`}>
         <span aria-hidden className="pointer-events-none absolute inset-0 z-[1] ring-1 ring-inset ring-black/[0.06]" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={imageUrl}
-          alt={picked ? `${product.name}, ${picked.label}, ${product.supplier}` : `${product.name}, ${product.supplier}`}
-          loading="lazy"
-          decoding="async"
-          className={`absolute inset-0 h-full w-full transition-transform duration-500 group-hover:scale-[1.04] ${roomScene ? 'object-cover' : showingVariantPhoto ? 'object-contain p-8' : contain ? 'object-contain p-5' : 'object-cover'}`}
-        />
+        {viewer3D ? (
+          <CabinetViewer spec={viewer3D} label={`${product.name}, ${product.supplier}`} fallbackSrc={imageUrl} />
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={imageUrl}
+            alt={picked ? `${product.name}, ${picked.label}, ${product.supplier}` : `${product.name}, ${product.supplier}`}
+            loading="lazy"
+            decoding="async"
+            className={`absolute inset-0 h-full w-full transition-transform duration-500 group-hover:scale-[1.04] ${roomScene ? 'object-cover' : showingVariantPhoto ? 'object-contain p-8' : contain ? 'object-contain p-5' : 'object-cover'}`}
+          />
+        )}
         {picked?.caption ? (
           <span className="absolute bottom-3 left-3 right-3 rounded-full bg-white/90 px-3 py-1 text-center text-[11px] font-semibold tracking-wide text-[#4A5568] shadow-sm backdrop-blur">
             {picked.caption}
           </span>
         ) : (
           placeholder &&
+          !viewer3D &&
           !showingVariantPhoto && (
             <span className="absolute bottom-3 left-3 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold tracking-wide text-[#4A5568] shadow-sm backdrop-blur">
               Photo coming soon
@@ -83,6 +96,13 @@ export default function ProductCard({ product }: { product: Product }) {
         <p className="mt-0.5 break-all text-[12px] text-[#6B7280]">
           SKU {product.supplierSku}
           {size ? ` · ${size}` : ''}
+        </p>
+
+        <p
+          className={`mt-1.5 text-[11px] font-semibold ${isVerified(product) ? 'text-[#1E6B3A]' : 'text-[#6B7280]'}`}
+          data-verification={isVerified(product) ? 'verified' : 'unverified'}
+        >
+          {statusLabel(product)}
         </p>
 
         {colors.length > 0 && (

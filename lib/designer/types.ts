@@ -140,6 +140,11 @@ export interface Product {
   sourceUrl?: string;
   /** GLB model URL for the 3D viewport. Absent until a real asset is approved. */
   modelUrl?: string;
+  /**
+   * Four separate facts plus the publishing checklist. Absent means nothing has been verified beyond
+   * what the record itself shows — see lib/catalog/verification.ts, which is the only place that reads this.
+   */
+  verification?: ProductVerification;
   /** Staff-only: whether a reviewed/approved 3D asset exists. */
   model3dStatus: "none" | "draft" | "review" | "approved" | "rejected" | "retired";
   availability: AvailabilityStatus;
@@ -162,6 +167,34 @@ export interface Product {
   /** Amazon star rating (0-5) and rating count, at time of sourcing. */
   rating?: number;
   reviewCount?: number;
+}
+
+/**
+ * What Crafted has actually confirmed about a product. The first four are deliberately separate:
+ * a product existing in a supplier's catalog says nothing about whether Crafted sells it, can order it,
+ * or has it on a shelf.
+ */
+export interface ProductVerification {
+  /** 1. The manufacturer lists this exact product. */
+  inSupplierCatalog: boolean;
+  /** 2. Crafted has confirmed it is approved to source and sell this product. */
+  craftedApproved: boolean;
+  /** 3. The supplier currently takes orders for it. */
+  orderable: boolean;
+  /** 4. Confirmed physically stocked, and where. Null/absent means not confirmed. */
+  stockedAt?: string | null;
+  discontinued?: boolean;
+  lastVerifiedAt?: string;
+  /** Exact manufacturer item number AND variant (finish/size) recorded for quoting. */
+  exactVariantRecorded?: boolean;
+  dimensionsMatchDocs?: boolean;
+  assetLicense?: "unknown" | "requested" | "granted" | "denied";
+  /** Where any 3D geometry came from. "representative" is never presented as the manufacturer's model. */
+  modelSource?: "manufacturer" | "measured" | "scan" | "representative";
+  /** The 3D representation was compared against the real product. */
+  modelCheckedAgainstProduct?: boolean;
+  /** Rotates smoothly on desktop and mobile (a recorded QA result, not an assumption). */
+  viewerQaPassed?: boolean;
 }
 
 /** Staff-only inventory/warehouse detail — never sent to public API responses. */

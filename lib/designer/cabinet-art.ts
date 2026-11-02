@@ -4,8 +4,10 @@
  * US Cabinet Depot's per-product photos sit behind a dealer login, so until the
  * account is connected these are drawn: a three-quarter view of a white Shaker
  * cabinet with the right layout for the model (doors, drawers, sink or oven
- * opening) at the model's real proportions. They are clearly labelled
- * "Photo coming soon" on the card and never presented as photographs.
+ * opening) at the model's real proportions. Catalog cards now show a rotatable
+ * 3D model of the same layout (see cabinet-3d.ts); this drawing remains as the
+ * poster shown while that loads and the fallback where WebGL is unavailable.
+ * Neither is presented as a photograph.
  *
  * Highland Shaker White ships without hardware, so none is drawn.
  */
