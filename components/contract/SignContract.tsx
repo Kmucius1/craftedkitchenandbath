@@ -105,6 +105,7 @@ export default function SignContract({ token, contract, signatures }: Props) {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 12, marginTop: 18 }}>
             <Stat label="Total price" value={money(total)} strong />
             <Stat label="Deposit at signing" value={money(Number(terms.draws[0]?.amount ?? 0))} />
+            <Stat label="Balance after deposit" value={money(Math.max(total - Number(terms.draws[0]?.amount ?? 0), 0))} />
             <Stat label="Work starts about" value={longDate(terms.start_date)} />
             <Stat label="Substantially complete by" value={longDate(terms.completion_date)} />
           </div>

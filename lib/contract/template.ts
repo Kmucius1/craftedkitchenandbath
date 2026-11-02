@@ -67,6 +67,15 @@ export function selectedLines(terms: ContractTerms, selected: string[]) {
   return (terms.estimate?.sections ?? []).flatMap((s) => s.lines.filter((l) => l.optional && ids.has(l.id)));
 }
 
+/** Pairs each scheduled payment with what is still owed once it is paid. */
+export function withBalances<T extends { amount: number | string }>(draws: T[], total: number) {
+  let left = total;
+  return draws.map((draw) => {
+    left = Math.round((left - Number(draw.amount)) * 100) / 100;
+    return { draw, balance: Math.max(left, 0) };
+  });
+}
+
 export const LIEN_LAW_NOTICE =
   "ACCORDING TO FLORIDA'S CONSTRUCTION LIEN LAW (SECTIONS 713.001-713.37, FLORIDA STATUTES), THOSE WHO WORK ON YOUR PROPERTY OR PROVIDE MATERIALS AND SERVICES AND ARE NOT PAID IN FULL HAVE A RIGHT TO ENFORCE THEIR CLAIM FOR PAYMENT AGAINST YOUR PROPERTY. THIS CLAIM IS KNOWN AS A CONSTRUCTION LIEN. IF YOUR CONTRACTOR OR A SUBCONTRACTOR FAILS TO PAY SUBCONTRACTORS, SUB-SUBCONTRACTORS, OR MATERIAL SUPPLIERS, THOSE PEOPLE WHO ARE OWED MONEY MAY LOOK TO YOUR PROPERTY FOR PAYMENT, EVEN IF YOU HAVE ALREADY PAID YOUR CONTRACTOR IN FULL. IF YOU FAIL TO PAY YOUR CONTRACTOR, YOUR CONTRACTOR MAY ALSO HAVE A LIEN ON YOUR PROPERTY. THIS MEANS IF A LIEN IS FILED YOUR PROPERTY COULD BE SOLD AGAINST YOUR WILL TO PAY FOR LABOR, MATERIALS, OR OTHER SERVICES THAT YOUR CONTRACTOR OR A SUBCONTRACTOR MAY HAVE FAILED TO PAY. TO PROTECT YOURSELF, YOU SHOULD STIPULATE IN THIS CONTRACT THAT BEFORE ANY PAYMENT IS MADE, YOUR CONTRACTOR IS REQUIRED TO PROVIDE YOU WITH A WRITTEN RELEASE OF LIEN FROM ANY PERSON OR COMPANY THAT HAS PROVIDED TO YOU A \"NOTICE TO OWNER.\" FLORIDA'S CONSTRUCTION LIEN LAW IS COMPLEX, AND IT IS RECOMMENDED THAT YOU CONSULT AN ATTORNEY.";
 
@@ -144,8 +153,14 @@ export function renderContract(
 
     { kind: "heading", text: "3. Contract Price and Payment Terms" },
     { kind: "paragraph", text: `Total contract price: ${money(total)}`, bold: true },
-    { kind: "paragraph", text: "Payment schedule:" },
-    { kind: "list", items: draws.map((d) => `${money(Number(d.amount))} – ${d.label}`) },
+    ...(addOns > 0
+      ? [{
+          kind: "paragraph" as const,
+          text: `This is the agreed price of ${money(opts.amount)} plus ${money(addOns)} for the optional items selected above.`,
+        }]
+      : []),
+    { kind: "paragraph", text: "Payment schedule (each payment comes off the contract price; the price itself does not change):" },
+    { kind: "list", items: withBalances(draws, total).map(({ draw, balance }) => `${money(Number(draw.amount))} – ${draw.label} (balance after this payment: ${money(balance)})`) },
     {
       kind: "paragraph",
       text:
