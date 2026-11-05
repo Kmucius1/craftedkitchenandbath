@@ -12,10 +12,39 @@ function escapeHtml(text: string) {
     .replace(/"/g, "&quot;");
 }
 
+const SITE_ORIGIN = "https://craftedkitchenandbath.com";
+
+// Editor uploads are full-size originals (often 2 MB PNGs). Serve them through
+// the image optimizer, which resizes and re-encodes to WebP/AVIF. Hosts must be
+// allowed in next.config.ts images.remotePatterns.
+function imageSrc(url: string) {
+  const raw = url.replace(/&amp;/g, "&");
+  if (raw.startsWith("/") || /^https:\/\/[a-z0-9-]+\.public\.blob\.vercel-storage\.com\//.test(raw)) {
+    return escapeHtml(`/_next/image?url=${encodeURIComponent(raw)}&w=1200&q=75`);
+  }
+  return url;
+}
+
+function imageTag(alt: string, url: string) {
+  return `<img src="${imageSrc(url)}" alt="${alt}" loading="lazy" decoding="async" />`;
+}
+
+// Links to this site stay in the tab and drop the trailing slash, which would
+// otherwise cost a redirect (/contact/ -> /contact). Everything else opens in a new tab.
+function linkTag(label: string, href: string) {
+  const raw = href.replace(/&amp;/g, "&");
+  if (raw.startsWith("/") || raw.startsWith(SITE_ORIGIN)) {
+    let path = raw.startsWith(SITE_ORIGIN) ? raw.slice(SITE_ORIGIN.length) || "/" : raw;
+    path = path.replace(/\/+(?=($|[?#]))/, "") || "/";
+    return `<a href="${escapeHtml(path)}">${label}</a>`;
+  }
+  return `<a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+}
+
 function renderInline(text: string) {
   let out = escapeHtml(text);
-  out = out.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />');
-  out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+  out = out.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (_, alt: string, url: string) => imageTag(alt, url));
+  out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, label: string, href: string) => linkTag(label, href));
   out = out.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   out = out.replace(/\*([^*]+)\*/g, "<em>$1</em>");
   out = out.replace(/~~([^~]+)~~/g, "<del>$1</del>");
@@ -79,7 +108,7 @@ export function markdownToHtml(markdown: string): string {
     const imageOnly = line.match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/);
     if (imageOnly) {
       flushParagraph(); closeList();
-      html.push(`<img src="${imageOnly[2]}" alt="${escapeHtml(imageOnly[1])}" loading="lazy" />`);
+      html.push(imageTag(escapeHtml(imageOnly[1]), imageOnly[2]));
       continue;
     }
 

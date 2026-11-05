@@ -33,7 +33,7 @@ export const pageOg = (path: string, extra: Partial<OpenGraph> = {}): OpenGraph 
  */
 export const organizationJsonLd = {
   "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+  "@type": ["Organization", "LocalBusiness", "HomeAndConstructionBusiness"],
   "@id": `${SITE_URL}/#business`,
   name: "Crafted Kitchen and Bath",
   alternateName: "Crafted Kitchen & Bath",
@@ -86,3 +86,29 @@ export const organizationJsonLd = {
     "https://www.instagram.com/craftedkitchenandbath",
   ],
 };
+
+const BRAND_SUFFIX = " | Crafted Kitchen & Bath";
+const TITLE_MAX = 60;
+const DESCRIPTION_MAX = 155;
+
+/** Cut at the last whole word that fits, so nothing ends mid-word. */
+function clip(text: string, max: number): string {
+  const t = text.replace(/\s+/g, " ").trim();
+  if (t.length <= max) return t;
+  const cut = t.slice(0, max - 1);
+  const atWord = cut.slice(0, cut.lastIndexOf(" ")).replace(/[\s,;:|–—-]+$/, "");
+  return `${atWord || cut}…`;
+}
+
+/**
+ * A title Google shows in full (~60 characters). Keeps the brand suffix from
+ * the layout's title template when it fits; otherwise the title stands alone.
+ */
+export function fitTitle(title: string): NonNullable<Metadata["title"]> {
+  const t = title.replace(/\s+/g, " ").trim();
+  if (t.length + BRAND_SUFFIX.length <= TITLE_MAX) return t;
+  return { absolute: clip(t, TITLE_MAX) };
+}
+
+/** A meta description Google shows in full (~155 characters). */
+export const fitDescription = (description: string) => clip(description, DESCRIPTION_MAX);

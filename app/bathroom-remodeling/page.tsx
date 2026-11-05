@@ -6,7 +6,7 @@ import SectionLabel from "@/components/SectionLabel";
 import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
-  title: "Bathroom Remodeling in Tampa Bay, FL",
+  title: "Bathroom Remodeling Tampa Bay, FL",
   description:
     "Bathroom remodeling in Oldsmar, Clearwater, Palm Harbor and Tampa Bay. Custom tile showers, vanities, freestanding tubs and spa finishes. Licensed. Free quote.",
   alternates: {
@@ -19,7 +19,6 @@ const serviceJsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "Bathroom Remodeling",
-  keywords: "bathroom remodeling, spa bathroom, custom tile shower, bathroom vanity, bathroom renovation Oldsmar FL",
   provider: {
     "@type": "LocalBusiness",
     name: "Crafted Kitchen and Bath",

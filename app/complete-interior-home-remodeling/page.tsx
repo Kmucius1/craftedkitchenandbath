@@ -6,7 +6,7 @@ import SectionLabel from "@/components/SectionLabel";
 import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
-  title: "Interior Home Remodeling in Tampa Bay",
+  title: "Interior Home Remodeling Tampa Bay",
   description:
     "Whole-home interior remodeling led by kitchen and bath specialists. One licensed team for kitchens, baths, flooring and paint across Tampa Bay.",
   alternates: { canonical: "/complete-interior-home-remodeling" },

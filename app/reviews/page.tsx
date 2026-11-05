@@ -7,7 +7,7 @@ import Breadcrumb from "@/components/Breadcrumb";
 import { getGoogleReviews, GOOGLE_WRITE_REVIEW_URL } from "@/lib/reviews";
 
 export const metadata: Metadata = {
-  title: "Customer Reviews: Tampa Bay Remodeling",
+  title: "Reviews from Tampa Bay Homeowners",
   description:
     "Real 5-star Google reviews from Crafted Kitchen & Bath clients across Tampa Bay, for kitchen, bathroom, flooring and interior remodels.",
   alternates: { canonical: "/reviews" },

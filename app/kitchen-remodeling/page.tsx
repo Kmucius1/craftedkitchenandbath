@@ -6,7 +6,7 @@ import CTASection from "@/components/CTASection";
 import SectionLabel from "@/components/SectionLabel";
 
 export const metadata: Metadata = {
-  title: "Kitchen Remodeling in Tampa Bay, FL",
+  title: "Kitchen Remodeling Tampa Bay, FL",
   description:
     "Kitchen remodeling in Oldsmar, Clearwater, Palm Harbor and Tampa Bay. Custom cabinets, quartz countertops, islands and layout redesign. Licensed. Free quote.",
   alternates: {
@@ -19,7 +19,6 @@ const serviceJsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "Kitchen Remodeling",
-  keywords: "kitchen remodeling, custom kitchen cabinets, kitchen countertops, kitchen renovation, kitchen remodel Oldsmar FL",
   provider: {
     "@type": "LocalBusiness",
     name: "Crafted Kitchen and Bath",

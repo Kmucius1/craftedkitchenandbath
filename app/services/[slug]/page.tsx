@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BASE_OG } from "@/lib/seo";
+import { BASE_OG, fitDescription, fitTitle } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const svc = getServicePage(slug);
   if (!svc) return {};
   return {
-    title: svc.metaTitle,
-    description: svc.metaDescription,
+    title: fitTitle(svc.metaTitle),
+    description: fitDescription(svc.metaDescription),
     alternates: { canonical: `${SITE}/services/${svc.slug}` },
     openGraph: {
       ...BASE_OG,

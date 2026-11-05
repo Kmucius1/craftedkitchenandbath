@@ -384,7 +384,7 @@ export default function PrivacyPolicyPage() {
               set. Please note that disabling cookies may limit some functionality on our Site. For
               instructions specific to your browser, refer to its help documentation or visit{' '}
               <a
-                href="https://www.allaboutcookies.org"
+                href="https://allaboutcookies.org"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: '#2771B0', textDecoration: 'underline', textUnderlineOffset: '2px' }}

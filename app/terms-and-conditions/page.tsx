@@ -5,7 +5,8 @@ import SectionLabel from '@/components/SectionLabel'
 
 export const metadata: Metadata = {
   title: 'Terms and Conditions',
-  description: 'Terms and conditions for using the Crafted Kitchen and Bath website.',
+  description:
+    'Terms for using the Crafted Kitchen & Bath website: how its content may be used, disclaimers and liability limits, third-party links and governing law.',
   alternates: { canonical: '/terms-and-conditions' },
   openGraph: pageOg('/terms-and-conditions'),
 }

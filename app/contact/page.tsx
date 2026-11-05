@@ -7,7 +7,7 @@ import AskCrewPrompt from "@/components/AskCrewPrompt";
 export const metadata: Metadata = {
   title: "Contact Us | Free Consultation",
   description:
-    "Request a free kitchen or bathroom remodeling consultation in Tampa Bay. We serve Oldsmar, Clearwater, Palm Harbor, Tampa, and all of Pinellas County. Licensed CGC1541816.",
+    "Request a free kitchen or bathroom remodeling consultation. Serving Oldsmar, Clearwater, Palm Harbor, Tampa and all of Pinellas County. Licensed CGC1541816.",
   alternates: { canonical: "/contact" },
   openGraph: pageOg("/contact"),
 };

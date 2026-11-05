@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BASE_OG } from "@/lib/seo";
+import { BASE_OG, fitDescription, fitTitle } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import SectionLabel from "@/components/SectionLabel";
@@ -23,8 +23,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = getArticle(slug);
   if (post) {
     return {
-      title: post.metaTitle,
-      description: post.metaDescription,
+      title: fitTitle(post.metaTitle),
+      description: fitDescription(post.metaDescription),
       alternates: { canonical: `${SITE}/blog/${post.slug}` },
       openGraph: {
         ...BASE_OG,
@@ -39,8 +39,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const remote = await getRemotePost(slug);
   if (!remote) return {};
   return {
-    title: remote.seo_title || remote.title,
-    description: remote.seo_description || remote.excerpt || undefined,
+    title: fitTitle(remote.seo_title || remote.title),
+    description: fitDescription(remote.seo_description || remote.excerpt || "") || undefined,
     alternates: { canonical: `${SITE}/blog/${remote.slug}` },
     openGraph: {
       ...BASE_OG,

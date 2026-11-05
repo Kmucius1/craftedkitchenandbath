@@ -8,7 +8,7 @@ import AskCrewPrompt from '@/components/AskCrewPrompt'
 export const metadata: Metadata = {
   title: 'Kitchen & Bathroom Remodeling FAQs',
   description:
-    'Answers to common questions about kitchen remodeling, bathroom renovation, countertops, cabinetry, and the remodeling process. Serving Pinellas and Hillsborough County FL.',
+    'Answers to common questions about kitchen and bathroom remodeling, countertops, cabinetry and the remodeling process, for Pinellas and Hillsborough County.',
   alternates: { canonical: '/faqs' },
   openGraph: pageOg('/faqs'),
 }

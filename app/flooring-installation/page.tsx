@@ -5,7 +5,7 @@ import Image from "next/image";
 import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
-  title: "Flooring Installation in Tampa Bay, FL",
+  title: "Flooring Installation Tampa Bay, FL",
   description:
     "Flooring installation across Tampa Bay: luxury vinyl plank, porcelain tile and hardwood, paired with kitchen and bath remodels. Licensed contractor.",
   alternates: { canonical: "/flooring-installation" },

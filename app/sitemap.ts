@@ -2,10 +2,15 @@ import type { MetadataRoute } from 'next'
 import { serviceAreas } from '@/lib/service-areas'
 import { servicePages } from '@/lib/service-pages'
 import { blogArticles, articleDate } from '@/lib/blog-articles'
+import { getRemotePosts } from '@/lib/remote-blog'
+import { DEMO_PRODUCTS } from '@/lib/designer/demo-data'
+
+// Rebuilt hourly so posts published from DRYP Hub show up without a deploy.
+export const revalidate = 3600
 
 const BASE_URL = 'https://craftedkitchenandbath.com'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const cityPages: MetadataRoute.Sitemap = serviceAreas.map((a) => ({
     url: `${BASE_URL}/areas-of-service/${a.slug}`,
     lastModified: new Date(),
@@ -25,6 +30,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(articleDate(a.slug)),
     changeFrequency: 'monthly',
     priority: 0.6,
+  }))
+
+  // Posts published from DRYP Hub (the local guides above are listed separately).
+  const localSlugs = new Set(blogArticles.map((a) => a.slug))
+  const remotePosts: MetadataRoute.Sitemap = (await getRemotePosts())
+    .filter((p) => !localSlugs.has(p.slug))
+    .map((p) => ({
+      url: `${BASE_URL}/blog/${p.slug}`,
+      lastModified: new Date(p.published_at),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    }))
+
+  const productPages: MetadataRoute.Sitemap = DEMO_PRODUCTS.map((p) => ({
+    url: `${BASE_URL}/catalog/${p.id}`,
+    changeFrequency: 'monthly',
+    priority: 0.4,
   }))
 
   return [
@@ -150,6 +172,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...newServicePages,
     ...blogPosts,
+    ...remotePosts,
     ...cityPages,
+    ...productPages,
   ]
 }

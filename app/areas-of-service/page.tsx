@@ -6,7 +6,7 @@ import SectionLabel from "@/components/SectionLabel";
 import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
-  title: "Service Areas: Pinellas & Hillsborough",
+  title: "Our Tampa Bay Service Areas",
   description:
     "Kitchen and bathroom remodeling across Oldsmar, Clearwater, Tampa, Palm Harbor, Dunedin, St. Petersburg and the rest of Pinellas and Hillsborough County.",
   alternates: { canonical: "/areas-of-service" },

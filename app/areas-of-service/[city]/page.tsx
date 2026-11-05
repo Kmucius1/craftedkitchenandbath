@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { BASE_OG } from "@/lib/seo";
+import { BASE_OG, fitDescription, fitTitle } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import SectionLabel from "@/components/SectionLabel";
@@ -28,8 +28,8 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
   // so strip the short "| Crafted" suffix the data uses to avoid doubling.
   const baseTitle = area.metaTitle.replace(/\s*\|\s*Crafted\s*$/i, "");
   return {
-    title: baseTitle,
-    description: area.metaDescription,
+    title: fitTitle(baseTitle),
+    description: fitDescription(area.metaDescription),
     alternates: { canonical: `${SITE}/areas-of-service/${area.slug}` },
     openGraph: {
       ...BASE_OG,

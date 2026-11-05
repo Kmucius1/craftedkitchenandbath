@@ -208,12 +208,12 @@ interface MsiCountertopRow {
 }
 
 const MSI_COUNTERTOP_ROWS: MsiCountertopRow[] = [
-  { name: "Calacatta Elysio", collection: "Q Premium Natural Quartz", color: "White base, warm veining, taupe/beige/gray tones", hex: "#f2f0ec", url: "https://www.msisurfaces.com/quartz-countertops/calacatta-elysio-quartz/" },
-  { name: "Arctic White", collection: "Q Premium Natural Quartz", color: "Solid bright white", hex: "#f7f6f3", url: "https://www.msisurfaces.com/quartz-countertops/arctic-white-quartz/" },
-  { name: "Montclair White", collection: "Q Premium Natural Quartz", color: "White with brown/taupe marble-look movement", hex: "#eeece5", url: "https://www.msisurfaces.com/quartz-countertops/montclair-white-quartz/" },
-  { name: "Fossil Gray", collection: "Q Premium Natural Quartz", color: "Mid-tone gray, limestone-style", hex: "#c7c8c6", url: "https://www.msisurfaces.com/quartz-countertops/fossil-gray-quartz/" },
-  { name: "Calacatta Laza", collection: "House of Laza Collection", color: "Milky white with dramatic brown veining", hex: "#eee9df", url: "https://www.msisurfaces.com/quartz-countertops/calacatta-laza-quartz/" },
-  { name: "Aruca White", collection: "Q Premium Natural Quartz", color: "Warm white, fine sand-like grain", hex: "#efe9df", url: "https://www.msisurfaces.com/quartz-countertops/aruca-white-quartz/" },
+  { name: "Calacatta Elysio", collection: "Q Premium Natural Quartz", color: "White base, warm veining, taupe/beige/gray tones", hex: "#f2f0ec", url: "https://www.msisurfaces.com/mineral-surfaces/calacatta-elysio/" },
+  { name: "Arctic White", collection: "Q Premium Natural Quartz", color: "Solid bright white", hex: "#f7f6f3", url: "https://www.msisurfaces.com/mineral-surfaces/arctic-white/" },
+  { name: "Montclair White", collection: "Q Premium Natural Quartz", color: "White with brown/taupe marble-look movement", hex: "#eeece5", url: "https://www.msisurfaces.com/mineral-surfaces/montclair-white/" },
+  { name: "Fossil Gray", collection: "Q Premium Natural Quartz", color: "Mid-tone gray, limestone-style", hex: "#c7c8c6", url: "https://www.msisurfaces.com/mineral-surfaces/fossil-gray/" },
+  { name: "Calacatta Laza", collection: "House of Laza Collection", color: "Milky white with dramatic brown veining", hex: "#eee9df", url: "https://www.msisurfaces.com/mineral-surfaces/calacatta-laza/" },
+  { name: "Aruca White", collection: "Q Premium Natural Quartz", color: "Warm white, fine sand-like grain", hex: "#efe9df", url: "https://www.msisurfaces.com/mineral-surfaces/aruca-white/" },
 ];
 
 export const DEMO_COUNTERTOPS: Product[] = MSI_COUNTERTOP_ROWS.map((row, i) => ({
@@ -374,7 +374,7 @@ export const DEMO_FLOORING: Product[] = [
     model3dStatus: "none",
     availability: "confirmation-required",
     approvedSurfaceTypes: ["floor"],
-    sourceUrl: "https://www.msisurfaces.com/luxury-vinyl-flooring/cyrus/",
+    sourceUrl: "https://www.msisurfaces.com/luxury-vinyl-planks/cyrus/",
     isDemo: false,
   },
   {

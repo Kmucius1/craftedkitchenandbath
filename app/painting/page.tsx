@@ -7,7 +7,7 @@ import CTASection from "@/components/CTASection";
 export const metadata: Metadata = {
   title: "Interior Painting in Tampa Bay, FL",
   description:
-    "Expert interior painting services to complement your kitchen or bathroom remodel. Clean, crisp finishes across Pinellas and Hillsborough County. Licensed contractor. Free quote.",
+    "Interior painting to complete your kitchen or bathroom remodel. Clean, crisp finishes across Pinellas and Hillsborough County. Licensed contractor. Free quote.",
   alternates: { canonical: "/painting" },
   openGraph: pageOg("/painting"),
 };

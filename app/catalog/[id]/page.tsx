@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { pageOg } from '@/lib/seo'
+import { fitDescription, fitTitle, pageOg } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
@@ -14,6 +14,15 @@ const CATEGORY_LABELS: Record<string, string> = {
   hardware: 'Hardware', sinks: 'Sinks', plumbing: 'Plumbing',
 }
 
+// Several products share a name across sizes (e.g. "Double Door Double Drawer
+// Base" in 30/33/36 inch). Those get their size or SKU in the title and
+// description so every product page is distinct in search results.
+const NAME_COUNTS = DEMO_PRODUCTS.reduce((m, p) => m.set(p.name, (m.get(p.name) ?? 0) + 1), new Map<string, number>())
+const distinctName = (p: (typeof DEMO_PRODUCTS)[number]) =>
+  (NAME_COUNTS.get(p.name) ?? 0) < 2
+    ? p.name
+    : `${p.name} ${p.dimensions ? `${p.dimensions.widthIn}″ × ${p.dimensions.heightIn}″` : p.supplierSku}`
+
 export function generateStaticParams() {
   return DEMO_PRODUCTS.map((p) => ({ id: p.id }))
 }
@@ -23,8 +32,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const p = DEMO_PRODUCTS.find((x) => x.id === id)
   if (!p) return { title: 'Product not found' }
   return {
-    title: `${p.name} (${p.supplier})`,
-    description: `${p.name} from ${p.supplier}${p.collection ? `, ${p.collection}` : ''}. See every size, color and finish, then request pricing from Crafted Kitchen & Bath.`,
+    // The supplier is dropped from the title when the name alone is already long.
+    title: fitTitle(`${distinctName(p)} (${p.supplier})`.length + 25 <= 60 ? `${distinctName(p)} (${p.supplier})` : distinctName(p)),
+    description: fitDescription(`${distinctName(p)} from ${p.supplier}${p.collection ? `, ${p.collection}` : ''}. See every size, color and finish, then request pricing from Crafted Kitchen & Bath.`),
     alternates: { canonical: `/catalog/${p.id}` },
     openGraph: pageOg(`/catalog/${p.id}`),
   }

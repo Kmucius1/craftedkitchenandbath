@@ -117,6 +117,20 @@ export default async function CatalogPage({
   const first = sorted.length ? (current - 1) * PER_PAGE + 1 : 0
   const last = Math.min(current * PER_PAGE, sorted.length)
 
+  // The products on this page, as a list search engines can read.
+  const itemListJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Product catalog',
+    numberOfItems: sorted.length,
+    itemListElement: items.map((p, i) => ({
+      '@type': 'ListItem',
+      position: first + i,
+      url: `https://craftedkitchenandbath.com/catalog/${p.id}`,
+      name: p.name,
+    })),
+  }
+
   const href = (over: { cat?: string | null; supplier?: string | null; q?: null; sort?: Sort; page?: number }) => {
     const sp = new URLSearchParams()
     const c = over.cat === undefined ? cat : over.cat
@@ -180,6 +194,7 @@ export default async function CatalogPage({
 
   return (
     <main style={{ background: '#F7F8FA' }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
       {/* Hero: photo under a dark wash, same treatment as every other page */}
       <section style={{ position: 'relative', backgroundColor: INK, padding: '120px 24px 0', overflow: 'hidden' }}>
         <Image src="/images/hero-kitchen.jpg" alt="" fill priority sizes="100vw" style={{ objectFit: 'cover', objectPosition: 'center 55%' }} />
