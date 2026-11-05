@@ -23,6 +23,9 @@ const distinctName = (p: (typeof DEMO_PRODUCTS)[number]) =>
     ? p.name
     : `${p.name} ${p.dimensions ? `${p.dimensions.widthIn}″ × ${p.dimensions.heightIn}″` : p.supplierSku}`
 
+// Only the addresses listed below exist; anything else is a real 404.
+export const dynamicParams = false
+
 export function generateStaticParams() {
   return DEMO_PRODUCTS.map((p) => ({ id: p.id }))
 }

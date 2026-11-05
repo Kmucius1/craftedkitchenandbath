@@ -10,6 +10,9 @@ import { getServicePage, servicePages } from "@/lib/service-pages";
 const SITE = "https://craftedkitchenandbath.com";
 const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";
 
+// Only the addresses listed below exist; anything else is a real 404.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return servicePages.map((s) => ({ slug: s.slug }));
 }

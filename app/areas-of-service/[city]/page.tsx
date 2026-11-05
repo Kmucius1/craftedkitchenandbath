@@ -16,6 +16,9 @@ const SERVICES = [
   { label: "Painting", href: "/painting" },
 ];
 
+// Only the addresses listed below exist; anything else is a real 404.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return serviceAreas.map((a) => ({ city: a.slug }));
 }
