@@ -30,11 +30,11 @@ export default function ConsentCheckbox({
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
-        style={{ width: 18, height: 18, marginTop: 2, flexShrink: 0, accentColor: "#2B7CC1" }}
+        style={{ width: 18, height: 18, marginTop: 2, flexShrink: 0, accentColor: "#2771B0" }}
       />
       <span>
         {CONSENT_TEXT}{" "}
-        <a href="/privacy-policy" style={{ color: "#2B7CC1", textDecoration: "underline" }}>
+        <a href="/privacy-policy" style={{ color: "#2771B0", textDecoration: "underline" }}>
           Privacy Policy
         </a>
         .
