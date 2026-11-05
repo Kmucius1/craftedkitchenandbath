@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import type { Product } from '@/lib/designer/types'
 import { isPlaceholderImage } from '@/lib/catalog/placeholder'
+import { optimizedSrc } from '@/lib/catalog/image'
 import { cabinet3DSpec } from '@/lib/designer/cabinet-spec'
 import { USCD_FINISHES, finishGrain } from '@/lib/designer/uscd-finishes'
 import { getVerification, isVerified, statusLabel } from '@/lib/catalog/verification'
@@ -89,10 +90,10 @@ export default function QuickView({ product, onClose }: { product: Product; onCl
               <CabinetViewer spec={spec} label={`${product.name}, ${product.supplier}`} fallbackSrc={product.imageUrl} color={color ? swatchOf(color) : undefined} grain={color ? finishGrain(color) : false} />
             ) : active?.kind === 'image' ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={active.url} alt={active.caption} className={`absolute inset-0 h-full w-full ${active.fit === 'cover' ? 'object-cover' : 'object-contain p-5'}`} />
+              <img src={optimizedSrc(active.url)} alt={active.caption} className={`absolute inset-0 h-full w-full ${active.fit === 'cover' ? 'object-cover' : 'object-contain p-5'}`} />
             ) : (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={product.imageUrl} alt={product.name} className="absolute inset-0 h-full w-full object-contain p-5" />
+              <img src={optimizedSrc(product.imageUrl)} alt={product.name} className="absolute inset-0 h-full w-full object-contain p-5" />
             )}
           </div>
           {active && (

@@ -878,7 +878,7 @@ export default function AboutUsPage() {
                   fontSize: "10px",
                   letterSpacing: "0.24em",
                   textTransform: "uppercase",
-                  color: "#6B7280",
+                  color: "#4A5568",
                   margin: 0,
                   fontVariant: "small-caps",
                 }}
@@ -918,7 +918,7 @@ export default function AboutUsPage() {
                   fontSize: "10px",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  color: "#6B7280",
+                  color: "#4A5568",
                   margin: 0,
                 }}
               >

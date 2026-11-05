@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { Product } from '@/lib/designer/types'
 import { isPlaceholderImage } from '@/lib/catalog/placeholder'
+import { canOptimize } from '@/lib/catalog/image'
 import { cabinet3DSpec } from '@/lib/designer/cabinet-spec'
 import CabinetViewer from './CabinetViewer'
 import QuickView from './QuickView'
@@ -34,26 +35,6 @@ const SWATCH: Record<string, string> = {
   gray: '#9CA3AF', grey: '#9CA3AF', 'light gray': '#D1D5DB', 'light grey': '#D1D5DB', charcoal: '#4B5563',
   black: '#16191F', brown: '#7B5B3E', tan: '#C9AE87', blue: '#4A7FB5', green: '#6B8F71', red: '#B2453C',
 }
-/** Hosts the image optimizer is allowed to fetch (next.config.ts remotePatterns). Anything else is shown as-is. */
-const OPTIMIZED_HOSTS = new Set([
-  'internationalwholesaletile.com',
-  'www.msisurfaces.com',
-  'cdn.msisurfaces.com',
-  'topknobsupply.com',
-  'www.cabinetparts.com',
-  'static.homebydecor.com',
-  'prod-uscd-product-files.s3.amazonaws.com',
-])
-const canOptimize = (src: string) => {
-  if (src.startsWith('/')) return true
-  try {
-    const u = new URL(src)
-    return u.protocol === 'https:' && OPTIMIZED_HOSTS.has(u.hostname)
-  } catch {
-    return false
-  }
-}
-
 const swatchOf = (name: string) => USCD_FINISHES.find((f) => f.name.toLowerCase() === name.trim().toLowerCase())?.hex ?? SWATCH[name.trim().toLowerCase()] ?? '#E5E7EB'
 
 

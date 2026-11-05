@@ -24,7 +24,10 @@ export default function SiteAnimations() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const vh = window.innerHeight;
-    const belowFold = (el: Element) => el.getBoundingClientRect().top > vh * 0.82;
+    // Only content that starts fully off-screen is hidden for the reveal. Anything
+    // a visitor can already see stays put: hiding it and fading it back in
+    // delays the page's largest paint (LCP) by seconds on phones.
+    const belowFold = (el: Element) => el.getBoundingClientRect().top >= vh;
 
     const reveal = (el: Element) => {
       el.classList.remove('sa-hidden', 'sa-hidden-soft');

@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import type { Product } from '@/lib/designer/types'
 import { isPlaceholderImage } from '@/lib/catalog/placeholder'
+import { optimizedSrc } from '@/lib/catalog/image'
 import { cabinet3DSpec } from '@/lib/designer/cabinet-spec'
 import { FAMILY_BLURB, USCD_FINISHES, finishGrain, type FinishFamily } from '@/lib/designer/uscd-finishes'
 import { getVerification, isVerified, statusLabel } from '@/lib/catalog/verification'
@@ -61,10 +62,10 @@ export default function ProductDetail({ product }: { product: Product }) {
             <CabinetViewer spec={spec} label={`${product.name}, ${product.supplier}`} fallbackSrc={product.imageUrl} color={finish?.hex} grain={finish ? finishGrain(finish.name) : false} />
           ) : active?.kind === 'image' ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={active.url} alt={active.caption} className="absolute inset-0 h-full w-full" style={{ objectFit: active.fit, padding: active.fit === 'contain' ? '24px' : 0 }} />
+            <img src={optimizedSrc(active.url)} alt={active.caption} className="absolute inset-0 h-full w-full" style={{ objectFit: active.fit, padding: active.fit === 'contain' ? '24px' : 0 }} />
           ) : (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={product.imageUrl} alt={product.name} className="absolute inset-0 h-full w-full object-contain p-6" />
+            <img src={optimizedSrc(product.imageUrl)} alt={product.name} className="absolute inset-0 h-full w-full object-contain p-6" />
           )}
         </div>
         <p style={{ margin: '10px 2px 0', fontSize: '12px', color: '#4A5568' }}>

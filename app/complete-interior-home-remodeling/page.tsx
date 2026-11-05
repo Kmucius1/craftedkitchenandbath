@@ -893,7 +893,7 @@ export default function CompleteInteriorRemodelingPage() {
                         style={{
                           fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                           fontSize: "10px",
-                          color: "rgba(43,124,193,0.5)",
+                          color: "#2771B0",
                           letterSpacing: "0.1em",
                           flexShrink: 0,
                         }}
