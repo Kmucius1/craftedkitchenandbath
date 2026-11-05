@@ -37,7 +37,7 @@ export default function WarrantyPage() {
       <div style={{ backgroundColor: "#F7F8FA" }}>
         <section style={{ backgroundColor: "#F7F8FA", padding: "96px 24px 56px" }}>
           <div style={{ maxWidth: "820px", margin: "0 auto" }}>
-            <div style={{ marginBottom: "40px" }}><Breadcrumb items={[{ label: "Warranty" }]} /></div>
+            <div style={{ marginBottom: "40px" }}><Breadcrumb tone="light" items={[{ label: "Warranty" }]} /></div>
             <SectionLabel>Our Commitment</SectionLabel>
             <h1 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "clamp(36px, 5vw, 60px)", color: "#1A202C", lineHeight: 1.15, margin: "24px 0 20px" }}>
               Craftsmanship You Can Count On

@@ -284,7 +284,7 @@ export default function FlooringInstallationPage() {
         }}
       >
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <p
+          <h2
             style={{
               fontSize: "11px",
               letterSpacing: "0.18em",
@@ -295,7 +295,7 @@ export default function FlooringInstallationPage() {
             }}
           >
             Flooring Types
-          </p>
+          </h2>
 
           <div
             style={{
@@ -479,6 +479,9 @@ export default function FlooringInstallationPage() {
                 }}
               >
                 <span
+                  className="deco-num"
+                  data-n={step.num}
+                  aria-hidden="true"
                   style={{
                     fontSize: "36px",
                     fontWeight: 300,
@@ -486,9 +489,7 @@ export default function FlooringInstallationPage() {
                     lineHeight: 1,
                     letterSpacing: "-0.02em",
                   }}
-                >
-                  {step.num}
-                </span>
+                />
 
                 <div
                   style={{

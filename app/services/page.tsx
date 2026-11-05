@@ -261,6 +261,9 @@ export default function ServicesPage() {
               >
                 {/* Number */}
                 <span
+                  className="deco-num"
+                  data-n={service.num}
+                  aria-hidden="true"
                   style={{
                     fontSize: "40px",
                     color: "rgba(43,124,193,0.18)",
@@ -269,9 +272,7 @@ export default function ServicesPage() {
                     letterSpacing: "-0.02em",
                     display: "block",
                   }}
-                >
-                  {service.num}
-                </span>
+                />
 
                 {/* Accent line */}
                 <div

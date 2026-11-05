@@ -199,7 +199,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {svc.process.map((p) => (
               <div key={p.step} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                <span style={{ fontSize: "40px", color: "rgba(43,124,193,0.22)", fontWeight: 300, lineHeight: 1, fontFamily: headingFont }}>{p.step}</span>
+                <span className="deco-num" data-n={p.step} aria-hidden="true" style={{ fontSize: "40px", color: "rgba(43,124,193,0.22)", fontWeight: 300, lineHeight: 1, fontFamily: headingFont }} />
                 <h3 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "19px", color: "#1A202C", margin: 0, lineHeight: 1.3 }}>{p.title}</h3>
                 <p style={{ fontSize: "14px", lineHeight: 1.8, color: "#4A5568", margin: 0 }}>{p.body}</p>
               </div>

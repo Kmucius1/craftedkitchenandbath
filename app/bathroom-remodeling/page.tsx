@@ -763,8 +763,11 @@ export default function BathroomRemodelingPage() {
                   alignItems: "start",
                 }}
               >
-                {/* Step number */}
+                {/* Step number (decorative, drawn by CSS) */}
                 <span
+                  className="deco-num"
+                  data-n={item.step}
+                  aria-hidden="true"
                   style={{
                     fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontSize: "clamp(28px, 4vw, 40px)",
@@ -774,9 +777,7 @@ export default function BathroomRemodelingPage() {
                     opacity: 0.6,
                     flexShrink: 0,
                   }}
-                >
-                  {item.step}
-                </span>
+                />
 
                 {/* Content */}
                 <div

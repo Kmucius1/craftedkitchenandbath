@@ -382,7 +382,7 @@ export default function QuoteWizard() {
     <div id="quote-top" className="quote-card quote-shell" style={{ scrollMarginTop: "120px" }}>
       {/* ── LEFT RAIL (desktop) — stepper + reassurance ─────────────────── */}
       <aside className="quote-rail">
-        <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: ACCENT, fontWeight: 700, margin: "0 0 28px" }}>
+        <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "10px", letterSpacing: "0.2em", textTransform: "uppercase", color: "#6BA6DC", fontWeight: 700, margin: "0 0 28px" }}>
           Free Project Quote
         </p>
 
@@ -391,7 +391,7 @@ export default function QuoteWizard() {
             const done = i < currentIndex;
             const active = i === currentIndex;
             return (
-              <li key={label} style={{ display: "flex", alignItems: "center", gap: "14px", padding: "9px 0", opacity: active || done ? 1 : 0.45, transition: "opacity 0.25s ease" }}>
+              <li key={label} style={{ display: "flex", alignItems: "center", gap: "14px", padding: "9px 0", opacity: active || done ? 1 : 0.7, transition: "opacity 0.25s ease" }}>
                 <span
                   aria-hidden="true"
                   style={{

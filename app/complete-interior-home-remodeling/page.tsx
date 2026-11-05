@@ -405,6 +405,9 @@ export default function CompleteInteriorRemodelingPage() {
               >
                 {/* Number */}
                 <span
+                  className="deco-num"
+                  data-n={scope.num}
+                  aria-hidden="true"
                   style={{
                     fontSize: "36px",
                     color: "rgba(43,124,193,0.18)",
@@ -413,9 +416,7 @@ export default function CompleteInteriorRemodelingPage() {
                     letterSpacing: "-0.02em",
                     display: "block",
                   }}
-                >
-                  {scope.num}
-                </span>
+                />
 
                 {/* Blue accent */}
                 <div

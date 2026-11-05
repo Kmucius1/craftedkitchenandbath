@@ -39,7 +39,7 @@ export default function ProcessPage() {
       <div style={{ backgroundColor: "#F7F8FA" }}>
         <section style={{ backgroundColor: "#F7F8FA", padding: "96px 24px 56px" }}>
           <div style={{ maxWidth: "820px", margin: "0 auto" }}>
-            <div style={{ marginBottom: "40px" }}><Breadcrumb items={[{ label: "Our Process" }]} /></div>
+            <div style={{ marginBottom: "40px" }}><Breadcrumb tone="light" items={[{ label: "Our Process" }]} /></div>
             <SectionLabel>What to Expect</SectionLabel>
             <h1 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "clamp(36px, 5vw, 60px)", color: "#1A202C", lineHeight: 1.15, margin: "24px 0 20px" }}>
               Our Remodeling Process
@@ -54,7 +54,7 @@ export default function ProcessPage() {
           <div style={{ maxWidth: "820px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "8px" }}>
             {steps.map((s) => (
               <div key={s.n} style={{ display: "grid", gridTemplateColumns: "72px 1fr", gap: "20px", padding: "28px 0", borderTop: "1px solid rgba(0,0,0,0.08)" }}>
-                <span style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "40px", color: "rgba(43,124,193,0.3)", lineHeight: 1 }}>{s.n}</span>
+                <span className="deco-num" data-n={s.n} aria-hidden="true" style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "40px", color: "rgba(43,124,193,0.3)", lineHeight: 1 }} />
                 <div>
                   <h2 style={{ fontFamily: headingFont, fontWeight: 400, fontSize: "24px", color: "#1A202C", margin: "0 0 10px", lineHeight: 1.25 }}>{s.title}</h2>
                   <p style={{ fontSize: "15px", lineHeight: 1.8, color: "#4A5568", margin: 0 }}>{s.body}</p>

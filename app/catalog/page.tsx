@@ -149,7 +149,7 @@ export default async function CatalogPage({
                     className={`flex items-center justify-between gap-3 rounded-md px-3 py-2 text-[14px] transition-colors ${active ? 'bg-[#EBF4FF] font-semibold text-[#1E5C96]' : 'text-[#4A5568] hover:bg-black/[0.04] hover:text-[#111822]'}`}
                   >
                     <span>{c.label}</span>
-                    <span className="text-[12px] text-[#6B7280]">{c.n}</span>
+                    <span className="text-[12px] text-[#4A5568]">{c.n}</span>
                   </Link>
                 )
               })}
@@ -169,7 +169,7 @@ export default async function CatalogPage({
                     className={`flex items-center justify-between gap-3 rounded-md px-3 py-1.5 text-[13px] transition-colors ${active ? 'bg-[#EBF4FF] font-semibold text-[#1E5C96]' : 'text-[#4A5568] hover:bg-black/[0.04] hover:text-[#111822]'}`}
                   >
                     <span>{name}</span>
-                    <span className="text-[12px] text-[#6B7280]">{supplierCounts.get(name)}</span>
+                    <span className="text-[12px] text-[#4A5568]">{supplierCounts.get(name)}</span>
                   </Link>
                 )
               })}

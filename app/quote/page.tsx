@@ -98,7 +98,7 @@ export default function QuotePage() {
                 fontSize: "11px",
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color: "#6B7280",
+                color: "#4A5568",
                 margin: 0,
                 lineHeight: 1.5,
               }}
