@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOg } from "@/lib/seo";
 import CTASection from "@/components/CTASection";
 import QuoteWizard from "@/components/QuoteWizard";
 
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "Answer a few quick questions about your kitchen, bathroom or whole-home remodel and get a free, personalized consultation. Serving Tampa Bay. Licensed.",
   alternates: { canonical: "/quote" },
+  openGraph: pageOg("/quote"),
 };
 
 const trust = [

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { pageOg } from '@/lib/seo'
 import Link from 'next/link'
 import SectionLabel from '@/components/SectionLabel'
 import CTASection from '@/components/CTASection'
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
   description:
     'Answers to common questions about kitchen remodeling, bathroom renovation, countertops, cabinetry, and the remodeling process. Serving Pinellas and Hillsborough County FL.',
   alternates: { canonical: '/faqs' },
+  openGraph: pageOg('/faqs'),
 }
 
 // ─────────────────────────────────────────────

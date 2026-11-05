@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOg } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import SectionLabel from "@/components/SectionLabel";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
   description:
     "Remodeling tips, cost guides, and material comparisons from the Crafted Kitchen and Bath team. Serving Oldsmar, Pinellas County, and the Tampa Bay area.",
   alternates: { canonical: "/blog" },
+  openGraph: pageOg("/blog"),
 };
 
 interface ListPost {

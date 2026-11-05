@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BASE_OG } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import SectionLabel from "@/components/SectionLabel";
@@ -31,6 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
     description: area.metaDescription,
     alternates: { canonical: `${SITE}/areas-of-service/${area.slug}` },
     openGraph: {
+      ...BASE_OG,
       title: `${baseTitle} | Crafted Kitchen & Bath`,
       description: area.metaDescription,
       url: `${SITE}/areas-of-service/${area.slug}`,

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOg } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import SectionLabel from "@/components/SectionLabel";
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
   description:
     "Whole-home interior remodeling led by kitchen and bath specialists. One licensed team for kitchens, baths, flooring and paint across Tampa Bay.",
   alternates: { canonical: "/complete-interior-home-remodeling" },
+  openGraph: pageOg("/complete-interior-home-remodeling"),
 };
 
 // ── JSON-LD ──────────────────────────────────────────────────────────────────

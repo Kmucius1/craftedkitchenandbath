@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOg } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import CTASection from "@/components/CTASection";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/kitchen-remodeling",
   },
+  openGraph: pageOg("/kitchen-remodeling"),
 };
 
 const serviceJsonLd = {

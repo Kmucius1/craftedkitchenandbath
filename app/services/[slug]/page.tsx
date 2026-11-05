@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BASE_OG } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,6 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: svc.metaDescription,
     alternates: { canonical: `${SITE}/services/${svc.slug}` },
     openGraph: {
+      ...BASE_OG,
       title: `${svc.metaTitle} | Crafted Kitchen & Bath`,
       description: svc.metaDescription,
       url: `${SITE}/services/${svc.slug}`,

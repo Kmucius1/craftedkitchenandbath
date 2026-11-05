@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOg } from "@/lib/seo";
 import SectionLabel from "@/components/SectionLabel";
 import CTASection from "@/components/CTASection";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   description:
     "Crafted Kitchen & Bath stands behind its work. A licensed, insured Tampa Bay remodeler (CGC1541816) committed to craftsmanship you can count on.",
   alternates: { canonical: "/warranty" },
+  openGraph: pageOg("/warranty"),
 };
 
 const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";

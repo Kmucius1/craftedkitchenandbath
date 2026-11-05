@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOg } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import CTASection from "@/components/CTASection";
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   description:
     "Expert interior painting services to complement your kitchen or bathroom remodel. Clean, crisp finishes across Pinellas and Hillsborough County. Licensed contractor. Free quote.",
   alternates: { canonical: "/painting" },
+  openGraph: pageOg("/painting"),
 };
 
 const serviceJsonLd = {

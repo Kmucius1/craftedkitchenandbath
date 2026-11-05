@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOg } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import CTASection from "@/components/CTASection";
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   description:
     "Kitchen remodeling, bathroom renovations, flooring, painting and full interior remodels across Pinellas and Hillsborough County, FL. Licensed contractor.",
   alternates: { canonical: "/services" },
+  openGraph: pageOg("/services"),
 };
 
 const breadcrumbJsonLd = {

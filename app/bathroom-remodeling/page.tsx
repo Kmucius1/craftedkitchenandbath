@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { pageOg } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import SectionLabel from "@/components/SectionLabel";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/bathroom-remodeling",
   },
+  openGraph: pageOg("/bathroom-remodeling"),
 };
 
 const serviceJsonLd = {

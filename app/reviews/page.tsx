@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOg } from "@/lib/seo";
 import Link from "next/link";
 import SectionLabel from "@/components/SectionLabel";
 import CTASection from "@/components/CTASection";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
   description:
     "Real 5-star Google reviews from Crafted Kitchen & Bath clients across Tampa Bay, for kitchen, bathroom, flooring and interior remodels.",
   alternates: { canonical: "/reviews" },
+  openGraph: pageOg("/reviews"),
 };
 
 const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";

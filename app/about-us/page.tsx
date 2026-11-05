@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOg } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import BuildTogetherCTA from "@/components/BuildTogetherCTA";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
   description:
     "Meet Crafted Kitchen & Bath, Oldsmar's licensed kitchen and bathroom remodeler (CGC1541816), with 250+ homes transformed across Pinellas and Hillsborough.",
   alternates: { canonical: "/about-us" },
+  openGraph: pageOg("/about-us"),
 };
 
 const jsonLd = {

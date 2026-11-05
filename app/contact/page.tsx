@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOg } from "@/lib/seo";
 import CTASection from "@/components/CTASection";
 import ContactForm from "@/components/ContactForm";
 import AskCrewPrompt from "@/components/AskCrewPrompt";
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   description:
     "Request a free kitchen or bathroom remodeling consultation in Tampa Bay. We serve Oldsmar, Clearwater, Palm Harbor, Tampa, and all of Pinellas County. Licensed CGC1541816.",
   alternates: { canonical: "/contact" },
+  openGraph: pageOg("/contact"),
 };
 
 const contactPageJsonLd = {

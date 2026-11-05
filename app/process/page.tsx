@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOg } from "@/lib/seo";
 import Link from "next/link";
 import SectionLabel from "@/components/SectionLabel";
 import CTASection from "@/components/CTASection";
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
   description:
     "What to expect when you remodel with Crafted Kitchen & Bath in Tampa Bay — from your free in-home consultation through design, build, and final walkthrough.",
   alternates: { canonical: "/process" },
+  openGraph: pageOg("/process"),
 };
 
 const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";

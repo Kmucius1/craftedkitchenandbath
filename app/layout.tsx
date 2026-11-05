@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import SiteChrome from "@/components/SiteChrome";
 import CampaignCapture from "@/components/CampaignCapture";
+import { BASE_OG, organizationJsonLd } from "@/lib/seo";
 
 const montserrat = Montserrat({
   variable: "--font-display",
@@ -29,19 +30,7 @@ export const metadata: Metadata = {
   },
   description:
     "Tampa Bay's premier kitchen and bathroom remodeling contractor. Custom kitchens, spa-inspired bathrooms, luxury countertops, and complete interior renovations across Pinellas & Hillsborough County. Licensed CGC1541816. Free consultations.",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    siteName: "Crafted Kitchen & Bath",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Crafted Kitchen & Bath, kitchen and bathroom remodeling in Tampa Bay",
-      },
-    ],
-  },
+  openGraph: BASE_OG,
   twitter: {
     card: "summary_large_image",
   },
@@ -91,6 +80,10 @@ export default function RootLayout({
             </Script>
           </>
         )}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <CampaignCapture />
         <SiteChrome>{children}</SiteChrome>
       </body>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOg } from "@/lib/seo";
 import Image from "next/image";
 import Link from "next/link";
 import SectionLabel from "@/components/SectionLabel";
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
   description:
     "Kitchen and bathroom remodeling across Oldsmar, Clearwater, Tampa, Palm Harbor, Dunedin, St. Petersburg and the rest of Pinellas and Hillsborough County.",
   alternates: { canonical: "/areas-of-service" },
+  openGraph: pageOg("/areas-of-service"),
 };
 
 const localBusinessSchema = {

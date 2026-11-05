@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOg } from "@/lib/seo";
 import Link from "next/link";
 import Image from "next/image";
 import CTASection from "@/components/CTASection";
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   description:
     "Flooring installation across Tampa Bay: luxury vinyl plank, porcelain tile and hardwood, paired with kitchen and bath remodels. Licensed contractor.",
   alternates: { canonical: "/flooring-installation" },
+  openGraph: pageOg("/flooring-installation"),
 };
 
 const serviceJsonLd = {

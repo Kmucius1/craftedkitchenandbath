@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { pageOg } from '@/lib/seo'
 import Link from 'next/link'
 import SectionLabel from '@/components/SectionLabel'
 
@@ -6,6 +7,7 @@ export const metadata: Metadata = {
   title: 'Terms and Conditions',
   description: 'Terms and conditions for using the Crafted Kitchen and Bath website.',
   alternates: { canonical: '/terms-and-conditions' },
+  openGraph: pageOg('/terms-and-conditions'),
 }
 
 const h2Style: React.CSSProperties = {

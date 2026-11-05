@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { pageOg } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import SectionLabel from '@/components/SectionLabel'
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
   description:
     'Browse real completed kitchen and bathroom remodeling projects by Crafted Kitchen & Bath across Oldsmar, Clearwater, Palm Harbor, Tampa, and Pinellas County.',
   alternates: { canonical: '/our-work' },
+  openGraph: pageOg('/our-work'),
 }
 
 // Real completed-project photos pulled from Crafted Kitchen & Bath's own library,

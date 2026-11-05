@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { pageOg } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
   description:
     'Browse the cabinets, countertops, tile, flooring, hardware, sinks and fixtures Crafted Kitchen & Bath sources for Tampa Bay remodels.',
   alternates: { canonical: '/catalog' },
+  openGraph: pageOg('/catalog'),
 }
 
 const INK = '#111822'

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { pageOg } from '@/lib/seo'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Breadcrumb from '@/components/Breadcrumb'
@@ -24,7 +25,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return {
     title: `${p.name} (${p.supplier})`,
     description: `${p.name} from ${p.supplier}${p.collection ? `, ${p.collection}` : ''}. See every size, color and finish, then request pricing from Crafted Kitchen & Bath.`,
-    alternates: { canonical: `https://craftedkitchenandbath.com/catalog/${p.id}` },
+    alternates: { canonical: `/catalog/${p.id}` },
+    openGraph: pageOg(`/catalog/${p.id}`),
   }
 }
 

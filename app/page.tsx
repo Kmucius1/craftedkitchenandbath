@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageOg } from "@/lib/seo";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,62 +13,17 @@ export const metadata: Metadata = {
   title: { absolute: "Kitchen & Bath Remodeling Tampa Bay | Crafted Kitchen & Bath" },
   description:
     "Kitchen remodeling and spa-inspired bathroom renovations across Tampa Bay. Custom cabinetry, countertops and tile. Licensed CGC1541816. Free consultation.",
-  openGraph: {
+  openGraph: pageOg("/", {
     title: "Kitchen & Bath Remodeling Tampa Bay | Crafted Kitchen & Bath",
     description:
       "Kitchen remodeling and spa-inspired bathroom renovations across Tampa Bay. Custom cabinetry, countertops and tile. Licensed CGC1541816. Free consultation.",
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Crafted Kitchen & Bath, kitchen and bathroom remodeling in Tampa Bay" }],
-  },
+  }),
   alternates: { canonical: "/" },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
-      "@id": "https://craftedkitchenandbath.com/#business",
-      name: "Crafted Kitchen and Bath",
-      url: "https://craftedkitchenandbath.com",
-      telephone: "+17273837550",
-      email: "info@craftedkitchenandbath.com",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "120 Commerce Blvd Suite 4",
-        addressLocality: "Oldsmar",
-        addressRegion: "FL",
-        postalCode: "34677",
-        addressCountry: "US",
-      },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: 28.0345,
-        longitude: -82.6654,
-      },
-      areaServed: [
-        "Pinellas County",
-        "Hillsborough County",
-        "Oldsmar",
-        "Clearwater",
-        "Tampa",
-        "Palm Harbor",
-        "Safety Harbor",
-        "Dunedin",
-        "St. Petersburg",
-        "Tarpon Springs",
-        "Largo",
-      ],
-      priceRange: "$$",
-      // NOTE: aggregateRating removed — Google requires it to reflect real,
-      // on-page, verifiable reviews. Restore once genuine reviews are displayed
-      // on the site (e.g. pulled from the Google Business Profile).
-      openingHoursSpecification: {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "08:00",
-        closes: "18:00",
-      },
-    },
     {
       "@type": "WebSite",
       "@id": "https://craftedkitchenandbath.com/#website",

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { pageOg } from '@/lib/seo'
 import Link from 'next/link'
 import SectionLabel from '@/components/SectionLabel'
 import Breadcrumb from '@/components/Breadcrumb'
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   description:
     'Privacy policy for Crafted Kitchen and Bath. Learn how we collect, use, and protect your personal information.',
   alternates: { canonical: '/privacy-policy' },
+  openGraph: pageOg('/privacy-policy'),
 }
 
 // ─── shared heading style ───────────────────────────────────────────────────

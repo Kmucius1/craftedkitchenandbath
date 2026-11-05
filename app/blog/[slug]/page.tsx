@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BASE_OG } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import SectionLabel from "@/components/SectionLabel";
@@ -26,6 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: post.metaDescription,
       alternates: { canonical: `${SITE}/blog/${post.slug}` },
       openGraph: {
+        ...BASE_OG,
         title: `${post.metaTitle} | Crafted Kitchen & Bath`,
         description: post.metaDescription,
         url: `${SITE}/blog/${post.slug}`,
@@ -41,6 +43,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: remote.seo_description || remote.excerpt || undefined,
     alternates: { canonical: `${SITE}/blog/${remote.slug}` },
     openGraph: {
+      ...BASE_OG,
       title: `${remote.seo_title || remote.title} | Crafted Kitchen & Bath`,
       description: remote.seo_description || remote.excerpt || undefined,
       url: `${SITE}/blog/${remote.slug}`,
