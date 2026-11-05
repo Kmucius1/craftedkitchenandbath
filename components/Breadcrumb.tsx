@@ -7,9 +7,17 @@ interface BreadcrumbItem {
 
 interface Props {
   items: Array<{ label: string; href?: string }>
+  /** 'dark' (default) for photo/ink headers, 'light' for pale page headers. */
+  tone?: 'dark' | 'light'
 }
 
-export default function Breadcrumb({ items }: Props) {
+const TONES = {
+  dark: { current: '#F5F0E8', link: '#8E8275', hover: 'hover:text-[#F5F0E8]' },
+  light: { current: '#1A202C', link: '#4A5568', hover: 'hover:text-[#1A202C]' },
+}
+
+export default function Breadcrumb({ items, tone = 'dark' }: Props) {
+  const t = TONES[tone]
   const allItems: BreadcrumbItem[] = [{ label: 'Home', href: '/' }, ...items]
 
   return (
@@ -22,7 +30,7 @@ export default function Breadcrumb({ items }: Props) {
             <li key={index} className="flex items-center gap-x-2">
               {isLast || !item.href ? (
                 <span
-                  style={{ color: '#F5F0E8' }}
+                  style={{ color: t.current }}
                   className="uppercase tracking-[0.14em]"
                   aria-current={isLast ? 'page' : undefined}
                 >
@@ -31,8 +39,8 @@ export default function Breadcrumb({ items }: Props) {
               ) : (
                 <Link
                   href={item.href}
-                  style={{ color: '#8E8275' }}
-                  className="uppercase tracking-[0.14em] transition-colors duration-200 hover:text-[#F5F0E8]"
+                  style={{ color: t.link }}
+                  className={`uppercase tracking-[0.14em] transition-colors duration-200 ${t.hover}`}
                 >
                   {item.label}
                 </Link>

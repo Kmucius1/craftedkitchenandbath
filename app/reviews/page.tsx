@@ -6,10 +6,10 @@ import Breadcrumb from "@/components/Breadcrumb";
 import { getGoogleReviews, GOOGLE_WRITE_REVIEW_URL } from "@/lib/reviews";
 
 export const metadata: Metadata = {
-  title: "Reviews | Crafted Kitchen & Bath | Tampa Bay Remodeling",
+  title: "Customer Reviews: Tampa Bay Remodeling",
   description:
-    "Read real 5-star Google reviews from Crafted Kitchen & Bath clients across Tampa Bay. Kitchen, bathroom, flooring, and full interior remodeling in Oldsmar, Clearwater, Palm Harbor & beyond.",
-  alternates: { canonical: "https://craftedkitchenandbath.com/reviews" },
+    "Real 5-star Google reviews from Crafted Kitchen & Bath clients across Tampa Bay, for kitchen, bathroom, flooring and interior remodels.",
+  alternates: { canonical: "/reviews" },
 };
 
 const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";
@@ -79,7 +79,7 @@ export default async function ReviewsPage() {
         <section style={{ backgroundColor: "#F7F8FA", padding: "96px 24px 48px" }}>
           <div style={{ maxWidth: "900px", margin: "0 auto" }}>
             <div style={{ marginBottom: "40px" }}>
-              <Breadcrumb items={[{ label: "Reviews" }]} />
+              <Breadcrumb tone="light" items={[{ label: "Reviews" }]} />
             </div>
             <SectionLabel>What Our Clients Say</SectionLabel>
             <h1 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "clamp(36px, 5vw, 60px)", color: "#1A202C", lineHeight: 1.15, margin: "24px 0 20px" }}>
@@ -133,7 +133,7 @@ export default async function ReviewsPage() {
               <Link href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "10px", border: "1px solid rgba(0,0,0,0.12)", padding: "14px 28px", textDecoration: "none", fontFamily: bodyFont, fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.16em", color: "#1A202C", fontWeight: 500 }} className="hover:bg-[#F7F8FA] transition-colors duration-200">
                 <GoogleIcon size={16} /> Read All Reviews on Google
               </Link>
-              <Link href={GOOGLE_WRITE_REVIEW_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "#2B7CC1", padding: "14px 28px", textDecoration: "none", fontFamily: bodyFont, fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.16em", color: "#FFFFFF", fontWeight: 500 }} className="hover:opacity-90 transition-opacity duration-200">
+              <Link href={GOOGLE_WRITE_REVIEW_URL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "10px", backgroundColor: "#2771B0", padding: "14px 28px", textDecoration: "none", fontFamily: bodyFont, fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.16em", color: "#FFFFFF", fontWeight: 500 }} className="hover:opacity-90 transition-opacity duration-200">
                 Leave Us a Review
               </Link>
             </div>

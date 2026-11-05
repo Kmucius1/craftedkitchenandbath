@@ -188,7 +188,7 @@ export default function Header() {
                            boxShadow: '0 8px 32px rgba(0,0,0,0.10)',
                          }}
                        >
-                        <div style={{ height: '2px', backgroundColor: '#2B7CC1', width: '100%' }} />
+                        <div style={{ height: '2px', backgroundColor: '#2771B0', width: '100%' }} />
                         {menuFor(link.href).map(service => (
                           <Link
                             key={service.href}
@@ -334,12 +334,13 @@ export default function Header() {
       <div
         style={{ position: 'fixed', top: 0, right: 0, bottom: 0, width: 'min(340px, 100vw)', backgroundColor: '#FFFFFF', borderLeft: '1px solid rgba(0,0,0,0.10)', zIndex: 50, display: 'flex', flexDirection: 'column', overflowY: 'auto', transform: mobileOpen ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)' }}
         aria-hidden={!mobileOpen}
+        inert={!mobileOpen}
       >
         {/* Mobile top bar */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 24px', height: '92px', borderBottom: '1px solid rgba(0,0,0,0.08)', flexShrink: 0 }}>
           <Link href="/" onClick={() => setMobileOpen(false)} style={{ display: 'flex', flexDirection: 'column', lineHeight: 1, textDecoration: 'none' }}>
             <span style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontStyle: 'italic', fontSize: '20px', letterSpacing: '-0.01em', color: '#111822', lineHeight: 1.1 }}>Crafted</span>
-            <span style={{ fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif", fontSize: '8px', textTransform: 'uppercase', letterSpacing: '0.22em', color: '#2B7CC1', display: 'block', marginTop: '1px' }}>Kitchen + Bath</span>
+            <span style={{ fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif", fontSize: '8px', textTransform: 'uppercase', letterSpacing: '0.22em', color: '#2771B0', display: 'block', marginTop: '1px' }}>Kitchen + Bath</span>
           </Link>
           <button onClick={() => setMobileOpen(false)} aria-label="Close menu" style={{ color: '#6B7280', background: 'none', border: 'none', cursor: 'pointer', padding: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'color 0.2s ease' }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#111822'} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#6B7280'}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 1L15 15M15 1L1 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
@@ -348,7 +349,7 @@ export default function Header() {
 
         {/* Tap-to-call */}
         <div style={{ padding: '20px 24px 8px', flexShrink: 0 }}>
-          <a href={PHONE_HREF} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: '#FFFFFF', fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif", fontSize: '13px', letterSpacing: '0.08em', fontWeight: 500, padding: '12px 0', border: 'none', backgroundColor: '#2B7CC1', textDecoration: 'none', transition: 'background-color 0.2s ease' }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.backgroundColor = '#1E5C96'} onMouseLeave={e => (e.currentTarget as HTMLElement).style.backgroundColor = '#2B7CC1'}>
+          <a href={PHONE_HREF} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: '#FFFFFF', fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif", fontSize: '13px', letterSpacing: '0.08em', fontWeight: 500, padding: '12px 0', border: 'none', backgroundColor: '#2771B0', textDecoration: 'none', transition: 'background-color 0.2s ease' }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.backgroundColor = '#1E5C96'} onMouseLeave={e => (e.currentTarget as HTMLElement).style.backgroundColor = '#2771B0'}>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M13 9.8v1.8a1.2 1.2 0 01-1.307 1.2 11.873 11.873 0 01-5.18-1.842A11.7 11.7 0 012.842 7.3a11.873 11.873 0 01-1.842-5.2A1.2 1.2 0 012.194 1H4a1.2 1.2 0 011.2 1.033c.076.58.217 1.15.42 1.7a1.2 1.2 0 01-.27 1.267L4.564 5.786A9.6 9.6 0 008.214 9.436l.786-.786a1.2 1.2 0 011.267-.27c.55.203 1.12.344 1.7.42A1.2 1.2 0 0113 9.8z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             {PHONE}
           </a>
@@ -384,7 +385,7 @@ export default function Header() {
               }
               return (
                 <li key={link.href} style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
-                  <Link href={link.href} onClick={() => setMobileOpen(false)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontStyle: 'italic', color: '#111822', fontSize: '24px', letterSpacing: '0em', padding: '20px 0', textDecoration: 'none', transition: 'color 0.2s ease' }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#2B7CC1'} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#111822'}>
+                  <Link href={link.href} onClick={() => setMobileOpen(false)} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontStyle: 'italic', color: '#111822', fontSize: '24px', letterSpacing: '0em', padding: '20px 0', textDecoration: 'none', transition: 'color 0.2s ease' }} onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#2771B0'} onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#111822'}>
                     {link.label}
                   </Link>
                 </li>

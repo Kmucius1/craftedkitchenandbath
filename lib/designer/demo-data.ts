@@ -999,6 +999,37 @@ export const DEMO_WINDOW_SILLS: Product[] = [
 const CURATED_IWT_URLS = new Set(
   [...DEMO_TILE, ...DEMO_BACKSPLASH, ...DEMO_FLOORING].map((p) => p.sourceUrl).filter(Boolean),
 );
+/**
+ * IWT descriptions are scraped from their WordPress pages and can carry raw
+ * page-builder shortcodes ([vc_row], [vc_table …]). Turn a spec table into
+ * "Label: value · Label: value" and drop every other shortcode, so shoppers
+ * never see the markup.
+ */
+function cleanIwtDesc(raw: string): string {
+  const decode = (t: string) => {
+    try {
+      return decodeURIComponent(t);
+    } catch {
+      return t;
+    }
+  };
+  const table = raw.match(/\[vc_table[^\]]*\]([\s\S]*?)\[\/vc_table\]/);
+  const specs = table
+    ? table[1]
+        .split("|")
+        .map((row) => row.replace(/\[[^\]]*\]/g, "").split(","))
+        .filter((cells) => cells.length >= 2 && cells[0].trim() && cells.slice(1).join(",").trim())
+        .map((cells) => `${decode(cells[0].trim())}: ${decode(cells.slice(1).join(",").trim())}`)
+        .join(" · ")
+    : "";
+  const text = raw
+    .replace(/\[vc_table[^\]]*\][\s\S]*?\[\/vc_table\]/g, " ")
+    .replace(/\[\/?[a-z_]+[^\]]*\]/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return [text, specs].filter(Boolean).join(" ");
+}
+
 export const IWT_FULL_CATALOG: Product[] = (IWT_CATALOG as Array<{
   id: string; name: string; sku: string; category: string; sizeIn: number[] | null;
   desc: string; image: string | null; url: string; special: boolean; stone: boolean; glass: boolean;
@@ -1011,7 +1042,7 @@ export const IWT_FULL_CATALOG: Product[] = (IWT_CATALOG as Array<{
     name: r.name,
     collection: r.special ? "Special Buy" : r.glass ? "Glass" : r.stone ? "Stone" : "Catalog",
     category: r.category as Product["category"],
-    description: r.desc,
+    description: cleanIwtDesc(r.desc),
     dimensions: r.sizeIn ? { widthIn: r.sizeIn[0], heightIn: r.sizeIn[1], depthIn: 0.35 } : undefined,
     material: r.glass ? "Glass" : r.stone ? "Natural stone" : undefined,
     imageUrl: r.image ?? pendingPhotoSwatch("#e5e1d8", r.name),

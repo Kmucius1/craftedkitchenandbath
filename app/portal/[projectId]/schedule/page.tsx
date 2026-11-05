@@ -45,7 +45,7 @@ export default async function PortalSchedulePage({ params }: { params: Promise<{
         <h2 style={{ fontSize: 15, fontWeight: 700, color: "#1A202C", margin: 0 }}>Schedule</h2>
         <a
           href={`/portal/${projectId}/schedule/calendar.ics`}
-          style={{ fontSize: 12, color: "#2B7CC1", fontWeight: 600, textDecoration: "none", border: "1px solid #E5E7EB", borderRadius: 6, padding: "6px 12px" }}
+          style={{ fontSize: 12, color: "#2771B0", fontWeight: 600, textDecoration: "none", border: "1px solid #E5E7EB", borderRadius: 6, padding: "6px 12px" }}
         >
           Add to Calendar
         </a>

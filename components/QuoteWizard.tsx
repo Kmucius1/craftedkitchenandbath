@@ -194,7 +194,7 @@ const CITIES = [
 const CONTACT_METHODS = ["Phone call", "Text", "Email", "Either"];
 const BEST_TIMES = ["Morning", "Afternoon", "Evening", "Anytime"];
 
-const ACCENT = "#2B7CC1";
+const ACCENT = "#2771B0";
 const INK = "#1A202C";
 
 type Answers = Record<string, string[]>;
@@ -455,7 +455,7 @@ export default function QuoteWizard() {
             <span style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: ACCENT, fontWeight: 700 }}>
               Step {Math.min(currentIndex + 1, totalSteps)} of {totalSteps} · {stepLabels[currentIndex]}
             </span>
-            <span style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#9AA3AF" }}>{progress}%</span>
+            <span style={{ fontSize: "10px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#6B7280" }}>{progress}%</span>
           </div>
           <div style={{ height: "3px", backgroundColor: "rgba(0,0,0,0.08)", overflow: "hidden", borderRadius: "2px" }}>
             <div style={{ height: "100%", width: `${progress}%`, backgroundColor: ACCENT, transition: "width 0.45s cubic-bezier(0.16,1,0.3,1)" }} />
@@ -479,7 +479,7 @@ export default function QuoteWizard() {
               <div key={q.id}>
                 <label style={labelStyle}>
                   {q.label} {q.required && <span style={{ color: ACCENT }}>*</span>}
-                  {q.type === "multi" && <span style={{ textTransform: "none", letterSpacing: "0.02em", color: "#9AA3AF", marginLeft: "8px", fontWeight: 400 }}>select all that apply</span>}
+                  {q.type === "multi" && <span style={{ textTransform: "none", letterSpacing: "0.02em", color: "#6B7280", marginLeft: "8px", fontWeight: 400 }}>select all that apply</span>}
                 </label>
                 <div className="quote-options" style={{ display: "grid", gap: "12px", marginTop: "12px" }}>
                   {q.options.map((opt) => {
@@ -493,13 +493,13 @@ export default function QuoteWizard() {
                         data-active={active ? "1" : "0"}
                       >
                         {opt.icon && (
-                          <span className="quote-opt-icon" style={{ color: active ? ACCENT : "#9AA3AF" }}>
+                          <span className="quote-opt-icon" style={{ color: active ? ACCENT : "#6B7280" }}>
                             <OptIcon name={opt.icon} />
                           </span>
                         )}
                         <span style={{ flex: 1, minWidth: 0 }}>
                           <span style={{ display: "block", fontSize: "15px", color: INK, fontWeight: active ? 600 : 500 }}>{opt.value}</span>
-                          {opt.desc && <span style={{ display: "block", fontSize: "12.5px", color: "#9AA3AF", marginTop: "2px" }}>{opt.desc}</span>}
+                          {opt.desc && <span style={{ display: "block", fontSize: "12.5px", color: "#6B7280", marginTop: "2px" }}>{opt.desc}</span>}
                         </span>
                         <span
                           aria-hidden="true"

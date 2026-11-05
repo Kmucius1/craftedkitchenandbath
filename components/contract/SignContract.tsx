@@ -27,7 +27,7 @@ type Props = {
 };
 
 const BLUE = "#1F5FAC";
-const ACCENT = "#2B7CC1";
+const ACCENT = "#2771B0";
 const INK = "#1A202C";
 const MUTED = "#4A5568";
 const LINE = "#E5E7EB";

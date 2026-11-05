@@ -21,7 +21,7 @@ type Msg = {
 };
 
 const BLUE = '#1F5FAC';
-const ACCENT = '#2B7CC1';
+const ACCENT = '#2771B0';
 const sans = "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif";
 const display = "var(--font-display), 'Montserrat', system-ui, sans-serif";
 

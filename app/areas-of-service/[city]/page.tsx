@@ -92,11 +92,11 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
             <ol style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px", listStyle: "none", margin: 0, padding: 0 }}>
               <li style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <Link href="/" style={crumbLink}>Home</Link>
-                <span style={{ color: "#2B7CC1", fontSize: "10px" }} aria-hidden="true">/</span>
+                <span style={{ color: "#2771B0", fontSize: "10px" }} aria-hidden="true">/</span>
               </li>
               <li style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <Link href="/areas-of-service" style={crumbLink}>Areas of Service</Link>
-                <span style={{ color: "#2B7CC1", fontSize: "10px" }} aria-hidden="true">/</span>
+                <span style={{ color: "#2771B0", fontSize: "10px" }} aria-hidden="true">/</span>
               </li>
               <li>
                 <span style={{ fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#1A202C" }}>{area.name}</span>
@@ -105,7 +105,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
           </nav>
 
           <SectionLabel>{area.county}</SectionLabel>
-          <div style={{ width: "48px", height: "1px", backgroundColor: "#2B7CC1", margin: "24px 0" }} aria-hidden="true" />
+          <div style={{ width: "48px", height: "1px", backgroundColor: "#2771B0", margin: "24px 0" }} aria-hidden="true" />
 
           <h1 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "clamp(36px, 6vw, 68px)", lineHeight: 1.1, color: "#1A202C", margin: 0, letterSpacing: "0.01em" }}>
             Kitchen &amp; Bath Remodeling
@@ -163,7 +163,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
             {SERVICES.map((s) => (
               <Link key={s.href} href={s.href} style={{ backgroundColor: "#FFFFFF", padding: "28px 26px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", textDecoration: "none" }}>
                 <span style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "19px", color: "#1A202C" }}>{s.label}</span>
-                <span style={{ color: "#2B7CC1", fontSize: "16px" }} aria-hidden="true">→</span>
+                <span style={{ color: "#2771B0", fontSize: "16px" }} aria-hidden="true">→</span>
               </Link>
             ))}
           </div>
@@ -175,7 +175,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
         <div style={{ maxWidth: "760px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "20px" }}>
           <SectionLabel>Local Know-How</SectionLabel>
           <p style={{ fontSize: "16px", lineHeight: 1.85, color: "#4A5568", margin: 0 }}>{area.localNote}</p>
-          <p style={{ fontSize: "13px", lineHeight: 1.8, color: "#6B7280", margin: 0 }}>
+          <p style={{ fontSize: "13px", lineHeight: 1.8, color: "#4A5568", margin: 0 }}>
             Crafted Kitchen and Bath is a licensed Florida contractor (CGC1541816) serving {area.name} and the greater Tampa Bay area.
           </p>
         </div>
@@ -189,13 +189,13 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-px" style={{ backgroundColor: "rgba(43,124,193,0.1)" }}>
               {nearby.map((n) => (
                 <Link key={n.slug} href={`/areas-of-service/${n.slug}`} style={{ backgroundColor: "#FFFFFF", padding: "24px 22px", display: "flex", flexDirection: "column", gap: "8px", textDecoration: "none" }}>
-                  <div style={{ width: "24px", height: "1px", backgroundColor: "#2B7CC1" }} aria-hidden="true" />
+                  <div style={{ width: "24px", height: "1px", backgroundColor: "#2771B0" }} aria-hidden="true" />
                   <span style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "18px", color: "#1A202C" }}>{n.name}</span>
                   <span style={{ fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#6B7280" }}>{n.county}</span>
                 </Link>
               ))}
             </div>
-            <Link href="/areas-of-service" style={{ ...crumbLink, color: "#2B7CC1", borderBottom: "1px solid rgba(43,124,193,0.4)", paddingBottom: "2px", alignSelf: "flex-start" }}>
+            <Link href="/areas-of-service" style={{ ...crumbLink, color: "#2771B0", borderBottom: "1px solid rgba(43,124,193,0.4)", paddingBottom: "2px", alignSelf: "flex-start" }}>
               View All Service Areas
             </Link>
           </div>

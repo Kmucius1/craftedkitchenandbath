@@ -10,6 +10,14 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // One canonical host: www serves the same pages, so send it to the apex
+      // instead of letting search engines index two copies of every URL.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.craftedkitchenandbath.com' }],
+        destination: 'https://craftedkitchenandbath.com/:path*',
+        permanent: true,
+      },
       {
         source: '/contact-us',
         destination: '/contact',
@@ -94,6 +102,18 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      // Supplier product photos in the catalog. Served through the image
+      // optimizer so phones get a small WebP/AVIF instead of the full-size
+      // original (keep in sync with OPTIMIZED_HOSTS in ProductCard).
+      ...[
+        'internationalwholesaletile.com',
+        'www.msisurfaces.com',
+        'cdn.msisurfaces.com',
+        'topknobsupply.com',
+        'www.cabinetparts.com',
+        'static.homebydecor.com',
+        'prod-uscd-product-files.s3.amazonaws.com',
+      ].map((hostname) => ({ protocol: 'https' as const, hostname })),
       {
         // Blog post covers uploaded from DRYP Hub land in Vercel Blob storage.
         // The store subdomain is random, so match any of them rather than

@@ -9,7 +9,7 @@ import { FAMILY_BLURB, USCD_FINISHES, finishGrain, type FinishFamily } from '@/l
 import { getVerification, isVerified, statusLabel } from '@/lib/catalog/verification'
 import CabinetViewer from './CabinetViewer'
 
-const BLUE = '#2B7CC1'
+const BLUE = '#2771B0'
 const INK = '#111822'
 
 type Media =

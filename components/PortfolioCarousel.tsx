@@ -118,7 +118,7 @@ export default function PortfolioCarousel({ items }: { items: CarouselItem[] }) 
           onClick={() => go(-1)}
           aria-label="Previous project"
           style={{ ...arrowStyle, left: '16px' }}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#2B7CC1')}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#2771B0')}
           onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(26,32,44,0.55)')}
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M11.5 3.5L6 9l5.5 5.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -127,7 +127,7 @@ export default function PortfolioCarousel({ items }: { items: CarouselItem[] }) 
           onClick={() => go(1)}
           aria-label="Next project"
           style={{ ...arrowStyle, right: '16px' }}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#2B7CC1')}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#2771B0')}
           onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(26,32,44,0.55)')}
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M6.5 3.5L12 9l-5.5 5.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -161,7 +161,7 @@ export default function PortfolioCarousel({ items }: { items: CarouselItem[] }) 
                 width: 'clamp(96px, 13vw, 132px)',
                 aspectRatio: '4 / 3',
                 overflow: 'hidden',
-                border: isActive ? '2px solid #2B7CC1' : '2px solid transparent',
+                border: isActive ? '2px solid #2771B0' : '2px solid transparent',
                 borderRadius: '2px',
                 cursor: 'pointer',
                 padding: 0,

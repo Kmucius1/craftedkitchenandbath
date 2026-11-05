@@ -4,10 +4,10 @@ import Image from "next/image";
 import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
-  title:
-    "Interior Painting Oldsmar FL | Whole-Home Paint Services | Crafted Kitchen & Bath",
+  title: "Interior Painting in Tampa Bay, FL",
   description:
     "Expert interior painting services to complement your kitchen or bathroom remodel. Clean, crisp finishes across Pinellas and Hillsborough County. Licensed contractor. Free quote.",
+  alternates: { canonical: "/painting" },
 };
 
 const serviceJsonLd = {
@@ -155,7 +155,7 @@ export default function PaintingPage() {
               fontSize: "11px",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "#2B7CC1",
+              color: "#2771B0",
               fontWeight: 500,
               margin: 0,
             }}
@@ -167,7 +167,7 @@ export default function PaintingPage() {
             style={{
               width: "48px",
               height: "1px",
-              backgroundColor: "#2B7CC1",
+              backgroundColor: "#2771B0",
               margin: "24px 0",
             }}
           />
@@ -206,7 +206,7 @@ export default function PaintingPage() {
             href="/contact"
             style={{
               display: "inline-block",
-              backgroundColor: "#2B7CC1",
+              backgroundColor: "#2771B0",
               color: "white",
               fontSize: "11px",
               fontWeight: 600,
@@ -240,7 +240,7 @@ export default function PaintingPage() {
               fontSize: "11px",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "#2B7CC1",
+              color: "#2771B0",
               fontWeight: 500,
               margin: "0 0 48px",
             }}
@@ -272,7 +272,7 @@ export default function PaintingPage() {
                     width: "7px",
                     height: "7px",
                     borderRadius: "50%",
-                    backgroundColor: "#2B7CC1",
+                    backgroundColor: "#2771B0",
                     flexShrink: 0,
                   }}
                 />
@@ -357,7 +357,7 @@ export default function PaintingPage() {
                   style={{
                     width: "32px",
                     height: "1px",
-                    backgroundColor: "#2B7CC1",
+                    backgroundColor: "#2771B0",
                   }}
                 />
 
@@ -459,7 +459,7 @@ export default function PaintingPage() {
               fontSize: "11px",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "#2B7CC1",
+              color: "#2771B0",
               fontWeight: 500,
               margin: "0 0 48px",
             }}

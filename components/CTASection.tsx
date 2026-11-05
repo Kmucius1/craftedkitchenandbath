@@ -39,7 +39,7 @@ export default function CTASection({
           style={{
             width: "40px",
             height: "1px",
-            backgroundColor: "#2B7CC1",
+            backgroundColor: "#2771B0",
           }}
           aria-hidden="true"
         />
@@ -87,7 +87,7 @@ export default function CTASection({
               px-9 py-4
               no-underline
               transition-colors duration-200
-              bg-[#2B7CC1] text-white
+              bg-[#2771B0] text-white
               hover:bg-[#1E5C96]
             "
             style={{
@@ -108,7 +108,7 @@ export default function CTASection({
               transition-colors duration-200
               bg-transparent text-[#1A202C]
               border border-[rgba(0,0,0,0.25)]
-              hover:border-[#2B7CC1] hover:text-[#2B7CC1]
+              hover:border-[#2771B0] hover:text-[#2771B0]
             "
             style={{
               fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif",

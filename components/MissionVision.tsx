@@ -32,7 +32,7 @@ export default function MissionVision() {
     <section ref={ref} className="mv-section" data-inview={inView ? "true" : "false"} style={{ backgroundColor: "#FFFFFF", padding: "clamp(40px, 9vw, 88px) 24px" }}>
       <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
         <div className="mv-head" style={{ textAlign: "center", marginBottom: "clamp(32px, 5vw, 52px)" }}>
-          <p style={{ fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.2em", color: "#2B7CC1", fontWeight: 500, margin: 0 }}>Our Purpose</p>
+          <p style={{ fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.2em", color: "#2771B0", fontWeight: 500, margin: 0 }}>Our Purpose</p>
           <h2 style={{ fontFamily: "var(--font-display),'Montserrat',system-ui,sans-serif", fontWeight: 300, fontSize: "clamp(28px,4vw,44px)", lineHeight: 1.18, color: "#1A202C", margin: "16px 0 0", letterSpacing: "0.01em" }}>
             Mission &amp; Vision
           </h2>

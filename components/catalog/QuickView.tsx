@@ -9,7 +9,7 @@ import { USCD_FINISHES, finishGrain } from '@/lib/designer/uscd-finishes'
 import { getVerification, isVerified, statusLabel } from '@/lib/catalog/verification'
 import CabinetViewer from './CabinetViewer'
 
-const BLUE = '#2B7CC1'
+const BLUE = '#2771B0'
 const INK = '#111822'
 
 const swatchOf = (name: string) => USCD_FINISHES.find((f) => f.name.toLowerCase() === name.trim().toLowerCase())?.hex ?? '#E5E7EB'
@@ -110,7 +110,7 @@ export default function QuickView({ product, onClose }: { product: Product; onCl
                     type="button"
                     aria-pressed={on}
                     onClick={() => setMediaId(m.id)}
-                    className={`rounded-full border px-3 py-1 text-[12px] font-semibold ${on ? 'border-[#2B7CC1] bg-[#EBF4FF] text-[#1E5C96]' : 'border-black/15 bg-white text-[#4A5568] hover:border-[#2B7CC1]'}`}
+                    className={`rounded-full border px-3 py-1 text-[12px] font-semibold ${on ? 'border-[#2771B0] bg-[#EBF4FF] text-[#1E5C96]' : 'border-black/15 bg-white text-[#4A5568] hover:border-[#2771B0]'}`}
                   >
                     {m.label}
                   </button>
@@ -151,7 +151,7 @@ export default function QuickView({ product, onClose }: { product: Product; onCl
                       type="button"
                       aria-pressed={on}
                       onClick={() => pickColor(c)}
-                      className={`inline-flex min-h-10 items-center gap-2 rounded-full border px-3 py-1.5 text-[13px] font-semibold ${on ? 'border-[#2B7CC1] bg-[#EBF4FF] text-[#1E5C96]' : 'border-black/15 bg-white text-[#4A5568] hover:border-[#2B7CC1]'}`}
+                      className={`inline-flex min-h-10 items-center gap-2 rounded-full border px-3 py-1.5 text-[13px] font-semibold ${on ? 'border-[#2771B0] bg-[#EBF4FF] text-[#1E5C96]' : 'border-black/15 bg-white text-[#4A5568] hover:border-[#2771B0]'}`}
                     >
                       <span aria-hidden className="size-4 rounded-full border border-black/25" style={{ background: swatchOf(c) }} />
                       {c}
@@ -168,7 +168,7 @@ export default function QuickView({ product, onClose }: { product: Product; onCl
             <Link href={quote} className="inline-flex rounded-lg px-5 py-3 text-[14px] font-bold text-white hover:brightness-110" style={{ background: BLUE }}>
               Request pricing
             </Link>
-            <Link href={`/catalog/${product.id}`} className="inline-flex rounded-lg border border-[#2B7CC1] px-5 py-3 text-[14px] font-bold text-[#2B7CC1] hover:bg-[#EBF4FF]">
+            <Link href={`/catalog/${product.id}`} className="inline-flex rounded-lg border border-[#2771B0] px-5 py-3 text-[14px] font-bold text-[#2771B0] hover:bg-[#EBF4FF]">
               View product page
             </Link>
           </div>

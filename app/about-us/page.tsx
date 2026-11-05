@@ -7,9 +7,10 @@ import MissionVision from "@/components/MissionVision";
 import MeetTheTeam from "@/components/MeetTheTeam";
 
 export const metadata: Metadata = {
-  title: "About Crafted Kitchen & Bath | Kitchen & Bathroom Remodeling Experts | Oldsmar FL",
+  title: "About Our Oldsmar Remodeling Team",
   description:
-    "Crafted Kitchen & Bath is Oldsmar's trusted kitchen and bathroom remodeling contractor. Licensed CGC1541816, serving Pinellas and Hillsborough County with 250+ completed home transformations.",
+    "Meet Crafted Kitchen & Bath, Oldsmar's licensed kitchen and bathroom remodeler (CGC1541816), with 250+ homes transformed across Pinellas and Hillsborough.",
+  alternates: { canonical: "/about-us" },
 };
 
 const jsonLd = {
@@ -168,7 +169,7 @@ export default function AboutUsPage() {
               fontSize: "10px",
               textTransform: "uppercase",
               letterSpacing: "0.2em",
-              color: "#2B7CC1",
+              color: "#2771B0",
               fontWeight: 500,
             }}
           >
@@ -180,7 +181,7 @@ export default function AboutUsPage() {
             style={{
               width: "48px",
               height: "1px",
-              backgroundColor: "#2B7CC1",
+              backgroundColor: "#2771B0",
               margin: "24px 0",
             }}
             aria-hidden="true"
@@ -225,7 +226,7 @@ export default function AboutUsPage() {
               alignSelf: "flex-start",
               marginTop: "32px",
               border: "1px solid rgba(43,124,193,0.4)",
-              color: "#2B7CC1",
+              color: "#2771B0",
               fontSize: "10px",
               textTransform: "uppercase",
               letterSpacing: "0.2em",
@@ -295,7 +296,7 @@ export default function AboutUsPage() {
                 fontSize: "10px",
                 textTransform: "uppercase",
                 letterSpacing: "0.2em",
-                color: "#2B7CC1",
+                color: "#2771B0",
                 fontWeight: 500,
               }}
             >
@@ -367,7 +368,7 @@ export default function AboutUsPage() {
                   fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(52px, 7vw, 76px)",
-                  color: "#2B7CC1",
+                  color: "#2771B0",
                   lineHeight: 1,
                   letterSpacing: "-0.01em",
                 }}
@@ -399,7 +400,7 @@ export default function AboutUsPage() {
                   fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(52px, 7vw, 76px)",
-                  color: "#2B7CC1",
+                  color: "#2771B0",
                   lineHeight: 1,
                   letterSpacing: "-0.01em",
                 }}
@@ -431,7 +432,7 @@ export default function AboutUsPage() {
                   fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(52px, 7vw, 76px)",
-                  color: "#2B7CC1",
+                  color: "#2771B0",
                   lineHeight: 1,
                   letterSpacing: "-0.01em",
                 }}
@@ -534,7 +535,7 @@ export default function AboutUsPage() {
                 fontSize: "10px",
                 textTransform: "uppercase",
                 letterSpacing: "0.2em",
-                color: "#2B7CC1",
+                color: "#2771B0",
                 fontWeight: 500,
               }}
             >
@@ -573,7 +574,7 @@ export default function AboutUsPage() {
                   style={{
                     width: "32px",
                     height: "1px",
-                    backgroundColor: "#2B7CC1",
+                    backgroundColor: "#2771B0",
                     marginBottom: "24px",
                   }}
                   aria-hidden="true"
@@ -639,7 +640,7 @@ export default function AboutUsPage() {
                 fontSize: "10px",
                 textTransform: "uppercase",
                 letterSpacing: "0.2em",
-                color: "#2B7CC1",
+                color: "#2771B0",
                 fontWeight: 500,
               }}
             >
@@ -687,7 +688,7 @@ export default function AboutUsPage() {
                     fontWeight: 300,
                     fontStyle: "italic",
                     fontSize: "clamp(22px, 3vw, 28px)",
-                    color: "#2B7CC1",
+                    color: "#2771B0",
                     margin: 0,
                     letterSpacing: "0.02em",
                   }}
@@ -776,7 +777,7 @@ export default function AboutUsPage() {
                 fontWeight: 600,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#2B7CC1",
+                color: "#2771B0",
                 textDecoration: "none",
                 borderBottom: "1px solid rgba(43,124,193,0.4)",
                 paddingBottom: "2px",
@@ -863,7 +864,7 @@ export default function AboutUsPage() {
                 style={{
                   width: "40px",
                   height: "1px",
-                  backgroundColor: "#2B7CC1",
+                  backgroundColor: "#2771B0",
                   marginBottom: "12px",
                 }}
                 aria-hidden="true"
@@ -889,7 +890,7 @@ export default function AboutUsPage() {
                   fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                   fontWeight: 300,
                   fontSize: "clamp(28px, 5vw, 44px)",
-                  color: "#2B7CC1",
+                  color: "#2771B0",
                   lineHeight: 1.1,
                   letterSpacing: "0.06em",
                   margin: "12px 0",
@@ -903,7 +904,7 @@ export default function AboutUsPage() {
                 style={{
                   width: "40px",
                   height: "1px",
-                  backgroundColor: "#2B7CC1",
+                  backgroundColor: "#2771B0",
                   marginBottom: "12px",
                 }}
                 aria-hidden="true"
@@ -958,7 +959,7 @@ export default function AboutUsPage() {
                 fontSize: "10px",
                 textTransform: "uppercase",
                 letterSpacing: "0.2em",
-                color: "#2B7CC1",
+                color: "#2771B0",
                 fontWeight: 500,
               }}
             >
@@ -987,7 +988,7 @@ export default function AboutUsPage() {
                 key={i}
                 style={{
                   backgroundColor: "#F7F8FA",
-                  borderTop: "2px solid #2B7CC1",
+                  borderTop: "2px solid #2771B0",
                   padding: "24px",
                   display: "flex",
                   flexDirection: "column",
@@ -1001,7 +1002,7 @@ export default function AboutUsPage() {
                     fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "clamp(20px, 3vw, 28px)",
-                    color: "#2B7CC1",
+                    color: "#2771B0",
                     lineHeight: 1.1,
                     letterSpacing: "0.01em",
                   }}

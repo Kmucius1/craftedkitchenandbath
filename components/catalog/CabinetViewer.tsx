@@ -231,7 +231,7 @@ export default function CabinetViewer({ spec, label, fallbackSrc, color, grain =
       tabIndex={0}
       role="img"
       aria-label={`Rotatable 3D model of ${label}. Drag or use the left and right arrow keys to turn it.`}
-      className="absolute inset-0 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#2B7CC1]"
+      className="absolute inset-0 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#2771B0]"
     >
       {/* The drawn picture shows until the 3D scene is up, and stays if 3D can't run. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}

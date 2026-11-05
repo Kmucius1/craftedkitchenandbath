@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 const card: React.CSSProperties = { background: "#fff", border: "1px solid #E5E7EB", borderRadius: 10, padding: 24 };
-const sectionLabel: React.CSSProperties = { fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#2B7CC1", fontWeight: 700, marginBottom: 12 };
+const sectionLabel: React.CSSProperties = { fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#2771B0", fontWeight: 700, marginBottom: 12 };
 
 function fmtDate(iso: string | null): string {
   if (!iso) return "—";
@@ -57,7 +57,7 @@ export default async function PortalOverviewPage({ params }: { params: Promise<{
                   fontWeight: 600,
                   padding: "6px 12px",
                   borderRadius: 999,
-                  background: active ? "#2B7CC1" : done ? "#E7F6EC" : "#F1F3F5",
+                  background: active ? "#2771B0" : done ? "#E7F6EC" : "#F1F3F5",
                   color: active ? "#fff" : done ? "#1A7A3D" : "#6B7280",
                   textTransform: "capitalize",
                 }}
@@ -84,7 +84,7 @@ export default async function PortalOverviewPage({ params }: { params: Promise<{
           ) : (
             <div style={{ fontSize: 13, color: "#6B7280" }}>Nothing scheduled yet.</div>
           )}
-          <Link href={`/portal/${projectId}/schedule`} style={{ display: "inline-block", marginTop: 14, fontSize: 12, color: "#2B7CC1", fontWeight: 600, textDecoration: "none" }}>
+          <Link href={`/portal/${projectId}/schedule`} style={{ display: "inline-block", marginTop: 14, fontSize: 12, color: "#2771B0", fontWeight: 600, textDecoration: "none" }}>
             View full schedule →
           </Link>
         </div>
@@ -96,14 +96,14 @@ export default async function PortalOverviewPage({ params }: { params: Promise<{
             <>
               <div style={{ fontSize: 15, fontWeight: 600, color: "#1A202C" }}>{p.pm_name}</div>
               <div style={{ fontSize: 13, color: "#6B7280", marginTop: 6, display: "flex", flexDirection: "column", gap: 2 }}>
-                {p.pm_email && <a href={`mailto:${p.pm_email}`} style={{ color: "#2B7CC1", textDecoration: "none" }}>{p.pm_email}</a>}
+                {p.pm_email && <a href={`mailto:${p.pm_email}`} style={{ color: "#2771B0", textDecoration: "none" }}>{p.pm_email}</a>}
                 {p.pm_phone && <a href={`tel:${p.pm_phone}`} style={{ color: "#6B7280", textDecoration: "none" }}>{p.pm_phone}</a>}
               </div>
             </>
           ) : (
             <div style={{ fontSize: 13, color: "#6B7280" }}>Not yet assigned.</div>
           )}
-          <Link href={`/portal/${projectId}/messages`} style={{ display: "inline-block", marginTop: 14, fontSize: 12, color: "#2B7CC1", fontWeight: 600, textDecoration: "none" }}>
+          <Link href={`/portal/${projectId}/messages`} style={{ display: "inline-block", marginTop: 14, fontSize: 12, color: "#2771B0", fontWeight: 600, textDecoration: "none" }}>
             Send a message →
           </Link>
         </div>
@@ -134,7 +134,7 @@ export default async function PortalOverviewPage({ params }: { params: Promise<{
         ) : (
           <div style={{ fontSize: 13, color: "#6B7280" }}>No updates posted yet.</div>
         )}
-        <Link href={`/portal/${projectId}/updates`} style={{ display: "inline-block", marginTop: 14, fontSize: 12, color: "#2B7CC1", fontWeight: 600, textDecoration: "none" }}>
+        <Link href={`/portal/${projectId}/updates`} style={{ display: "inline-block", marginTop: 14, fontSize: 12, color: "#2771B0", fontWeight: 600, textDecoration: "none" }}>
           View all updates &amp; photos →
         </Link>
       </div>

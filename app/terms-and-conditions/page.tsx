@@ -3,8 +3,9 @@ import Link from 'next/link'
 import SectionLabel from '@/components/SectionLabel'
 
 export const metadata: Metadata = {
-  title: 'Terms and Conditions | Crafted Kitchen and Bath',
+  title: 'Terms and Conditions',
   description: 'Terms and conditions for using the Crafted Kitchen and Bath website.',
+  alternates: { canonical: '/terms-and-conditions' },
 }
 
 const h2Style: React.CSSProperties = {
@@ -335,7 +336,7 @@ export default function TermsAndConditionsPage() {
                   fontSize: '13px',
                   letterSpacing: '0.12em',
                   textTransform: 'uppercase',
-                  color: '#2B7CC1',
+                  color: '#2771B0',
                   margin: '0 0 16px',
                   fontWeight: 500,
                 }}
@@ -350,13 +351,13 @@ export default function TermsAndConditionsPage() {
                 Email:{' '}
                 <a
                   href="mailto:info@craftedkitchenandbath.com"
-                  style={{ color: '#2B7CC1', textDecoration: 'none' }}
+                  style={{ color: '#2771B0', textDecoration: 'none' }}
                 >
                   info@craftedkitchenandbath.com
                 </a>
                 <br />
                 Phone:{' '}
-                <a href="tel:+17273837550" style={{ color: '#2B7CC1', textDecoration: 'none' }}>
+                <a href="tel:+17273837550" style={{ color: '#2771B0', textDecoration: 'none' }}>
                   (727) 383-7550
                 </a>
               </p>
@@ -369,7 +370,7 @@ export default function TermsAndConditionsPage() {
               href="/"
               style={{
                 fontSize: '13px',
-                color: '#2B7CC1',
+                color: '#2771B0',
                 textDecoration: 'none',
                 letterSpacing: '0.04em',
               }}

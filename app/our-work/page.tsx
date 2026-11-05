@@ -7,9 +7,10 @@ import Breadcrumb from '@/components/Breadcrumb'
 import PortfolioCarousel, { type CarouselItem } from '@/components/PortfolioCarousel'
 
 export const metadata: Metadata = {
-  title: 'Kitchen & Bathroom Remodeling Portfolio | Tampa Bay Projects | Crafted Kitchen & Bath',
+  title: 'Our Work: Kitchen & Bath Projects',
   description:
     'Browse real completed kitchen and bathroom remodeling projects by Crafted Kitchen & Bath across Oldsmar, Clearwater, Palm Harbor, Tampa, and Pinellas County.',
+  alternates: { canonical: '/our-work' },
 }
 
 // Real completed-project photos pulled from Crafted Kitchen & Bath's own library,
@@ -111,7 +112,7 @@ export default function OurWorkPage() {
         <section style={{ backgroundColor: '#F7F8FA', padding: '112px 24px 36px' }}>
           <div style={{ maxWidth: '1120px', margin: '0 auto' }}>
             <div style={{ marginBottom: '20px' }}>
-              <Breadcrumb items={[{ label: 'Our Work' }]} />
+              <Breadcrumb tone="light" items={[{ label: 'Our Work' }]} />
             </div>
             <div style={{ maxWidth: '760px' }}>
               <SectionLabel>Portfolio</SectionLabel>
@@ -158,10 +159,8 @@ export default function OurWorkPage() {
                   {/* Copy */}
                   <div className="featured-copy">
                     <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-                      <span style={{ fontFamily: headingFont, fontSize: '32px', fontWeight: 300, color: 'rgba(43,124,193,0.35)', lineHeight: 1 }}>
-                        0{i + 1}
-                      </span>
-                      <span style={{ color: '#2B7CC1', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 600 }}>
+                      <span className="deco-num" data-n={`0${i + 1}`} aria-hidden="true" style={{ fontFamily: headingFont, fontSize: '32px', fontWeight: 300, color: 'rgba(43,124,193,0.35)', lineHeight: 1 }} />
+                      <span style={{ color: '#2771B0', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.18em', fontWeight: 600 }}>
                         {p.category}
                       </span>
                     </div>
@@ -198,7 +197,7 @@ export default function OurWorkPage() {
 
             <p style={{ fontSize: '13px', color: '#6B7280', textAlign: 'center', margin: '36px 0 0', lineHeight: 1.7 }}>
               Want to see work similar to yours?{' '}
-              <Link href="/contact" style={{ color: '#2B7CC1', textDecoration: 'none' }}>Ask us for examples from your area.</Link>
+              <Link href="/contact" style={{ color: '#2771B0', textDecoration: 'none' }}>Ask us for examples from your area.</Link>
             </p>
           </div>
         </section>
@@ -206,15 +205,15 @@ export default function OurWorkPage() {
         {/* ── PULL QUOTE ── */}
         <section style={{ backgroundColor: '#FFFFFF', padding: '80px 24px', textAlign: 'center', borderTop: '1px solid rgba(0,0,0,0.08)' }}>
           <div style={{ maxWidth: '680px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px' }}>
-            <div style={{ width: '40px', height: '1px', backgroundColor: '#2B7CC1' }} aria-hidden="true" />
+            <div style={{ width: '40px', height: '1px', backgroundColor: '#2771B0' }} aria-hidden="true" />
             <div style={{ display: 'flex', gap: '5px' }}>
-              {[1, 2, 3, 4, 5].map((s) => (<span key={s} style={{ color: '#2B7CC1', fontSize: '18px' }} aria-hidden="true">★</span>))}
+              {[1, 2, 3, 4, 5].map((s) => (<span key={s} style={{ color: '#2771B0', fontSize: '18px' }} aria-hidden="true">★</span>))}
             </div>
             <blockquote style={{ fontFamily: headingFont, fontWeight: 300, fontStyle: 'italic', fontSize: 'clamp(20px, 3vw, 28px)', color: '#1A202C', lineHeight: 1.55, margin: 0, letterSpacing: '0.01em' }}>
               &ldquo;They took our outdated kitchen and made it bright, open, and modern. The whole crew did a great job and were very professional — the quality of their work and materials is excellent. We love our new kitchen!&rdquo;
             </blockquote>
             <p style={{ fontSize: '11px', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#6B7280', margin: 0 }}>— Darrell Smith · 5★ Google Review</p>
-            <div style={{ width: '40px', height: '1px', backgroundColor: '#2B7CC1', opacity: 0.4 }} aria-hidden="true" />
+            <div style={{ width: '40px', height: '1px', backgroundColor: '#2771B0', opacity: 0.4 }} aria-hidden="true" />
           </div>
         </section>
 

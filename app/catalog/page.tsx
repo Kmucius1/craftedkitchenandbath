@@ -10,13 +10,14 @@ import type { Product } from '@/lib/designer/types'
 import { byLead } from '@/lib/catalog/featured'
 
 export const metadata: Metadata = {
-  title: 'Product Catalog — Cabinets, Tile, Countertops & More | Crafted Kitchen & Bath',
+  title: 'Cabinet, Tile & Countertop Catalog',
   description:
     'Browse the cabinets, countertops, tile, flooring, hardware, sinks and fixtures Crafted Kitchen & Bath sources for Tampa Bay remodels.',
+  alternates: { canonical: '/catalog' },
 }
 
 const INK = '#111822'
-const BLUE = '#2B7CC1'
+const BLUE = '#2771B0'
 const PER_PAGE = 24
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -134,7 +135,7 @@ export default async function CatalogPage({
   const filterGroups = (
     <>
 <div>
-            <h2 className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9AA3B2]">Category</h2>
+            <h2 className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#6B7280]">Category</h2>
             <nav aria-label="Categories" className="flex flex-wrap gap-1.5 lg:flex-col lg:gap-0.5">
               {[{ key: null as string | null, label: 'All Materials', n: DEMO_PRODUCTS.length }, ...categories.map((c) => ({ key: c as string | null, label: CATEGORY_LABELS[c] ?? c, n: counts.get(c)! }))].map((c) => {
                 const active = (cat ?? null) === c.key
@@ -146,7 +147,7 @@ export default async function CatalogPage({
                     className={`flex items-center justify-between gap-3 rounded-md px-3 py-2 text-[14px] transition-colors ${active ? 'bg-[#EBF4FF] font-semibold text-[#1E5C96]' : 'text-[#4A5568] hover:bg-black/[0.04] hover:text-[#111822]'}`}
                   >
                     <span>{c.label}</span>
-                    <span className="text-[12px] text-[#9AA3B2]">{c.n}</span>
+                    <span className="text-[12px] text-[#6B7280]">{c.n}</span>
                   </Link>
                 )
               })}
@@ -154,7 +155,7 @@ export default async function CatalogPage({
           </div>
 
           <div>
-            <h2 className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9AA3B2]">Supplier</h2>
+            <h2 className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#6B7280]">Supplier</h2>
             <nav aria-label="Suppliers" className="flex flex-wrap gap-1.5 lg:flex-col lg:gap-0.5">
               {suppliers.map((name) => {
                 const active = supplier === name
@@ -166,7 +167,7 @@ export default async function CatalogPage({
                     className={`flex items-center justify-between gap-3 rounded-md px-3 py-1.5 text-[13px] transition-colors ${active ? 'bg-[#EBF4FF] font-semibold text-[#1E5C96]' : 'text-[#4A5568] hover:bg-black/[0.04] hover:text-[#111822]'}`}
                   >
                     <span>{name}</span>
-                    <span className="text-[12px] text-[#9AA3B2]">{supplierCounts.get(name)}</span>
+                    <span className="text-[12px] text-[#6B7280]">{supplierCounts.get(name)}</span>
                   </Link>
                 )
               })}
@@ -266,7 +267,7 @@ export default async function CatalogPage({
               </p>
             </div>
             <div className="flex items-center gap-2" role="group" aria-label="Sort products">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#9AA3B2]">Sort</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#6B7280]">Sort</span>
               <div className="flex overflow-hidden rounded-lg border border-black/10 bg-white text-[13px] font-semibold">
                 {SORTS.map((s) => (
                   <Link
@@ -288,7 +289,7 @@ export default async function CatalogPage({
               {cat && <Chip label={CATEGORY_LABELS[cat] ?? cat} clear={href({ cat: null, page: 1 })} />}
               {supplier && <Chip label={supplier} clear={href({ supplier: null, page: 1 })} />}
               {query && <Chip label={`“${q!.trim()}”`} clear={href({ q: null, page: 1 })} />}
-              <Link href="/catalog" className="ml-1 font-semibold text-[#2B7CC1] hover:underline">Clear all</Link>
+              <Link href="/catalog" className="ml-1 font-semibold text-[#2771B0] hover:underline">Clear all</Link>
             </div>
           )}
 
@@ -303,7 +304,7 @@ export default async function CatalogPage({
               <p className="m-0 text-[18px] font-bold" style={{ color: INK }}>No products match those filters.</p>
               <p className="mt-2 text-[14px] text-[#6B7280]">Try a different search, or tell us what you need and we&apos;ll find it.</p>
               <div className="mt-5 flex flex-wrap justify-center gap-3">
-                <Link href="/catalog" className="rounded-md border border-black/15 bg-white px-5 py-2.5 text-[13px] font-semibold hover:border-[#2B7CC1] hover:text-[#2B7CC1]">Clear filters</Link>
+                <Link href="/catalog" className="rounded-md border border-black/15 bg-white px-5 py-2.5 text-[13px] font-semibold hover:border-[#2771B0] hover:text-[#2771B0]">Clear filters</Link>
                 <Link href="/quote" className="rounded-md px-5 py-2.5 text-[13px] font-bold text-white" style={{ background: BLUE }}>Ask for a quote</Link>
               </div>
             </div>
@@ -312,7 +313,7 @@ export default async function CatalogPage({
           {pages > 1 && (
             <nav className="mt-12 flex flex-wrap items-center justify-center gap-2 text-[14px]" aria-label="Pagination">
               {current > 1 ? (
-                <Link href={href({ page: current - 1 })} rel="prev" className="rounded-lg border border-black/[0.14] bg-white px-4 py-2.5 font-semibold transition-colors hover:border-[#2B7CC1] hover:text-[#2B7CC1]">← Previous</Link>
+                <Link href={href({ page: current - 1 })} rel="prev" className="rounded-lg border border-black/[0.14] bg-white px-4 py-2.5 font-semibold transition-colors hover:border-[#2771B0] hover:text-[#2771B0]">← Previous</Link>
               ) : null}
               {pageList(current, pages).map((n, i) =>
                 n === 'gap' ? (
@@ -323,7 +324,7 @@ export default async function CatalogPage({
                     href={href({ page: n })}
                     aria-current={n === current ? 'page' : undefined}
                     aria-label={`Page ${n}`}
-                    className={`min-w-[42px] rounded-lg border px-3 py-2.5 text-center font-semibold transition-colors ${n === current ? 'border-transparent text-white' : 'border-black/[0.14] bg-white hover:border-[#2B7CC1] hover:text-[#2B7CC1]'}`}
+                    className={`min-w-[42px] rounded-lg border px-3 py-2.5 text-center font-semibold transition-colors ${n === current ? 'border-transparent text-white' : 'border-black/[0.14] bg-white hover:border-[#2771B0] hover:text-[#2771B0]'}`}
                     style={n === current ? { background: INK } : undefined}
                   >
                     {n}
@@ -348,7 +349,7 @@ function Chip({ label, clear }: { label: string; clear: string }) {
     <Link
       href={clear}
       aria-label={`Remove filter ${label}`}
-      className="inline-flex items-center gap-1.5 rounded-full border border-[#2B7CC1]/30 bg-[#EBF4FF] px-3 py-1 font-semibold text-[#1E5C96] transition-colors hover:bg-[#dcebfb]"
+      className="inline-flex items-center gap-1.5 rounded-full border border-[#2771B0]/30 bg-[#EBF4FF] px-3 py-1 font-semibold text-[#1E5C96] transition-colors hover:bg-[#dcebfb]"
     >
       {label}
       <span aria-hidden className="text-[15px] leading-none">×</span>

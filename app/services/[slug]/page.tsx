@@ -94,11 +94,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             <ol style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px", listStyle: "none", margin: 0, padding: 0 }}>
               <li style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <Link href="/" style={crumbLink}>Home</Link>
-                <span style={{ color: "#2B7CC1", fontSize: "10px" }} aria-hidden="true">/</span>
+                <span style={{ color: "#2771B0", fontSize: "10px" }} aria-hidden="true">/</span>
               </li>
               <li style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <Link href="/services" style={crumbLink}>Services</Link>
-                <span style={{ color: "#2B7CC1", fontSize: "10px" }} aria-hidden="true">/</span>
+                <span style={{ color: "#2771B0", fontSize: "10px" }} aria-hidden="true">/</span>
               </li>
               <li>
                 <span style={{ fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#1A202C" }}>{svc.name}</span>
@@ -107,7 +107,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </nav>
 
           <SectionLabel>{svc.heroLabel}</SectionLabel>
-          <div style={{ width: "48px", height: "1px", backgroundColor: "#2B7CC1", margin: "24px 0" }} aria-hidden="true" />
+          <div style={{ width: "48px", height: "1px", backgroundColor: "#2771B0", margin: "24px 0" }} aria-hidden="true" />
           <h1 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "clamp(38px, 6vw, 68px)", lineHeight: 1.1, color: "#1A202C", margin: 0, letterSpacing: "0.01em" }}>
             {svc.name}
           </h1>
@@ -176,7 +176,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px" style={{ backgroundColor: "rgba(43,124,193,0.1)" }}>
             {svc.features.map((f) => (
               <div key={f.title} style={{ backgroundColor: "#FFFFFF", padding: "30px 28px", display: "flex", flexDirection: "column", gap: "12px" }}>
-                <div style={{ width: "28px", height: "1px", backgroundColor: "#2B7CC1" }} aria-hidden="true" />
+                <div style={{ width: "28px", height: "1px", backgroundColor: "#2771B0" }} aria-hidden="true" />
                 <h3 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "20px", color: "#1A202C", margin: 0, lineHeight: 1.3 }}>{f.title}</h3>
                 <p style={{ fontSize: "14px", lineHeight: 1.8, color: "#4A5568", margin: 0 }}>{f.body}</p>
               </div>
@@ -232,7 +232,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               {svc.related.map((r) => (
                 <Link key={r.href} href={r.href} style={{ backgroundColor: "#FFFFFF", padding: "26px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", textDecoration: "none" }}>
                   <span style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "19px", color: "#1A202C" }}>{r.label}</span>
-                  <span style={{ color: "#2B7CC1", fontSize: "16px" }} aria-hidden="true">→</span>
+                  <span style={{ color: "#2771B0", fontSize: "16px" }} aria-hidden="true">→</span>
                 </Link>
               ))}
             </div>

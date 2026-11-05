@@ -151,7 +151,7 @@ export default function PortalLoginPage() {
                 type="submit"
                 disabled={submitting}
                 style={{
-                  background: submitting ? "#7FA9CB" : "#2B7CC1",
+                  background: submitting ? "#7FA9CB" : "#2771B0",
                   color: "#fff",
                   border: "none",
                   borderRadius: 6,
@@ -168,7 +168,7 @@ export default function PortalLoginPage() {
                 <button
                   type="button"
                   onClick={() => { setMode("link"); setError(null); }}
-                  style={{ color: "#2B7CC1", background: "none", border: "none", padding: 0, cursor: "pointer", fontSize: 12, fontFamily: "inherit", textDecoration: "underline" }}
+                  style={{ color: "#2771B0", background: "none", border: "none", padding: 0, cursor: "pointer", fontSize: 12, fontFamily: "inherit", textDecoration: "underline" }}
                 >
                   Email me a sign-in link
                 </button>
@@ -189,7 +189,7 @@ export default function PortalLoginPage() {
                 type="submit"
                 disabled={submitting}
                 style={{
-                  background: submitting ? "#7FA9CB" : "#2B7CC1",
+                  background: submitting ? "#7FA9CB" : "#2771B0",
                   color: "#fff",
                   border: "none",
                   borderRadius: 6,
@@ -206,7 +206,7 @@ export default function PortalLoginPage() {
 
           <p style={{ fontSize: 12, color: "#6B7280", marginTop: 24, marginBottom: 0, lineHeight: 1.6 }}>
             Don&apos;t have portal access yet? Ask your project manager to send you an invite, or call us at{" "}
-            <a href="tel:+17273837550" style={{ color: "#2B7CC1" }}>
+            <a href="tel:+17273837550" style={{ color: "#2771B0" }}>
               (727) 383-7550
             </a>
             .

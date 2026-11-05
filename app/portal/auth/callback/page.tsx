@@ -42,7 +42,7 @@ export default function PortalAuthCallbackPage() {
         {failed ? (
           <>
             That sign-in link didn&apos;t work — it may have expired.{" "}
-            <a href="/portal/login" style={{ color: "#2B7CC1" }}>
+            <a href="/portal/login" style={{ color: "#2771B0" }}>
               Request a new one
             </a>
             .

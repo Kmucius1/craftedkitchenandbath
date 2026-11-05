@@ -12,7 +12,7 @@ import { usePathname } from "next/navigation";
  */
 const STORAGE_KEY = "ckb_newsletter_v1"; // value: "dismissed" | "subscribed"
 const DELAY_MS = 9000;
-const ACCENT = "#2B7CC1";
+const ACCENT = "#2771B0";
 const INK = "#111822";
 
 export default function NewsletterPopup() {
@@ -239,7 +239,7 @@ export default function NewsletterPopup() {
               <button
                 type="button"
                 onClick={close}
-                style={{ display: "block", margin: "16px auto 0", background: "none", border: "none", color: "#9AA3AF", fontSize: "12px", cursor: "pointer", letterSpacing: "0.02em" }}
+                style={{ display: "block", margin: "16px auto 0", background: "none", border: "none", color: "#6B7280", fontSize: "12px", cursor: "pointer", letterSpacing: "0.02em" }}
               >
                 No thanks, maybe later
               </button>

@@ -4,10 +4,10 @@ import ContactForm from "@/components/ContactForm";
 import AskCrewPrompt from "@/components/AskCrewPrompt";
 
 export const metadata: Metadata = {
-  title:
-    "Free Kitchen & Bathroom Remodeling Quote | Crafted Kitchen & Bath | Oldsmar FL",
+  title: "Contact Us | Free Consultation",
   description:
     "Request a free kitchen or bathroom remodeling consultation in Tampa Bay. We serve Oldsmar, Clearwater, Palm Harbor, Tampa, and all of Pinellas County. Licensed CGC1541816.",
+  alternates: { canonical: "/contact" },
 };
 
 const contactPageJsonLd = {
@@ -123,7 +123,7 @@ export default function ContactPage() {
                 style={{
                   width: "32px",
                   height: "1px",
-                  backgroundColor: "#2B7CC1",
+                  backgroundColor: "#2771B0",
                 }}
               />
             </div>
@@ -150,7 +150,7 @@ export default function ContactPage() {
                 >
                   <path
                     d="M3.5 2C3.5 2 2 2 2 3.5C2 5 2.5 8.5 6 12C9.5 15.5 13 16 14.5 16C16 16 16 14.5 16 14.5L14.5 11.5C14.5 11.5 13.5 11 13 11.5L11.5 13C11.5 13 9.5 12 7.5 10C5.5 8 4.5 6 4.5 6L6 4.5C6.5 4 6 3 6 3L3.5 2Z"
-                    stroke="#2B7CC1"
+                    stroke="#2771B0"
                     strokeWidth="1.25"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -159,7 +159,7 @@ export default function ContactPage() {
                 <a
                   href="tel:+17273837550"
                   style={{
-                    color: "#2B7CC1",
+                    color: "#2771B0",
                     textDecoration: "none",
                     fontSize: "17px",
                     letterSpacing: "0.02em",
@@ -192,12 +192,12 @@ export default function ContactPage() {
                     width="14"
                     height="10"
                     rx="1.5"
-                    stroke="#2B7CC1"
+                    stroke="#2771B0"
                     strokeWidth="1.25"
                   />
                   <path
                     d="M2 5.5L9 10.5L16 5.5"
-                    stroke="#2B7CC1"
+                    stroke="#2771B0"
                     strokeWidth="1.25"
                     strokeLinecap="round"
                   />
@@ -234,11 +234,11 @@ export default function ContactPage() {
                 >
                   <path
                     d="M9 2C6.239 2 4 4.239 4 7C4 10.5 9 16 9 16C9 16 14 10.5 14 7C14 4.239 11.761 2 9 2Z"
-                    stroke="#2B7CC1"
+                    stroke="#2771B0"
                     strokeWidth="1.25"
                     strokeLinejoin="round"
                   />
-                  <circle cx="9" cy="7" r="1.5" stroke="#2B7CC1" strokeWidth="1.25" />
+                  <circle cx="9" cy="7" r="1.5" stroke="#2771B0" strokeWidth="1.25" />
                 </svg>
                 <address
                   style={{
@@ -272,13 +272,13 @@ export default function ContactPage() {
                 >
                   <path
                     d="M9 2L3 5V9C3 12.314 5.686 15.314 9 16C12.314 15.314 15 12.314 15 9V5L9 2Z"
-                    stroke="#2B7CC1"
+                    stroke="#2771B0"
                     strokeWidth="1.25"
                     strokeLinejoin="round"
                   />
                   <path
                     d="M6.5 9L8.5 11L11.5 7"
-                    stroke="#2B7CC1"
+                    stroke="#2771B0"
                     strokeWidth="1.25"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -305,10 +305,10 @@ export default function ContactPage() {
                   aria-hidden="true"
                   style={{ flexShrink: 0, marginTop: "2px" }}
                 >
-                  <circle cx="9" cy="9" r="7" stroke="#2B7CC1" strokeWidth="1.25" />
+                  <circle cx="9" cy="9" r="7" stroke="#2771B0" strokeWidth="1.25" />
                   <path
                     d="M2 9H16M9 2C9 2 6.5 5 6.5 9C6.5 13 9 16 9 16C9 16 11.5 13 11.5 9C11.5 5 9 2 9 2Z"
-                    stroke="#2B7CC1"
+                    stroke="#2771B0"
                     strokeWidth="1.25"
                     strokeLinecap="round"
                   />
@@ -334,10 +334,10 @@ export default function ContactPage() {
                   aria-hidden="true"
                   style={{ flexShrink: 0, marginTop: "2px" }}
                 >
-                  <circle cx="9" cy="9" r="7" stroke="#2B7CC1" strokeWidth="1.25" />
+                  <circle cx="9" cy="9" r="7" stroke="#2771B0" strokeWidth="1.25" />
                   <path
                     d="M9 5V9L11.5 11"
-                    stroke="#2B7CC1"
+                    stroke="#2771B0"
                     strokeWidth="1.25"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -388,7 +388,7 @@ export default function ContactPage() {
                   href="https://maps.google.com/?q=Crafted+Home+Improvements+120+Commerce+Blvd+Suite+4+Oldsmar+FL+34677"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: "#2B7CC1", textDecoration: "none", fontSize: "10px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", whiteSpace: "nowrap" }}
+                  style={{ color: "#2771B0", textDecoration: "none", fontSize: "10px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", whiteSpace: "nowrap" }}
                 >
                   Open in Maps →
                 </a>
@@ -423,7 +423,7 @@ export default function ContactPage() {
               style={{
                 width: "32px",
                 height: "1px",
-                backgroundColor: "#2B7CC1",
+                backgroundColor: "#2771B0",
                 marginBottom: "36px",
               }}
             />
@@ -447,7 +447,7 @@ export default function ContactPage() {
         {/* Overlay CTA card */}
         <div className="map-card" style={{ position: "absolute", bottom: "32px", left: "50%", transform: "translateX(-50%)", backgroundColor: "#FFFFFF", padding: "24px 32px", boxShadow: "0 8px 40px rgba(0,0,0,0.14)", border: "1px solid rgba(0,0,0,0.06)", display: "flex", alignItems: "center", gap: "32px", whiteSpace: "nowrap", zIndex: 1 }}>
           <div>
-            <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.18em", color: "#2B7CC1", fontWeight: 600, margin: "0 0 6px" }}>Our Location</p>
+            <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.18em", color: "#2771B0", fontWeight: 600, margin: "0 0 6px" }}>Our Location</p>
             <p style={{ fontFamily: "var(--font-display),'Montserrat',system-ui,sans-serif", fontSize: "20px", color: "#111822", margin: 0, fontWeight: 400 }}>120 Commerce Blvd Suite 4, Oldsmar FL</p>
           </div>
           <a

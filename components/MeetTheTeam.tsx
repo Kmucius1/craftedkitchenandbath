@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const display = "var(--font-display), 'Montserrat', system-ui, sans-serif";
 const sans = "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif";
-const ACCENT = "#2B7CC1";
+const ACCENT = "#2771B0";
 
 // ─────────────────────────────────────────────────────────────────────────
 // PLACEHOLDER TEAM — replace each entry with the real person.

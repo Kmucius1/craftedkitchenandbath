@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer style={{ backgroundColor: "#F7F8FA" }}>
       {/* Blue top line */}
-      <div style={{ height: "1px", backgroundColor: "#2B7CC1" }} />
+      <div style={{ height: "1px", backgroundColor: "#2771B0" }} />
 
       {/* Main footer grid */}
       <div className="px-6 pt-16 pb-12 md:px-12 lg:px-20">
@@ -50,7 +50,7 @@ export default function Footer() {
                     height="15"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="#2B7CC1"
+                    stroke="#2771B0"
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -75,7 +75,7 @@ export default function Footer() {
                     height="15"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="#2B7CC1"
+                    stroke="#2771B0"
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -100,7 +100,7 @@ export default function Footer() {
                     height="15"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="#2B7CC1"
+                    stroke="#2771B0"
                     strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -118,7 +118,7 @@ export default function Footer() {
             </ul>
 
             {/* License */}
-            <p style={{ color: "#6B7280", fontSize: "11px" }}>
+            <p style={{ color: "#4A5568", fontSize: "11px" }}>
               License: CGC1541816
             </p>
 
@@ -173,7 +173,7 @@ export default function Footer() {
           <div className="flex flex-col gap-5">
             <h3
               style={{
-                color: "#2B7CC1",
+                color: "#2771B0",
                 fontSize: "9px",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -204,7 +204,7 @@ export default function Footer() {
                     className="text-sm transition-colors duration-200 hover:text-[#1A202C] flex items-center gap-2 group"
                   >
                     <span
-                      style={{ backgroundColor: "#2B7CC1" }}
+                      style={{ backgroundColor: "#2771B0" }}
                       className="inline-block w-3 h-px group-hover:w-4 transition-all duration-200 shrink-0"
                     />
                     {label}
@@ -218,7 +218,7 @@ export default function Footer() {
           <div className="flex flex-col gap-5">
             <h3
               style={{
-                color: "#2B7CC1",
+                color: "#2771B0",
                 fontSize: "9px",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -245,7 +245,7 @@ export default function Footer() {
                     className="text-sm transition-colors duration-200 hover:text-[#1A202C] flex items-center gap-2 group"
                   >
                     <span
-                      style={{ backgroundColor: "#2B7CC1" }}
+                      style={{ backgroundColor: "#2771B0" }}
                       className="inline-block w-3 h-px group-hover:w-4 transition-all duration-200 shrink-0"
                     />
                     {label}
@@ -259,7 +259,7 @@ export default function Footer() {
           <div className="flex flex-col gap-5">
             <h3
               style={{
-                color: "#2B7CC1",
+                color: "#2771B0",
                 fontSize: "9px",
                 letterSpacing: "0.18em",
                 textTransform: "uppercase",
@@ -295,7 +295,7 @@ export default function Footer() {
                   className="text-sm flex items-center gap-2"
                 >
                   <span
-                    style={{ backgroundColor: "#2B7CC1" }}
+                    style={{ backgroundColor: "#2771B0" }}
                     className="inline-block w-1 h-1 rounded-full shrink-0"
                   />
                   {area}
@@ -310,7 +310,7 @@ export default function Footer() {
       <div style={{ backgroundColor: "#EEF0F4" }} className="px-6 py-5 md:px-12 lg:px-20">
         <div className="mx-auto max-w-7xl flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           {/* Left: copyright */}
-          <p style={{ color: "#6B7280", fontSize: "11px" }}>
+          <p style={{ color: "#4A5568", fontSize: "11px" }}>
             &copy; 2026 Crafted Kitchen and Bath. All rights reserved.
           </p>
 
@@ -318,7 +318,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <Link
               href="/privacy-policy"
-              style={{ color: "#6B7280", fontSize: "11px", textDecoration: "none" }}
+              style={{ color: "#4A5568", fontSize: "11px", textDecoration: "none" }}
               className="transition-colors duration-200 hover:text-[#1A202C]"
             >
               Privacy Policy
@@ -326,7 +326,7 @@ export default function Footer() {
             <span style={{ color: "rgba(0,0,0,0.2)", fontSize: "11px" }}>|</span>
             <Link
               href="/terms-and-conditions"
-              style={{ color: "#6B7280", fontSize: "11px", textDecoration: "none" }}
+              style={{ color: "#4A5568", fontSize: "11px", textDecoration: "none" }}
               className="transition-colors duration-200 hover:text-[#1A202C]"
             >
               Terms and Conditions
@@ -334,7 +334,7 @@ export default function Footer() {
           </div>
 
           {/* Right: license note */}
-          <p style={{ color: "#6B7280", fontSize: "11px" }}>
+          <p style={{ color: "#4A5568", fontSize: "11px" }}>
             Licensed Contractor CGC1541816 &nbsp;|&nbsp; Serving Pinellas &amp; Hillsborough County
           </p>
         </div>

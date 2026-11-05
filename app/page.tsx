@@ -9,14 +9,16 @@ import MeetTheCrew from "@/components/MeetTheCrew";
 import { getGoogleReviews } from "@/lib/reviews";
 
 export const metadata: Metadata = {
-  title: "Kitchen & Bathroom Remodeling Tampa Bay | Crafted Kitchen & Bath | Oldsmar FL",
+  title: { absolute: "Kitchen & Bath Remodeling Tampa Bay | Crafted Kitchen & Bath" },
   description:
-    "Crafted Kitchen & Bath delivers luxury kitchen remodeling and spa-inspired bathroom renovations across Tampa Bay. Custom cabinetry, countertops, tile, and complete transformations. Licensed contractor CGC1541816. Serving Oldsmar, Clearwater, Palm Harbor, Tampa.",
+    "Kitchen remodeling and spa-inspired bathroom renovations across Tampa Bay. Custom cabinetry, countertops and tile. Licensed CGC1541816. Free consultation.",
   openGraph: {
-    title: "Kitchen & Bathroom Remodeling Tampa Bay | Crafted Kitchen & Bath | Oldsmar FL",
+    title: "Kitchen & Bath Remodeling Tampa Bay | Crafted Kitchen & Bath",
     description:
-      "Crafted Kitchen & Bath delivers luxury kitchen remodeling and spa-inspired bathroom renovations across Tampa Bay. Custom cabinetry, countertops, tile, and complete transformations. Licensed contractor CGC1541816. Serving Oldsmar, Clearwater, Palm Harbor, Tampa.",
+      "Kitchen remodeling and spa-inspired bathroom renovations across Tampa Bay. Custom cabinetry, countertops and tile. Licensed CGC1541816. Free consultation.",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Crafted Kitchen & Bath, kitchen and bathroom remodeling in Tampa Bay" }],
   },
+  alternates: { canonical: "/" },
 };
 
 const jsonLd = {
@@ -212,7 +214,7 @@ export default async function HomePage() {
             <div className="hero-top-text">
 
           {/* Eyebrow */}
-          <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "12px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#2c7fc0", fontWeight: 600, margin: "0 0 18px" }}>
+          <p style={{ fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "12px", letterSpacing: "0.22em", textTransform: "uppercase", color: "#2771B0", fontWeight: 600, margin: "0 0 18px" }}>
             Premium Remodeling, Personalized for You.
           </p>
 
@@ -233,7 +235,7 @@ export default async function HomePage() {
           <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "52px", flexWrap: "wrap" }}>
             <Link
               href="/contact"
-              style={{ background: "#2B7CC1", color: "#fff", padding: "15px 32px", fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", textDecoration: "none", display: "inline-block" }}
+              style={{ background: "#2771B0", color: "#fff", padding: "15px 32px", fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", textDecoration: "none", display: "inline-block" }}
               className="transition-colors duration-200 hover:bg-[#1E5C96]"
             >
               Get a Free Quote
@@ -241,14 +243,14 @@ export default async function HomePage() {
             <a
               href="tel:+17273837550"
               style={{ background: "transparent", color: "#111722", padding: "15px 30px", border: "1px solid rgba(0,0,0,0.25)", fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", textDecoration: "none", display: "inline-block" }}
-              className="transition-colors duration-200 hover:border-[#2B7CC1] hover:text-[#2B7CC1]"
+              className="transition-colors duration-200 hover:border-[#2771B0] hover:text-[#2771B0]"
             >
               Call (727) 383-7550
             </a>
             <Link
               href="/our-work"
               style={{ color: "#111722", fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: "11px", letterSpacing: "0.22em", textTransform: "uppercase", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "8px" }}
-              className="transition-colors duration-200 hover:text-[#2B7CC1]"
+              className="transition-colors duration-200 hover:text-[#2771B0]"
             >
               View Our Work <span aria-hidden="true">→</span>
             </Link>
@@ -303,7 +305,7 @@ export default async function HomePage() {
           />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)' }} />
           <div style={{ position: 'absolute', bottom: 0, left: 0, padding: '40px 36px' }}>
-            <p style={{ color: '#2B7CC1', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', margin: '0 0 12px', fontWeight: 500 }}>Our Specialty</p>
+            <p style={{ color: '#6BA6DC', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', margin: '0 0 12px', fontWeight: 500 }}>Our Specialty</p>
             <h2 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: '#FFFFFF', lineHeight: 1.1, margin: '0 0 16px' }}>Kitchen<br />Remodeling</h2>
             <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '14px', lineHeight: 1.7, margin: '0 0 24px', maxWidth: '320px' }}>Custom cabinetry, quartz countertops, kitchen islands, and complete kitchen transformations.</p>
             <Link href="/kitchen-remodeling" className="inline-block border border-white/70 bg-transparent text-white hover:bg-white hover:text-[#1A202C] hover:border-white transition-colors duration-300" style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.16em', padding: '12px 28px', textDecoration: 'none' }}>Explore Kitchens →</Link>
@@ -321,7 +323,7 @@ export default async function HomePage() {
           />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)' }} />
           <div style={{ position: 'absolute', bottom: 0, left: 0, padding: '40px 36px' }}>
-            <p style={{ color: '#2B7CC1', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', margin: '0 0 12px', fontWeight: 500 }}>Our Specialty</p>
+            <p style={{ color: '#6BA6DC', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', margin: '0 0 12px', fontWeight: 500 }}>Our Specialty</p>
             <h2 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(2rem, 3.5vw, 3rem)', color: '#FFFFFF', lineHeight: 1.1, margin: '0 0 16px' }}>Bathroom<br />Remodeling</h2>
             <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '14px', lineHeight: 1.7, margin: '0 0 24px', maxWidth: '320px' }}>Spa-inspired finishes, custom tile showers, freestanding tubs, and luxury vanities.</p>
             <Link href="/bathroom-remodeling" className="inline-block border border-white/70 bg-transparent text-white hover:bg-white hover:text-[#1A202C] hover:border-white transition-colors duration-300" style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.16em', padding: '12px 28px', textDecoration: 'none' }}>Explore Bathrooms →</Link>
@@ -338,7 +340,7 @@ export default async function HomePage() {
                 fontSize: "9px",
                 textTransform: "uppercase",
                 letterSpacing: "0.22em",
-                color: "#2B7CC1",
+                color: "#2771B0",
                 fontWeight: 500,
               }}
             >
@@ -406,7 +408,7 @@ export default async function HomePage() {
                       style={{
                         width: "24px",
                         height: "1px",
-                        backgroundColor: "#2B7CC1",
+                        backgroundColor: "#2771B0",
                         marginTop: "8px",
                       }}
                     />
@@ -468,7 +470,7 @@ export default async function HomePage() {
                       style={{
                         width: "24px",
                         height: "1px",
-                        backgroundColor: "#2B7CC1",
+                        backgroundColor: "#2771B0",
                         marginTop: "8px",
                       }}
                     />
@@ -530,7 +532,7 @@ export default async function HomePage() {
                       style={{
                         width: "24px",
                         height: "1px",
-                        backgroundColor: "#2B7CC1",
+                        backgroundColor: "#2771B0",
                         marginTop: "8px",
                       }}
                     />
@@ -592,7 +594,7 @@ export default async function HomePage() {
                       style={{
                         width: "24px",
                         height: "1px",
-                        backgroundColor: "#2B7CC1",
+                        backgroundColor: "#2771B0",
                         marginTop: "8px",
                       }}
                     />
@@ -618,7 +620,7 @@ export default async function HomePage() {
       <section style={{ backgroundColor: "#FFFFFF", padding: "clamp(54px, 11vw, 96px) 0" }}>
         <div className="max-w-[1200px] mx-auto px-8 md:px-16">
           <div style={{ textAlign: "center", marginBottom: "clamp(40px, 6vw, 64px)" }}>
-            <p style={{ fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.22em", color: "#2B7CC1", fontWeight: 500 }}>
+            <p style={{ fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.22em", color: "#2771B0", fontWeight: 500 }}>
               The Problems We Solve
             </p>
             <h2
@@ -664,7 +666,7 @@ export default async function HomePage() {
             <div className="ps-arrow" aria-hidden="true">
               <span className="ps-arrow-badge">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path d="M4 12h15M13 6l6 6-6 6" stroke="#2B7CC1" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M4 12h15M13 6l6 6-6 6" stroke="#2771B0" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </span>
             </div>
@@ -747,7 +749,7 @@ export default async function HomePage() {
       <section style={{ backgroundColor: '#1A202C', padding: 'clamp(54px, 11vw, 96px) 0' }}>
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <div style={{ textAlign: 'center', marginBottom: '64px' }}>
-            <p style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.22em', color: '#2B7CC1', fontWeight: 500 }}>The Crafted Difference</p>
+            <p style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.22em', color: '#6BA6DC', fontWeight: 500 }}>The Crafted Difference</p>
             <h2 style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: 'clamp(2.5rem,4vw,4rem)', color: '#FFFFFF', lineHeight: 1.1, marginTop: '24px', letterSpacing: '-0.01em' }}>Built for Kitchen &amp;<br />Bathroom Excellence</h2>
           </div>
           <div style={{ display: 'grid', gap: '24px' }} className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
@@ -784,7 +786,7 @@ export default async function HomePage() {
             <div style={{ display: 'inline-flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'center', alignItems: 'center' }}>
               <Link
                 href="/quote"
-                style={{ background: '#2B7CC1', color: '#fff', padding: '16px 36px', fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 700, textDecoration: 'none', borderRadius: '4px', display: 'inline-block' }}
+                style={{ background: '#2771B0', color: '#fff', padding: '16px 36px', fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 700, textDecoration: 'none', borderRadius: '4px', display: 'inline-block' }}
                 className="transition-colors duration-200 hover:bg-[#3D8BD0]"
               >
                 Get a Free Quote →
@@ -792,7 +794,7 @@ export default async function HomePage() {
               <a
                 href="tel:+17273837550"
                 style={{ color: '#FFFFFF', padding: '16px 30px', border: '1px solid rgba(255,255,255,0.3)', fontFamily: "var(--font-dm-sans),'DM Sans',system-ui,sans-serif", fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', fontWeight: 600, textDecoration: 'none', borderRadius: '4px', display: 'inline-block' }}
-                className="transition-colors duration-200 hover:border-[#2B7CC1] hover:text-[#6BA6DC]"
+                className="transition-colors duration-200 hover:border-[#2771B0] hover:text-[#6BA6DC]"
               >
                 Call (727) 383-7550
               </a>
@@ -810,7 +812,7 @@ export default async function HomePage() {
                 fontSize: "9px",
                 textTransform: "uppercase",
                 letterSpacing: "0.22em",
-                color: "#2B7CC1",
+                color: "#2771B0",
                 fontWeight: 500,
               }}
             >
@@ -846,8 +848,11 @@ export default async function HomePage() {
                   paddingRight: "48px",
                 }}
               >
-                {/* Step number */}
+                {/* Step number: decorative, drawn by CSS (.deco-num) so it isn't read out as text */}
                 <div
+                  className="deco-num"
+                  data-n={step.number}
+                  aria-hidden="true"
                   style={{
                     flexShrink: 0,
                     fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
@@ -857,9 +862,7 @@ export default async function HomePage() {
                     lineHeight: 1,
                     marginTop: "-8px",
                   }}
-                >
-                  {step.number}
-                </div>
+                />
                 <div>
                   <h3
                     style={{
@@ -920,7 +923,7 @@ export default async function HomePage() {
                       fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       fontWeight: 300,
                       fontSize: "3.75rem",
-                      color: "#2B7CC1",
+                      color: "#2771B0",
                       lineHeight: 1,
                     }}
                   >
@@ -981,7 +984,7 @@ export default async function HomePage() {
                 fontSize: "9px",
                 textTransform: "uppercase",
                 letterSpacing: "0.22em",
-                color: "#2B7CC1",
+                color: "#2771B0",
                 fontWeight: 500,
               }}
             >
@@ -1032,7 +1035,7 @@ export default async function HomePage() {
                     fontSize: "9px",
                     textTransform: "uppercase",
                     letterSpacing: "0.14em",
-                    color: "#2B7CC1",
+                    color: "#2771B0",
                   }}
                 >
                   Kitchen Remodel
@@ -1078,7 +1081,7 @@ export default async function HomePage() {
                     fontSize: "9px",
                     textTransform: "uppercase",
                     letterSpacing: "0.14em",
-                    color: "#2B7CC1",
+                    color: "#2771B0",
                   }}
                 >
                   Bathroom Remodel
@@ -1124,7 +1127,7 @@ export default async function HomePage() {
                     fontSize: "9px",
                     textTransform: "uppercase",
                     letterSpacing: "0.14em",
-                    color: "#2B7CC1",
+                    color: "#2771B0",
                   }}
                 >
                   Bathroom Remodel
@@ -1150,7 +1153,7 @@ export default async function HomePage() {
                 fontSize: "10px",
                 textTransform: "uppercase",
                 letterSpacing: "0.14em",
-                color: "#2B7CC1",
+                color: "#2771B0",
                 textDecoration: "none",
                 display: "inline-block",
               }}
@@ -1170,7 +1173,7 @@ export default async function HomePage() {
                 fontSize: "9px",
                 textTransform: "uppercase",
                 letterSpacing: "0.22em",
-                color: "#2B7CC1",
+                color: "#2771B0",
                 fontWeight: 500,
               }}
             >
@@ -1235,7 +1238,7 @@ export default async function HomePage() {
       <section style={{ backgroundColor: "#FFFFFF", padding: "clamp(54px, 11vw, 96px) 0" }}>
         <div className="max-w-[1400px] mx-auto px-8 md:px-16">
           <div className="mb-16 text-center">
-            <p style={{ fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.22em", color: "#2B7CC1", fontWeight: 500 }}>
+            <p style={{ fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.22em", color: "#2771B0", fontWeight: 500 }}>
               Client Stories
             </p>
             <h2 className="mt-6" style={{ fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif", fontWeight: 300, fontSize: "clamp(2.5rem,4vw,4rem)", color: "#1A202C", lineHeight: 1.1, letterSpacing: "-0.01em" }}>
@@ -1312,7 +1315,7 @@ export default async function HomePage() {
                   fontSize: "9px",
                   textTransform: "uppercase",
                   letterSpacing: "0.22em",
-                  color: "#2B7CC1",
+                  color: "#2771B0",
                   fontWeight: 500,
                 }}
               >
@@ -1349,7 +1352,7 @@ export default async function HomePage() {
                   fontSize: "10px",
                   textTransform: "uppercase",
                   letterSpacing: "0.14em",
-                  color: "#2B7CC1",
+                  color: "#2771B0",
                   textDecoration: "none",
                   display: "inline-block",
                 }}

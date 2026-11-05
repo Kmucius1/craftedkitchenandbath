@@ -3,12 +3,17 @@ import React from "react";
 interface SectionLabelProps {
   children: React.ReactNode;
   light?: boolean;
+  /** Render as a heading when the label titles the content that follows. */
+  as?: "div" | "h2";
 }
 
-export default function SectionLabel({ children, light = false }: SectionLabelProps) {
+export default function SectionLabel({ children, light = false, as: Tag = "div" }: SectionLabelProps) {
   return (
-    <div
+    <Tag
       style={{
+        margin: 0,
+        fontSize: "inherit",
+        fontWeight: "inherit",
         display: "flex",
         alignItems: "center",
         gap: "10px",
@@ -20,7 +25,7 @@ export default function SectionLabel({ children, light = false }: SectionLabelPr
           display: "inline-block",
           width: "32px",
           height: "1px",
-          backgroundColor: "#2B7CC1",
+          backgroundColor: "#2771B0",
           flexShrink: 0,
         }}
         aria-hidden="true"
@@ -30,7 +35,7 @@ export default function SectionLabel({ children, light = false }: SectionLabelPr
           fontSize: "11px",
           letterSpacing: "0.18em",
           textTransform: "uppercase",
-          color: light ? "#1A202C" : "#2B7CC1",
+          color: light ? "#1A202C" : "#2771B0",
           fontFamily: "inherit",
           fontWeight: 500,
           lineHeight: 1,
@@ -38,6 +43,6 @@ export default function SectionLabel({ children, light = false }: SectionLabelPr
       >
         {children}
       </span>
-    </div>
+    </Tag>
   );
 }

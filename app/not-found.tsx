@@ -19,7 +19,7 @@ export default function NotFound() {
           404
         </p>
 
-        <div className="w-12 h-px bg-[#2B7CC1] mx-auto my-8" />
+        <div className="w-12 h-px bg-[#2771B0] mx-auto my-8" />
 
         <h1
           style={{
@@ -44,13 +44,13 @@ export default function NotFound() {
           <Link
             href="/"
             className="px-8 py-4 text-[11px] uppercase tracking-[0.14em] font-semibold transition hover:bg-[#1E5C96]"
-            style={{ backgroundColor: '#2B7CC1', color: '#FFFFFF' }}
+            style={{ backgroundColor: '#2771B0', color: '#FFFFFF' }}
           >
             Return Home
           </Link>
           <Link
             href="/contact"
-            className="px-8 py-4 text-[11px] uppercase tracking-[0.14em] transition hover:border-[#2B7CC1] hover:text-[#2B7CC1]"
+            className="px-8 py-4 text-[11px] uppercase tracking-[0.14em] transition hover:border-[#2771B0] hover:text-[#2771B0]"
             style={{
               border: '1px solid rgba(0,0,0,0.25)',
               color: '#1A202C',

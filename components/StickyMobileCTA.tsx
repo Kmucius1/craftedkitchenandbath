@@ -53,7 +53,7 @@ export default function StickyMobileCTA() {
             alignItems: "center",
             justifyContent: "center",
             padding: "15px 0",
-            backgroundColor: "#2B7CC1",
+            backgroundColor: "#2771B0",
             color: "#FFFFFF",
             fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif",
             fontSize: "11px",

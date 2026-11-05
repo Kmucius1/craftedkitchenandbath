@@ -4,9 +4,10 @@ import SectionLabel from '@/components/SectionLabel'
 import Breadcrumb from '@/components/Breadcrumb'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Crafted Kitchen and Bath',
+  title: 'Privacy Policy',
   description:
     'Privacy policy for Crafted Kitchen and Bath. Learn how we collect, use, and protect your personal information.',
+  alternates: { canonical: '/privacy-policy' },
 }
 
 // ─── shared heading style ───────────────────────────────────────────────────
@@ -127,7 +128,7 @@ export default function PrivacyPolicyPage() {
               questions or concerns, please contact us using the information in the{' '}
               <a
                 href="#privacy-contact"
-                style={{ color: '#2B7CC1', textDecoration: 'none' }}
+                style={{ color: '#2771B0', textDecoration: 'none' }}
               >
                 Contact for Privacy Matters
               </a>{' '}
@@ -152,7 +153,7 @@ export default function PrivacyPolicyPage() {
             {/* Sub-block: directly provided */}
             <div
               style={{
-                borderLeft: '2px solid #2B7CC1',
+                borderLeft: '2px solid #2771B0',
                 paddingLeft: '20px',
                 marginBottom: '24px',
               }}
@@ -163,7 +164,7 @@ export default function PrivacyPolicyPage() {
                   fontWeight: 600,
                   letterSpacing: '0.12em',
                   textTransform: 'uppercase',
-                  color: '#2B7CC1',
+                  color: '#2771B0',
                   margin: '0 0 8px',
                 }}
               >
@@ -192,7 +193,7 @@ export default function PrivacyPolicyPage() {
                   fontWeight: 600,
                   letterSpacing: '0.12em',
                   textTransform: 'uppercase',
-                  color: '#2B7CC1',
+                  color: '#2771B0',
                   margin: '0 0 8px',
                   opacity: 0.85,
                 }}
@@ -255,7 +256,7 @@ export default function PrivacyPolicyPage() {
                       width: '6px',
                       height: '6px',
                       borderRadius: '50%',
-                      backgroundColor: '#2B7CC1',
+                      backgroundColor: '#2771B0',
                       flexShrink: 0,
                       marginTop: '8px',
                     }}
@@ -355,7 +356,7 @@ export default function PrivacyPolicyPage() {
                       width: '6px',
                       height: '6px',
                       borderRadius: '50%',
-                      backgroundColor: '#2B7CC1',
+                      backgroundColor: '#2771B0',
                       flexShrink: 0,
                       marginTop: '8px',
                     }}
@@ -375,7 +376,7 @@ export default function PrivacyPolicyPage() {
                 href="https://www.allaboutcookies.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: '#2B7CC1', textDecoration: 'none' }}
+                style={{ color: '#2771B0', textDecoration: 'none' }}
               >
                 allaboutcookies.org
               </a>
@@ -443,7 +444,7 @@ export default function PrivacyPolicyPage() {
                       width: '6px',
                       height: '6px',
                       borderRadius: '50%',
-                      backgroundColor: '#2B7CC1',
+                      backgroundColor: '#2771B0',
                       flexShrink: 0,
                       marginTop: '8px',
                     }}
@@ -458,7 +459,7 @@ export default function PrivacyPolicyPage() {
               To exercise any of these rights, please send a request to{' '}
               <a
                 href="mailto:info@craftedkitchenandbath.com"
-                style={{ color: '#2B7CC1', textDecoration: 'none' }}
+                style={{ color: '#2771B0', textDecoration: 'none' }}
               >
                 info@craftedkitchenandbath.com
               </a>
@@ -498,7 +499,7 @@ export default function PrivacyPolicyPage() {
                   fontWeight: 600,
                   letterSpacing: '0.14em',
                   textTransform: 'uppercase',
-                  color: '#2B7CC1',
+                  color: '#2771B0',
                   margin: 0,
                 }}
               >
@@ -508,14 +509,14 @@ export default function PrivacyPolicyPage() {
                 <span style={{ color: '#1A202C' }}>Email: </span>
                 <a
                   href="mailto:info@craftedkitchenandbath.com"
-                  style={{ color: '#2B7CC1', textDecoration: 'none' }}
+                  style={{ color: '#2771B0', textDecoration: 'none' }}
                 >
                   info@craftedkitchenandbath.com
                 </a>
               </p>
               <p style={{ fontSize: '15px', lineHeight: 1.75, color: '#4A5568', margin: 0 }}>
                 <span style={{ color: '#1A202C' }}>Phone: </span>
-                <a href="tel:+17273837550" style={{ color: '#2B7CC1', textDecoration: 'none' }}>
+                <a href="tel:+17273837550" style={{ color: '#2771B0', textDecoration: 'none' }}>
                   (727) 383-7550
                 </a>
               </p>
@@ -565,7 +566,7 @@ export default function PrivacyPolicyPage() {
                 fontSize: '12px',
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
-                color: '#2B7CC1',
+                color: '#2771B0',
                 textDecoration: 'none',
               }}
             >

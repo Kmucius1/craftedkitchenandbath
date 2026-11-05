@@ -5,9 +5,10 @@ import CTASection from '@/components/CTASection'
 import AskCrewPrompt from '@/components/AskCrewPrompt'
 
 export const metadata: Metadata = {
-  title: 'Kitchen & Bathroom Remodeling FAQs | Crafted Kitchen & Bath | Tampa Bay',
+  title: 'Kitchen & Bathroom Remodeling FAQs',
   description:
     'Answers to common questions about kitchen remodeling, bathroom renovation, countertops, cabinetry, and the remodeling process. Serving Pinellas and Hillsborough County FL.',
+  alternates: { canonical: '/faqs' },
 }
 
 // ─────────────────────────────────────────────
@@ -204,7 +205,7 @@ export default function FAQsPage() {
               </li>
               <li
                 aria-hidden="true"
-                style={{ color: '#2B7CC1', fontSize: '10px' }}
+                style={{ color: '#2771B0', fontSize: '10px' }}
               >
                 /
               </li>
@@ -272,7 +273,7 @@ export default function FAQsPage() {
           details.faq-item[open] .faq-icon::after { content: '−'; }
           details.faq-item:not([open]) .faq-icon::after { content: '+'; }
           details.faq-item summary:focus-visible {
-            outline: 2px solid #2B7CC1;
+            outline: 2px solid #2771B0;
             outline-offset: 4px;
           }
         `}</style>
@@ -283,12 +284,12 @@ export default function FAQsPage() {
 
               {/* ── Category heading ─────────────────────────────── */}
               <div style={{ marginBottom: '20px' }}>
-                <SectionLabel>{cat.category}</SectionLabel>
+                <SectionLabel as="h2">{cat.category}</SectionLabel>
                 <div
                   style={{
                     marginTop: '14px',
                     height: '1px',
-                    backgroundColor: '#2B7CC1',
+                    backgroundColor: '#2771B0',
                     opacity: 0.35,
                   }}
                   aria-hidden="true"
@@ -340,7 +341,7 @@ export default function FAQsPage() {
                         alignItems: 'center',
                         justifyContent: 'center',
                         border: '1px solid rgba(43,124,193,0.5)',
-                        color: '#2B7CC1',
+                        color: '#2771B0',
                         fontSize: '18px',
                         lineHeight: 1,
                         fontWeight: 300,

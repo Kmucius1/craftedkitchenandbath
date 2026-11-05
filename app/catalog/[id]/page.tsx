@@ -20,9 +20,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params
   const p = DEMO_PRODUCTS.find((x) => x.id === id)
-  if (!p) return { title: 'Product not found | Crafted Kitchen & Bath' }
+  if (!p) return { title: 'Product not found' }
   return {
-    title: `${p.name} (${p.supplier}) | Crafted Kitchen & Bath`,
+    title: `${p.name} (${p.supplier})`,
     description: `${p.name} from ${p.supplier}${p.collection ? `, ${p.collection}` : ''}. See every size, color and finish, then request pricing from Crafted Kitchen & Bath.`,
     alternates: { canonical: `https://craftedkitchenandbath.com/catalog/${p.id}` },
   }
@@ -42,7 +42,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
       </section>
       <section style={{ background: '#fff', padding: '32px 24px 64px' }}>
         <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
-          <Link href="/catalog" style={{ display: 'inline-block', marginBottom: '20px', color: '#2B7CC1', fontWeight: 600, fontSize: '14px', textDecoration: 'none' }}>← Back to the catalog</Link>
+          <Link href="/catalog" style={{ display: 'inline-block', marginBottom: '20px', color: '#2771B0', fontWeight: 600, fontSize: '14px', textDecoration: 'none' }}>← Back to the catalog</Link>
           <ProductDetail product={product} />
           <RelatedProducts
             id="pairs-h"

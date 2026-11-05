@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const display = "var(--font-display), 'Montserrat', system-ui, sans-serif";
 const sans = "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif";
-const ACCENT = '#2B7CC1';
+const ACCENT = '#2771B0';
 
 const CREW = [
   { id: 'crafty', name: 'Crafty', role: 'Blueprint Builder', line: 'Guides your project from first idea to final finish.', img: '/images/mascots/crafty.jpg' },

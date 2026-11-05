@@ -3,11 +3,10 @@ import CTASection from "@/components/CTASection";
 import QuoteWizard from "@/components/QuoteWizard";
 
 export const metadata: Metadata = {
-  title:
-    "Get a Free Remodeling Quote | Project Questionnaire | Crafted Kitchen & Bath",
+  title: "Get a Free Remodeling Quote",
   description:
-    "Answer a few quick questions about your kitchen, bathroom, or whole-home remodel and get a personalized consultation from Crafted Kitchen & Bath. Serving Tampa Bay. Licensed CGC1541816.",
-  alternates: { canonical: "https://craftedkitchenandbath.com/quote" },
+    "Answer a few quick questions about your kitchen, bathroom or whole-home remodel and get a free, personalized consultation. Serving Tampa Bay. Licensed.",
+  alternates: { canonical: "/quote" },
 };
 
 const trust = [
@@ -34,7 +33,7 @@ export default function QuotePage() {
               fontSize: "10px",
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "#2B7CC1",
+              color: "#2771B0",
               fontWeight: 600,
               margin: "0 0 18px",
             }}

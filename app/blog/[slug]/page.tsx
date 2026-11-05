@@ -95,11 +95,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <ol style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px", listStyle: "none", margin: 0, padding: 0 }}>
               <li style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <Link href="/" style={crumbLink}>Home</Link>
-                <span style={{ color: "#2B7CC1", fontSize: "10px" }} aria-hidden="true">/</span>
+                <span style={{ color: "#2771B0", fontSize: "10px" }} aria-hidden="true">/</span>
               </li>
               <li style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <Link href="/blog" style={crumbLink}>Blog</Link>
-                <span style={{ color: "#2B7CC1", fontSize: "10px" }} aria-hidden="true">/</span>
+                <span style={{ color: "#2771B0", fontSize: "10px" }} aria-hidden="true">/</span>
               </li>
               <li><span style={{ fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#1A202C" }}>{post.category}</span></li>
             </ol>
@@ -131,7 +131,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <ul key={i} style={{ margin: "0 0 20px", padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "12px" }}>
                   {block.items.map((it, j) => (
                     <li key={j} style={{ display: "flex", gap: "12px", fontSize: "16px", lineHeight: 1.7, color: "#374151" }}>
-                      <span style={{ color: "#2B7CC1", flexShrink: 0, marginTop: "2px" }} aria-hidden="true">—</span>
+                      <span style={{ color: "#2771B0", flexShrink: 0, marginTop: "2px" }} aria-hidden="true">—</span>
                       <span>{it}</span>
                     </li>
                   ))}
@@ -151,7 +151,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <p style={{ fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#6B7280", fontWeight: 600, margin: "0 0 16px" }}>Related</p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
                 {post.related.map((r) => (
-                  <Link key={r.href} href={r.href} style={{ display: "inline-block", border: "1px solid rgba(43,124,193,0.35)", color: "#2B7CC1", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 600, padding: "8px 16px", textDecoration: "none" }}>
+                  <Link key={r.href} href={r.href} style={{ display: "inline-block", border: "1px solid rgba(43,124,193,0.35)", color: "#2771B0", fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 600, padding: "8px 16px", textDecoration: "none" }}>
                     {r.label}
                   </Link>
                 ))}
@@ -230,11 +230,11 @@ function RemoteBlogPost({ post }: { post: RemotePost }) {
             <ol style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8px", listStyle: "none", margin: 0, padding: 0 }}>
               <li style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <Link href="/" style={crumbLink}>Home</Link>
-                <span style={{ color: "#2B7CC1", fontSize: "10px" }} aria-hidden="true">/</span>
+                <span style={{ color: "#2771B0", fontSize: "10px" }} aria-hidden="true">/</span>
               </li>
               <li style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                 <Link href="/blog" style={crumbLink}>Blog</Link>
-                <span style={{ color: "#2B7CC1", fontSize: "10px" }} aria-hidden="true">/</span>
+                <span style={{ color: "#2771B0", fontSize: "10px" }} aria-hidden="true">/</span>
               </li>
               {post.category && <li><span style={{ fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#1A202C" }}>{post.category}</span></li>}
             </ol>

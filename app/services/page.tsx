@@ -4,10 +4,10 @@ import Link from "next/link";
 import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
-  title:
-    "Remodeling Services in Pinellas & Hillsborough County | Crafted Kitchen and Bath",
+  title: "Remodeling Services in Tampa Bay",
   description:
-    "Crafted Kitchen and Bath offers kitchen remodeling, bathroom renovations, flooring installation, painting, and full interior transformations across Pinellas and Hillsborough County, FL.",
+    "Kitchen remodeling, bathroom renovations, flooring, painting and full interior remodels across Pinellas and Hillsborough County, FL. Licensed contractor.",
+  alternates: { canonical: "/services" },
 };
 
 const breadcrumbJsonLd = {
@@ -147,7 +147,7 @@ export default function ServicesPage() {
               fontSize: "11px",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "#2B7CC1",
+              color: "#2771B0",
               fontWeight: 500,
               margin: 0,
             }}
@@ -160,7 +160,7 @@ export default function ServicesPage() {
             style={{
               width: "48px",
               height: "1px",
-              backgroundColor: "#2B7CC1",
+              backgroundColor: "#2771B0",
               margin: "24px 0",
             }}
           />
@@ -276,7 +276,7 @@ export default function ServicesPage() {
                   style={{
                     width: "32px",
                     height: "1px",
-                    backgroundColor: "#2B7CC1",
+                    backgroundColor: "#2771B0",
                     margin: "16px 0",
                   }}
                 />
@@ -316,7 +316,7 @@ export default function ServicesPage() {
                     fontSize: "10px",
                     letterSpacing: "0.14em",
                     textTransform: "uppercase",
-                    color: "#2B7CC1",
+                    color: "#2771B0",
                     textDecoration: "none",
                     marginTop: "24px",
                     display: "inline-block",
@@ -366,7 +366,7 @@ export default function ServicesPage() {
               <div
                 key={point.title}
                 style={{
-                  borderLeft: "2px solid #2B7CC1",
+                  borderLeft: "2px solid #2771B0",
                   paddingLeft: "24px",
                 }}
               >
@@ -412,7 +412,7 @@ export default function ServicesPage() {
               fontSize: "11px",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "#2B7CC1",
+              color: "#2771B0",
               fontWeight: 500,
               margin: "0 0 36px",
             }}
@@ -435,7 +435,7 @@ export default function ServicesPage() {
                 style={{
                   backgroundColor: "#F7F8FA",
                   padding: "32px 28px",
-                  borderTop: "2px solid #2B7CC1",
+                  borderTop: "2px solid #2771B0",
                 }}
               >
                 <span
@@ -443,7 +443,7 @@ export default function ServicesPage() {
                     fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "clamp(20px, 2.5vw, 28px)",
-                    color: "#2B7CC1",
+                    color: "#2771B0",
                     display: "block",
                     lineHeight: 1.2,
                     letterSpacing: "0.01em",

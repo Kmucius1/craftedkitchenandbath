@@ -9,7 +9,7 @@
   --color-dark: #1A202C;
   --color-text-secondary: #4A5568;
   --color-text-muted: #6B7280;
-  --color-blue: #2B7CC1;
+  --color-blue: #2771B0;
   --color-blue-dark: #1E5C96;
   --color-blue-light: #EBF4FF;
   --color-border: rgba(0, 0, 0, 0.08);
@@ -83,13 +83,13 @@ h3, h4 { font-weight: 700 !important; }
 main p { overflow-wrap: break-word; }
 
 ::selection {
-  background-color: #2B7CC1;
+  background-color: #2771B0;
   color: #FFFFFF;
 }
 
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: #F7F8FA; }
-::-webkit-scrollbar-thumb { background: #2B7CC1; border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: #2771B0; border-radius: 2px; }
 
 /* Animations */
 @keyframes fadeUp {
@@ -186,7 +186,7 @@ main p { overflow-wrap: break-word; }
   transition: border-color 0.2s ease;
 }
 .input-luxury:focus {
-  border-bottom-color: #2B7CC1;
+  border-bottom-color: #2771B0;
 }
 .input-luxury::placeholder {
   color: #6B7280;
@@ -195,7 +195,7 @@ main p { overflow-wrap: break-word; }
 
 /* ── Keyboard focus visibility (a11y) ──────────────────────────── */
 :focus-visible {
-  outline: 2px solid #2B7CC1;
+  outline: 2px solid #2771B0;
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -364,7 +364,7 @@ main p { overflow-wrap: break-word; }
   position: absolute;
   left: 0;
   top: 0;
-  color: #2B7CC1;
+  color: #2771B0;
 }
 
 .remote-blog-body ol { counter-reset: remote-item; }
@@ -374,7 +374,7 @@ main p { overflow-wrap: break-word; }
   position: absolute;
   left: 0;
   top: 0;
-  color: #2B7CC1;
+  color: #2771B0;
   font-weight: 700;
 }
 
@@ -382,7 +382,7 @@ main p { overflow-wrap: break-word; }
 .remote-blog-body em { font-style: italic; }
 
 .remote-blog-body a {
-  color: #2B7CC1;
+  color: #2771B0;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -390,7 +390,7 @@ main p { overflow-wrap: break-word; }
 .remote-blog-body blockquote {
   margin: 28px 0;
   padding: 4px 0 4px 22px;
-  border-left: 3px solid #2B7CC1;
+  border-left: 3px solid #2771B0;
   color: #4A5568;
   font-style: italic;
 }
@@ -401,3 +401,7 @@ main p { overflow-wrap: break-word; }
   height: auto;
   margin: 28px 0;
 }
+
+/* Decorative watermark numerals (process steps). The digits come from data-n
+   so they are not text content for screen readers or contrast checks. */
+.deco-num::before { content: attr(data-n); }

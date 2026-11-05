@@ -5,10 +5,10 @@ import CTASection from "@/components/CTASection";
 import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
-  title: "Our Remodeling Process | What to Expect",
+  title: "Our Remodeling Process",
   description:
     "What to expect when you remodel with Crafted Kitchen & Bath in Tampa Bay — from your free in-home consultation through design, build, and final walkthrough.",
-  alternates: { canonical: "https://craftedkitchenandbath.com/process" },
+  alternates: { canonical: "/process" },
 };
 
 const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";
@@ -76,7 +76,7 @@ const textLink: React.CSSProperties = {
   letterSpacing: "0.14em",
   textTransform: "uppercase",
   fontWeight: 600,
-  color: "#2B7CC1",
+  color: "#2771B0",
   textDecoration: "none",
   borderBottom: "1px solid rgba(43,124,193,0.4)",
   paddingBottom: "2px",

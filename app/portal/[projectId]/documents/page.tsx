@@ -62,7 +62,7 @@ export default async function PortalDocumentsPage({ params }: { params: Promise<
                 {CATEGORY_LABEL[d.category] || d.category} · {fmt(d.created_at)}
               </div>
             </div>
-            <span style={{ fontSize: 12, color: "#2B7CC1", fontWeight: 600 }}>Open →</span>
+            <span style={{ fontSize: 12, color: "#2771B0", fontWeight: 600 }}>Open →</span>
           </a>
         ))}
       </div>

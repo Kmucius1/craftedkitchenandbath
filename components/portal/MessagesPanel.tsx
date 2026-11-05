@@ -63,7 +63,7 @@ export default function MessagesPanel({ projectId }: { projectId: string }) {
               <div
                 style={{
                   maxWidth: "75%",
-                  background: m.author_type === "client" ? "#2B7CC1" : "#F1F3F5",
+                  background: m.author_type === "client" ? "#2771B0" : "#F1F3F5",
                   color: m.author_type === "client" ? "#fff" : "#1A202C",
                   borderRadius: 12,
                   padding: "10px 14px",
@@ -98,7 +98,7 @@ export default function MessagesPanel({ projectId }: { projectId: string }) {
           onClick={send}
           disabled={sending || !draft.trim()}
           style={{
-            background: sending || !draft.trim() ? "#7FA9CB" : "#2B7CC1",
+            background: sending || !draft.trim() ? "#7FA9CB" : "#2771B0",
             color: "#fff",
             border: "none",
             borderRadius: 8,

@@ -4,10 +4,10 @@ import Image from "next/image";
 import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
-  title:
-    "Flooring Installation Oldsmar FL | Luxury Flooring Tampa Bay | Crafted Kitchen & Bath",
+  title: "Flooring Installation in Tampa Bay, FL",
   description:
-    "Premium flooring installation paired with kitchen and bathroom remodeling across Tampa Bay. LVP, hardwood, porcelain tile, and more. Licensed contractor serving Pinellas & Hillsborough County.",
+    "Flooring installation across Tampa Bay: luxury vinyl plank, porcelain tile and hardwood, paired with kitchen and bath remodels. Licensed contractor.",
+  alternates: { canonical: "/flooring-installation" },
 };
 
 const serviceJsonLd = {
@@ -202,7 +202,7 @@ export default function FlooringInstallationPage() {
               fontSize: "11px",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "#2B7CC1",
+              color: "#2771B0",
               fontWeight: 500,
               margin: 0,
             }}
@@ -214,7 +214,7 @@ export default function FlooringInstallationPage() {
             style={{
               width: "48px",
               height: "1px",
-              backgroundColor: "#2B7CC1",
+              backgroundColor: "#2771B0",
               margin: "24px 0",
             }}
           />
@@ -253,7 +253,7 @@ export default function FlooringInstallationPage() {
             href="/contact"
             style={{
               display: "inline-block",
-              backgroundColor: "#2B7CC1",
+              backgroundColor: "#2771B0",
               color: "white",
               fontSize: "11px",
               fontWeight: 600,
@@ -287,7 +287,7 @@ export default function FlooringInstallationPage() {
               fontSize: "11px",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "#2B7CC1",
+              color: "#2771B0",
               fontWeight: 500,
               margin: "0 0 48px",
             }}
@@ -412,7 +412,7 @@ export default function FlooringInstallationPage() {
                     fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontWeight: 300,
                     fontSize: "18px",
-                    color: "#2B7CC1",
+                    color: "#2771B0",
                     margin: 0,
                     lineHeight: 1.35,
                     letterSpacing: "0.01em",
@@ -450,7 +450,7 @@ export default function FlooringInstallationPage() {
               fontSize: "11px",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "#2B7CC1",
+              color: "#2771B0",
               fontWeight: 500,
               margin: "0 0 48px",
             }}
@@ -492,7 +492,7 @@ export default function FlooringInstallationPage() {
                   style={{
                     width: "32px",
                     height: "1px",
-                    backgroundColor: "#2B7CC1",
+                    backgroundColor: "#2771B0",
                   }}
                 />
 
@@ -538,7 +538,7 @@ export default function FlooringInstallationPage() {
               fontSize: "11px",
               letterSpacing: "0.18em",
               textTransform: "uppercase",
-              color: "#2B7CC1",
+              color: "#2771B0",
               fontWeight: 500,
               margin: "0 0 48px",
             }}

@@ -94,7 +94,7 @@ export default async function PortalUpdatesPage({ params }: { params: Promise<{ 
 
       {generalPhotos.length > 0 && (
         <div style={{ background: "#fff", border: "1px solid #E5E7EB", borderRadius: 10, padding: "20px 24px" }}>
-          <div style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#2B7CC1", fontWeight: 700, marginBottom: 12 }}>
+          <div style={{ fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", color: "#2771B0", fontWeight: 700, marginBottom: 12 }}>
             Photo Gallery
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">

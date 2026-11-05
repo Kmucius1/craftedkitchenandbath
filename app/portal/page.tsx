@@ -72,7 +72,7 @@ export default async function PortalHomePage() {
                 style={{
                   fontSize: 11,
                   fontWeight: 700,
-                  color: "#2B7CC1",
+                  color: "#2771B0",
                   background: "#EAF3FB",
                   padding: "5px 12px",
                   borderRadius: 999,

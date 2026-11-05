@@ -122,10 +122,10 @@ export default function ContactForm() {
           fill="none"
           aria-hidden="true"
         >
-          <circle cx="22" cy="22" r="21" stroke="#2B7CC1" strokeWidth="1.5" />
+          <circle cx="22" cy="22" r="21" stroke="#2771B0" strokeWidth="1.5" />
           <path
             d="M14 22.5L19.5 28L30 16"
-            stroke="#2B7CC1"
+            stroke="#2771B0"
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -186,7 +186,7 @@ export default function ContactForm() {
       >
         <div style={fieldWrap}>
           <label htmlFor="fullName" style={labelStyle}>
-            Full Name <span style={{ color: "#2B7CC1" }}>*</span>
+            Full Name <span style={{ color: "#2771B0" }}>*</span>
           </label>
           <input
             id="fullName"
@@ -199,7 +199,7 @@ export default function ContactForm() {
             autoComplete="name"
             style={{ ...inputStyle, color: "#1A202C" }}
             onFocus={(e) =>
-              (e.currentTarget.style.borderBottomColor = "#2B7CC1")
+              (e.currentTarget.style.borderBottomColor = "#2771B0")
             }
             onBlur={(e) =>
               (e.currentTarget.style.borderBottomColor = "rgba(0,0,0,0.18)")
@@ -208,7 +208,7 @@ export default function ContactForm() {
         </div>
         <div style={fieldWrap}>
           <label htmlFor="email" style={labelStyle}>
-            Email Address <span style={{ color: "#2B7CC1" }}>*</span>
+            Email Address <span style={{ color: "#2771B0" }}>*</span>
           </label>
           <input
             id="email"
@@ -221,7 +221,7 @@ export default function ContactForm() {
             autoComplete="email"
             style={{ ...inputStyle, color: "#1A202C" }}
             onFocus={(e) =>
-              (e.currentTarget.style.borderBottomColor = "#2B7CC1")
+              (e.currentTarget.style.borderBottomColor = "#2771B0")
             }
             onBlur={(e) =>
               (e.currentTarget.style.borderBottomColor = "rgba(0,0,0,0.18)")
@@ -252,7 +252,7 @@ export default function ContactForm() {
             autoComplete="tel"
             style={{ ...inputStyle, color: "#1A202C" }}
             onFocus={(e) =>
-              (e.currentTarget.style.borderBottomColor = "#2B7CC1")
+              (e.currentTarget.style.borderBottomColor = "#2771B0")
             }
             onBlur={(e) =>
               (e.currentTarget.style.borderBottomColor = "rgba(0,0,0,0.18)")
@@ -261,7 +261,7 @@ export default function ContactForm() {
         </div>
         <div style={fieldWrap}>
           <label htmlFor="service" style={labelStyle}>
-            Service Needed <span style={{ color: "#2B7CC1" }}>*</span>
+            Service Needed <span style={{ color: "#2771B0" }}>*</span>
           </label>
           <select
             id="service"
@@ -280,7 +280,7 @@ export default function ContactForm() {
               color: "#1A202C",
             }}
             onFocus={(e) =>
-              (e.currentTarget.style.borderBottomColor = "#2B7CC1")
+              (e.currentTarget.style.borderBottomColor = "#2771B0")
             }
             onBlur={(e) =>
               (e.currentTarget.style.borderBottomColor = "rgba(0,0,0,0.18)")
@@ -342,7 +342,7 @@ export default function ContactForm() {
           onChange={handleChange}
           placeholder="e.g. Oldsmar, Tampa, Clearwater"
           style={{ ...inputStyle, color: "#1A202C" }}
-          onFocus={(e) => (e.currentTarget.style.borderBottomColor = "#2B7CC1")}
+          onFocus={(e) => (e.currentTarget.style.borderBottomColor = "#2771B0")}
           onBlur={(e) => (e.currentTarget.style.borderBottomColor = "rgba(0,0,0,0.18)")}
         />
       </div>
@@ -365,7 +365,7 @@ export default function ContactForm() {
             lineHeight: 1.7,
             color: "#1A202C",
           }}
-          onFocus={(e) => (e.currentTarget.style.borderBottomColor = "#2B7CC1")}
+          onFocus={(e) => (e.currentTarget.style.borderBottomColor = "#2771B0")}
           onBlur={(e) => (e.currentTarget.style.borderBottomColor = "rgba(0,0,0,0.18)")}
         />
       </div>
@@ -405,7 +405,7 @@ export default function ContactForm() {
                   height: "18px",
                   borderRadius: "50%",
                   border: `1.5px solid ${
-                    form.contactMethod === method ? "#2B7CC1" : "rgba(0,0,0,0.18)"
+                    form.contactMethod === method ? "#2771B0" : "rgba(0,0,0,0.18)"
                   }`,
                   flexShrink: 0,
                   transition: "border-color 0.2s ease",
@@ -418,7 +418,7 @@ export default function ContactForm() {
                       width: "8px",
                       height: "8px",
                       borderRadius: "50%",
-                      backgroundColor: "#2B7CC1",
+                      backgroundColor: "#2771B0",
                     }}
                   />
                 )}
@@ -463,7 +463,7 @@ export default function ContactForm() {
           type="submit"
           disabled={submitting}
           style={{
-            backgroundColor: submitting ? "#7FA9CB" : "#2B7CC1",
+            backgroundColor: submitting ? "#7FA9CB" : "#2771B0",
             color: "#FFFFFF",
             border: "none",
             fontSize: "9px",
@@ -479,7 +479,7 @@ export default function ContactForm() {
             if (!submitting) e.currentTarget.style.backgroundColor = "#1E5C96";
           }}
           onMouseLeave={(e) => {
-            if (!submitting) e.currentTarget.style.backgroundColor = "#2B7CC1";
+            if (!submitting) e.currentTarget.style.backgroundColor = "#2771B0";
           }}
         >
           {submitting ? "Sending…" : "Send My Request"}

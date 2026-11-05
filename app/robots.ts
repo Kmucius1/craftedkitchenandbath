@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/api/',
+      disallow: ['/api/', '/portal', '/contract/'],
     },
     sitemap: 'https://craftedkitchenandbath.com/sitemap.xml',
   }

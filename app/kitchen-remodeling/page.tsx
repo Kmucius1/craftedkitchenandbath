@@ -5,12 +5,11 @@ import CTASection from "@/components/CTASection";
 import SectionLabel from "@/components/SectionLabel";
 
 export const metadata: Metadata = {
-  title:
-    "Kitchen Remodeling Oldsmar FL | Custom Kitchens Tampa Bay | Crafted Kitchen & Bath",
+  title: "Kitchen Remodeling in Tampa Bay, FL",
   description:
-    "Expert kitchen remodeling in Oldsmar, Clearwater, Palm Harbor, and across Pinellas & Hillsborough County. Custom cabinetry, quartz countertops, kitchen islands, backsplash tile, and layout redesign. Licensed contractor CGC1541816. Free quote.",
+    "Kitchen remodeling in Oldsmar, Clearwater, Palm Harbor and Tampa Bay. Custom cabinets, quartz countertops, islands and layout redesign. Licensed. Free quote.",
   alternates: {
-    canonical: "https://craftedkitchenandbath.com/kitchen-remodeling",
+    canonical: "/kitchen-remodeling",
   },
 };
 
@@ -258,7 +257,7 @@ export default function KitchenRemodelingPage() {
                   fontSize: "11px",
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
-                  color: "#2B7CC1",
+                  color: "#2771B0",
                 }}
               >
                 Kitchen Remodeling
@@ -330,7 +329,7 @@ export default function KitchenRemodelingPage() {
               href="/contact"
               style={{
                 display: "inline-block",
-                backgroundColor: "#2B7CC1",
+                backgroundColor: "#2771B0",
                 color: "white",
                 fontSize: "11px",
                 fontWeight: 600,
@@ -338,7 +337,7 @@ export default function KitchenRemodelingPage() {
                 textTransform: "uppercase",
                 textDecoration: "none",
                 padding: "16px 36px",
-                border: "1px solid #2B7CC1",
+                border: "1px solid #2771B0",
               }}
             >
               Get a Free Kitchen Quote
@@ -437,7 +436,7 @@ export default function KitchenRemodelingPage() {
                 <span
                   style={{
                     fontSize: "11px",
-                    color: "rgba(43,124,193,0.4)",
+                    color: "#2771B0",
                     fontWeight: 300,
                     letterSpacing: "0.05em",
                     flexShrink: 0,
@@ -449,7 +448,7 @@ export default function KitchenRemodelingPage() {
                   style={{
                     width: "1px",
                     height: "28px",
-                    backgroundColor: "#2B7CC1",
+                    backgroundColor: "#2771B0",
                     opacity: 0.4,
                     flexShrink: 0,
                   }}
@@ -532,7 +531,7 @@ export default function KitchenRemodelingPage() {
                   padding: "40px 32px",
                   border: "1px solid rgba(0,0,0,0.08)",
                   borderTopWidth: "2px",
-                  borderTopColor: "#2B7CC1",
+                  borderTopColor: "#2771B0",
                   display: "flex",
                   flexDirection: "column",
                   gap: "16px",
@@ -626,7 +625,7 @@ export default function KitchenRemodelingPage() {
                     width: "52px",
                     height: "52px",
                     borderRadius: "50%",
-                    border: "1px solid #2B7CC1",
+                    border: "1px solid #2771B0",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -638,7 +637,7 @@ export default function KitchenRemodelingPage() {
                       fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                       fontWeight: 300,
                       fontSize: "13px",
-                      color: "#2B7CC1",
+                      color: "#2771B0",
                       letterSpacing: "0.05em",
                     }}
                   >
@@ -737,7 +736,7 @@ export default function KitchenRemodelingPage() {
                 fontSize: "11px",
                 letterSpacing: "0.14em",
                 textTransform: "uppercase",
-                color: "#2B7CC1",
+                color: "#2771B0",
                 textDecoration: "none",
                 display: "inline-flex",
                 alignItems: "center",
@@ -835,7 +834,7 @@ export default function KitchenRemodelingPage() {
                     style={{
                       width: "2px",
                       flexShrink: 0,
-                      backgroundColor: "#2B7CC1",
+                      backgroundColor: "#2771B0",
                       alignSelf: "stretch",
                       minHeight: "24px",
                     }}

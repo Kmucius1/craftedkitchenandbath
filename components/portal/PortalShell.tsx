@@ -99,7 +99,7 @@ export default function PortalShell({
                       fontSize: 13.5,
                       fontWeight: 600,
                       color: active ? "#fff" : "#A9B3C1",
-                      backgroundColor: active ? "#2B7CC1" : "transparent",
+                      backgroundColor: active ? "#2771B0" : "transparent",
                       textDecoration: "none",
                     }}
                   >
@@ -125,7 +125,7 @@ export default function PortalShell({
                 fontSize: 13.5,
                 fontWeight: 600,
                 color: pathname === "/portal/account" ? "#fff" : "#A9B3C1",
-                backgroundColor: pathname === "/portal/account" ? "#2B7CC1" : "transparent",
+                backgroundColor: pathname === "/portal/account" ? "#2771B0" : "transparent",
                 textDecoration: "none",
               }}
             >
@@ -196,7 +196,7 @@ export default function PortalShell({
                     fontSize: 14,
                     fontWeight: 600,
                     color: active ? "#fff" : "#A9B3C1",
-                    backgroundColor: active ? "#2B7CC1" : "transparent",
+                    backgroundColor: active ? "#2771B0" : "transparent",
                     textDecoration: "none",
                   }}
                 >

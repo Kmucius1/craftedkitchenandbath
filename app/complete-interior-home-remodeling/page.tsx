@@ -5,10 +5,10 @@ import SectionLabel from "@/components/SectionLabel";
 import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
-  title:
-    "Complete Interior Remodeling Tampa Bay | Kitchen & Bath Specialists | Crafted Kitchen & Bath",
+  title: "Interior Home Remodeling in Tampa Bay",
   description:
-    "Full-home interior remodeling starting with kitchen and bathroom transformations. One licensed team handles kitchens, bathrooms, flooring, and paint across Pinellas & Hillsborough County. Free consultation.",
+    "Whole-home interior remodeling led by kitchen and bath specialists. One licensed team for kitchens, baths, flooring and paint across Tampa Bay.",
+  alternates: { canonical: "/complete-interior-home-remodeling" },
 };
 
 // ── JSON-LD ──────────────────────────────────────────────────────────────────
@@ -264,7 +264,7 @@ export default function CompleteInteriorRemodelingPage() {
             <li aria-hidden="true" style={{ color: "#6B7280" }}>
               /
             </li>
-            <li style={{ color: "#2B7CC1" }} aria-current="page">
+            <li style={{ color: "#2771B0" }} aria-current="page">
               Complete Interior Home Remodeling
             </li>
           </ol>
@@ -286,7 +286,7 @@ export default function CompleteInteriorRemodelingPage() {
             style={{
               width: "48px",
               height: "1px",
-              backgroundColor: "#2B7CC1",
+              backgroundColor: "#2771B0",
               margin: "24px 0",
             }}
             aria-hidden="true"
@@ -329,7 +329,7 @@ export default function CompleteInteriorRemodelingPage() {
               alignSelf: "flex-start",
               marginTop: "36px",
               border: "1px solid rgba(43,124,193,0.4)",
-              color: "#2B7CC1",
+              color: "#2771B0",
               fontSize: "10px",
               textTransform: "uppercase",
               letterSpacing: "0.2em",
@@ -420,7 +420,7 @@ export default function CompleteInteriorRemodelingPage() {
                   style={{
                     width: "28px",
                     height: "1px",
-                    backgroundColor: "#2B7CC1",
+                    backgroundColor: "#2771B0",
                   }}
                   aria-hidden="true"
                 />
@@ -527,7 +527,7 @@ export default function CompleteInteriorRemodelingPage() {
                       fontWeight: 300,
                       fontSize: "11px",
                       letterSpacing: "0.14em",
-                      color: "#2B7CC1",
+                      color: "#2771B0",
                       lineHeight: 1,
                     }}
                   >
@@ -655,7 +655,7 @@ export default function CompleteInteriorRemodelingPage() {
                 fontWeight: 600,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#2B7CC1",
+                color: "#2771B0",
                 textDecoration: "none",
                 borderBottom: "1px solid rgba(43,124,193,0.4)",
                 paddingBottom: "2px",
@@ -696,7 +696,7 @@ export default function CompleteInteriorRemodelingPage() {
                       ? "1px solid rgba(0,0,0,0.08)"
                       : "none",
                   padding: "28px 0 28px 24px",
-                  borderLeft: "2px solid #2B7CC1",
+                  borderLeft: "2px solid #2771B0",
                   marginLeft: "0",
                   display: "flex",
                   flexDirection: "column",
@@ -793,7 +793,7 @@ export default function CompleteInteriorRemodelingPage() {
                     fontSize: "11px",
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
-                    color: "#2B7CC1",
+                    color: "#2771B0",
                     fontWeight: 500,
                     margin: "0 0 16px",
                   }}
@@ -827,7 +827,7 @@ export default function CompleteInteriorRemodelingPage() {
                           display: "inline-block",
                           width: "20px",
                           height: "1px",
-                          backgroundColor: "#2B7CC1",
+                          backgroundColor: "#2771B0",
                           flexShrink: 0,
                         }}
                         aria-hidden="true"
@@ -854,7 +854,7 @@ export default function CompleteInteriorRemodelingPage() {
                     fontSize: "11px",
                     letterSpacing: "0.18em",
                     textTransform: "uppercase",
-                    color: "#2B7CC1",
+                    color: "#2771B0",
                     fontWeight: 500,
                     margin: "0 0 16px",
                   }}
@@ -930,7 +930,7 @@ export default function CompleteInteriorRemodelingPage() {
             style={{
               width: "48px",
               height: "1px",
-              backgroundColor: "#2B7CC1",
+              backgroundColor: "#2771B0",
             }}
             aria-hidden="true"
           />
@@ -971,7 +971,7 @@ export default function CompleteInteriorRemodelingPage() {
             style={{
               display: "inline-flex",
               border: "1px solid rgba(43,124,193,0.35)",
-              color: "#2B7CC1",
+              color: "#2771B0",
               fontSize: "10px",
               textTransform: "uppercase",
               letterSpacing: "0.2em",

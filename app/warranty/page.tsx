@@ -4,10 +4,10 @@ import CTASection from "@/components/CTASection";
 import Breadcrumb from "@/components/Breadcrumb";
 
 export const metadata: Metadata = {
-  title: "Our Workmanship Guarantee | Crafted Kitchen & Bath",
+  title: "Our Workmanship Guarantee",
   description:
     "Crafted Kitchen & Bath stands behind its work. A licensed, insured Tampa Bay remodeler (CGC1541816) committed to craftsmanship you can count on.",
-  alternates: { canonical: "https://craftedkitchenandbath.com/warranty" },
+  alternates: { canonical: "/warranty" },
 };
 
 const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";
@@ -51,7 +51,7 @@ export default function WarrantyPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: "rgba(43,124,193,0.1)" }}>
               {points.map((p) => (
                 <div key={p.title} style={{ backgroundColor: "#FFFFFF", padding: "34px 30px", display: "flex", flexDirection: "column", gap: "12px" }}>
-                  <div style={{ width: "28px", height: "1px", backgroundColor: "#2B7CC1" }} aria-hidden="true" />
+                  <div style={{ width: "28px", height: "1px", backgroundColor: "#2771B0" }} aria-hidden="true" />
                   <h2 style={{ fontFamily: headingFont, fontWeight: 300, fontSize: "22px", color: "#1A202C", margin: 0 }}>{p.title}</h2>
                   <p style={{ fontSize: "15px", lineHeight: 1.8, color: "#4A5568", margin: 0 }}>{p.body}</p>
                 </div>

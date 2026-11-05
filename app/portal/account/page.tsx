@@ -99,7 +99,7 @@ export default function PortalAccountPage() {
             type="submit"
             disabled={submitting}
             style={{
-              background: submitting ? "#7FA9CB" : "#2B7CC1",
+              background: submitting ? "#7FA9CB" : "#2771B0",
               color: "#fff",
               border: "none",
               borderRadius: 6,

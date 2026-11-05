@@ -5,12 +5,11 @@ import SectionLabel from "@/components/SectionLabel";
 import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
-  title:
-    "Bathroom Remodeling Oldsmar FL | Spa Bathrooms Tampa Bay | Crafted Kitchen & Bath",
+  title: "Bathroom Remodeling in Tampa Bay, FL",
   description:
-    "Luxury bathroom remodeling in Oldsmar, Clearwater, Palm Harbor, and across Pinellas County. Custom tile showers, vanities, freestanding tubs, and spa-inspired finishes. Licensed contractor CGC1541816. Free quote.",
+    "Bathroom remodeling in Oldsmar, Clearwater, Palm Harbor and Tampa Bay. Custom tile showers, vanities, freestanding tubs and spa finishes. Licensed. Free quote.",
   alternates: {
-    canonical: "https://craftedkitchenandbath.com/bathroom-remodeling",
+    canonical: "/bathroom-remodeling",
   },
 };
 
@@ -277,7 +276,7 @@ export default function BathroomRemodelingPage() {
               <Link
                 href="/"
                 style={{
-                  color: "#2B7CC1",
+                  color: "#2771B0",
                   textDecoration: "none",
                   textTransform: "uppercase",
                   letterSpacing: "0.10em",
@@ -295,7 +294,7 @@ export default function BathroomRemodelingPage() {
               <Link
                 href="/services"
                 style={{
-                  color: "#2B7CC1",
+                  color: "#2771B0",
                   textDecoration: "none",
                   textTransform: "uppercase",
                   letterSpacing: "0.10em",
@@ -379,7 +378,7 @@ export default function BathroomRemodelingPage() {
               href="/contact"
               style={{
                 display: "inline-block",
-                backgroundColor: "#2B7CC1",
+                backgroundColor: "#2771B0",
                 color: "white",
                 fontSize: "11px",
                 fontWeight: 600,
@@ -387,7 +386,7 @@ export default function BathroomRemodelingPage() {
                 textTransform: "uppercase",
                 textDecoration: "none",
                 padding: "16px 36px",
-                border: "1px solid #2B7CC1",
+                border: "1px solid #2771B0",
               }}
             >
               Get a Free Bathroom Quote
@@ -459,7 +458,7 @@ export default function BathroomRemodelingPage() {
                   display: "flex",
                   flexDirection: "column",
                   gap: "14px",
-                  borderTop: "2px solid #2B7CC1",
+                  borderTop: "2px solid #2771B0",
                 }}
               >
                 <h3
@@ -560,7 +559,7 @@ export default function BathroomRemodelingPage() {
                   display: "flex",
                   flexDirection: "column",
                   gap: "8px",
-                  borderLeft: "2px solid #2B7CC1",
+                  borderLeft: "2px solid #2771B0",
                 }}
               >
                 <h3
@@ -649,7 +648,7 @@ export default function BathroomRemodelingPage() {
                   style={{
                     fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontSize: "13px",
-                    color: "#2B7CC1",
+                    color: "#2771B0",
                     letterSpacing: "0.12em",
                     fontWeight: 300,
                   }}
@@ -676,7 +675,7 @@ export default function BathroomRemodelingPage() {
                   style={{
                     width: "32px",
                     height: "1px",
-                    backgroundColor: "#2B7CC1",
+                    backgroundColor: "#2771B0",
                   }}
                   aria-hidden="true"
                 />
@@ -768,7 +767,7 @@ export default function BathroomRemodelingPage() {
                     fontFamily: "var(--font-display), 'Montserrat', system-ui, sans-serif",
                     fontSize: "clamp(28px, 4vw, 40px)",
                     fontWeight: 300,
-                    color: "#2B7CC1",
+                    color: "#2771B0",
                     lineHeight: 1,
                     opacity: 0.6,
                     flexShrink: 0,

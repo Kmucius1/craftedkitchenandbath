@@ -5,10 +5,10 @@ import SectionLabel from "@/components/SectionLabel";
 import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
-  title:
-    "Kitchen & Bath Remodeling Service Areas | Pinellas & Hillsborough County FL",
+  title: "Service Areas: Pinellas & Hillsborough",
   description:
-    "Crafted Kitchen & Bath serves kitchen and bathroom remodeling clients across Oldsmar, Clearwater, Tampa, Palm Harbor, Safety Harbor, Dunedin, St. Petersburg, Tarpon Springs, and all of Tampa Bay.",
+    "Kitchen and bathroom remodeling across Oldsmar, Clearwater, Tampa, Palm Harbor, Dunedin, St. Petersburg and the rest of Pinellas and Hillsborough County.",
+  alternates: { canonical: "/areas-of-service" },
 };
 
 const localBusinessSchema = {
@@ -212,7 +212,7 @@ export default function AreasOfServicePage() {
                   Home
                 </Link>
                 <span
-                  style={{ color: "#2B7CC1", fontSize: "10px" }}
+                  style={{ color: "#2771B0", fontSize: "10px" }}
                   aria-hidden="true"
                 >
                   /
@@ -241,7 +241,7 @@ export default function AreasOfServicePage() {
             style={{
               width: "48px",
               height: "1px",
-              backgroundColor: "#2B7CC1",
+              backgroundColor: "#2771B0",
               margin: "24px 0",
             }}
             aria-hidden="true"
@@ -594,7 +594,7 @@ export default function AreasOfServicePage() {
                   style={{
                     width: "28px",
                     height: "1px",
-                    backgroundColor: "#2B7CC1",
+                    backgroundColor: "#2771B0",
                   }}
                   aria-hidden="true"
                 />
@@ -629,7 +629,7 @@ export default function AreasOfServicePage() {
                     fontSize: "10px",
                     letterSpacing: "0.16em",
                     textTransform: "uppercase",
-                    color: "#2B7CC1",
+                    color: "#2771B0",
                     fontWeight: 600,
                     marginTop: "4px",
                   }}
@@ -710,7 +710,7 @@ export default function AreasOfServicePage() {
                   style={{
                     width: "28px",
                     height: "1px",
-                    backgroundColor: "#2B7CC1",
+                    backgroundColor: "#2771B0",
                   }}
                   aria-hidden="true"
                 />
@@ -745,7 +745,7 @@ export default function AreasOfServicePage() {
                     fontSize: "10px",
                     letterSpacing: "0.16em",
                     textTransform: "uppercase",
-                    color: "#2B7CC1",
+                    color: "#2771B0",
                     fontWeight: 600,
                     marginTop: "4px",
                   }}
@@ -825,7 +825,7 @@ export default function AreasOfServicePage() {
                 fontWeight: 600,
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
-                color: "#2B7CC1",
+                color: "#2771B0",
                 textDecoration: "none",
                 borderBottom: "1px solid rgba(43,124,193,0.4)",
                 paddingBottom: "2px",
@@ -916,7 +916,7 @@ export default function AreasOfServicePage() {
               style={{
                 width: "40px",
                 height: "1px",
-                backgroundColor: "#2B7CC1",
+                backgroundColor: "#2771B0",
               }}
               aria-hidden="true"
             />
@@ -949,7 +949,7 @@ export default function AreasOfServicePage() {
                       width: "4px",
                       height: "4px",
                       borderRadius: "50%",
-                      backgroundColor: "#2B7CC1",
+                      backgroundColor: "#2771B0",
                       flexShrink: 0,
                     }}
                     aria-hidden="true"

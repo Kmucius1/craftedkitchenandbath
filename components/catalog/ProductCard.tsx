@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Product } from '@/lib/designer/types'
 import { isPlaceholderImage } from '@/lib/catalog/placeholder'
 import { cabinet3DSpec } from '@/lib/designer/cabinet-spec'
@@ -10,7 +11,7 @@ import QuickView from './QuickView'
 import { USCD_FINISHES, finishGrain } from '@/lib/designer/uscd-finishes'
 import { getVerification, isVerified, statusLabel } from '@/lib/catalog/verification'
 
-const BLUE = '#2B7CC1'
+const BLUE = '#2771B0'
 const INK = '#111822'
 
 /** Categories whose photos are cut-outs on white (fixtures) rather than full-bleed material shots. */
@@ -33,6 +34,26 @@ const SWATCH: Record<string, string> = {
   gray: '#9CA3AF', grey: '#9CA3AF', 'light gray': '#D1D5DB', 'light grey': '#D1D5DB', charcoal: '#4B5563',
   black: '#16191F', brown: '#7B5B3E', tan: '#C9AE87', blue: '#4A7FB5', green: '#6B8F71', red: '#B2453C',
 }
+/** Hosts the image optimizer is allowed to fetch (next.config.ts remotePatterns). Anything else is shown as-is. */
+const OPTIMIZED_HOSTS = new Set([
+  'internationalwholesaletile.com',
+  'www.msisurfaces.com',
+  'cdn.msisurfaces.com',
+  'topknobsupply.com',
+  'www.cabinetparts.com',
+  'static.homebydecor.com',
+  'prod-uscd-product-files.s3.amazonaws.com',
+])
+const canOptimize = (src: string) => {
+  if (src.startsWith('/')) return true
+  try {
+    const u = new URL(src)
+    return u.protocol === 'https:' && OPTIMIZED_HOSTS.has(u.hostname)
+  } catch {
+    return false
+  }
+}
+
 const swatchOf = (name: string) => USCD_FINISHES.find((f) => f.name.toLowerCase() === name.trim().toLowerCase())?.hex ?? SWATCH[name.trim().toLowerCase()] ?? '#E5E7EB'
 
 
@@ -58,28 +79,28 @@ export default function ProductCard({ product }: { product: Product }) {
   const colors = [...new Set(variants.map((v) => v.color).filter((c): c is string => !!c))]
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-xl border border-black/[0.08] bg-white transition duration-300 hover:-translate-y-1 hover:border-black/15 hover:shadow-[0_18px_40px_-18px_rgba(17,24,34,0.35)] focus-within:ring-2 focus-within:ring-[#2B7CC1]">
+    <article className="group flex flex-col overflow-hidden rounded-xl border border-black/[0.08] bg-white transition duration-300 hover:-translate-y-1 hover:border-black/15 hover:shadow-[0_18px_40px_-18px_rgba(17,24,34,0.35)] focus-within:ring-2 focus-within:ring-[#2771B0]">
       <div className={`relative aspect-[4/3] w-full overflow-hidden ${roomScene ? 'bg-[#E9ECF1]' : showingVariantPhoto ? 'bg-[#E9ECF1]' : contain ? 'bg-white' : 'bg-[#EEF0F4]'}`}>
         <span aria-hidden className="pointer-events-none absolute inset-0 z-[1] ring-1 ring-inset ring-black/[0.06]" />
         {!viewer3D && (
-          <button type="button" onClick={() => setQuick(true)} aria-label={`Quick view: ${product.name}`} className="absolute inset-0 z-[2] cursor-zoom-in focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#2B7CC1]" />
+          <button type="button" onClick={() => setQuick(true)} aria-label={`Quick view: ${product.name}`} className="absolute inset-0 z-[2] cursor-zoom-in focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#2771B0]" />
         )}
         {viewer3D ? (
           <CabinetViewer spec={viewer3D} label={`${product.name}, ${product.supplier}`} fallbackSrc={imageUrl} color={picked?.color ? swatchOf(picked.color) : undefined} grain={picked?.color ? finishGrain(picked.color) : false} />
         ) : (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={imageUrl}
             alt={picked ? `${product.name}, ${picked.label}, ${product.supplier}` : `${product.name}, ${product.supplier}`}
-            loading="lazy"
-            decoding="async"
-            className={`absolute inset-0 h-full w-full transition-transform duration-500 group-hover:scale-[1.04] ${roomScene ? 'object-cover' : showingVariantPhoto ? 'object-contain p-8' : contain ? 'object-contain p-5' : 'object-cover'}`}
+            fill
+            sizes="(min-width: 1280px) 380px, (min-width: 640px) 45vw, 100vw"
+            unoptimized={!canOptimize(imageUrl)}
+            className={`transition-transform duration-500 group-hover:scale-[1.04] ${roomScene ? 'object-cover' : showingVariantPhoto ? 'object-contain p-8' : contain ? 'object-contain p-5' : 'object-cover'}`}
           />
         )}
         <button
           type="button"
           onClick={() => setQuick(true)}
-          className="absolute right-3 top-3 z-[3] rounded-full bg-white/95 px-3 py-1.5 text-[12px] font-bold text-[#1E5C96] shadow ring-1 ring-black/10 transition hover:bg-[#EBF4FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#2B7CC1]"
+          className="absolute right-3 top-3 z-[3] rounded-full bg-white/95 px-3 py-1.5 text-[12px] font-bold text-[#1E5C96] shadow ring-1 ring-black/10 transition hover:bg-[#EBF4FF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#2771B0]"
         >
           Quick view
         </button>
@@ -128,7 +149,7 @@ export default function ProductCard({ product }: { product: Product }) {
               {colors.length > 1 ? 'Colors' : 'Color'}
               {picked?.color ? <span className="font-bold text-[#111822]">: {picked.color}</span> : ''}
             </p>
-            <ul className="flex flex-wrap items-center gap-1.5" role="group" aria-label={`Colors for ${product.name}`}>
+            <ul className="flex flex-wrap items-center gap-1.5" aria-label={`Colors for ${product.name}`}>
               {colors.map((color) => {
                 const v = variants.find((x) => x.color === color)
                 const on = !!v && v.id === pickedId
@@ -140,7 +161,7 @@ export default function ProductCard({ product }: { product: Product }) {
                       aria-label={color}
                       aria-pressed={on}
                       onClick={() => (v ? setPickedId(on ? null : v.id) : setQuick(true))}
-                      className={`size-7 rounded-full border transition ${on ? 'border-[#2B7CC1] ring-2 ring-[#2B7CC1] ring-offset-1' : 'border-black/25 hover:ring-2 hover:ring-[#2B7CC1]/50'}`}
+                      className={`size-7 rounded-full border transition ${on ? 'border-[#2771B0] ring-2 ring-[#2771B0] ring-offset-1' : 'border-black/25 hover:ring-2 hover:ring-[#2771B0]/50'}`}
                       style={{ background: swatchOf(color) }}
                     />
                   </li>
@@ -158,7 +179,7 @@ export default function ProductCard({ product }: { product: Product }) {
                 type="button"
                 onClick={() => setPickedId(null)}
                 aria-pressed={!picked}
-                className={`rounded-full border px-2.5 py-1 text-[12px] font-semibold transition-colors ${!picked ? 'border-[#2B7CC1] bg-[#EBF4FF] text-[#1E5C96]' : 'border-black/15 bg-white text-[#4A5568] hover:border-[#2B7CC1] hover:text-[#2B7CC1]'}`}
+                className={`rounded-full border px-2.5 py-1 text-[12px] font-semibold transition-colors ${!picked ? 'border-[#2771B0] bg-[#EBF4FF] text-[#1E5C96]' : 'border-black/15 bg-white text-[#4A5568] hover:border-[#2771B0] hover:text-[#2771B0]'}`}
               >
                 {product.overviewLabel ?? 'Overview'}
               </button>
@@ -168,7 +189,7 @@ export default function ProductCard({ product }: { product: Product }) {
                   type="button"
                   onClick={() => setPickedId(variant.id === pickedId ? null : variant.id)}
                   aria-pressed={variant.id === pickedId}
-                  className={`rounded-full border px-2.5 py-1 text-[12px] font-semibold transition-colors ${variant.id === pickedId ? 'border-[#2B7CC1] bg-[#EBF4FF] text-[#1E5C96]' : 'border-black/15 bg-white text-[#4A5568] hover:border-[#2B7CC1] hover:text-[#2B7CC1]'}`}
+                  className={`rounded-full border px-2.5 py-1 text-[12px] font-semibold transition-colors ${variant.id === pickedId ? 'border-[#2771B0] bg-[#EBF4FF] text-[#1E5C96]' : 'border-black/15 bg-white text-[#4A5568] hover:border-[#2771B0] hover:text-[#2771B0]'}`}
                 >
                   {variant.label}
                 </button>
@@ -185,7 +206,7 @@ export default function ProductCard({ product }: { product: Product }) {
           >
             Request pricing
           </Link>
-          <Link href={`/catalog/${product.id}`} className="whitespace-nowrap text-[13px] font-semibold text-[#2B7CC1] underline-offset-4 hover:underline">
+          <Link href={`/catalog/${product.id}`} className="whitespace-nowrap text-[13px] font-semibold text-[#2771B0] underline-offset-4 hover:underline">
             {product.category === 'cabinets' ? 'All colors & details →' : 'Details & options →'}
           </Link>
           {product.sourceUrl && (
@@ -194,7 +215,7 @@ export default function ProductCard({ product }: { product: Product }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${product.name} on the ${product.supplier} website`}
-              className="whitespace-nowrap text-[13px] font-semibold text-[#4A5568] underline-offset-4 transition-colors hover:text-[#2B7CC1] hover:underline"
+              className="whitespace-nowrap text-[13px] font-semibold text-[#4A5568] underline-offset-4 transition-colors hover:text-[#2771B0] hover:underline"
             >
               Supplier ↗
             </a>

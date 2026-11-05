@@ -8,9 +8,10 @@ import { blogArticles, articleDate, articleDisplayDate } from "@/lib/blog-articl
 import { getRemotePosts, remoteReadMinutes, remoteDisplayDate } from "@/lib/remote-blog";
 
 export const metadata: Metadata = {
-  title: "Remodeling Blog | Tips, Guides & Inspiration",
+  title: "Remodeling Blog: Tips & Cost Guides",
   description:
     "Remodeling tips, cost guides, and material comparisons from the Crafted Kitchen and Bath team. Serving Oldsmar, Pinellas County, and the Tampa Bay area.",
+  alternates: { canonical: "/blog" },
 };
 
 interface ListPost {
@@ -83,7 +84,7 @@ async function getPosts(): Promise<ListPost[]> {
 
 const headingFont = "var(--font-display), 'Montserrat', system-ui, sans-serif";
 const INK = "#111822";
-const BLUE = "#2B7CC1";
+const BLUE = "#2771B0";
 
 /** A card with no photo still has to look deliberate rather than broken. */
 function Media({
