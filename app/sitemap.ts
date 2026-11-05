@@ -43,11 +43,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     }))
 
-  const productPages: MetadataRoute.Sitemap = DEMO_PRODUCTS.map((p) => ({
-    url: `${BASE_URL}/catalog/${p.id}`,
-    changeFrequency: 'monthly',
-    priority: 0.4,
-  }))
+  const productPages: MetadataRoute.Sitemap = [
+    { url: `${BASE_URL}/catalog/all`, changeFrequency: 'weekly', priority: 0.5 },
+    ...DEMO_PRODUCTS.map((p): MetadataRoute.Sitemap[number] => ({
+      url: `${BASE_URL}/catalog/${p.id}`,
+      changeFrequency: 'monthly',
+      priority: 0.4,
+    })),
+  ]
 
   return [
     {

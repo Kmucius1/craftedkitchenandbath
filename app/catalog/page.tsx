@@ -353,6 +353,9 @@ export default async function CatalogPage({
               ) : null}
             </nav>
           )}
+          <p className="mt-8 text-center text-[14px] text-[#4A5568]">
+            Looking for something specific? <Link href="/catalog/all" className="font-semibold text-[#2771B0] underline">See all {DEMO_PRODUCTS.length} products A to Z</Link>
+          </p>
         </div>
       </section>
 
